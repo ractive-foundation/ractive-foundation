@@ -87,7 +87,8 @@
 		"require": true,
 		"requirejs": true,
 		"define": true,
-		"_": true
+		"_": true,
+		"Ractive": true
 	}
 
 }
