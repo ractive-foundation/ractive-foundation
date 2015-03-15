@@ -48,6 +48,12 @@ gulp.task('ractive-build-components', function() {
         .pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('build', [
+    'build-sass',
+    'ractive-build-templates',
+    'ractive-build-components',
+    'copy-ractive'
+]);
 
 gulp.task('watch', function () {
     gulp.watch(
@@ -58,13 +64,10 @@ gulp.task('watch', function () {
             './src/**/*.sass'
         ],
         [
-            'build-sass',
-            'ractive-build-templates',
-            'ractive-build-components',
-            'copy-ractive',
+            'build',
             'html'
         ]
     );
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['build', 'connect', 'watch']);
