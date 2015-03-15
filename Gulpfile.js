@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    concat = require('gulp-concat'),
     connect = require('gulp-connect');
 
 gulp.task('sass', function () {
@@ -11,6 +12,11 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./public/css/foundation'));
 });
 
+gulp.task('concat-components', function() {
+    return gulp.src('./src/components/**/*.js')
+        .pipe(concat('components.js'))
+        .pipe(gulp.dest('./public/js'));
+});
 
 gulp.task('connect', function() {
     connect.server({
@@ -32,7 +38,7 @@ gulp.task('watch', function () {
         ],
         [
             'sass',
-            'copy-foundation',
+            'concat-components',
             'html'
         ]
     );
