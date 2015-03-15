@@ -30,6 +30,11 @@ gulp.task('html', function () {
         .pipe(connect.reload());
 });
 
+gulp.task('copy-ractive', function () {
+    gulp.src('./node_modules/ractive/ractive.js')
+        .pipe(gulp.dest('./public/js'));
+});
+
 gulp.task('watch', function () {
     gulp.watch(
         [
@@ -39,6 +44,7 @@ gulp.task('watch', function () {
         [
             'sass',
             'concat-components',
+            'copy-ractive',
             'html'
         ]
     );

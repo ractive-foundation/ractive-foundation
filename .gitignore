@@ -7,4 +7,5 @@ logs
 .DS_Store
 .idea
 *.iml
-public/css/*.*
+public/css
+public/js
