@@ -37,7 +37,9 @@
 			template: Ractive.parse(container.innerHTML),
 			components: RactiveF.components,
 			onrender: function () {
-				$(this.el).removeClass('hide');
+				$(this.el)
+						.removeClass('hide')
+						.addClass('initialized');
 			}
 		})
 	};
