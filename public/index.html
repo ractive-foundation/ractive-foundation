@@ -14,7 +14,11 @@
 <body>
 
 <div class="ractivef hide">
-	<uxrow>test</uxrow>
+	<uxrow>
+		<uxcol class="large-3"> some content </uxcol>
+		<uxcol class="large-3"> second column </uxcol>
+		<uxcol class="large-3"> third column </uxcol>
+	</uxrow>
 </div>
 
 <script language="JavaScript">
@@ -44,7 +48,7 @@
 		})
 	};
 
-	RactiveF.widgets = $('.ractivef').map(initInstance);
+	RactiveF.widgets = $('.ractivef').not('.initialized').map(initInstance);
 </script>
 
 </body>
