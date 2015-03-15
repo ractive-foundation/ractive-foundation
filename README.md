@@ -10,8 +10,4 @@ End goal is to build up a library of reusable components for Foundation v5.
 ### Getting started
 
 1. ```npm install```
-2. ```grunt copy```
-3. ```node server```
-
-### Live reload
-You have to run ```grunt watch``` task in a separate window in order to use live reload.
+2. ```gulp```
