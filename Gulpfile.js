@@ -55,11 +55,21 @@ gulp.task('ractive-build-components', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('concat-app', function () {
+	return gulp.src([
+		'./src/app.js',
+		'./public/js/templates.js',
+		'./public/js/components.js'])
+		.pipe(concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
 gulp.task('build', [
 	'build-sass',
 	'ractive-build-templates',
 	'ractive-build-components',
-	'copy-vendors'
+	'copy-vendors',
+	'concat-app'
 ]);
 
 gulp.task('watch', function () {
