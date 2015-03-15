@@ -17,8 +17,11 @@ gulp.task('html', function () {
 		.pipe(connect.reload());
 });
 
-gulp.task('copy-ractive', function () {
-	gulp.src('./node_modules/ractive/ractive.js')
+gulp.task('copy-vendors', function () {
+	gulp.src([
+		'./node_modules/ractive/ractive.js',
+		'./node_modules/jquery/dist/jquery.min.js'
+	])
 		.pipe(gulp.dest('./public/js'));
 });
 
@@ -56,7 +59,7 @@ gulp.task('build', [
 	'build-sass',
 	'ractive-build-templates',
 	'ractive-build-components',
-	'copy-ractive'
+	'copy-vendors'
 ]);
 
 gulp.task('watch', function () {
