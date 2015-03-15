@@ -21,7 +21,7 @@ function gulpRactive(options) {
         try {
             filecontents = String(file.contents);
 
-            filecontents = 'RactiveF.components.' + componentName + ' = ' + filecontents;
+            filecontents = options.prefix + '.components.' + componentName + ' = ' + filecontents;
 
             file.contents = new Buffer(filecontents);
             this.push(file);

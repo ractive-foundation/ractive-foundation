@@ -36,14 +36,18 @@ gulp.task('build-sass', function () {
 
 gulp.task('ractive-build-templates', function() {
     return gulp.src('./src/components/**/*.hbs')
-        .pipe(ractiveParse())
+        .pipe(ractiveParse({
+            'prefix': 'RactiveF'
+        }))
         .pipe(concat('templates.js'))
         .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('ractive-build-components', function() {
     return gulp.src('./src/components/**/*.js')
-        .pipe(ractiveConcatComponents())
+        .pipe(ractiveConcatComponents({
+            'prefix': 'RactiveF'
+        }))
         .pipe(concat('components.js'))
         .pipe(gulp.dest('./public/js/'));
 });
