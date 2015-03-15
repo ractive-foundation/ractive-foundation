@@ -5,26 +5,36 @@ var gulp = require('gulp'),
 gulp.task('sass', function () {
     gulp.src('./src/**/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('./dist/css'));
+        .pipe(gulp.dest('./public/css'));
+    gulp.src('./node_modules/foundation/scss/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./public/css/foundation'));
 });
 
 
 gulp.task('connect', function() {
     connect.server({
-        root: 'app',
+        root: 'public',
         livereload: true
     });
 });
 
 gulp.task('html', function () {
-    gulp.src('./app/*.html')
+    gulp.src('./public/*.html')
         .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
     gulp.watch(
-        ['./app/*.html', './src/**/*.js'],
-        ['html']
+        [
+            './public/*.html',
+            './src/**/*.js'
+        ],
+        [
+            'sass',
+            'copy-foundation',
+            'html'
+        ]
     );
 });
 
