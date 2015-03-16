@@ -33,7 +33,7 @@ gulp.task('build-sass', function () {
 		.pipe(concat('components.css'))
 		.pipe(gulp.dest('./public/css'));
 
-	gulp.src('./node_modules/foundation/scss/*.scss')
+	gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
 		.pipe(sass())
 		.pipe(gulp.dest('./public/css/foundation'));
 });
