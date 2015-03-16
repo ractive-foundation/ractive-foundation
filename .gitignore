@@ -10,3 +10,4 @@ logs
 public/css
 public/js
 .c9
+*.orig
