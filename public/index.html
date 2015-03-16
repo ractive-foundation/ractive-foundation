@@ -42,13 +42,23 @@
 	</uxrow>
 
     <uxrow>
-        <uxanchor href="#someunique">Testing an anchor1</uxanchor>
-        <uxcontent id="someunique" active="false">Here is NOT active content</uxcontent>
+
+        <uxaccordionitem active="true">
+            <uxanchor>Testing an anchor1</uxanchor>
+            <uxcontent>Here is NOT active content</uxcontent>
+        </uxaccordionitem>
+
+        <uxaccordionitem>
+            <uxanchor>Testing an anchor2</uxanchor>
+            <uxcontent>Spam spam spam spam I like eggs and spam.</uxcontent>
+        </uxaccordionitem>
+
     </uxrow>
 
 </div>
 
 <script src="/js/jquery.min.js"></script>
+<script src="/js/lodash.min.js"></script>
 <script src="/js/ractive.js"></script>
 <script src="/js/ractivef.js"></script>
 

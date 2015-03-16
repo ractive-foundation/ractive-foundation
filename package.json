@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "jquery": "^1.11.2",
+    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "ractive": "^0.6.1",
     "zurb-foundation-5": "^5.4.7"
   }

@@ -21,7 +21,8 @@ gulp.task('html', function () {
 gulp.task('copy-vendors', function () {
 	gulp.src([
 		'./node_modules/ractive/ractive.js',
-		'./node_modules/jquery/dist/jquery.min.js'
+		'./node_modules/jquery/dist/jquery.min.js',
+		'./node_modules/lodash/lodash.min.js'
 	])
 		.pipe(gulp.dest('./public/js'));
 });
