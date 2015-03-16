@@ -21,7 +21,7 @@ End goal is to build up a library of reusable components for Foundation v5.
 1. `cd ractive-foundation`
 1. `npm install`
 1. `gulp`
-1. Open (http://localhost:8080/) in your browser
+1. Open [http://localhost:8080/](http://localhost:8080/) in your browser
 
 ## Creating a new component
 
