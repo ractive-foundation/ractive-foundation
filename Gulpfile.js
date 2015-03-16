@@ -2,6 +2,7 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
+	runSequence = require('run-sequence'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js');
 
@@ -64,13 +65,14 @@ gulp.task('concat-app', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('build', [
-	'build-sass',
-	'ractive-build-templates',
-	'ractive-build-components',
-	'copy-vendors',
-	'concat-app'
-]);
+gulp.task('build', function (callback) {
+	runSequence([
+			'build-sass',
+			'ractive-build-templates',
+			'ractive-build-components'],
+		['copy-vendors', 'concat-app'],
+		callback)
+});
 
 gulp.task('watch', function () {
 	gulp.watch(
@@ -87,4 +89,6 @@ gulp.task('watch', function () {
 	);
 });
 
-gulp.task('default', ['build', 'connect', 'watch']);
+gulp.task('default', function (callback) {
+	runSequence('build', 'connect', 'watch', callback)
+});
