@@ -7,12 +7,20 @@
  */
 
 var _ = require('lodash'),
-	fs = require('fs');
+	fs = require('fs'),
+	gutil = require('gulp-util');
+
+const PLUGIN_NAME = 'gulp-wing';
 
 const PLUGIN_ERROR_NAME_PARAM = 'wing needs --name param to work.';
+const PLUGIN_ERROR_NAME_LOWERCASE = 'Component name must be all lowercase alphanumeric, ' +
+	'and begin with "ux". Example: ux';
+
 const GULP_WING_SOURCE_PATH_PREFIX = './tasks/gulpWingFiles/';
 const GULP_WING_TARGET_PATH_PREFIX = './src/components/';
 const GULP_WING_PLACEHOLDER = 'wingComponent';
+
+var lowerCaseOnly = new RegExp('^[a-z]+$', 'g');
 
 function processFileAndSave(name, fileType, destPath) {
 	var fc = fs.readFileSync(GULP_WING_SOURCE_PATH_PREFIX + 'wingComponent.' + fileType, 'UTF-8');
@@ -25,14 +33,18 @@ module.exports = function () {
 	var args = process.argv.slice(2);
 
 	if (args[1] !== '--name') {
-		throw new Error(PLUGIN_ERROR_NAME_PARAM);
+		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
 	}
 
-	// Force name to lower case for use in files and directories, its our convention.
-	var name = _.trim(args[2]).toLowerCase();
+	var name = _.trim(args[2]);
 
-	if (name === '') {
-		throw new Error(PLUGIN_ERROR_NAME_PARAM);
+	if (name.length < 2) {
+		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
+	}
+
+	// Names of components MUST be lowercase, and start with 'ux'.
+	if (!lowerCaseOnly.test(name) || 'ux' !== name.substr(0, 2)) {
+		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
 	}
 
 	var destPath = GULP_WING_TARGET_PATH_PREFIX + name + '/';
