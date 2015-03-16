@@ -8,12 +8,16 @@ Ractive.extend({
 		// (i.e, less attributes in the html).
 		this.findComponent('uxanchor').set('href', '#' + uid);
 		this.findComponent('uxcontent').set({
-			id: uid,
-			active: this.get('active') || false
+			id: uid
 		});
 
 		// Keep a reference for use later.
 		this.set('id', uid);
 
+	},
+	onchange: function () {
+		this.findComponent('uxcontent').set({
+			active: this.get('active') || false
+		});
 	}
 });
