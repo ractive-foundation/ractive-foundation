@@ -12,3 +12,15 @@ End goal is to build up a library of reusable components for Foundation v5.
 
 1. ```npm install```
 1. ```gulp```
+1. Open http://localhost:8080/ in your browser
+
+### Creating a component
+
+Use `gulp wing --name somenewcomponent` to create a new folder and files in `src/components`.
+
+```
+$ gulp wing --name somenewcomponent
+[07:22:07] Using gulpfile ~/dev/projects/ractive-foundation/Gulpfile.js
+[07:22:07] Starting 'wing'...
+[07:22:07] Finished 'wing' after 1.16 ms
+```
