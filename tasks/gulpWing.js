@@ -1,3 +1,4 @@
+/*global module*/
 /**
  * Gulp task to create components, including dynamic content.
  * Very simple.
@@ -19,7 +20,7 @@ function processFileAndSave(name, fileType, destPath) {
 	fs.writeFileSync(destPath + name + '.' + fileType, fc);
 }
 
-module.exports = function (options) {
+module.exports = function () {
 
 	var args = process.argv.slice(2);
 
@@ -37,9 +38,9 @@ module.exports = function (options) {
 	var destPath = GULP_WING_TARGET_PATH_PREFIX + name + '/';
 	fs.mkdirSync(destPath);
 
-	processFileAndSave(name, 'js', destPath);
-	processFileAndSave(name, 'hbs', destPath);
-	processFileAndSave(name, 'scss', destPath);
+	_.map(['js', 'hbs', 'scss'], function (fileType) {
+		processFileAndSave(name, fileType, destPath);
+	});
 
 	return true;
 
