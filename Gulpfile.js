@@ -67,11 +67,13 @@ gulp.task('concat-app', function () {
 
 gulp.task('build', function (callback) {
 	runSequence([
-			'build-sass',
-			'ractive-build-templates',
-			'ractive-build-components'],
-		['copy-vendors', 'concat-app'],
-		callback)
+		'build-sass',
+		'ractive-build-templates',
+		'ractive-build-components'
+	], [
+		'copy-vendors',
+		'concat-app'
+	], callback);
 });
 
 gulp.task('watch', function () {
@@ -90,5 +92,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback)
+	runSequence('build', 'connect', 'watch', callback);
 });
