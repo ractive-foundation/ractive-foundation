@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-	_ = require('lodash'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
