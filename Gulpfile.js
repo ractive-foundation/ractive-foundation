@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js');
+	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
+	gulpWing = require('./tasks/gulpWing.js');
 
 gulp.task('connect', function () {
 	connect.server({
@@ -64,6 +65,11 @@ gulp.task('concat-app', function () {
 		'./public/js/components.js'])
 		.pipe(concat('ractivef.js'))
 		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('wing', function (callback) {
+	gulpWing();
+	callback();
 });
 
 gulp.task('build', function (callback) {
