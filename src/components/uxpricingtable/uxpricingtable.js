@@ -8,9 +8,7 @@ Ractive.extend({
 				return;
 			}
 
-			alert('Sorry, can\'t buy this phone...');
-
-			// Else - it's in a disabled state, so lets block the event from bubbling and stop the anchor.
+			// Else - it's in a disabled state, so stop the browser's default action for an anchor.
 			syntheticEvent.original.preventDefault();
 
 		});
