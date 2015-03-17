@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
+	watch = require('gulp-watch'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	gulpWing = require('./tasks/gulpWing.js');
@@ -83,27 +84,23 @@ gulp.task('build', function (callback) {
 	], callback);
 });
 
-gulp.task('watch-hbs', function (callback) {
-	runSequence('ractive-build-templates', 'concat-app', 'html', callback);
-});
-
-gulp.task('watch-js', function (callback) {
-	runSequence('ractive-build-components', 'concat-app', 'html', callback);
-});
-
-gulp.task('watch-sass', function (callback) {
-	runSequence('build-sass', 'html', callback);
-});
-
 gulp.task('watch', function () {
 
-	gulp.watch('./public/*.html', [ 'html' ]);
+	watch('public/*.html', function () {
+		gulp.start('html');
+	});
 
-	gulp.watch('./src/**/*.hbs', [ 'watch-hbs' ]);
+	watch('src/**/*.hbs', function () {
+		runSequence('ractive-build-templates', 'concat-app', 'html');
+	});
 
-	gulp.watch('./src/**/*.js', [ 'watch-js' ]);
+	watch('src/**/*.js', function () {
+		runSequence('ractive-build-components', 'concat-app', 'html');
+	});
 
-	gulp.watch('./src/**/*.scss', [ 'watch-sass' ]);
+	watch('src/**/*.scss', function () {
+		runSequence('build-sass', 'html');
+	});
 
 });
 
