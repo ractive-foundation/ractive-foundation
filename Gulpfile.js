@@ -89,7 +89,7 @@ gulp.task('watch', function () {
 			'./public/*.html',
 			'./src/**/*.js',
 			'./src/**/*.hbs',
-			'./src/**/*.sass'
+			'./src/**/*.scss'
 		],
 		[
 			'build',
