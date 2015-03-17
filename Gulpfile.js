@@ -83,19 +83,28 @@ gulp.task('build', function (callback) {
 	], callback);
 });
 
+gulp.task('watch-hbs', function (callback) {
+	runSequence('ractive-build-templates', 'concat-app', 'html', callback);
+});
+
+gulp.task('watch-js', function (callback) {
+	runSequence('ractive-build-components', 'concat-app', 'html', callback);
+});
+
+gulp.task('watch-sass', function (callback) {
+	runSequence('build-sass', 'html', callback);
+});
+
 gulp.task('watch', function () {
-	gulp.watch(
-		[
-			'./public/*.html',
-			'./src/**/*.js',
-			'./src/**/*.hbs',
-			'./src/**/*.scss'
-		],
-		[
-			'build',
-			'html'
-		]
-	);
+
+	gulp.watch('./public/*.html', [ 'html' ]);
+
+	gulp.watch('./src/**/*.hbs', [ 'watch-hbs' ]);
+
+	gulp.watch('./src/**/*.js', [ 'watch-js' ]);
+
+	gulp.watch('./src/**/*.scss', [ 'watch-sass' ]);
+
 });
 
 gulp.task('default', function (callback) {
