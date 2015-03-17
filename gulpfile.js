@@ -86,20 +86,13 @@ gulp.task('build', function (callback) {
 
 gulp.task('watch', function () {
 
-	watch('public/*.html', function () {
-		gulp.start('html');
-	});
-
-	watch('src/**/*.hbs', function () {
-		runSequence('ractive-build-templates', 'concat-app', 'html');
-	});
-
-	watch('src/**/*.js', function () {
-		runSequence('ractive-build-components', 'concat-app', 'html');
-	});
-
-	watch('src/**/*.scss', function () {
-		runSequence('build-sass', 'html');
+	watch([
+		'public/*.html',
+		'src/**/*.hbs',
+		'src/**/*.js',
+		'src/**/*.scss'
+	], function () {
+		runSequence('build', 'html');
 	});
 
 });
