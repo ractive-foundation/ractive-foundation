@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
+	watch = require('gulp-watch'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	gulpWing = require('./tasks/gulpWing.js');
@@ -84,18 +85,16 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('watch', function () {
-	gulp.watch(
-		[
-			'./public/*.html',
-			'./src/**/*.js',
-			'./src/**/*.hbs',
-			'./src/**/*.sass'
-		],
-		[
-			'build',
-			'html'
-		]
-	);
+
+	watch([
+		'public/*.html',
+		'src/**/*.hbs',
+		'src/**/*.js',
+		'src/**/*.scss'
+	], function () {
+		runSequence('build', 'html');
+	});
+
 });
 
 gulp.task('default', function (callback) {
