@@ -17,8 +17,8 @@ End goal is to build up a library of reusable components for Foundation v5.
 
 ## Getting started
 
-1. `git clone git@github.com:pvshum/ractive-foundation.git`
-1. `cd ractive-foundation`
+Clone the repo, then from the root folder:
+
 1. `npm install`
 1. `gulp`
 1. Open [http://localhost:8080/](http://localhost:8080/) in your browser
