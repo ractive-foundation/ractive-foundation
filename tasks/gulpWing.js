@@ -30,28 +30,33 @@ function processFileAndSave(name, fileType, destPath) {
 
 module.exports = function () {
 
-	var args = process.argv.slice(2);
+	var option = require('node-getopt-long').options([
+		['name|n=s', {
+			description: 'The name of the component ot create',
+			test: function (value) {
+				if (value.length < 2) {
+					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
+				}
 
-	if (args[1] !== '--name') {
+				// Names of components MUST be lowercase, and start with 'ux'.
+				if (!lowerCaseOnly.test(value) || 'ux' !== value.substr(0, 2)) {
+					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
+				}
+
+				return value;
+			}
+		}]
+	]);
+
+	if (!option.name) {
 		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
 	}
 
-	var name = _.trim(args[2]);
-
-	if (name.length < 2) {
-		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
-	}
-
-	// Names of components MUST be lowercase, and start with 'ux'.
-	if (!lowerCaseOnly.test(name) || 'ux' !== name.substr(0, 2)) {
-		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
-	}
-
-	var destPath = GULP_WING_TARGET_PATH_PREFIX + name + '/';
+	var destPath = GULP_WING_TARGET_PATH_PREFIX + option.name + '/';
 	fs.mkdirSync(destPath);
 
 	_.map(['js', 'hbs', 'scss'], function (fileType) {
-		processFileAndSave(name, fileType, destPath);
+		processFileAndSave(option.name, fileType, destPath);
 	});
 
 	return true;
