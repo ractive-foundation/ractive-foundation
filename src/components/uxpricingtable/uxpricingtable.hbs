@@ -1,0 +1,20 @@
+<ul class="pricing-table">
+
+    <li class="title">{{title}}</li>
+    <li class="price">{{price}}</li>
+
+    {{>content}}
+
+    <li class="cta-button">
+
+        {{#if (status == 'comingsoon')}}
+            <a class="button disabled" href="#" on-click="buyNow">Coming Soon</a>
+        {{/if}}
+
+        {{#if !status}}
+            <a class="button" href="{{href}}" on-click="buyNow">Buy Now</a>
+        {{/if}}
+
+    </li>
+
+</ul>
