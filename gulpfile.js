@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
+	generateDocs = require('./tasks/generateDocs.js'),
 	gulpWing = require('./tasks/gulpWing.js');
 
 gulp.task('connect', function () {
@@ -95,6 +96,11 @@ gulp.task('watch', function () {
 		runSequence('build', 'html');
 	});
 
+});
+
+gulp.task('docs', function (callback) {
+	generateDocs('./public/indextest.html');
+	callback();
 });
 
 gulp.task('default', function (callback) {
