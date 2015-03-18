@@ -32,7 +32,8 @@ module.exports = function () {
 
 	var option = require('node-getopt-long').options([
 		['name|n=s', {
-			description: 'The name of the component ot create',
+			description: 'The name of the component to create',
+			paramName: 'ux...',
 			test: function (value) {
 				if (value.length < 2) {
 					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
@@ -46,7 +47,9 @@ module.exports = function () {
 				return value;
 			}
 		}]
-	]);
+	], {
+		name: 'gulp wing'
+	});
 
 	if (!option.name) {
 		throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
