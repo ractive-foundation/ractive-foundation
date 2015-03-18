@@ -33,3 +33,5 @@ $ gulp wing --name uxblah
 [07:22:07] Starting 'wing'...
 [07:22:07] Finished 'wing' after 1.16 ms
 ```
+
+Use ``` gulp wing --help``` for more info
