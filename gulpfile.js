@@ -30,6 +30,12 @@ gulp.task('copy-vendors', function () {
 		.pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('copy-assets', function () {
+	return gulp.src([
+		'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
+	])
+	.pipe(gulp.dest('public/images/'));
+});
 
 gulp.task('build-sass', function () {
 	gulp.src('./src/**/*.scss')
@@ -81,6 +87,7 @@ gulp.task('build', function (callback) {
 		'ractive-build-components'
 	], [
 		'copy-vendors',
+		'copy-assets',
 		'concat-app'
 	], callback);
 });
