@@ -183,53 +183,85 @@
 
     </uxrow>
 
-    <hr/>
+	<hr/>
 
-		<uxtabarea>
-			<uxtablinkcontainer>
-				<uxtablink controls="firstTab" active="true">Tab One</uxtablink>
-				<uxtablink controls="secondTab">Tab Two</uxtablink>
-				<uxtablink controls="thirdTab">Tab Three</uxtablink>
-			</uxtablinkcontainer>
+	<uxtabarea>
+		<uxtablinks>
+			<uxtablink active="true">Tab One</uxtablink>
+			<uxtablink>Tab Two</uxtablink>
+			<uxtablink>Tab Three</uxtablink>
+			<uxtablink>Tab Four</uxtablink>
+			<uxtablink>Tab Five</uxtablink>
+		</uxtablinks>
 
-			<uxtabcontent>
-				<uxtabpane id="firstTab">
-					First tab content
-				</uxtabpane>
-				<uxtabpane id="secondTab">
-					Second tab content
+		<uxtabpanes>
+			<uxtabpane>
+				First tab content
+			</uxtabpane>
+			<uxtabpane>
+				Second tab content
 
-					<uxtabarea>
-						<uxtablinkcontainer>
-							<uxtablink controls="nestedFirstTab" active="true">Nested Tab One</uxtablink>
-							<uxtablink controls="nestedSecondTab">Nested Tab Two</uxtablink>
-							<uxtablink controls="nestedThirdTab">Nested Tab Three</uxtablink>
-							<uxtablink controls="nestedFourthTab">Nested Tab Four</uxtablink>
-						</uxtablinkcontainer>
+				<uxtabarea>
+					<uxtablinks>
+						<uxtablink active="true">Nested Tab One</uxtablink>
+						<uxtablink>Nested Tab Two</uxtablink>
+						<uxtablink>Nested Tab Three</uxtablink>
+						<uxtablink>Nested Tab Fourth</uxtablink>
+					</uxtablinks>
 
-						<uxtabcontent>
-							<uxtabpane id="nestedFirstTab">
-								Nested first tab content
-							</uxtabpane>
-							<uxtabpane id="nestedSecondTab">
-								Nested second tab content
-							</uxtabpane>
-							<uxtabpane id="nestedThirdTab">
-								Nested third tab content
-							</uxtabpane>
-							<uxtabpane id="nestedFourthTab">
-								Nested fourth tab content
-							</uxtabpane>
+					<uxtabpanes>
+						<uxtabpane>
+							Nested first tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested second tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested third tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested fouth tab content
+						</uxtabpane>
+					</uxtabpanes>
+				</uxtabarea>
 
-						</uxtabcontent>
-					</uxtabarea>
+			</uxtabpane>
+			<uxtabpane>
+				Third tab content
+			</uxtabpane>
+			<uxtabpane>
+				Four tab content
 
-				</uxtabpane>
-				<uxtabpane id="thirdTab">
-					Third tab content
-				</uxtabpane>
-			</uxtabcontent>
-		</uxtabarea>
+				<uxtabarea>
+					<uxtablinks>
+						<uxtablink>Nested Tab One</uxtablink>
+						<uxtablink>Nested Tab Two</uxtablink>
+						<uxtablink active="true">Nested Tab Three</uxtablink>
+						<uxtablink>Nested Tab Fourth</uxtablink>
+					</uxtablinks>
+
+					<uxtabpanes>
+						<uxtabpane>
+							Nested first tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested second tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested third tab content
+						</uxtabpane>
+						<uxtabpane>
+							Nested fouth tab content
+						</uxtabpane>
+					</uxtabpanes>
+				</uxtabarea>
+
+			</uxtabpane>
+			<uxtabpane>
+				Five tab content
+			</uxtabpane>
+		</uxtabpanes>
+	</uxtabarea>
 
 </div>
 
