@@ -1,5 +1,5 @@
 Ractive.extend({
-	template: RactiveF.templates.uxtablinkcontainer,
+	template: RactiveF.templates.uxtablinks,
 	oninit: function () {
 		this.on('*.changeTab', function (event) {
 			var components = this.findAllChildComponents('uxtablink');
