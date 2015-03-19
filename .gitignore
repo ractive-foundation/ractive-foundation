@@ -7,7 +7,9 @@ logs
 .DS_Store
 .idea
 *.iml
-public/css
-public/js
 .c9
 *.orig
+
+# Ignore everything except for index.html in public folder.
+!public/index.html
+public/*
