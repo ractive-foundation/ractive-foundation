@@ -25,10 +25,10 @@ Clone the repo, then from the root folder:
 
 ## Creating a new component
 
-Use `gulp wing --name uxblah` to create a new `uxblah` folder (and files) in `src/components`.
+Use `gulp wing --name ux-blah` to create a new `ux-blah` folder (and files) in `src/components`.
 
 ```
-$ gulp wing --name uxblah
+$ gulp wing --name ux-blah
 [07:22:07] Using gulpfile ~/dev/projects/ractive-foundation/Gulpfile.js
 [07:22:07] Starting 'wing'...
 [07:22:07] Finished 'wing' after 1.16 ms
