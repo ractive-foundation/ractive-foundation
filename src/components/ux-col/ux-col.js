@@ -1,3 +1,3 @@
 Ractive.extend({
-    template: RactiveF.templates.uxcol
+	template: RactiveF.templates['ux-col']
 });

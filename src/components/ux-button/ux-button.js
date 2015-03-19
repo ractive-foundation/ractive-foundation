@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates.uxbutton
+	template: RactiveF.templates['ux-button']
 });

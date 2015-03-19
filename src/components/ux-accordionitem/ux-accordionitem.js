@@ -1,13 +1,13 @@
 Ractive.extend({
-	template: RactiveF.templates.uxaccordionitem,
+	template: RactiveF.templates['ux-accordionitem'],
 	oninit: function () {
 
-		var uid = _.uniqueId('uxaccordionitem-');
+		var uid = _.uniqueId('ux-accordionitem-');
 
 		// This is how we pass data implicitly through to nested components, meaning the html markup is kept cleaner
 		// (i.e, less attributes in the html).
-		this.findComponent('uxanchor').set('href', '#' + uid);
-		this.findComponent('uxcontent').set({
+		this.findComponent('ux-anchor').set('href', '#' + uid);
+		this.findComponent('ux-content').set({
 			id: uid
 		});
 
@@ -16,7 +16,7 @@ Ractive.extend({
 
 	},
 	onchange: function () {
-		this.findComponent('uxcontent').set({
+		this.findComponent('ux-content').set({
 			active: this.get('active') || false
 		});
 	}

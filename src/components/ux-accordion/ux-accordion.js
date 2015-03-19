@@ -1,11 +1,11 @@
 Ractive.extend({
-    template: RactiveF.templates.uxaccordion,
+	template: RactiveF.templates['ux-accordion'],
 	oninit: function () {
 
 		this.on('*.changeAccordion', function (syntheticEvent) {
 
 			var guid = this._guid;
-			var components = this.findAllComponents('uxaccordionitem');
+			var components = this.findAllComponents('ux-accordionitem');
 
 			_(components)
 				.filter(function (component) {

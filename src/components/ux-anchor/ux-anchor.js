@@ -1,3 +1,3 @@
 Ractive.extend({
-    template: RactiveF.templates.uxanchor
+	template: RactiveF.templates['ux-anchor']
 });

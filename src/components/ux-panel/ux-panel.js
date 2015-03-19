@@ -1,5 +1,5 @@
 Ractive.extend({
-	template: RactiveF.templates.uxpanel,
+	template: RactiveF.templates['ux-panel'],
 	components: RactiveF.components,
 	isolated: true
 });

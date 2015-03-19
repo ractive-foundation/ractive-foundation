@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates.uxcontent
+	template: RactiveF.templates['ux-content']
 });
