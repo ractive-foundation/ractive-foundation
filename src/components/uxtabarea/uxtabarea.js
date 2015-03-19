@@ -9,8 +9,8 @@ Ractive.extend({
 		var tabPane = tabPanes.findAllChildComponents('uxtabpane');
 
 		_.each(tabLink, function (link, i) {
-			var childPane;
-			if (childPane = tabPane[i]) {
+			var childPane = tabPane[i];
+			if (childPane) {
 				link.set({
 					tabPane: childPane,
 					uid: link._guid
