@@ -2,7 +2,7 @@ Ractive.extend({
 	template: RactiveF.templates.uxtablink,
 	components: RactiveF.components,
 	isolated: true,
-	onchange: function () {
+	oninit: function () {
 		var active = this.get('active') || false;
 		var tabPane = this.get('tabPane') || null;
 
