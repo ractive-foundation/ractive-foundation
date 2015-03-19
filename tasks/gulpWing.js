@@ -14,7 +14,7 @@ const PLUGIN_NAME = 'gulp-wing';
 
 const PLUGIN_ERROR_NAME_PARAM = 'wing needs --name param to work.';
 const PLUGIN_ERROR_NAME_LOWERCASE = 'Component name must be all lowercase alphanumeric, ' +
-	'and begin with "ux". Example: ux';
+	'and begin with "ux-". Example: ux-';
 
 const GULP_WING_SOURCE_PATH_PREFIX = './tasks/gulpWingFiles/';
 const GULP_WING_TARGET_PATH_PREFIX = './src/components/';
@@ -33,14 +33,14 @@ module.exports = function () {
 	var option = require('node-getopt-long').options([
 		['name|n=s', {
 			description: 'The name of the component to create',
-			paramName: 'ux...',
+			paramName: 'ux-...',
 			test: function (value) {
 				if (value.length < 2) {
 					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
 				}
 
-				// Names of components MUST be lowercase, and start with 'ux'.
-				if (!lowerCaseOnly.test(value) || 'ux' !== value.substr(0, 2)) {
+				// Names of components MUST be lowercase, and start with 'ux-'.
+				if (!lowerCaseOnly.test(value) || 'ux-' !== value.substr(0, 2)) {
 					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
 				}
 
