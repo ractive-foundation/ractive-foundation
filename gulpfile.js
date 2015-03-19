@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+	del = require('del'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
@@ -29,6 +30,13 @@ gulp.task('copy-vendors', function () {
 		.pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('clean', function (callback) {
+	del([
+		'public/**/*',
+		// We want to keep index.html
+		'!public/index.html'
+	], callback);
+});
 
 gulp.task('build-sass', function () {
 	gulp.src('./src/**/*.scss')
@@ -92,11 +100,11 @@ gulp.task('watch', function () {
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('clean', 'build', 'html');
 	});
 
 });
 
 gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+	runSequence('clean', 'build', 'connect', 'watch', callback);
 });
