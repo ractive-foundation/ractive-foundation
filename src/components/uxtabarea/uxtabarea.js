@@ -11,7 +11,6 @@ Ractive.extend({
 		_.each(tabLink, function (link, i) {
 			var childPane;
 			if (childPane = tabPane[i]) {
-				childPane.set('uidLink', link._guid);
 				link.set({
 					tabPane: childPane,
 					uid: link._guid
