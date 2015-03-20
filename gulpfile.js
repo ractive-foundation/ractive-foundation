@@ -81,7 +81,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', function (callback) {
+gulp.task('build', ['clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -100,11 +100,11 @@ gulp.task('watch', function () {
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('clean', 'build', 'html');
+		runSequence('build', 'html');
 	});
 
 });
 
 gulp.task('default', function (callback) {
-	runSequence('clean', 'build', 'connect', 'watch', callback);
+	runSequence('build', 'connect', 'watch', callback);
 });
