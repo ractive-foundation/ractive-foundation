@@ -4,8 +4,12 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
 	watch = require('gulp-watch'),
+	header = require('gulp-header'),
+	footer = require('gulp-footer'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
+	renderDocumentation = require('./tasks/renderDocumentation.js'),
+	fs = require('fs'),
 	gulpWing = require('./tasks/gulpWing.js');
 
 gulp.task('connect', function () {
@@ -60,6 +64,15 @@ gulp.task('ractive-build-components', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('build-documentation', function () {
+	return gulp.src('./src/components/**/*.md')
+		.pipe(renderDocumentation())
+		.pipe(concat('documentation.html'))
+		.pipe(header(fs.readFileSync('tasks/documentation/header.html')))
+		.pipe(footer(fs.readFileSync('tasks/documentation/footer.html')))
+		.pipe(gulp.dest('./public/'));
+});
+
 gulp.task('concat-app', function () {
 	return gulp.src([
 		'./src/app.js',
@@ -78,7 +91,8 @@ gulp.task('build', function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
-		'ractive-build-components'
+		'ractive-build-components',
+		'build-documentation'
 	], [
 		'copy-vendors',
 		'concat-app'
@@ -88,8 +102,9 @@ gulp.task('build', function (callback) {
 gulp.task('watch', function () {
 
 	watch([
-		'public/*.html',
+		'public/index.html',
 		'src/**/*.hbs',
+		'src/**/*.md',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
