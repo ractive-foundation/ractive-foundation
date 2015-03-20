@@ -1,5 +1,6 @@
 Ractive.extend({
 	template: RactiveF.templates.uxiconbar,
+	isolated: true,
 	data: {
 		/**
 		 * TODO Move to generic helpers location?
