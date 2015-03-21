@@ -7,7 +7,7 @@ Ractive.extend({
 
 		/**
 		 * TODO Move to generic helpers location?
-		 * @returns {string} The number of child items as a word, e.g. "one", "three", etc.
+		 * @returns {string} The number of child items as a css class, e.g. "one-up", "three-up", etc.
 		 */
 		upNum: function () {
 
