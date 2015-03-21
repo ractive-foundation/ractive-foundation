@@ -19,7 +19,7 @@ gulp.task('connect', function () {
 });
 
 gulp.task('html', function () {
-	gulp.src('./public/*.html')
+	return gulp.src('./public/*.html')
 		.pipe(connect.reload());
 });
 
@@ -52,14 +52,20 @@ gulp.task('clean', function (callback) {
 });
 
 gulp.task('build-sass', function () {
-	gulp.src('./src/**/*.scss')
-		.pipe(sass())
-		.pipe(concat('components.css'))
-		.pipe(gulp.dest('./public/css'));
 
-	gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
-		.pipe(sass())
-		.pipe(gulp.dest('./public/css/foundation'));
+	return mergeStream(
+
+		gulp.src('./src/**/*.scss')
+			.pipe(sass())
+			.pipe(concat('components.css'))
+			.pipe(gulp.dest('./public/css')),
+
+		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
+			.pipe(sass())
+			.pipe(gulp.dest('./public/css/foundation'))
+
+	);
+
 });
 
 gulp.task('ractive-build-templates', function () {
