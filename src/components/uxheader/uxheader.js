@@ -1,4 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates.uxheader,
-	isolated: true
+	template: RactiveF.templates.uxheader
 });

@@ -1,7 +1,6 @@
 Ractive.extend({
 
 	template: RactiveF.templates.uxiconbar,
-	isolated: true,
 
 	computed: {
 
@@ -37,12 +36,6 @@ Ractive.extend({
 		if (childCount < 1 || childCount > 8) {
 			console.error('uxiconbar only supports between 1-8 items.');
 		}
-
-		// Due to isolated components, we pass down the value from the parent to the child here.
-		var labels = this.get('labels');
-		_.each(items, function (item) {
-			item.set('labels', labels);
-		});
 
 		// Store for later use.
 		this.set('items', items);
