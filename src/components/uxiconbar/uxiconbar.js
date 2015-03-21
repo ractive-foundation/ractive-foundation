@@ -1,13 +1,19 @@
 Ractive.extend({
+
 	template: RactiveF.templates.uxiconbar,
 	isolated: true,
-	data: {
+
+	computed: {
+
 		/**
 		 * TODO Move to generic helpers location?
 		 * @param num A number, e.g. 1
 		 * @returns {string} The number as a word, e.g. "one", "three", etc.
 		 */
-		numberToWord: function (num) {
+		upNum: function () {
+
+			var data = this.get();
+			var num = _.isArray(data.items) ? data.items.length : 0;
 
 			var supportedWords = [
 				'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
@@ -18,19 +24,30 @@ Ractive.extend({
 				return '';
 			}
 
-			return supportedWords[num];
+			return supportedWords[num] + '-up';
 
 		}
+
 	},
+
 	oninit: function () {
 
-		var childCount = this.findAllComponents('uxiconbaritem').length;
+		var items = this.findAllComponents('uxiconbaritem');
 
+		var childCount = items.length;
 		if (childCount < 1 || childCount > 8) {
 			console.error('uxiconbar only supports between 1-8 items.');
 		}
 
-		this.set('upNum', childCount);
+		// Due to isolated components, we pass down the value from the parent to the child here.
+		var labels = this.get('labels');
+		_.each(items, function (item) {
+			item.set('labels', labels);
+		});
+
+		// Store for later use.
+		this.set('items', items);
 
 	}
+
 });

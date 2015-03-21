@@ -1,4 +1,9 @@
 Ractive.extend({
 	template: RactiveF.templates.uxiconbaritem,
-	isolated: true
+	isolated: true,
+	computed: {
+		guid: function () {
+			return this._guid;
+		}
+	}
 });

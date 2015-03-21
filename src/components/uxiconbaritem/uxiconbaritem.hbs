@@ -1,4 +1,13 @@
-<a href="{{href}}" class="item {{class}}" tabindex="0" role="button">
+<a href="{{href}}" class="item {{class}}"
+	tabindex="0" role="button"
+	{{#if labels !== false}}aria-labelledby="{{guid}}"{{/if}}
+	{{#if arialabel}}aria-label={{arialabel}}{{/if}}
+>
+
     <img src="{{src}}">
-    <label>{{yield}}</label>
+
+    {{#if labels !== false}}
+    	<label id="{{guid}}">{{yield}}</label>
+    {{/if}}
+
 </a>
