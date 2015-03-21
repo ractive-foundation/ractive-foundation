@@ -1,54 +1,70 @@
 var through = require('through2'),
 	gulputil = require('gulp-util'),
 	Ractive = require('ractive'),
-	_ = require('lodash'),
 	fs = require('fs'),
-	path = require('path'),
-	glob = require('glob'),
+	Q = require('Q'),
 	marked = require('marked');
-	marked.setOptions({
-		sanitize: true
-	});
+
 var PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-generate-docs';
 
-function gulpRactive(filename) {
+function gulpRactive() {
+
 	Ractive.DEBUG = false;
 
-		var filecontents = String(fs.readFileSync(filename));
+	var stream = through.obj(function (file, enc, callback) {
 
+		var stream = this;
 
-		var ractive = new Ractive({
-			template: filecontents
-		});
+		if (file.isStream()) {
+			stream.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+			return callback();
+		}
 
-		// TODO: Improve below to rely on ractive.template object
-		// https://github.com/ractivejs/template-spec#type-code-reference
-		_(ractive.viewmodel.deps.default)
-			.keys()
-			.map(function (name) {
-				console.log('name', name);
-				var content = fs.readFileSync('./src/components/' + name + '/README.md');
-				var compiled = marked(String(content));
-				console.log('compiled', compiled);
-				ractive.set(name, marked(String(content)));
-			})
-			.value();
+		try {
+			// FIXME: Fix relative path
+			var ractivef = require('../public/js/ractivef-cjs.js');
 
-		console.log('-----------------------------------------------');
+			var filecontents = String(file.contents);
 
-		var toHTML = ractive.toHTML();
-		console.log('toHTML', toHTML);
-		fs.writeFileSync('./public/indextest2.html', toHTML);
+			var ractive = new Ractive({
+				template: filecontents,
+				components: ractivef.components
+			});
 
-	try {
-	}
-	catch (e) {
-		console.warn('Error caught from generate-docs');
-	}
+			// TODO: Improve below to rely on ractive.template object
+			// https://github.com/ractivejs/template-spec#type-code-reference
+			// iterating through found variables to process
+			var promises = Object.keys(ractive.viewmodel.deps.default)
+				.map(function (name) {
+					var content = fs.readFileSync('./src/components/' + name + '/README.md');
+					var compiled = marked(String(content));
+					return ractive.set(name, compiled);
+				});
 
-};
+			Q.allSettled(promises)
+				.then(function () {
+					var toHTML = ractive.toHTML();
+					file.contents = new Buffer(toHTML);
+					stream.push(file);
+
+					return callback();
+				});
+
+		}
+		catch (e) {
+			console.error('Error caught from generate-docs', e);
+			stream.emit('error', new PluginError(PLUGIN_NAME, 'Error:'));
+
+			return callback();
+		}
+
+	});
+
+	return stream;
+
+}
 
 
 module.exports = gulpRactive;
