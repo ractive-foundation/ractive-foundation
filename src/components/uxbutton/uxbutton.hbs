@@ -3,10 +3,9 @@
 	{{#role}} role="{{role}}" {{/role}}
 	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
 	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}>
-	{{#if cdata === true }} 
+	{{#if inlinePartial === true }} 
 		{{>content}}
-	{{/if}}  
-	{{#if cdata === false }} 
+	{{else}}  
 		{{text}}
 	{{/if}}
 </a>

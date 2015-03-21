@@ -32,7 +32,7 @@ function renderDocumentation(options) {
 
                 var json = JSON.parse(fs.readFileSync(usecase));
 
-                doco = doco + "<h2>Use case: " + json['title'] + "</h2>";
+                doco = doco + "<h2>Use case: " + json['title'] + "</h2>\n";
 
                 // iterate over all the keys in the use case data to render button
                 doco = doco + "<" + componentName;
@@ -40,7 +40,7 @@ function renderDocumentation(options) {
                     doco = doco + " " + key + "='" + value + "'";
                 });
 
-                doco = doco + "></" + componentName + ">";
+                doco = doco + "></" + componentName + ">\n";
 
                 // iterate over all keys in the use case data to render code for this use case
                 doco = doco + "<pre><code class=\"lang-js\">&lt;" + componentName;
@@ -48,7 +48,7 @@ function renderDocumentation(options) {
                     doco = doco + " " + xml(key) + "='" + xml(value) + "'";
                 });
 
-                doco = doco + "&gt;&lt;/" + componentName + "&gt;</code></pre>";
+                doco = doco + "&gt;&lt;/" + componentName + "&gt;</code></pre>\n";
 
             });
 

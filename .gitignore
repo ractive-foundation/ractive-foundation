@@ -9,5 +9,6 @@ logs
 *.iml
 public/css
 public/js
+public/documentation.html
 .c9
 *.orig

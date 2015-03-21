@@ -1,10 +1,9 @@
 Ractive.extend({
 	template: RactiveF.templates.uxbutton,
 	computed: {
-		cdata: function() {
-			//debugger;
-			console.log(Object.keys(this.get()).length);
-			return Object.keys(this.get()).length === 0;
+		inlinePartial: function() {
+			// check if there is any inline partial {{>content}} in this ractive component
+			return this.partials['content'].length > 0;
 		}
 	}
 });
