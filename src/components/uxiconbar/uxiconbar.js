@@ -7,8 +7,7 @@ Ractive.extend({
 
 		/**
 		 * TODO Move to generic helpers location?
-		 * @param num A number, e.g. 1
-		 * @returns {string} The number as a word, e.g. "one", "three", etc.
+		 * @returns {string} The number of child items as a word, e.g. "one", "three", etc.
 		 */
 		upNum: function () {
 
