@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+	del = require('del'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
@@ -30,6 +31,13 @@ gulp.task('copy-vendors', function () {
 		.pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('clean', function (callback) {
+	del([
+		'public/**/*',
+		// We want to keep index.html
+		'!public/index.html'
+	], callback);
+});
 
 gulp.task('build-sass', function () {
 	gulp.src('./src/**/*.scss')
@@ -74,7 +82,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', function (callback) {
+gulp.task('build', ['clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
