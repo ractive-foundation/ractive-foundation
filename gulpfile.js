@@ -62,9 +62,10 @@ gulp.task('ractive-build-components', function () {
 
 gulp.task('concat-app', function () {
 	return gulp.src([
-		'./src/app.js',
-		'./public/js/templates.js',
-		'./public/js/components.js'])
+			'./src/app.js',
+			'./public/js/templates.js',
+			'./public/js/components.js'
+		])
 		.pipe(concat('ractivef.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
