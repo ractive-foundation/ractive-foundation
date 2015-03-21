@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
 	watch = require('gulp-watch'),
+	wrap = require('gulp-wrap'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	generateDocs = require('./tasks/generateDocs.js'),
@@ -67,6 +68,9 @@ gulp.task('concat-app', function () {
 			'./public/js/components.js'
 		])
 		.pipe(concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(wrap({ src: './src/ractivef-cjs.js'}))
+		.pipe(concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
