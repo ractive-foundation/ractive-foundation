@@ -1,5 +1,3 @@
-##Accordion demo
-
 #### Basic usage
 ```
 <uxaccordion>
