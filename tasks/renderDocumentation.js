@@ -23,7 +23,7 @@ function renderDocumentation(options) {
         var componentName = pathComponents.slice(-2)[0];
         var directory = pathComponents.slice(0,-1).join('/') + '/use_cases/';
 
-        var doco = '<h1>' + componentName + "</h1>\n<br>\n";
+        var doco = '<h1>' + componentName + '</h1>\n<br>\n';
         var doco = doco + marked(String(file.contents));
 
         try {
@@ -32,23 +32,23 @@ function renderDocumentation(options) {
 
                 var json = JSON.parse(fs.readFileSync(usecase));
 
-                doco = doco + "<h2>Use case: " + json['title'] + "</h2>\n";
+                doco = doco + '<h2>Use case: ' + json.title + '</h2>';
 
                 // iterate over all the keys in the use case data to render button
-                doco = doco + "<" + componentName;
-                _.forEach(json['data'], function(value, key) {
-                    doco = doco + " " + key + "='" + value + "'";
+                doco = doco + '<' + componentName;
+                _.forEach(json.data, function(value, key) {
+                    doco = doco + ' ' + key + '=\'' + value + '\'';
                 });
 
-                doco = doco + "></" + componentName + ">\n";
+                doco = doco + '></' + componentName + '>';
 
                 // iterate over all keys in the use case data to render code for this use case
-                doco = doco + "<pre><code class=\"lang-js\">&lt;" + componentName;
-                _.forEach(json['data'], function(value, key) {
-                    doco = doco + " " + xml(key) + "='" + xml(value) + "'";
+                doco = doco + '<pre><code>&lt;' + componentName;
+                _.forEach(json.data, function(value, key) {
+                    doco = doco + '' + xml(key) + '=\'' + xml(value) + '\'';
                 });
 
-                doco = doco + "&gt;&lt;/" + componentName + "&gt;</code></pre>\n";
+                doco = doco + '&gt;&lt;/' + componentName + '&gt;</code></pre>';
 
             });
 
