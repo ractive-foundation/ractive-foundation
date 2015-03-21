@@ -1,23 +1,26 @@
-window.RactiveF = {
+RactiveF = {
 	components: {},
 	templates: {},
-	widgets: {}
+	widgets: [],
+	initInstance: function (container) {
+		return new Ractive({
+			el: container,
+			template: Ractive.parse(container.innerHTML),
+			components: RactiveF.components,
+			onrender: function () {
+				this.el.classList.remove('hide');
+				this.el.classList.add('initialize');
+			}
+		});
+	}
 };
-var initInstance = function (i, container) {
-	return new Ractive({
-		el: container,
-		template: Ractive.parse(container.innerHTML),
-		components: RactiveF.components,
-		onrender: function () {
-			$(this.el)
-				.removeClass('hide')
-				.addClass('initialized');
+
+if (typeof document !== 'undefined') {
+	document.addEventListener('DOMContentLoaded', function () {
+		var containers = document.querySelectorAll('.ractivef');
+		for (var i = 0; i < containers.length; i++) {
+			var instance = RactiveF.initInstance(containers[i]);
+			RactiveF.widgets.push(instance);
 		}
 	});
-};
-
-// TODO: Remove jQuery. Used for convenience.
-$(function () {
-	RactiveF.widgets = $('.ractivef').not('.initialized').map(initInstance);
-});
-
+}
