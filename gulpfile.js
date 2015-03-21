@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
+	mergeStream = require('merge-stream'),
 	watch = require('gulp-watch'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
@@ -22,19 +23,23 @@ gulp.task('html', function () {
 });
 
 gulp.task('copy-vendors', function () {
-	gulp.src([
-		'./node_modules/ractive/ractive.js',
-		'./node_modules/jquery/dist/jquery.min.js',
-		'./node_modules/lodash/lodash.min.js'
-	])
-		.pipe(gulp.dest('./public/js'));
-});
 
-gulp.task('copy-assets', function () {
-	return gulp.src([
-		'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
-	])
-	.pipe(gulp.dest('public/images/'));
+	return mergeStream(
+
+		gulp.src([
+			'./node_modules/ractive/ractive.js',
+			'./node_modules/jquery/dist/jquery.min.js',
+			'./node_modules/lodash/lodash.min.js'
+		])
+		.pipe(gulp.dest('./public/js')),
+
+		gulp.src([
+			'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
+		])
+		.pipe(gulp.dest('public/images/'))
+
+	);
+
 });
 
 gulp.task('build-sass', function () {
@@ -87,7 +92,6 @@ gulp.task('build', function (callback) {
 		'ractive-build-components'
 	], [
 		'copy-vendors',
-		'copy-assets',
 		'concat-app'
 	], callback);
 });
