@@ -3,6 +3,7 @@ RactiveF = {
 	templates: {},
 	widgets: [],
 	initInstance: function (container) {
+		// FIXME: Is there any other way to do it? Without using lodash dependency.
 		_.mixin(Ractive.prototype, {
 			/*
 			 * When working with nested components we only want to find child
