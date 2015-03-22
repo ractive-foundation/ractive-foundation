@@ -1,21 +1,17 @@
 Ractive.extend({
-    template: RactiveF.templates.uxaccordion,
+
+	template: RactiveF.templates.uxaccordion,
+
 	oninit: function () {
+
+		this.set('items', this.findAllChildComponents('uxaccordionitem'));
 
 		this.on('*.changeAccordion', function (syntheticEvent) {
 
-			var guid = this._guid;
-			var components = this.findAllComponents('uxaccordionitem');
-
-			_(components)
-				.filter(function (component) {
-					return guid === component.parent._guid;
-				})
-				.each(function (component) {
-					var isActive = component.get('id') === syntheticEvent.context.id;
-					component.set('active', isActive);
-				})
-				.value();
+			_.each(this.get('items'), function (component) {
+				var isActive = component.get('id') === syntheticEvent.context.id;
+				component.set('active', isActive);
+			});
 
 			// Stop bubbling.
 			return false;
@@ -23,4 +19,5 @@ Ractive.extend({
 		});
 
 	}
+
 });
