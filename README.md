@@ -21,7 +21,7 @@ Clone the repo, then from the root folder:
 
 1. `npm install`
 1. `gulp`
-1. Open [http://localhost:8080/](http://localhost:8080/) in your browser
+1. Open [http://localhost:9080/](http://localhost:9080/) in your browser
 
 ## Creating a new component
 
@@ -33,3 +33,5 @@ $ gulp wing --name uxblah
 [07:22:07] Starting 'wing'...
 [07:22:07] Finished 'wing' after 1.16 ms
 ```
+
+Use ``` gulp wing --help``` for more info
