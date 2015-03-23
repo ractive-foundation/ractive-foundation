@@ -25,7 +25,7 @@ function gulpRactive(options) {
             filecontents = Ractive.parse(filecontents, options);
             filecontents = JSON.stringify(filecontents);
 
-            filecontents = options.prefix + '.templates.' + componentName + ' = ' + filecontents + ';';
+            filecontents = options.prefix + '.templates[\'' + componentName + '\'] = ' + filecontents + ';';
 
             file.contents = new Buffer(filecontents);
             this.push(file);
