@@ -1,6 +1,6 @@
-{{#if (level == 1)}}<h1 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h1>{{/if}}
-{{#if (level == 2)}}<h2 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h2>{{/if}}
-{{#if (level == 3)}}<h3 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h3>{{/if}}
-{{#if (level == 4)}}<h4 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h4>{{/if}}
-{{#if (level == 5)}}<h5 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h5>{{/if}}
-{{#if (level == 6)}}<h6 {{#if class}}class="{{class}}"{{/if}}>{{>content}}</h6>{{/if}}
+{{#if (level == 1)}}<h1 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h1>{{/if}}
+{{#if (level == 2)}}<h2 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h2>{{/if}}
+{{#if (level == 3)}}<h3 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h3>{{/if}}
+{{#if (level == 4)}}<h4 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h4>{{/if}}
+{{#if (level == 5)}}<h5 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h5>{{/if}}
+{{#if (level == 6)}}<h6 {{#if class}}class="{{class}}"{{/if}}>{{yield}}</h6>{{/if}}
