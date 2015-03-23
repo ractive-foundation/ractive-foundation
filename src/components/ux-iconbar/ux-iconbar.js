@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates.uxiconbar,
+	template: RactiveF.templates.ux-iconbar,
 
 	computed: {
 
@@ -18,7 +18,7 @@ Ractive.extend({
 			];
 
 			if (!supportedWords[num]) {
-				console.error('uxiconbar#numberToWord: num NOT supported: ' + num);
+				console.error('ux-iconbar#numberToWord: num NOT supported: ' + num);
 				return '';
 			}
 
@@ -30,11 +30,11 @@ Ractive.extend({
 
 	oninit: function () {
 
-		var items = this.findAllComponents('uxiconbaritem');
+		var items = this.findAllComponents('ux-iconbaritem');
 
 		var childCount = items.length;
 		if (childCount < 1 || childCount > 8) {
-			console.error('uxiconbar only supports between 1-8 items.');
+			console.error('ux-iconbar only supports between 1-8 items.');
 		}
 
 		// Store for later use.
