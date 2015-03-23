@@ -21,8 +21,7 @@ End goal is to build up a library of reusable components for Foundation v5.
 
 Clone the repo, then from the root folder:
 
-1. `npm install`
-1. `gulp`
+1. `npm start`
 1. Open [http://localhost:9080/](http://localhost:9080/) in your browser
 
 ## Creating a new component
