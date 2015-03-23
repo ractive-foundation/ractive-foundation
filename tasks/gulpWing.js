@@ -42,7 +42,7 @@ module.exports = function () {
 
 				// Names of components MUST be lowercase, and start with 'ux-'.
 				if (!lowerCaseOnly.test(value) || 'ux-' !== value.substr(0, 3)) {
-					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
+					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + value.toLowerCase());
 				}
 
 				return value;
@@ -59,7 +59,7 @@ module.exports = function () {
 	var destPath = GULP_WING_TARGET_PATH_PREFIX + option.name + '/';
 	fs.mkdirSync(destPath);
 
-	_.map(['js', 'hbs', 'scss'], function (fileType) {
+	_.each(['js', 'hbs', 'scss'], function (fileType) {
 		processFileAndSave(option.name, fileType, destPath);
 	});
 
