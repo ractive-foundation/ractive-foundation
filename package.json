@@ -30,7 +30,8 @@
     "node-getopt-long": "^0.1.1",
     "run-sequence": "~1.0.2",
     "through2": "^0.6.3",
-    "xml-escape": "^1.0.0"
+    "xml-escape": "^1.0.0",
+  	"json2htmljson2css": "git+https://github.com/pvshum/json2htmljson2css.git#master"
   },
   "dependencies": {
     "jquery": "^1.11.2",
