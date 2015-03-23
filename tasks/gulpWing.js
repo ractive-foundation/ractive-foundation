@@ -20,7 +20,7 @@ const GULP_WING_SOURCE_PATH_PREFIX = './tasks/gulpWingFiles/';
 const GULP_WING_TARGET_PATH_PREFIX = './src/components/';
 const GULP_WING_PLACEHOLDER = 'wingComponent';
 
-var lowerCaseOnly = new RegExp('^[a-z]+$', 'g');
+var lowerCaseOnly = new RegExp('^[a-z-]+$', 'g');
 
 function processFileAndSave(name, fileType, destPath) {
 	var fc = fs.readFileSync(GULP_WING_SOURCE_PATH_PREFIX + 'wingComponent.' + fileType, 'UTF-8');
@@ -40,7 +40,7 @@ module.exports = function () {
 				}
 
 				// Names of components MUST be lowercase, and start with 'ux-'.
-				if (!lowerCaseOnly.test(value) || 'ux-' !== value.substr(0, 2)) {
+				if (!lowerCaseOnly.test(value) || 'ux-' !== value.substr(0, 3)) {
 					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_LOWERCASE + name.toLowerCase());
 				}
 
