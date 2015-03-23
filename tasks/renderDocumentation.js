@@ -45,7 +45,7 @@ function renderDocumentation(options) {
                 // iterate over all keys in the use case data to render code for this use case
                 doco = doco + '<pre><code>&lt;' + componentName;
                 _.forEach(json.data, function(value, key) {
-                    doco = doco + '' + xml(key) + '=\'' + xml(value) + '\'';
+                    doco = doco + ' ' + xml(key) + '=\'' + xml(value) + '\'';
                 });
 
                 doco = doco + '&gt;&lt;/' + componentName + '&gt;</code></pre>';
