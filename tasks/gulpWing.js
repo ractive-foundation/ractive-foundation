@@ -35,7 +35,8 @@ module.exports = function () {
 			description: 'The name of the component to create',
 			paramName: 'ux-...',
 			test: function (value) {
-				if (value.length < 2) {
+				// Check for ux-*, including nothing at all to error out on.
+				if (value.length < 4) {
 					throw new gutil.PluginError(PLUGIN_NAME, PLUGIN_ERROR_NAME_PARAM);
 				}
 
