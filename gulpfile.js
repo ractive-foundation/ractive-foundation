@@ -3,9 +3,11 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
+	jshint = require('gulp-jshint'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	watch = require('gulp-watch'),
+	jshintFailReporter = require('./tasks/jshintFailReporter'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	gulpWing = require('./tasks/gulpWing.js');
@@ -102,7 +104,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean'], function (callback) {
+gulp.task('build', ['jshint', 'clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -126,6 +128,13 @@ gulp.task('watch', function () {
 
 });
 
+gulp.task('jshint', function () {
+	return gulp.src('./src/**/*.js')
+		.pipe(jshint('./.jshintrc'))
+		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(jshintFailReporter());
+});
+
 gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+	runSequence('jshint', 'build', 'connect', 'watch', callback);
 });
