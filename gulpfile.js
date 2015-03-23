@@ -3,9 +3,11 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
+	jshint = require('gulp-jshint'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	watch = require('gulp-watch'),
+	jshintFailReporter = require('./tasks/jshintFailReporter'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	gulpWing = require('./tasks/gulpWing.js');
@@ -45,7 +47,7 @@ gulp.task('copy-vendors', function () {
 
 });
 
-gulp.task('clean', function (callback) {
+gulp.task('clean', ['jshint'], function (callback) {
 	del([
 		'public/**/*',
 		// We want to keep index.html
@@ -102,7 +104,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean'], function (callback) {
+gulp.task('build', ['jshint', 'clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -114,18 +116,32 @@ gulp.task('build', ['clean'], function (callback) {
 });
 
 gulp.task('watch', function () {
-
+	var self = this;
 	watch([
 		'public/*.html',
 		'src/**/*.hbs',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'html', function (err) {
+			self.emit('end');
+		});
 	});
 
 });
 
-gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+gulp.task('jshint', function (callback) {
+	return gulp.src('./src/**/*.js')
+		.pipe(jshint('./.jshintrc'))
+		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(jshintFailReporter());
+});
+
+gulp.task('default', function () {
+	var self = this;
+	runSequence('jshint', 'build', 'connect', 'watch', function (err) {
+		self.emit('end');
+	});
+
+
 });
