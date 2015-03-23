@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates.ux-iconbar,
+	template: RactiveF.templates['ux-iconbar'],
 
 	computed: {
 
