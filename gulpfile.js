@@ -47,7 +47,7 @@ gulp.task('copy-vendors', function () {
 
 });
 
-gulp.task('clean', function (callback) {
+gulp.task('clean', ['jshint'], function (callback) {
 	del([
 		'public/**/*',
 		// We want to keep index.html
@@ -116,25 +116,32 @@ gulp.task('build', ['jshint', 'clean'], function (callback) {
 });
 
 gulp.task('watch', function () {
-
+	var self = this;
 	watch([
 		'public/*.html',
 		'src/**/*.hbs',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'html', function (err) {
+			self.emit('end');
+		});
 	});
 
 });
 
-gulp.task('jshint', function () {
+gulp.task('jshint', function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(jshint('./.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'))
 		.pipe(jshintFailReporter());
 });
 
-gulp.task('default', function (callback) {
-	runSequence('jshint', 'build', 'connect', 'watch', callback);
+gulp.task('default', function () {
+	var self = this;
+	runSequence('jshint', 'build', 'connect', 'watch', function (err) {
+		self.emit('end');
+	});
+
+
 });
