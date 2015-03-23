@@ -1,11 +1,9 @@
 var through = require('through2');
 var PluginError = require('gulp-util').PluginError;
-var beep = require('beepbeep');
+var notifier = require('node-notifier');
 
 module.exports = function (opts) {
-	opts = opts || {};
 
-	// @type false|[]paths - paths to files that failed jshint
 	var fails = [];
 
 	return through.obj(function (file, enc, callback) {
@@ -18,9 +16,10 @@ module.exports = function (opts) {
 	}, function flush(callback) {
 		var error;
 		if (fails.length) {
-			// FIXME Beep doesn't work on Ubuntu (lubuntu).
-			// OS X beeps fine. Not tested on windows or other flavours of linux.
-			beep();
+			notifier.notify({
+				title: 'JSHint Failed!',
+				message: fails.length + ' issue(s) found.'
+			});
 			error = new PluginError('gulp-jshint', {
 				message: 'JSHint failed for: ' + fails.join(', '),
 				showStack: false
