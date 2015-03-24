@@ -2,7 +2,7 @@ var through = require('through2'),
 	gulputil = require('gulp-util'),
 	Ractive = require('ractive'),
 	fs = require('fs'),
-	Q = require('Q'),
+	Q = require('q'),
 	marked = require('marked');
 
 var PluginError = gulputil.PluginError;
