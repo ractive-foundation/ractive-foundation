@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	watch = require('gulp-watch'),
+	cucumber = require('gulp-cucumber'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
 	gulpWing = require('./tasks/gulpWing.js');
@@ -49,7 +50,7 @@ gulp.task('clean', function (callback) {
 	del([
 		'public/**/*',
 		// We want to keep index.html
-		'!public/index.html'
+		'!public/*.html'
 	], callback);
 });
 
@@ -124,6 +125,12 @@ gulp.task('watch', function () {
 		runSequence('build', 'html');
 	});
 
+});
+
+gulp.task('cucumber', ['connect'], function(callback) {
+	return gulp
+		.src('./tests/**/*.feature')
+		.pipe(cucumber({ steps: './tests/**/*.steps.js' }));
 });
 
 gulp.task('default', function (callback) {
