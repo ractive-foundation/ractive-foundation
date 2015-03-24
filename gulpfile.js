@@ -123,7 +123,7 @@ gulp.task('build', ['clean'], function (callback) {
 gulp.task('watch', function () {
 
 	watch([
-		'public/*.html',
+		'src/*.html',
 		'src/**/*.hbs',
 		'src/**/*.js',
 		'src/**/*.scss'
