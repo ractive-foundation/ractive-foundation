@@ -37,7 +37,7 @@ function renderAttributes(title, options) {
             }
             ]);
         });
-        
+
         return html;
 }
 
@@ -91,6 +91,7 @@ function renderDocumentation() {
 			directory = directory.join(path.sep);
 
 			// iterate over all use cases for the component
+            var i = 0;
 			doco += _.map(find.fileSync(/.*\.json/, directory), function (usecase) {
 
 				var json = JSON.parse(fs.readFileSync(usecase));
@@ -102,29 +103,38 @@ function renderDocumentation() {
 					content: ''
 				};
 
-				return makeHTML([
-					{
-						tag: 'h2',
-						content: 'Use case: ' + json.title
-					},
-					componentObj,
-					{
-						tag: 'pre',
-						content: [{
-							tag: 'code',
-							content:  _.escape(makeHTML([componentObj]))
-						}]
-					}
-				]);
+                // render use case doco
+                var component = makeHTML([
+                    {
+                        tag: 'h2',
+                        content: 'Use case: ' + json.title
+                    },
+                    componentObj,
+                    {
+                        tag: 'pre',
+                        content: [{
+                            tag: 'code',
+                            content:  _.escape(makeHTML([componentObj]))
+                        }]
+                    }
+                ]).replace(/(\r\n|\n|\r)/gm,'');
 
+                // generate a unique identifier for this use case
+                var uniqueid = componentName + i;
+                i += 1;
+				var html = "<div class=\"panel\" id=\"" + uniqueid + "\"></div>" 
+                html += "<script>var " + uniqueid;
+                html += " = new Ractive({el: '" + uniqueid + "', data: { eventName: []}, components: RactiveF.components, template: '";
+                html += component;
+                html += "{{#each eventName}}<div data-alert class=\"alert-box alert round\">{{this}}<a href=\"#\" class=\"close\">&times;</a></div>{{/each}}";
+                html += "'});\n";
+                html += uniqueid + ".on('*.*', function() { console.log(\"EVENT \" + this.event.component + \".\" + this.event.name ); this.get('eventName').push(this.event.name)});";
+                html += "</script>";
+
+                return html;
 			}).join('');
 
-			file.contents = new Buffer(
-                "<script>var ractive = new Ractive({el: 'doco', components: RactiveF.components, template: 'Last Event: {{eventName}}"
-                 + doco.replace(/(\r\n|\n|\r)/gm,'') 
-                 +  "'});\n"  
-                 + "ractive.on('*.*', function() { console.log(\"EVENT \" + this.event.name); this.set('eventName', this.event.name)});</script>"
-                 );
+			file.contents = new Buffer(doco);
 
 			this.push(file);
 		}

@@ -1,9 +1,5 @@
 Ractive.extend({
 	template: RactiveF.templates.uxbutton,
-	onteardown: function () {
-    debugger;
-    //alert( 'Bye!' );
-  },
 	computed: {
 		inlinePartial: function() {
 			// check if there is any inline partial {{>content}} in this ractive component
@@ -19,6 +15,6 @@ Ractive.extend({
 		}
 
 		// prevent bubbling
-		return true;
+		return false;
 	}
 });
