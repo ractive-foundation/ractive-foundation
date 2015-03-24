@@ -132,11 +132,10 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('docs', ['build'], function (callback) {
-	gulp.src('./src/docs.html')
+gulp.task('docs', function () {
+	return gulp.src('./src/docs.html')
 		.pipe(generateDocs())
 		.pipe(gulp.dest('./public/'));;
-	callback();
 });
 
 gulp.task('default', function (callback) {
