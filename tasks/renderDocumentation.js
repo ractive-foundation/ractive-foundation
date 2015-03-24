@@ -12,6 +12,35 @@ var PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-concat-documentation';
 
+
+function renderAttributes(title, options) {
+    
+      var html = makeHTML([
+        {
+            tag: 'hr'
+        },
+        {
+            tag: 'h3',
+            content: title
+        }
+        ]);
+ 
+        _.forEach(_.zipObject(_.keys(options), _.values(options)),function(value, key) {
+            html += makeHTML([
+            {
+                tag: 'h4',
+                content: key
+            },
+            {
+                tag: 'p',
+                content: value
+            }
+            ]);
+        });
+        
+        return html;
+}
+
 function renderDocumentation() {
 	var stream = through.obj(function (file, enc, callback) {
 
@@ -46,53 +75,13 @@ function renderDocumentation() {
             var interfaceSpecJson = JSON.parse(fs.readFileSync(interfaceDefinitionFilename));
 
             // document the permitted model fields
-           doco += makeHTML([
-            {
-                tag: 'hr'
-            },
-            {
-                tag: 'h3',
-                content: "Data Model"
-            }
-            ]);
- 
-                _.forEach(_.zipObject(_.keys(interfaceSpecJson.data), _.values(interfaceSpecJson.data)),function(value, key) {
-                    doco += makeHTML([
-                    {
-                        tag: 'h4',
-                        content: key
-                    },
-                    {
-                        tag: 'p',
-                        content: value
-                    }
-                    ]);
-                });
+            doco += renderAttributes('Semantic Data Model', interfaceSpecJson.data);
 
+  
             // document the events handled
-           doco += makeHTML([
-            {
-                tag: 'hr'
-            },
-            {
-                tag: 'h3',
-                content: "Events"
-            }
-            ]);
- 
-                _.forEach(_.zipObject(_.keys(interfaceSpecJson.events), _.values(interfaceSpecJson.events)),function(value, key) {
-                    doco += makeHTML([
-                    {
-                        tag: 'h4',
-                        content: key
-                    },
-                    {
-                        tag: 'p',
-                        content: value
-                    }
-                    ]);
-                });
- 
+            doco += renderAttributes('Semantic Event Mapping', interfaceSpecJson.events);
+
+
             doco += makeHTML([
             {
                 tag: 'hr'
