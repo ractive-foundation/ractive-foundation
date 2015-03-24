@@ -3,19 +3,6 @@ RactiveF = {
 	templates: {},
 	widgets: [],
 	initInstance: function (container) {
-		// FIXME: Is there any other way to do it? Without using lodash dependency.
-		_.mixin(Ractive.prototype, {
-			/*
-			 * When working with nested components we only want to find child
-			 * components, not all decendants.
-			 * @param name
-			 */
-			findAllChildComponents: function (name) {
-				return _.filter(this.findAllComponents(name), function (component) {
-					return this._guid === component.parent._guid;
-				}.bind(this));
-			}
-		});
 		return new Ractive({
 			el: container,
 			template: Ractive.parse(container.innerHTML),
@@ -27,6 +14,20 @@ RactiveF = {
 		});
 	}
 };
+
+// FIXME: Is there any other way to do it? Without using lodash dependency.
+_.mixin(Ractive.prototype, {
+	/*
+	 * When working with nested components we only want to find child
+	 * components, not all decendants.
+	 * @param name
+	 */
+	findAllChildComponents: function (name) {
+		return _.filter(this.findAllComponents(name), function (component) {
+			return this._guid === component.parent._guid;
+		}.bind(this));
+	}
+});
 
 if (typeof document !== 'undefined') {
 	document.addEventListener('DOMContentLoaded', function () {
