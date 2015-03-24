@@ -106,7 +106,8 @@ gulp.task('watch', function () {
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',
-		'src/**/*.scss'
+		'src/**/*.scss',
+		'tasks/**/*.js'
 	], function () {
 		runSequence('build', 'html');
 	});
