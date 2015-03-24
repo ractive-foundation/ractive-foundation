@@ -129,8 +129,8 @@ gulp.task('watch', function () {
 
 gulp.task('cucumber', ['connect'], function(callback) {
 	return gulp
-		.src('./tests/**/*.feature')
-		.pipe(cucumber({ steps: './tests/**/*.steps.js' }));
+		.src('./src/components/**/*.feature')
+		.pipe(cucumber({ steps: './src/components/**/*.steps.js' }));
 });
 
 gulp.task('default', function (callback) {
