@@ -49,9 +49,7 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('clean', function (callback) {
 	del([
-		'public/**/*',
-		// We want to keep index.html
-		'!public/index.html'
+		'public/**/*'
 	], callback);
 });
 
@@ -66,7 +64,10 @@ gulp.task('build-sass', function () {
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
 			.pipe(sass())
-			.pipe(gulp.dest('./public/css/foundation'))
+			.pipe(gulp.dest('./public/css/foundation')),
+
+		gulp.src('./src/index.html')
+			.pipe(gulp.dest('./public/'))
 
 	);
 
