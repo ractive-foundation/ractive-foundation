@@ -16,385 +16,389 @@
 
 <div class="ractivef hide">
 
-	<uxcol>
-		<uxrow class="small-12">
+        <ux-row>
+            <ux-col class="small-12">
+                <ux-header level="1">Ractive Foundation Kitchensink Demo</ux-header>
+                <div class="panel clearfix">
+                    This is a kitchensink demo of all the ractive components available in the styleguide.
+                    Later, stuff like should be auto-generated into the styleguide website.
+                </div>
+            </ux-col>
+        </ux-row>
 
-			<uxrow>
-				<uxcol class="small-12">
-					<uxheader level="1">Ractive Foundation Kitchensink Demo</uxheader>
-					<div class="panel clearfix">
-						This is a kitchensink demo of all the ractive components available in the styleguide.
-						Later, stuff like should be auto-generated into the styleguide website.
-					</div>
-				</uxcol>
-			</uxrow>
+        <!-- tabs to wrap everything -->
+        <ux-row>
+            <ux-col class="small-12">
 
-			<!-- tabs to wrap everything -->
-			<uxtabarea>
-				<uxtablinks>
-					<uxtablink id="structure" active="true">Structure</uxtablink>
-					<uxtablink id="buttons">Buttons</uxtablink>
-					<uxtablink id="buttons">Typography</uxtablink>
-					<uxtablink id="content">Content</uxtablink>
-				</uxtablinks>
-				<uxtabpanes>
+                <ux-tabarea>
 
-					<!-- structure -->
-					<uxtabpane>
+                    <ux-tablinks>
+                        <ux-tablink id="structure" active="true">Structure</ux-tablink>
+                        <ux-tablink id="buttons">Buttons</ux-tablink>
+                        <ux-tablink id="buttons">Typography</ux-tablink>
+                        <ux-tablink id="content">Content</ux-tablink>
+                    </ux-tablinks>
 
-						<uxrow>
-							<uxcol class="large-3"> some content </uxcol>
-							<uxcol class="large-3"> second column </uxcol>
-							<uxcol class="large-3"> third column </uxcol>
-						</uxrow>
+                    <ux-tabpanes>
 
-					</uxtabpane>
+                        <!-- structure -->
+                        <ux-tabpane>
 
-					<!-- buttons -->
-					<uxtabpane>
+                            <ux-row>
+                                <ux-col class="large-3"> some content </ux-col>
+                                <ux-col class="large-3"> second column </ux-col>
+                                <ux-col class="large-3"> third column </ux-col>
+                            </ux-row>
 
-						<uxrow>
-							<uxcol class="large-3">
-								<uxbutton class="primary radius">Primary</uxbutton>
-							</uxcol>
-							<uxcol class="large-3">
-								<uxbutton class="success small radius">Success</uxbutton>
-							</uxcol>
-							<uxcol class="large-3">
-								<uxbutton class="alert tiny radius" href="#test">Link</uxbutton>
-							</uxcol>
-						</uxrow>
+                        </ux-tabpane>
 
-					</uxtabpane>
+                        <!-- buttons -->
+                        <ux-tabpane>
 
-					<!-- typography -->
-					<uxtabpane>
+                            <ux-row>
+                                <ux-col class="large-3">
+                                    <ux-button class="primary radius">Primary</ux-button>
+                                </ux-col>
+                                <ux-col class="large-3">
+                                    <ux-button class="success small radius">Success</ux-button>
+                                </ux-col>
+                                <ux-col class="large-3">
+                                    <ux-button class="alert tiny radius" href="#test">Link</ux-button>
+                                </ux-col>
+                            </ux-row>
 
-						<uxrow>
+                        </ux-tabpane>
 
-							<uxcol class="small-12">
+                        <!-- typography -->
+                        <ux-tabpane>
 
-								<uxheader level="1">h1. This is a very large header.</uxheader>
-								<uxheader level="2">h2. This is a large header.</uxheader>
-								<uxheader level="3">h3. This is a medium header.</uxheader>
-								<uxheader level="4">h4. This is a moderate header.</uxheader>
-								<uxheader level="5">h5. This is a small header.</uxheader>
-								<uxheader level="6">h6. This is a tiny header.</uxheader>
+                            <ux-row>
 
-								<uxheader class="subheader" level="1">h1.subheader</uxheader>
-								<uxheader class="subheader" level="2">h2.subheader</uxheader>
-								<uxheader class="subheader" level="3">h3.subheader</uxheader>
-								<uxheader class="subheader" level="4">h4.subheader</uxheader>
-								<uxheader class="subheader" level="5">h5.subheader</uxheader>
-								<uxheader class="subheader" level="6">h6.subheader</uxheader>
+                                <ux-col class="small-12">
 
-							</uxcol>
+                                    <ux-header level="1">h1. This is a very large header.</ux-header>
+                                    <ux-header level="2">h2. This is a large header.</ux-header>
+                                    <ux-header level="3">h3. This is a medium header.</ux-header>
+                                    <ux-header level="4">h4. This is a moderate header.</ux-header>
+                                    <ux-header level="5">h5. This is a small header.</ux-header>
+                                    <ux-header level="6">h6. This is a tiny header.</ux-header>
 
-						</uxrow>
+                                    <ux-header class="subheader" level="1">h1.subheader</ux-header>
+                                    <ux-header class="subheader" level="2">h2.subheader</ux-header>
+                                    <ux-header class="subheader" level="3">h3.subheader</ux-header>
+                                    <ux-header class="subheader" level="4">h4.subheader</ux-header>
+                                    <ux-header class="subheader" level="5">h5.subheader</ux-header>
+                                    <ux-header class="subheader" level="6">h6.subheader</ux-header>
 
-					</uxtabpane>
+                                </ux-col>
 
-					<!-- content -->
-					<uxtabpane>
+                            </ux-row>
 
-						<!-- accordion demos -->
-						<uxrow>
+                        </ux-tabpane>
 
-							<uxcol class="small-12">
+                        <!-- content -->
+                        <ux-tabpane>
 
-								<uxheader level="2">Accordion Demos</uxheader>
+                            <!-- accordion demos -->
+                            <ux-row>
 
-								<uxheader level="3">Accordion demo 1</uxheader>
-								<uxaccordion>
+                                <ux-col class="small-12">
 
-									<uxaccordionitem active="true">
-										<uxanchor>Testing an anchor1</uxanchor>
-										<uxcontent>Here is the active content for 1</uxcontent>
-									</uxaccordionitem>
+                                    <ux-header level="2">Accordion Demos</ux-header>
 
-									<uxaccordionitem>
-										<uxanchor>Testing an anchor2</uxanchor>
-										<uxcontent>
+                                    <ux-header level="3">Accordion demo 1</ux-header>
+                                    <ux-accordion>
 
-											<p>Nested accordion example:</p>
-											<uxaccordion>
-												<uxaccordionitem>
-													<uxanchor>Testing an anchor2.1</uxanchor>
-													<uxcontent>
+                                        <ux-accordionitem active="true">
+                                            <ux-anchor>Testing an anchor1</ux-anchor>
+                                            <ux-content>Here is the active content for 1</ux-content>
+                                        </ux-accordionitem>
 
-														<p>Second nested accordion demo</p>
-														<uxaccordion>
-															<uxaccordionitem>
-																<uxanchor>Testing an anchor2.1.1</uxanchor>
-																<uxcontent>Accordion 2.1.1: Lorem ipsum</uxcontent>
-															</uxaccordionitem>
+                                        <ux-accordionitem>
+                                            <ux-anchor>Testing an anchor2</ux-anchor>
+                                            <ux-content>
 
-															<uxaccordionitem active="true">
-																<uxanchor>Testing an anchor2.1.2</uxanchor>
-																<uxcontent>Accordion 2.1.2: Dolor sit amet</uxcontent>
-															</uxaccordionitem>
-														</uxaccordion>
+                                                <p>Nested accordion example:</p>
+                                                <ux-accordion>
+                                                    <ux-accordionitem>
+                                                        <ux-anchor>Testing an anchor2.1</ux-anchor>
+                                                        <ux-content>
 
-													</uxcontent>
-												</uxaccordionitem>
+                                                            <p>Second nested accordion demo</p>
+                                                            <ux-accordion>
+                                                                <ux-accordionitem>
+                                                                    <ux-anchor>Testing an anchor2.1.1</ux-anchor>
+                                                                    <ux-content>Accordion 2.1.1: Lorem ipsum</ux-content>
+                                                                </ux-accordionitem>
 
-												<uxaccordionitem active="true">
-													<uxanchor>Testing an anchor2.2</uxanchor>
-													<uxcontent>Accordion 2: Dolor sit amet</uxcontent>
-												</uxaccordionitem>
-											</uxaccordion>
+                                                                <ux-accordionitem active="true">
+                                                                    <ux-anchor>Testing an anchor2.1.2</ux-anchor>
+                                                                    <ux-content>Accordion 2.1.2: Dolor sit amet</ux-content>
+                                                                </ux-accordionitem>
+                                                            </ux-accordion>
 
-										</uxcontent>
-									</uxaccordionitem>
+                                                        </ux-content>
+                                                    </ux-accordionitem>
 
-									<uxaccordionitem>
-										<uxanchor>Testing an anchor3</uxanchor>
-										<uxcontent>Here is the active content for 3</uxcontent>
-									</uxaccordionitem>
+                                                    <ux-accordionitem active="true">
+                                                        <ux-anchor>Testing an anchor2.2</ux-anchor>
+                                                        <ux-content>Accordion 2: Dolor sit amet</ux-content>
+                                                    </ux-accordionitem>
+                                                </ux-accordion>
 
-								</uxaccordion>
+                                            </ux-content>
+                                        </ux-accordionitem>
 
-								<uxheader level="3">Accordion demo 2</uxheader>
-								<uxaccordion>
-									<uxaccordionitem>
-										<uxanchor>Testing an anchor1</uxanchor>
-										<uxcontent>Accordion 2: Lorem ipsum</uxcontent>
-									</uxaccordionitem>
+                                        <ux-accordionitem>
+                                            <ux-anchor>Testing an anchor3</ux-anchor>
+                                            <ux-content>Here is the active content for 3</ux-content>
+                                        </ux-accordionitem>
 
-									<uxaccordionitem active="true">
-										<uxanchor>Testing an anchor2</uxanchor>
-										<uxcontent>Accordion 2: Dolor sit amet</uxcontent>
-									</uxaccordionitem>
-								</uxaccordion>
+                                    </ux-accordion>
 
-							</uxcol>
+                                    <ux-header level="3">Accordion demo 2</ux-header>
+                                    <ux-accordion>
+                                        <ux-accordionitem>
+                                            <ux-anchor>Testing an anchor1</ux-anchor>
+                                            <ux-content>Accordion 2: Lorem ipsum</ux-content>
+                                        </ux-accordionitem>
 
-						</uxrow>
+                                        <ux-accordionitem active="true">
+                                            <ux-anchor>Testing an anchor2</ux-anchor>
+                                            <ux-content>Accordion 2: Dolor sit amet</ux-content>
+                                        </ux-accordionitem>
+                                    </ux-accordion>
 
-						<uxrow><uxcol class="small-12"><hr/></uxcol></uxrow>
+                                </ux-col>
 
-						<!-- pricing table demo -->
-						<uxrow>
-							<uxcol class="large-12">
-								<h2>Pricing Table demo</h2>
-							</uxcol>
-						</uxrow>
-						<uxrow>
-							<uxcol class="large-6">
+                            </ux-row>
 
-								<uxpricingtable href="/buy/samsunggalaxys6/now" status="comingsoon">
-									<uxli class="title">Samsung Galaxy S6</uxli>
-									<uxli class="price">$49.99</uxli>
-									<uxli class="description">
-										Introducing the Samsung Galaxy S6 edge. Welcome to beauty without borders:
-										a design that feels like it melts away for a stunning, immersive experience.
-										Swiping the edge checks for calls and notifications from your loved ones.
-										It also makes staying connected via email, messages or social feeds simple and accessible*.
-										More than just dazzling, it lives in that special place where form meets function.
-									</uxli>
-									<uxli class="bullet-item">5.1 inches</uxli>
-									<uxli class="bullet-item">2k display</uxli>
-									<uxli class="bullet-item">138grams</uxli>
-									<uxli class="bullet-item">6.8mm thick</uxli>
-								</uxpricingtable>
+                            <ux-row><ux-col class="small-12"><hr/></ux-col></ux-row>
 
-							</uxcol>
-							<uxcol class="large-6">
+                            <!-- pricing table demo -->
+                            <ux-row>
+                                <ux-col class="large-12">
+                                    <h2>Pricing Table demo</h2>
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="large-6">
 
-								<uxpricingtable href="/buy/iphone6plus/now">
-									<uxli class="title">Apple Iphone 6 Pl</uxli>
-									<uxli class="price">$999.99</uxli>
-									<uxli class="description">
-										iPhone 6 PLUS isn’t simply bigger — it’s better in every way. Larger, yet dramatically thinner.
-										More powerful, but remarkably power-efficient. With a smooth metal surface that seamlessly
-										meets the new Retina HD display. It’s one continuous form where hardware and software function
-										in perfect unison, creating a new generation of iPhone that’s better by any measure.
-									</uxli>
-									<uxli class="bullet-item">5.5 inches</uxli>
-									<uxli class="bullet-item">7.1mm</uxli>
-									<uxli class="bullet-item">1920x1080 resolution retina display</uxli>
-									<uxli class="bullet-item">64-bit architecture</uxli>
-								</uxpricingtable>
+                                    <ux-pricingtable href="/buy/samsunggalaxys6/now" status="comingsoon">
+                                        <ux-li class="title">Samsung Galaxy S6</ux-li>
+                                        <ux-li class="price">$49.99</ux-li>
+                                        <ux-li class="description">
+                                            Introducing the Samsung Galaxy S6 edge. Welcome to beauty without borders:
+                                            a design that feels like it melts away for a stunning, immersive experience.
+                                            Swiping the edge checks for calls and notifications from your loved ones.
+                                            It also makes staying connected via email, messages or social feeds simple and accessible*.
+                                            More than just dazzling, it lives in that special place where form meets function.
+                                        </ux-li>
+                                        <ux-li class="bullet-item">5.1 inches</ux-li>
+                                        <ux-li class="bullet-item">2k display</ux-li>
+                                        <ux-li class="bullet-item">138grams</ux-li>
+                                        <ux-li class="bullet-item">6.8mm thick</ux-li>
+                                    </ux-pricingtable>
 
-							</uxcol>
+                                </ux-col>
+                                <ux-col class="large-6">
 
-						</uxrow>
+                                    <ux-pricingtable href="/buy/iphone6plus/now">
+                                        <ux-li class="title">Apple Iphone 6 Pl</ux-li>
+                                        <ux-li class="price">$999.99</ux-li>
+                                        <ux-li class="description">
+                                            iPhone 6 PLUS isn’t simply bigger — it’s better in every way. Larger, yet dramatically thinner.
+                                            More powerful, but remarkably power-efficient. With a smooth metal surface that seamlessly
+                                            meets the new Retina HD display. It’s one continuous form where hardware and software function
+                                            in perfect unison, creating a new generation of iPhone that’s better by any measure.
+                                        </ux-li>
+                                        <ux-li class="bullet-item">5.5 inches</ux-li>
+                                        <ux-li class="bullet-item">7.1mm</ux-li>
+                                        <ux-li class="bullet-item">1920x1080 resolution retina display</ux-li>
+                                        <ux-li class="bullet-item">64-bit architecture</ux-li>
+                                    </ux-pricingtable>
 
-						<uxrow><uxcol class="small-12"><hr/></uxcol></uxrow>
+                                </ux-col>
 
-						<!-- tabs -->
-						<uxrow>
-							<uxcol class="small-12">
+                            </ux-row>
 
-								<uxheader level="2">Tabs</uxheader>
+                            <ux-row><ux-col class="small-12"><hr/></ux-col></ux-row>
 
-								<uxtabarea>
-									<uxtablinks>
-										<uxtablink active="true">Tab One</uxtablink>
-										<uxtablink>Tab Two</uxtablink>
-										<uxtablink>Tab Three</uxtablink>
-										<uxtablink>Tab Four</uxtablink>
-										<uxtablink id="tab-deeplink-5">Tab Five</uxtablink>
-									</uxtablinks>
+                            <!-- tabs -->
+                            <ux-row>
+                                <ux-col class="small-12">
 
-									<uxtabpanes>
-										<uxtabpane>
-											First tab content
-										</uxtabpane>
-										<uxtabpane>
-											Second tab content
+                                    <ux-header level="2">Tabs</ux-header>
 
-											<uxtabarea>
-												<uxtablinks>
-													<uxtablink active="true">Nested Tab One</uxtablink>
-													<uxtablink>Nested Tab Two</uxtablink>
-													<uxtablink>Nested Tab Three</uxtablink>
-													<uxtablink>Nested Tab Fourth</uxtablink>
-												</uxtablinks>
+                                    <ux-tabarea>
+                                        <ux-tablinks>
+                                            <ux-tablink active="true">Tab One</ux-tablink>
+                                            <ux-tablink>Tab Two</ux-tablink>
+                                            <ux-tablink>Tab Three</ux-tablink>
+                                            <ux-tablink>Tab Four</ux-tablink>
+                                            <ux-tablink id="tab-deeplink-5">Tab Five</ux-tablink>
+                                        </ux-tablinks>
 
-												<uxtabpanes>
-													<uxtabpane>
-														Nested first tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested second tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested third tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested fouth tab content
-													</uxtabpane>
-												</uxtabpanes>
-											</uxtabarea>
+                                        <ux-tabpanes>
+                                            <ux-tabpane>
+                                                First tab content
+                                            </ux-tabpane>
+                                            <ux-tabpane>
+                                                Second tab content
 
-										</uxtabpane>
-										<uxtabpane>
-											Third tab content
-										</uxtabpane>
-										<uxtabpane>
-											Four tab content
+                                                <ux-tabarea>
+                                                    <ux-tablinks>
+                                                        <ux-tablink active="true">Nested Tab One</ux-tablink>
+                                                        <ux-tablink>Nested Tab Two</ux-tablink>
+                                                        <ux-tablink>Nested Tab Three</ux-tablink>
+                                                        <ux-tablink>Nested Tab Fourth</ux-tablink>
+                                                    </ux-tablinks>
 
-											<uxtabarea>
-												<uxtablinks>
-													<uxtablink>Nested Tab One</uxtablink>
-													<uxtablink>Nested Tab Two</uxtablink>
-													<uxtablink active="true">Nested Tab Three</uxtablink>
-													<uxtablink>Nested Tab Fourth</uxtablink>
-												</uxtablinks>
+                                                    <ux-tabpanes>
+                                                        <ux-tabpane>
+                                                            Nested first tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested second tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested third tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested fouth tab content
+                                                        </ux-tabpane>
+                                                    </ux-tabpanes>
+                                                </ux-tabarea>
 
-												<uxtabpanes>
-													<uxtabpane>
-														Nested first tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested second tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested third tab content
-													</uxtabpane>
-													<uxtabpane>
-														Nested fouth tab content
-													</uxtabpane>
-												</uxtabpanes>
-											</uxtabarea>
+                                            </ux-tabpane>
+                                            <ux-tabpane>
+                                                Third tab content
+                                            </ux-tabpane>
+                                            <ux-tabpane>
+                                                Four tab content
 
-										</uxtabpane>
-										<uxtabpane>
-											Five tab content
-										</uxtabpane>
+                                                <ux-tabarea>
+                                                    <ux-tablinks>
+                                                        <ux-tablink>Nested Tab One</ux-tablink>
+                                                        <ux-tablink>Nested Tab Two</ux-tablink>
+                                                        <ux-tablink active="true">Nested Tab Three</ux-tablink>
+                                                        <ux-tablink>Nested Tab Fourth</ux-tablink>
+                                                    </ux-tablinks>
+
+                                                    <ux-tabpanes>
+                                                        <ux-tabpane>
+                                                            Nested first tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested second tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested third tab content
+                                                        </ux-tabpane>
+                                                        <ux-tabpane>
+                                                            Nested fouth tab content
+                                                        </ux-tabpane>
+                                                    </ux-tabpanes>
+                                                </ux-tabarea>
+
+                                            </ux-tabpane>
+                                            <ux-tabpane>
+                                                Five tab content
+                                            </ux-tabpane>
 
 
-									</uxtabpanes>
-								</uxtabarea>
+                                        </ux-tabpanes>
+                                    </ux-tabarea>
 
-							</uxcol>
+                                </ux-col>
 
-						</uxrow>
+                            </ux-row>
 
-						<uxrow><uxcol class="small-12"><hr/></uxcol></uxrow>
+                            <ux-row><ux-col class="small-12"><hr/></ux-col></ux-row>
 
-						<!-- Iconbar examples -->
-						<uxrow>
-							<uxcol class="small-12">
-								<uxheader level="2">Iconbar</uxheader>
-								<p>See <uxanchor href="http://foundation.zurb.com/docs/components/icon-bar.html" target="_blank">Foundation docs for icon-bar</uxanchor> for usage details etc.</p>
-							</uxcol>
-						</uxrow>
-						<uxrow>
-							<uxcol class="small-12">
-								<uxheader level="3">Default</uxheader>
-								<uxiconbar>
-									<uxiconbaritem href="/" src="images/fi-home.svg">Home</uxiconbaritem>
-									<uxiconbaritem href="/path/to/blah" src="images/fi-bookmark.svg">Bookmark</uxiconbaritem>
-									<uxiconbaritem src="images/fi-info.svg" class="disabled">Info</uxiconbaritem>
-									<uxiconbaritem src="images/fi-mail.svg">Mail</uxiconbaritem>
-									<uxiconbaritem src="images/fi-like.svg">Like</uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-						</uxrow>
-						<uxrow>
-							<uxcol class="small-12">
-								<uxheader level="3">label right</uxheader>
-								<uxiconbar class="label-right">
-									<uxiconbaritem src="images/fi-home.svg">Home</uxiconbaritem>
-									<uxiconbaritem src="images/fi-bookmark.svg">Bookmark</uxiconbaritem>
-									<uxiconbaritem src="images/fi-info.svg" class="disabled">Info</uxiconbaritem>
-									<uxiconbaritem src="images/fi-mail.svg">Mail</uxiconbaritem>
-									<uxiconbaritem src="images/fi-like.svg">Like</uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-						</uxrow>
-						<uxrow>
-							<uxcol class="small-12">
-								<uxheader level="3">no labels</uxheader>
-								<uxiconbar labels="false">
-									<uxiconbaritem arialabel="Home" src="images/fi-home.svg"></uxiconbaritem>
-									<uxiconbaritem arialabel="Bookmark" src="images/fi-bookmark.svg"></uxiconbaritem>
-									<uxiconbaritem arialabel="Info" src="images/fi-info.svg" class="disabled"></uxiconbaritem>
-									<uxiconbaritem arialabel="Mail" src="images/fi-mail.svg"></uxiconbaritem>
-									<uxiconbaritem arialabel="Like" src="images/fi-like.svg"></uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-						</uxrow>
-						<uxrow>
-							<uxcol class="small-12 large-4">
-								<uxheader level="3">default-vertical</uxheader>
-								<uxiconbar class="vertical">
-									<uxiconbaritem src="images/fi-home.svg">Home</uxiconbaritem>
-									<uxiconbaritem src="images/fi-bookmark.svg">Bookmark</uxiconbaritem>
-									<uxiconbaritem src="images/fi-info.svg">Info</uxiconbaritem>
-									<uxiconbaritem src="images/fi-mail.svg">Mail</uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-							<uxcol class="small-12 large-4">
-								<uxheader level="3">medium-vertical</uxheader>
-								<uxiconbar class="medium-vertical">
-									<uxiconbaritem src="images/fi-home.svg">Home</uxiconbaritem>
-									<uxiconbaritem src="images/fi-bookmark.svg">Bookmark</uxiconbaritem>
-									<uxiconbaritem src="images/fi-info.svg">Info</uxiconbaritem>
-									<uxiconbaritem src="images/fi-mail.svg">Mail</uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-							<uxcol class="small-12 large-4">
-								<uxheader level="3">large-vertical</uxheader>
-								<uxiconbar class="large-vertical">
-									<uxiconbaritem src="images/fi-home.svg">Home</uxiconbaritem>
-									<uxiconbaritem src="images/fi-bookmark.svg">Bookmark</uxiconbaritem>
-									<uxiconbaritem src="images/fi-info.svg">Info</uxiconbaritem>
-									<uxiconbaritem src="images/fi-mail.svg">Mail</uxiconbaritem>
-								</uxiconbar>
-							</uxcol>
-						</uxrow>
+                            <!-- Iconbar examples -->
+                            <ux-row>
+                                <ux-col class="small-12">
+                                    <ux-header level="2">Iconbar</ux-header>
+                                    <p>See <ux-anchor href="http://foundation.zurb.com/docs/components/icon-bar.html" target="_blank">Foundation docs for icon-bar</ux-anchor> for usage details etc.</p>
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="small-12">
+                                    <ux-header level="3">Default</ux-header>
+                                    <ux-iconbar>
+                                        <ux-iconbaritem href="/" src="images/fi-home.svg">Home</ux-iconbaritem>
+                                        <ux-iconbaritem href="/path/to/blah" src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-info.svg" class="disabled">Info</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="small-12">
+                                    <ux-header level="3">label right</ux-header>
+                                    <ux-iconbar class="label-right">
+                                        <ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-info.svg" class="disabled">Info</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="small-12">
+                                    <ux-header level="3">no labels</ux-header>
+                                    <ux-iconbar labels="false">
+                                        <ux-iconbaritem arialabel="Home" src="images/fi-home.svg"></ux-iconbaritem>
+                                        <ux-iconbaritem arialabel="Bookmark" src="images/fi-bookmark.svg"></ux-iconbaritem>
+                                        <ux-iconbaritem arialabel="Info" src="images/fi-info.svg" class="disabled"></ux-iconbaritem>
+                                        <ux-iconbaritem arialabel="Mail" src="images/fi-mail.svg"></ux-iconbaritem>
+                                        <ux-iconbaritem arialabel="Like" src="images/fi-like.svg"></ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="small-12 large-4">
+                                    <ux-header level="3">default-vertical</ux-header>
+                                    <ux-iconbar class="vertical">
+                                        <ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                                <ux-col class="small-12 large-4">
+                                    <ux-header level="3">medium-vertical</ux-header>
+                                    <ux-iconbar class="medium-vertical">
+                                        <ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                                <ux-col class="small-12 large-4">
+                                    <ux-header level="3">large-vertical</ux-header>
+                                    <ux-iconbar class="large-vertical">
+                                        <ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+                                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                                    </ux-iconbar>
+                                </ux-col>
+                            </ux-row>
 
-						<uxrow><uxcol class="small-12"><hr/></uxcol></uxrow>
+                            <ux-row><ux-col class="small-12"><hr/></ux-col></ux-row>
 
-					</uxtabpane>
+                        </ux-tabpane>
 
-				</uxtabpanes>
-			</uxtabarea>
-		</uxrow>
-	</uxcol>
+                    </ux-tabpanes>
+
+                </ux-tabarea>
+
+            </ux-col>
+        </ux-row>
 
 </div>
 
