@@ -81,7 +81,10 @@ gulp.task('ractive-build-templates', function () {
 });
 
 gulp.task('ractive-build-components', function () {
-	return gulp.src('./src/components/**/*.js')
+	return gulp.src([
+			'./src/components/**/*.js',
+			'!./src/components/**/*.steps.js'
+		])
 		.pipe(ractiveConcatComponents({
 			'prefix': 'RactiveF'
 		}))
