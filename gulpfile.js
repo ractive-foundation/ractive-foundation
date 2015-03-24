@@ -6,8 +6,10 @@ var gulp = require('gulp'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	watch = require('gulp-watch'),
+	wrap = require('gulp-wrap'),
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
+	generateDocs = require('./tasks/generateDocs.js'),
 	gulpWing = require('./tasks/gulpWing.js');
 
 gulp.task('connect', function () {
@@ -47,9 +49,7 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('clean', function (callback) {
 	del([
-		'public/**/*',
-		// We want to keep index.html
-		'!public/index.html'
+		'public/**/*'
 	], callback);
 });
 
@@ -64,7 +64,10 @@ gulp.task('build-sass', function () {
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
 			.pipe(sass())
-			.pipe(gulp.dest('./public/css/foundation'))
+			.pipe(gulp.dest('./public/css/foundation')),
+
+		gulp.src('./src/index.html')
+			.pipe(gulp.dest('./public/'))
 
 	);
 
@@ -90,10 +93,14 @@ gulp.task('ractive-build-components', function () {
 
 gulp.task('concat-app', function () {
 	return gulp.src([
-		'./src/app.js',
-		'./public/js/templates.js',
-		'./public/js/components.js'])
+			'./src/app.js',
+			'./public/js/templates.js',
+			'./public/js/components.js'
+		])
 		.pipe(concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(wrap({ src: './src/ractivef-cjs.js'}))
+		.pipe(concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -116,16 +123,22 @@ gulp.task('build', ['clean'], function (callback) {
 gulp.task('watch', function () {
 
 	watch([
-		'public/*.html',
+		'src/*.html',
 		'src/**/*.hbs',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'docs', 'html');
 	});
 
 });
 
+gulp.task('docs', function () {
+	return gulp.src('./src/docs.html')
+		.pipe(generateDocs())
+		.pipe(gulp.dest('./public/'));;
+});
+
 gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+	runSequence('build', 'docs', 'connect', 'watch', callback);
 });
