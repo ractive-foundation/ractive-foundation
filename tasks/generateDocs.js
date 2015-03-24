@@ -38,7 +38,10 @@ function gulpRactive() {
 			// iterating through found variables to process
 			var promises = Object.keys(ractive.viewmodel.deps.default)
 				.map(function (name) {
-					var content = fs.readFileSync('./src/components/' + name + '/README.md');
+
+					var componentDir = name.replace(/_/g, '-');
+
+					var content = fs.readFileSync('./src/components/' + componentDir + '/README.md');
 					var compiled = marked(String(content));
 					return ractive.set(name, compiled);
 				});
