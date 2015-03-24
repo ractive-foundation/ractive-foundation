@@ -16,7 +16,7 @@ const BROWSER_FIREFOX = 'firefox';
 const WEBDRIVER_TIMEOUT = 5000;
 
 // TODO The port will inevitably need to be dynamic.
-var COMPONENT_BASE_PATH = 'http://localhost:9080/test.html#component/';
+var COMPONENT_BASE_PATH = 'http://localhost:9080/test.html#!/component/';
 
 var WorldConstructor = function WorldConstructor(callback) {
 
@@ -29,7 +29,7 @@ var WorldConstructor = function WorldConstructor(callback) {
 	// Start webdriver server.
 	selenium.start(function (err, child) {
 		// Purely selenium server debugging output.
-		//child.stderr.on('data', function(data){
+		//child.stderr.on('data', function (data){
 		//	console.log(data.toString());
 		//});
 	});

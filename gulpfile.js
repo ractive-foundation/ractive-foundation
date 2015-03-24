@@ -33,7 +33,9 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
-			'./node_modules/lodash/lodash.min.js'
+			'./node_modules/lodash/lodash.min.js',
+			'./node_modules/page/page.js',
+			'./src/route.js'
 		])
 		.pipe(gulp.dest('./public/js')),
 
