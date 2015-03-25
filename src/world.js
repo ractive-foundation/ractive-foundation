@@ -27,12 +27,16 @@ var WorldConstructor = function WorldConstructor(callback) {
 	};
 
 	// Start webdriver server.
-	selenium.start(function (err, child) {
+	selenium.start({ stdio: 'pipe' }, function (err, child) {
+		if (err) {
+			throw new Error(err);
+		}
 		// Purely selenium server debugging output.
 		//child.stderr.on('data', function (data){
 		//	console.log(data.toString());
 		//});
 	});
+
 
 	var client = webdriverio.remote(options).init();
 
@@ -45,6 +49,10 @@ var WorldConstructor = function WorldConstructor(callback) {
 		defaultTimeout: WEBDRIVER_TIMEOUT
 
 	};
+
+	/**
+	 * Common functions that will be used in the suite.
+	 */
 
 	client.addCommand('loadComponent', function(componentName, callback) {
 		this.url(COMPONENT_BASE_PATH + componentName, callback);

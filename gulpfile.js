@@ -48,6 +48,14 @@ gulp.task('copy-vendors', function () {
 
 });
 
+gulp.task('copy-uc', function () {
+		return gulp.src([
+			'./src/components/**/use_cases/*.json'
+		])
+		.pipe(gulp.dest('public/mocks/'))
+});
+
+
 gulp.task('clean', function (callback) {
 	del([
 		'public/**/*',
@@ -132,7 +140,7 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('cucumber', ['connect'], function(callback) {
+gulp.task('test', ['connect', 'copy-vendors', 'copy-uc'], function(callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
 		.pipe(cucumber({ steps: './src/components/**/*.steps.js' }));
