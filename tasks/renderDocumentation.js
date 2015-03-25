@@ -84,7 +84,7 @@ function renderDocumentation() {
 				tag: 'hr'
 			}]);
 
-			directory.push('use_cases');
+			directory.push('use-cases');
 			directory = directory.join(path.sep);
 
 			// iterate over all use cases for the component
@@ -117,7 +117,7 @@ function renderDocumentation() {
 						tag: 'div',
 						content: makeHTML([componentObj]) + '<ul>{{#eventName}}<li>{{this}}</li>{{/}}</ul>',
 						attr: {
-							class: 'panel ractivef',
+							class: 'panel ractivef-use-case',
 							'data-useCaseUid': useCaseUid
 						}
 					},
