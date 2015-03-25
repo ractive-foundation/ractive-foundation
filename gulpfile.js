@@ -97,7 +97,7 @@ gulp.task('ractive-build-components', function () {
 gulp.task('build-documentation', function () {
 	return gulp.src('./src/components/**/*.md')
 		.pipe(renderDocumentation())
-		.pipe(concat('documentation.html'))
+		.pipe(plugins.concat('documentation.html'))
 		.pipe(header(fs.readFileSync('tasks/documentation/header.html')))
 		.pipe(footer(fs.readFileSync('tasks/documentation/footer.html')))
 		.pipe(gulp.dest('./public/'));
