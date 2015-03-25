@@ -68,7 +68,7 @@ function renderDocumentation() {
 			var directory = pathComponents.slice(0, -1);
 
 			var interfaceDefinitionFilename = directory.slice(0);
-			interfaceDefinitionFilename.push("interface.json");
+			interfaceDefinitionFilename.push('manifest.json');
 			interfaceDefinitionFilename = interfaceDefinitionFilename.join(path.sep);
 
 			// load the interface specification
