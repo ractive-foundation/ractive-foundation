@@ -71,6 +71,8 @@ gulp.task('build-sass', function () {
 			.pipe(gulp.dest('./public/css/foundation')),
 
 		gulp.src('./src/index.html')
+			.pipe(header(fs.readFileSync('./src/header.html')))
+			.pipe(footer(fs.readFileSync('./src/footer.html')))
 			.pipe(gulp.dest('./public/'))
 
 	);
