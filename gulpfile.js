@@ -1,18 +1,17 @@
 var gulp = require('gulp'),
 	del = require('del'),
-	sass = require('gulp-sass'),
-	concat = require('gulp-concat'),
-	connect = require('gulp-connect'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
-	watch = require('gulp-watch'),
-	cucumber = require('gulp-cucumber'),
+
+	plugins = require('gulp-load-plugins')();
+
 	ractiveParse = require('./tasks/ractiveParse.js'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
+	generateDocs = require('./tasks/generateDocs.js'),
 	gulpWing = require('./tasks/gulpWing.js');
 
 gulp.task('connect', function () {
-	connect.server({
+	plugins.connect.server({
 		root: 'public',
 		livereload: true,
 		port: 9080
@@ -21,7 +20,7 @@ gulp.task('connect', function () {
 
 gulp.task('html', function () {
 	return gulp.src('./public/*.html')
-		.pipe(connect.reload());
+		.pipe(plugins.connect.reload());
 });
 
 gulp.task('copy-vendors', function () {
@@ -58,8 +57,7 @@ gulp.task('copy-uc', function () {
 
 gulp.task('clean', function (callback) {
 	del([
-		'public/**/*',
-		// We want to keep index.html
+		'public/**/*'
 		'!public/*.html'
 	], callback);
 });
@@ -69,13 +67,16 @@ gulp.task('build-sass', function () {
 	return mergeStream(
 
 		gulp.src('./src/**/*.scss')
-			.pipe(sass())
-			.pipe(concat('components.css'))
+			.pipe(plugins.sass())
+			.pipe(plugins.concat('components.css'))
 			.pipe(gulp.dest('./public/css')),
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
-			.pipe(sass())
-			.pipe(gulp.dest('./public/css/foundation'))
+			.pipe(plugins.sass())
+			.pipe(gulp.dest('./public/css/foundation')),
+
+		gulp.src('./src/index.html')
+			.pipe(gulp.dest('./public/'))
 
 	);
 
@@ -86,7 +87,7 @@ gulp.task('ractive-build-templates', function () {
 		.pipe(ractiveParse({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('templates.js'))
+		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -98,16 +99,20 @@ gulp.task('ractive-build-components', function () {
 		.pipe(ractiveConcatComponents({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('components.js'))
+		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('concat-app', function () {
 	return gulp.src([
-		'./src/app.js',
-		'./public/js/templates.js',
-		'./public/js/components.js'])
-		.pipe(concat('ractivef.js'))
+			'./src/app.js',
+			'./public/js/templates.js',
+			'./public/js/components.js'
+		])
+		.pipe(plugins.concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
+		.pipe(plugins.concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -129,13 +134,13 @@ gulp.task('build', ['clean'], function (callback) {
 
 gulp.task('watch', function () {
 
-	watch([
-		'public/*.html',
+	plugins.watch([
+		'src/*.html',
 		'src/**/*.hbs',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'docs', 'html');
 	});
 
 });
@@ -146,6 +151,12 @@ gulp.task('test', ['connect', 'copy-vendors', 'copy-uc'], function(callback) {
 		.pipe(cucumber({ steps: './src/components/**/*.steps.js' }));
 });
 
+gulp.task('docs', function () {
+	return gulp.src('./src/docs.html')
+		.pipe(generateDocs())
+		.pipe(gulp.dest('./public/'));;
+});
+
 gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+	runSequence('build', 'docs', 'connect', 'watch', callback);
 });
