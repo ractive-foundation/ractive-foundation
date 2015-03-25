@@ -1,4 +1,23 @@
 
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		RactiveF.useCases = RactiveF.useCases || {};
+		var containers = document.querySelectorAll('.ractivef-use-case');
+		var handler = function () {
+			console.log('EVENT ' + this.event.component + '.' + this.event.name);
+			if (!this.get('eventName')) {
+				this.set('eventName', []);
+			}
+			this.push('eventName', this.event.name);
+		};
+		for (var i = 0; i < containers.length; i++) {
+			var instance = RactiveF.initInstance(containers[i]);
+			instance.on('*.*', handler);
+			var useCaseUid =  instance.el.getAttribute("data-usecaseuid");
+			RactiveF.useCases[useCaseUid] = instance;
+		}
+	});
+</script>
 
 </body>
 </html>
