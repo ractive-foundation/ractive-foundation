@@ -9,6 +9,8 @@ logs
 *.iml
 public/css
 public/js
-public/documentation.html
 .c9
 *.orig
+
+# Ignore everything except for index.html in public folder.
+public/*
