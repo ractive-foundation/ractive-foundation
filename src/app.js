@@ -4,7 +4,9 @@ RactiveF = {
 	widgets: [],
 	initInstance: function (container) {
 
+		// Have we mixed in extensions to all instances yet?
 		if (!Ractive.prototype.findAllChildComponents) {
+
 			// FIXME: Is there any other way to do it? Without using lodash dependency.
 			_.mixin(Ractive.prototype, {
 				/*
@@ -16,8 +18,28 @@ RactiveF = {
 					return _.filter(this.findAllComponents(name), function (component) {
 						return this._guid === component.parent._guid;
 					}.bind(this));
+				},
+
+				/**
+				 * Check to see if we have a data-driven component. 
+				 * If so, map the (parsed) datamodel data to the root-level "data" prop.
+				 * 
+				 * @param  {Object} opts RactiveJS init params for this component.
+				 */
+				onconstruct: function (opts) {
+					if (opts.data && opts.data.datamodel) {
+						// datamodel is the new data.
+						opts.data = opts.data.datamodel;
+						// Set a flag, just in case.
+						opts.data.isDataModel = true;
+						console.debug('data driven component:', opts.data);
+					} else {
+						console.debug('nested markup component:', opts.data);
+					}
 				}
+
 			});
+
 		}
 
 		return new Ractive({
