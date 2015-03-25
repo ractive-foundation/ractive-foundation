@@ -96,11 +96,11 @@ gulp.task('ractive-build-components', function () {
 });
 
 gulp.task('build-documentation', function () {
-	return gulp.src('./src/components/**/*.md')
+	return gulp.src('./src/components/**/manifest.json')
 		.pipe(renderDocumentation())
 		.pipe(plugins.concat('documentation.html'))
-		.pipe(header(fs.readFileSync('tasks/documentation/header.html')))
-		.pipe(footer(fs.readFileSync('tasks/documentation/footer.html')))
+		.pipe(header(fs.readFileSync('./src/header.html')))
+		.pipe(footer(fs.readFileSync('./src/footer.html')))
 		.pipe(gulp.dest('./public/'));
 });
 

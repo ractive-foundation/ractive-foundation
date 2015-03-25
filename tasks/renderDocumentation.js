@@ -51,8 +51,17 @@ function renderDocumentation() {
 
 		try {
 
-			var pathComponents = file.history[0].split(path.sep),
-				componentName = pathComponents.slice(-2)[0];
+			// load the interface specification
+			var manifest = JSON.parse(String(file.contents));
+
+			var pathComponents = file.history[0].split(path.sep);
+			var componentName = pathComponents.slice(-2)[0];
+
+			var directory = pathComponents.slice(0, -1);
+
+			var readmePath = directory.concat('README.md').join(path.sep);
+
+			var useCasesPath = directory.concat('use-cases').join(path.sep);
 
 			var doco = makeHTML([
 				{
@@ -63,32 +72,20 @@ function renderDocumentation() {
 				}
 			]);
 
-			doco += marked(String(file.contents));
-
-			var directory = pathComponents.slice(0, -1);
-
-			var interfaceDefinitionFilename = directory.slice(0);
-			interfaceDefinitionFilename.push('manifest.json');
-			interfaceDefinitionFilename = interfaceDefinitionFilename.join(path.sep);
-
-			// load the interface specification
-			var interfaceSpecJson = JSON.parse(fs.readFileSync(interfaceDefinitionFilename));
+			doco += marked(String(readmePath));
 
 			// document the permitted model fields
-			doco += renderAttributes('Semantic Data Model', interfaceSpecJson.data);
+			doco += renderAttributes('Semantic Data Model', manifest.data);
 
 			// document the events handled
-			doco += renderAttributes('Semantic Event Mapping', interfaceSpecJson.events);
+			doco += renderAttributes('Semantic Event Mapping', manifest.events);
 
 			doco += makeHTML([{
 				tag: 'hr'
 			}]);
 
-			directory.push('use-cases');
-			directory = directory.join(path.sep);
-
 			// iterate over all use cases for the component
-			doco += _.map(find.fileSync(/.*\.json/, directory), function (usecase) {
+			doco += _.map(find.fileSync(/.*\.json/, useCasesPath), function (usecase) {
 
 				var json = JSON.parse(fs.readFileSync(usecase));
 
