@@ -40,6 +40,53 @@ function renderAttributes(title, options) {
 
 	return html;
 }
+function compileUseCases (usecase) {
+
+	var json = JSON.parse(fs.readFileSync(usecase));
+
+	var componentName = usecase.split(path.sep).slice(-3)[0];
+
+	var useCaseUid = _.uniqueId(
+		[
+			_.camelCase(componentName),
+			_.camelCase(path.basename(usecase).replace('.json', '')),
+			''
+		].join('_')
+	);
+
+	var componentObj = {
+		// rendering component props. key="value"
+		tag: componentName,
+		attr: _.zipObject(_.keys(json.data), _.values(json.data)),
+		content: ''
+	};
+
+	// render use case doco
+	var component = makeHTML([
+		{
+			tag: 'h2',
+			content: 'Use case: ' + json.title
+		},
+		{
+			tag: 'div',
+			content: makeHTML([componentObj]) + '<ul>{{#eventName}}<li>{{this}}</li>{{/}}</ul>',
+			attr: {
+				class: 'panel ractivef-use-case',
+				'data-useCaseUid': useCaseUid
+			}
+		},
+		{
+			tag: 'pre',
+			content: [{
+				tag: 'code',
+				content: _.escape(makeHTML([componentObj]))
+			}]
+		}
+	]).replace(/(\r\n|\n|\r)/gm, '');
+
+	return component;
+
+}
 
 function renderDocumentation() {
 	var stream = through.obj(function (file, enc, callback) {
@@ -85,51 +132,7 @@ function renderDocumentation() {
 			}]);
 
 			// iterate over all use cases for the component
-			doco += _.map(find.fileSync(/.*\.json/, useCasesPath), function (usecase) {
-
-				var json = JSON.parse(fs.readFileSync(usecase));
-
-				var useCaseUid = _.uniqueId(
-					[
-						_.camelCase(componentName),
-						_.camelCase(path.basename(usecase).replace('.json', '')),
-						''
-					].join('_')
-				);
-
-				var componentObj = {
-					// rendering component props. key="value"
-					tag: componentName,
-					attr: _.zipObject(_.keys(json.data), _.values(json.data)),
-					content: ''
-				};
-
-				// render use case doco
-				var component = makeHTML([
-					{
-						tag: 'h2',
-						content: 'Use case: ' + json.title
-					},
-					{
-						tag: 'div',
-						content: makeHTML([componentObj]) + '<ul>{{#eventName}}<li>{{this}}</li>{{/}}</ul>',
-						attr: {
-							class: 'panel ractivef-use-case',
-							'data-useCaseUid': useCaseUid
-						}
-					},
-					{
-						tag: 'pre',
-						content: [{
-							tag: 'code',
-							content: _.escape(makeHTML([componentObj]))
-						}]
-					}
-				]).replace(/(\r\n|\n|\r)/gm, '');
-
-				return component;
-
-			}).join('');
+			doco += _.map(find.fileSync(/.*\.json/, useCasesPath), compileUseCases).join('');
 
 			file.contents = new Buffer(doco);
 
