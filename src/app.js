@@ -32,9 +32,6 @@ RactiveF = {
 						opts.data = opts.data.datamodel;
 						// Set a flag, just in case.
 						opts.data.isDataModel = true;
-						console.debug('data driven component:', opts.data);
-					} else {
-						console.debug('nested markup component:', opts.data);
 					}
 				}
 

@@ -1,10 +1,8 @@
 <div class="icon-bar {{upNum}} {{class}}" role="navigation">
 	{{#if isDataModel}}
-		{{#each items}}
-			{{#with .}}
-				<ux-iconbaritem datamodel="{{.}}"></ux-iconbaritem>
-			{{/with}}
-		{{/each}}
+		{{#items}}
+			<ux-iconbaritem href="{{.href}}" src="{{.src}}" label="{{.label}}" class="{{.class}}"></ux-iconbaritem>
+		{{/items}}
 	{{else}}
 		{{yield}}
 	{{/if}}
