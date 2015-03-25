@@ -5,5 +5,9 @@
 	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
 	on-click="clickHandler()"
 	>
-	{{>content}}
+	{{#if text}}
+		{{text}}
+	{{else}}
+		{{>content}}
+	{{/if}}
 </a>
