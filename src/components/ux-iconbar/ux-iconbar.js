@@ -14,8 +14,9 @@ Ractive.extend({
 			var data = this.get();
 
 			// FIXME Bit of a hack for data-driven components.
+			// Understand why this occurs. Why has oninit not set "items" yet?
 			if (data.isDataModel) {
-				num = data.items ? data.items.length : 0;
+				num = _.isArray(data.items) ? data.items.length : 0;
 			} else {
 				num = _.isArray(data.itemComponents) ? data.itemComponents.length : 0;
 			}
