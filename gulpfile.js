@@ -144,7 +144,7 @@ gulp.task('watch', function () {
 		'src/**/*.scss',
 		'tasks/**/*.js'
 	], function () {
-		runSequence('build', 'docs', 'html');
+		runSequence('build', 'html');
 	});
 
 });
@@ -156,5 +156,5 @@ gulp.task('docs', function () {
 });
 
 gulp.task('default', function (callback) {
-	runSequence('build', 'docs', 'connect', 'watch', callback);
+	runSequence('build',  'connect', 'watch', callback);
 });
