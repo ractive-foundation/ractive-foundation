@@ -33,6 +33,7 @@ gulp.task('copy-vendors', function () {
 	return mergeStream(
 
 		gulp.src([
+			'./node_modules/ractive/ractive.js',
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/jquery/dist/jquery.min.js',
