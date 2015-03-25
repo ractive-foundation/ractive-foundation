@@ -21,17 +21,16 @@ RactiveF = {
 				},
 
 				/**
-				 * Check to see if we have a data-driven component. 
-				 * If so, map the (parsed) datamodel data to the root-level "data" prop.
-				 * 
-				 * @param  {Object} opts RactiveJS init params for this component.
+				 * If we have a "datamodel" property, that should override any other data.
+				 * This is now a "data-driven" component.
+				 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+				 * @see http://docs.ractivejs.org/latest/ractive-reset
 				 */
-				onconstruct: function (opts) {
-					if (opts.data && opts.data.datamodel) {
-						// datamodel is the new data.
-						opts.data = opts.data.datamodel;
-						// Set a flag, just in case.
-						opts.data.isDataModel = true;
+				onconfig: function () {
+					var data = this.get();
+					if (data.datamodel) {
+						data.datamodel.isDataModel = true;
+						this.reset(data.datamodel);
 					}
 				}
 
