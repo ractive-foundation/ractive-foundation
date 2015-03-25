@@ -5,9 +5,5 @@
 	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
 	on-click="clickHandler()"
 	>
-	{{#if inlinePartial === true }} 
-		{{>content}}
-	{{else}}  
-		{{text}}
-	{{/if}}
+	{{>content}}
 </a>
