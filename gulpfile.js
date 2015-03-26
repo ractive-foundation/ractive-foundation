@@ -11,7 +11,8 @@ var gulp = require('gulp'),
 	generateDocs = require('./tasks/generateDocs'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
-	gulpWing = require('./tasks/gulpWing');
+	gulpWing = require('./tasks/gulpWing'),
+	jshintFailReporter = require('./tasks/jshintFailReporter');
 
 gulp.task('connect', function () {
 	plugins.connect.server({
@@ -127,7 +128,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean'], function (callback) {
+gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -140,7 +141,7 @@ gulp.task('build', ['clean'], function (callback) {
 });
 
 gulp.task('watch', function () {
-
+	var self = this;
 	plugins.watch([
 		'src/*.html',
 		'src/**/*.hbs',
@@ -148,7 +149,9 @@ gulp.task('watch', function () {
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'html', function (err) {
+			self.emit('end');
+		});
 	});
 
 });
@@ -159,6 +162,16 @@ gulp.task('docs', function () {
 		.pipe(gulp.dest('./public/'));;
 });
 
-gulp.task('default', function (callback) {
-	runSequence('build',  'connect', 'watch', callback);
+gulp.task('jshint', function (callback) {
+	return gulp.src('./src/**/*.js')
+		.pipe(plugins.jshint('./.jshintrc'))
+		.pipe(plugins.jshint.reporter('jshint-stylish'))
+		.pipe(jshintFailReporter());
+});
+
+gulp.task('default', function () {
+	var self = this;
+	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
+		self.emit('end');
+	});
 });
