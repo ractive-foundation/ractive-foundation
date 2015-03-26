@@ -51,13 +51,13 @@ That component needs to be built to work with dynamic data - see `ux-iconbar` fo
 
 If you pass `datamodel` to a component, it will have that data assigned to it. It can be an escaped JSON string, or passed down from a parent component. Example:
 
-```
+```html
 <ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;},{&quot;src&quot;:&quot;images/fi-mail.svg&quot;,&quot;label&quot;:&quot;Mail&quot;},{&quot;src&quot;:&quot;images/fi-like.svg&quot;,&quot;label&quot;:&quot;Like&quot;}]}"></ux-iconbar>
 ```
 
 is basically the same as:
 
-```
+```html
 <ux-iconbar class="label-right">
     <ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
     <ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>

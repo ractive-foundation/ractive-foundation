@@ -1,3 +1,4 @@
+/*global hljs*/
 RactiveF = {
 	components: {},
 	templates: {},
@@ -52,10 +53,39 @@ RactiveF = {
 
 if (typeof document !== 'undefined') {
 	document.addEventListener('DOMContentLoaded', function () {
+
+		var codeBlocks = document.querySelectorAll('pre code');
+		_.each(codeBlocks, function (block) {
+			block.innerHTML = _.escape(block.innerHTML);
+			hljs.highlightBlock(block);
+		});
+
+		var handler = function (origin) {
+
+			// list of events below copied from Ractive source code v0.7.1
+			// Filtering out ractive lifecycle events to not pollute log output.
+			var reservedEventNames = 
+			/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
+
+			if (!reservedEventNames.test(this.event.name)) {
+				console.log('Event',  this.event.name);
+				console.log('Event handler arguments',  origin);
+
+				var eventName = 'events.' + origin.get('uid');
+				if (!this.get(eventName)) {
+					this.set(eventName, []);
+				}
+				this.push(eventName, this.event.name);
+			}
+
+		};
+
 		var containers = document.querySelectorAll('.ractivef');
 		for (var i = 0; i < containers.length; i++) {
 			var instance = RactiveF.initInstance(containers[i]);
+			instance.on('*.*', handler);
 			RactiveF.widgets.push(instance);
 		}
+
 	});
 }
