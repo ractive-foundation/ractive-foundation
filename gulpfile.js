@@ -33,6 +33,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
 			'./node_modules/lodash/lodash.min.js',
+			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
 			'./src/route.js'
 		])
@@ -48,16 +49,20 @@ gulp.task('copy-vendors', function () {
 });
 
 gulp.task('copy-uc', function () {
-		return gulp.src([
-			'./src/components/**/use_cases/*.json'
-		])
-		.pipe(gulp.dest('public/mocks/'))
+	return gulp.src([
+		'./src/components/**/use-cases/*.json'
+	])
+		.pipe(plugins.rename(function (path) {
+			// Get rid of the extra "use-cases" folder for the destination.
+			path.dirname = path.dirname.split('/')[0];
+		}))
+		.pipe(gulp.dest('public/use-cases/'));
 });
 
 
 gulp.task('clean', function (callback) {
 	del([
-		'public/**/*'
+		'public/**/*',
 		'!public/*.html'
 	], callback);
 });
@@ -148,7 +153,7 @@ gulp.task('watch', function () {
 gulp.task('test', ['connect', 'copy-vendors', 'copy-uc'], function(callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
-		.pipe(cucumber({ steps: './src/components/**/*.steps.js' }));
+		.pipe(plugins.cucumber({ steps: './src/components/**/*.steps.js' }));
 });
 
 gulp.task('docs', function () {
