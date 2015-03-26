@@ -1,19 +1,21 @@
 var gulp = require('gulp'),
 	del = require('del'),
-	sass = require('gulp-sass'),
-	concat = require('gulp-concat'),
-	connect = require('gulp-connect'),
-	jshint = require('gulp-jshint'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
-	watch = require('gulp-watch'),
-	jshintFailReporter = require('./tasks/jshintFailReporter'),
-	ractiveParse = require('./tasks/ractiveParse.js'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
-	gulpWing = require('./tasks/gulpWing.js');
+	fs = require('fs'),
+
+	plugins = require('gulp-load-plugins')();
+
+	ractiveParse = require('./tasks/ractiveParse'),
+	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
+	generateDocs = require('./tasks/generateDocs'),
+	renderDocumentation = require('./tasks/renderDocumentation'),
+	concatManifests = require('./tasks/concatManifests'),
+	gulpWing = require('./tasks/gulpWing'),
+	jshintFailReporter = require('./tasks/jshintFailReporter');
 
 gulp.task('connect', function () {
-	connect.server({
+	plugins.connect.server({
 		root: 'public',
 		livereload: true,
 		port: 9080
@@ -22,7 +24,7 @@ gulp.task('connect', function () {
 
 gulp.task('html', function () {
 	return gulp.src('./public/*.html')
-		.pipe(connect.reload());
+		.pipe(plugins.connect.reload());
 });
 
 gulp.task('copy-vendors', function () {
@@ -30,6 +32,7 @@ gulp.task('copy-vendors', function () {
 	return mergeStream(
 
 		gulp.src([
+			'./node_modules/ractive/ractive.js',
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/jquery/dist/jquery.min.js',
@@ -49,9 +52,7 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('clean', ['jshint'], function (callback) {
 	del([
-		'public/**/*',
-		// We want to keep index.html
-		'!public/index.html'
+		'public/**/*'
 	], callback);
 });
 
@@ -60,13 +61,21 @@ gulp.task('build-sass', function () {
 	return mergeStream(
 
 		gulp.src('./src/**/*.scss')
-			.pipe(sass())
-			.pipe(concat('components.css'))
+			.pipe(plugins.sass())
+			.pipe(plugins.concat('components.css'))
 			.pipe(gulp.dest('./public/css')),
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
-			.pipe(sass())
-			.pipe(gulp.dest('./public/css/foundation'))
+			.pipe(plugins.sass())
+			.pipe(gulp.dest('./public/css/foundation')),
+
+		gulp.src([
+				'./src/index.html',
+				'./src/data.html',
+			])
+			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
+			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+			.pipe(gulp.dest('./public/'))
 
 	);
 
@@ -77,7 +86,7 @@ gulp.task('ractive-build-templates', function () {
 		.pipe(ractiveParse({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('templates.js'))
+		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -86,16 +95,31 @@ gulp.task('ractive-build-components', function () {
 		.pipe(ractiveConcatComponents({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('components.js'))
+		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('build-documentation', function () {
+	return gulp.src('./src/components/**/manifest.json')
+		.pipe(concatManifests('manifest-all.js'))
+		.pipe(gulp.dest('./public/'))
+		.pipe(renderDocumentation())
+		.pipe(plugins.concat('docs.html'))
+		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
+		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('concat-app', function () {
 	return gulp.src([
-		'./src/app.js',
-		'./public/js/templates.js',
-		'./public/js/components.js'])
-		.pipe(concat('ractivef.js'))
+			'./src/app.js',
+			'./public/js/templates.js',
+			'./public/js/components.js'
+		])
+		.pipe(plugins.concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
+		.pipe(plugins.concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -108,7 +132,8 @@ gulp.task('build', ['jshint', 'clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
-		'ractive-build-components'
+		'ractive-build-components',
+		'build-documentation'
 	], [
 		'copy-vendors',
 		'concat-app'
@@ -117,9 +142,10 @@ gulp.task('build', ['jshint', 'clean'], function (callback) {
 
 gulp.task('watch', function () {
 	var self = this;
-	watch([
-		'public/*.html',
+	plugins.watch([
+		'src/*.html',
 		'src/**/*.hbs',
+		'src/**/*.md',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
@@ -128,6 +154,12 @@ gulp.task('watch', function () {
 		});
 	});
 
+});
+
+gulp.task('docs', function () {
+	return gulp.src('./src/docs.html')
+		.pipe(generateDocs())
+		.pipe(gulp.dest('./public/'));;
 });
 
 gulp.task('jshint', function (callback) {
@@ -139,9 +171,7 @@ gulp.task('jshint', function (callback) {
 
 gulp.task('default', function () {
 	var self = this;
-	runSequence('jshint', 'build', 'connect', 'watch', function (err) {
+	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
-
-
 });

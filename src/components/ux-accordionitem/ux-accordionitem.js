@@ -1,23 +1,34 @@
 Ractive.extend({
 	template: RactiveF.templates['ux-accordionitem'],
+	computed: {
+		guid: function () {
+			return this._guid;
+		}
+	},
 	oninit: function () {
 
-		var uid = _.uniqueId('ux-accordionitem-');
+		var anchor = this.findComponent('ux-anchor');
+		var content = this.findComponent('ux-content');
 
-		// This is how we pass data implicitly through to nested components, meaning the html markup is kept cleaner
-		// (i.e, less attributes in the html).
-		this.findComponent('ux-anchor').set('href', '#' + uid);
-		this.findComponent('ux-content').set({
-			id: uid
+		// Link the anchor to the content by the content's id for nice html.
+		anchor.set({
+			href: '#' + this.findComponent('ux-content')._guid
 		});
 
-		// Keep a reference for use later.
-		this.set('id', uid);
+		content.set({
+			active: this.get('active') || false
+		});
+
+		// Listen for click event on accordion title element, and then fire a semantic event for accordion.
+		anchor.on('anchorClicked', function (e) {
+			this.fire('changeAccordion', this);
+			return false;
+		}.bind(this));
 
 	},
 	onchange: function () {
 		this.findComponent('ux-content').set({
-			active: this.get('active') || false
+			active: this.get('active')
 		});
 	}
 });
