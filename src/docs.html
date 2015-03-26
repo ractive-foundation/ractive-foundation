@@ -1,22 +1,46 @@
-<div class="ractivef">
+<div class="ractivef hide">
+	<ux-row>
+		<ux-col class="small-12">
+			<ux-header level="1">Ractive Foundation Component use cases</ux-header>
+		</ux-col>
+	</ux-row>
+</div>
+
+<div class="ractivef hide">
 
 	<ux-row>
-		<ux-col class="small-3"> some content </ux-col>
+		<ux-col class="small-3"> some content</ux-col>
 		<ux-col class="small-9">
 			{{#components}}
-			{{{doco}}}
-			<ux-tabarea>
-				<ux-tablinks>
-					<ux-tablink active="true">Use Cases</ux-tablink>
-					<ux-tablink>Manifest</ux-tablink>
-				</ux-tablinks>
+				<ux-header level="3">{{componentName}}</ux-header>
+				{{{readmeMd}}}
+				<ux-tabarea>
+					<ux-tablinks>
+						<ux-tablink active="true">Use Cases</ux-tablink>
+						<ux-tablink>Manifest</ux-tablink>
+					</ux-tablinks>
 
-				<ux-tabpanes>
-					<ux-tabpane>{{{useCasesHTML}}}</ux-tabpane>
-					<ux-tabpane>{{{manifestHTML}}}</ux-tabpane>
-				</ux-tabpanes>
-			</ux-tabarea>
-			<hr/>
+					<ux-tabpanes>
+						<ux-tabpane>
+							{{{useCasesHTML}}}
+						</ux-tabpane>
+						<ux-tabpane>
+
+								<strong>Semantic Event Mapping</strong>
+								<br/>
+								{{{manifestHTML.events}}}
+								<br/>
+
+								<br/>
+
+								<strong>Semantic Data Model</strong>
+								<br/>
+								{{{manifestHTML.dataModel}}}
+
+						</ux-tabpane>
+					</ux-tabpanes>
+				</ux-tabarea>
+				<hr/>
 			{{/}}
 		</ux-col>
 	</ux-row>
