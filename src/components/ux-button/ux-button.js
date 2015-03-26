@@ -8,7 +8,7 @@ Ractive.extend({
 
 		if (this.get('onclick')) {
 			console.log('Firing event');
-			this.fire(this.get('onclick'));
+			this.fire(this.get('onclick'), this);
 		}
 
 		// prevent bubbling
