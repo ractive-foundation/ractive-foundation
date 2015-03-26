@@ -1,3 +1,7 @@
 <div class="panel {{class}}">
-	{{>content}}
+	{{#if text}}
+		{{text}}
+	{{else}}
+		{{yield}}
+	{{/if}}
 </div>
