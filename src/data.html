@@ -17,33 +17,39 @@
 <div class="ractivef hide">
 	<ux-row>
 		<ux-col class="small-12">
-			<ux-header level="1">Ractive Foundation Kitchensink Demo</ux-header>
+			<ux-header level="1">Ractive Foundation Data-driven Demos</ux-header>
 			<div class="panel clearfix">
-				This is a kitchensink demo of all the ractive components available in the styleguide.
-				Later, stuff like should be auto-generated into the styleguide website.
+				<p>View source to see how these are setup. The big strings in <code>datamodel</code> are html-escaped JSON.</p>
+				<p>You can create your own in console: <code>_.escape(JSON.stringify(yourObjectLiteralHere));</code>
 			</div>
 		</ux-col>
 	</ux-row>
 </div>
 
 <div class="ractivef hide">
-        <!-- tabs to wrap everything -->
-        <ux-row>
-            <ux-col class="small-12">
-                <ux-header level="1">Data Driven Component Test</ux-header>
-            </ux-col>
-        </ux-row>
 
-        <ux-row>
-            <ux-col class="small-12">
+		<ux-row><ux-col class="small-12"><ux-header level="2">datamodel ux-iconbar demos</ux-header></ux-col></ux-row>
+		
+		<ux-row><ux-col class="small-12"><ux-header level="3">datamodel ux-iconbar 1</ux-header></ux-col></ux-row>
+		<ux-row>
+			<ux-col class="small-12">
 
-                <ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;},{&quot;src&quot;:&quot;images/fi-mail.svg&quot;,&quot;label&quot;:&quot;Mail&quot;},{&quot;src&quot;:&quot;images/fi-like.svg&quot;,&quot;label&quot;:&quot;Like&quot;}]}"></ux-iconbar>
+				<ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;},{&quot;src&quot;:&quot;images/fi-mail.svg&quot;,&quot;label&quot;:&quot;Mail&quot;},{&quot;src&quot;:&quot;images/fi-like.svg&quot;,&quot;label&quot;:&quot;Like&quot;}]}"></ux-iconbar>
 
-            </ux-col>
-        </ux-row>
+			</ux-col>
+		</ux-row>
 
-        <hr/>
-        
+		<ux-row><ux-col class="small-12"><ux-header level="3">datamodel ux-iconbar 2</ux-header></ux-col></ux-row>
+		<ux-row>
+			<ux-col class="small-12">
+
+				<ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;}]}"></ux-iconbar>
+
+			</ux-col>
+		</ux-row>
+
+		<hr/>
+		
 </div>
 
 <script src="/js/lodash.min.js"></script>
