@@ -12,6 +12,7 @@ var PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-concat-documentation';
 
+Ractive.DEBUG = false;
 
 function renderAttributes(title, options) {
 
@@ -40,7 +41,8 @@ function renderAttributes(title, options) {
 
 	return html;
 }
-function compileUseCases (usecase) {
+
+function renderUseCases(usecase) {
 
 	var json = JSON.parse(fs.readFileSync(usecase));
 
@@ -61,18 +63,21 @@ function compileUseCases (usecase) {
 		content: ''
 	};
 
+	var componentObjToRender = _.cloneDeep(componentObj);
+	componentObjToRender.attr.uid = useCaseUid;
+
 	// render use case doco
 	var component = makeHTML([
 		{
-			tag: 'h2',
+			tag: 'h5',
 			content: 'Use case: ' + json.title
 		},
 		{
 			tag: 'div',
-			content: makeHTML([componentObj]) + '<ul>{{#eventName}}<li>{{this}}</li>{{/}}</ul>',
+			content: makeHTML([componentObjToRender]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
 			attr: {
-				class: 'panel ractivef-use-case',
-				'data-useCaseUid': useCaseUid
+				class: 'ractivef-use-case',
+				id: useCaseUid
 			}
 		},
 		{
@@ -96,54 +101,64 @@ function renderDocumentation() {
 			return callback();
 		}
 
-		try {
-
 			// load the interface specification
-			var manifest = JSON.parse(String(file.contents));
+			var manifests = JSON.parse(String(file.contents));
+			//manifests = _.indexBy(manifests, 'componentName');
 
-			var pathComponents = file.history[0].split(path.sep);
-			var componentName = pathComponents.slice(-2)[0];
+			var componentsHTML = _(manifests).map(function (manifest) {
+				var paths = {
+					componentDir : ['.', 'src', 'components', manifest.componentName, ''].join(path.sep)
+				};
+				paths.readme = paths.componentDir + 'README.md';
+				paths.useCasesDir = paths.componentDir + 'use-cases';
 
-			var directory = pathComponents.slice(0, -1);
+				var readmeMd = fs.readFileSync(paths.readme);
 
-			var readmePath = directory.concat('README.md').join(path.sep);
+				var doco = makeHTML([
+					{
+						tag: 'h3',
+						content: manifest.componentName
+					},
+					{
+						tag: 'br'
+					}
+				]);
+				doco += marked(String(readmeMd));
 
-			var useCasesPath = directory.concat('use-cases').join(path.sep);
+				var out = {
+					doco: doco,
+					useCasesHTML: _.map(find.fileSync(/.*\.json/, paths.useCasesDir), renderUseCases).join('')
+				};
+				out.manifestHTML = renderAttributes('Semantic Event Mapping', manifest.events);
+				out.manifestHTML += renderAttributes('Semantic Data Model', manifest.data);
 
-			var doco = makeHTML([
-				{
-					tag: 'h1',
-					content: componentName
-				}, {
-					tag: 'br'
+				return out;
+
+			}).value();
+
+
+			var docFile = String(fs.readFileSync('./src/docs.html'));
+
+			var ractive = new Ractive({
+				template: docFile,
+				data: {
+					components: componentsHTML
 				}
-			]);
+			});
 
-			doco += marked(String(readmePath));
+			var toHTML = ractive.toHTML();
 
-			// document the permitted model fields
-			doco += renderAttributes('Semantic Data Model', manifest.data);
-
-			// document the events handled
-			doco += renderAttributes('Semantic Event Mapping', manifest.events);
-
-			doco += makeHTML([{
-				tag: 'hr'
-			}]);
-
-			// iterate over all use cases for the component
-			doco += _.map(find.fileSync(/.*\.json/, useCasesPath), compileUseCases).join('');
-
-			file.contents = new Buffer(doco);
+			file.contents = new Buffer(toHTML);
 
 			this.push(file);
-		}
+		try {}
 
 		catch (e) {
 			console.warn('Error caught: ' + e);
 			this.push(file);
 			return callback();
 		}
+
 
 		callback();
 	});
