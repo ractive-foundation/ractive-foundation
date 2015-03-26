@@ -68,15 +68,13 @@ gulp.task('build-sass', function () {
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation')),
 
-		gulp.src('./src/index.html')
+		gulp.src([
+				'./src/index.html',
+				'./src/data.html',
+			])
 			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
 			.pipe(gulp.dest('./public/'))
-		gulp.src([
-			'./src/index.html',
-			'./src/data.html',
-		])
-		.pipe(gulp.dest('./public/'))
 
 	);
 
