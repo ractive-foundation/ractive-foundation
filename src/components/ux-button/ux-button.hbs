@@ -1,5 +1,12 @@
+
 <a class="button {{class}}"
 	{{#href}} href="{{href}}" {{/href}}
 	{{#role}} role="{{role}}" {{/role}}
 	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
-	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}>{{>content}}</a>
+	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}>
+	{{#if isDataModel}}
+		{{{content}}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</a>
