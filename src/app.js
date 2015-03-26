@@ -61,6 +61,8 @@ if (typeof document !== 'undefined') {
 
 		var handler = function (origin) {
 
+			// list of events below copied from Ractive source code v0.7.1
+			// Filtering out ractive lifecycle events to not pollute log output.
 			var reservedEventNames = /^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
 			if (!reservedEventNames.test(this.event.name)) {
 				console.log('Event',  this.event.name);
