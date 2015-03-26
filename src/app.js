@@ -26,12 +26,16 @@ RactiveF = {
 				 * This is now a "data-driven" component.
 				 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
 				 * @see http://docs.ractivejs.org/latest/ractive-reset
+				 *
+				 * TODO Understand the difference between rendering components off the page vs nested inside others.
+				 * onconstruct has empty opts for the latter.
 				 */
 				onconfig: function () {
 					var data = this.get();
 					if (data.datamodel) {
-						data.datamodel.isDataModel = true;
-						this.reset(data.datamodel);
+						var datamodel = _.cloneDeep(data.datamodel);
+						datamodel.isDataModel = true;
+						this.reset(datamodel);
 					}
 				}
 
