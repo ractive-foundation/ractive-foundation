@@ -4,15 +4,22 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 	var url = ['/use-cases/', params.name, '/', params.useCase, '.json'];
 
 	superagent.get(url.join(''), function (err, res) {
-		window.currentComponent = new RactiveF.components[params.name]({
-			el: '.ractivef',
-			data: function () {
-				return res.body;
+
+		window.currentComponent =  new Ractive({
+			el: '#childComponent',
+			template: '<child-component></child-component>',
+			components: {
+				'child-component': RactiveF.components[params.name]
 			},
-			template: function (parser) {
-				return parser.parse('<' + params.name + "/>");
+			onrender: function () {
+				var component = this.findComponent('child-component');
+				var data = _.extend(res.body, {
+					isDataModel: true
+				});
+				component.set(data);
 			}
 		});
+
 	});
 });
 page({
