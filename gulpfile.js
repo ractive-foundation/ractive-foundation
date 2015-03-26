@@ -72,6 +72,11 @@ gulp.task('build-sass', function () {
 			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
 			.pipe(gulp.dest('./public/'))
+		gulp.src([
+			'./src/index.html',
+			'./src/data.html',
+		])
+		.pipe(gulp.dest('./public/'))
 
 	);
 
@@ -143,8 +148,7 @@ gulp.task('watch', function () {
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',
-		'src/**/*.scss',
-		'tasks/**/*.js'
+		'src/**/*.scss'
 	], function () {
 		runSequence('build', 'html');
 	});

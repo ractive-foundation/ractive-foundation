@@ -10,8 +10,16 @@ Ractive.extend({
 		 */
 		upNum: function () {
 
+			var num = 0;
 			var data = this.get();
-			var num = _.isArray(data.items) ? data.items.length : 0;
+
+			// FIXME Bit of a hack for data-driven components.
+			// Understand why this occurs. Why has oninit not set "items" yet?
+			if (data.isDataModel) {
+				num = _.isArray(data.items) ? data.items.length : 0;
+			} else {
+				num = _.isArray(data.itemComponents) ? data.itemComponents.length : 0;
+			}
 
 			var supportedWords = [
 				'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
@@ -30,15 +38,15 @@ Ractive.extend({
 
 	oninit: function () {
 
-		var items = this.findAllComponents('ux-iconbaritem');
+		var itemComponents = this.findAllComponents('ux-iconbaritem');
 
-		var childCount = items.length;
+		var childCount = itemComponents.length;
 		if (childCount < 1 || childCount > 8) {
 			console.error('ux-iconbar only supports between 1-8 items.');
 		}
 
 		// Store for later use.
-		this.set('items', items);
+		this.set('itemComponents', itemComponents);
 
 	}
 
