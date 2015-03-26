@@ -23,11 +23,8 @@ function renderAttributes(options) {
 				content: key
 			},
 			{
-				tag: 'br'
-			},
-			{
 				tag: 'span',
-				content: value
+				content: ' - ' + value
 			},
 			{
 				tag: 'br'
@@ -52,15 +49,30 @@ function renderUseCases(usecase) {
 		].join('_')
 	);
 
+	console.log('json.isDataModel', json.isDataModel);
+
+	var attr;
+
+	if (json.isDataModel) {
+		attr = {
+			datamodel: _.escape(_.escape(JSON.stringify(json.data)))
+		};
+	} else {
+		attr = _.zipObject(_.keys(json.data), _.values(json.data));
+	}
+
+	console.log('attr', attr);
+
 	var componentObj = {
-		// rendering component props. key="value"
 		tag: componentName,
-		attr: _.zipObject(_.keys(json.data), _.values(json.data)),
+		attr: attr,
 		content: ''
 	};
 
-	var componentObjToRender = _.cloneDeep(componentObj);
-	componentObjToRender.attr.uid = useCaseUid;
+	var componentUseCase = _.cloneDeep(componentObj);
+	componentUseCase.attr.uid = useCaseUid;
+
+	componentObj.attr.datamodel = '{{dataModel}}';
 
 	// render use case doco
 	var component = makeHTML([
@@ -70,7 +82,7 @@ function renderUseCases(usecase) {
 		},
 		{
 			tag: 'div',
-			content: makeHTML([componentObjToRender]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
+			content: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
 			attr: {
 				class: 'ractivef-use-case',
 				id: useCaseUid
@@ -136,6 +148,8 @@ function renderDocumentation() {
 			});
 
 			var toHTML = ractive.toHTML();
+
+			console.log('toHTML', toHTML);
 
 			file.contents = new Buffer(toHTML);
 

@@ -80,6 +80,7 @@ if (typeof document !== 'undefined') {
 		for (var i = 0; i < containers.length; i++) {
 			var instance = RactiveF.initInstance(containers[i]);
 			instance.on('*.*', handler);
+			instance.set('dataModel', '{{dataModel}}');
 			RactiveF.widgets.push(instance);
 		}
 
