@@ -101,6 +101,7 @@ function renderDocumentation() {
 			return callback();
 		}
 
+		try {
 			// load the interface specification
 			var manifests = JSON.parse(String(file.contents));
 			//manifests = _.indexBy(manifests, 'componentName');
@@ -151,7 +152,7 @@ function renderDocumentation() {
 			file.contents = new Buffer(toHTML);
 
 			this.push(file);
-		try {}
+		}
 
 		catch (e) {
 			console.warn('Error caught: ' + e);
