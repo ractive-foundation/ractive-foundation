@@ -50,7 +50,7 @@ gulp.task('copy-vendors', function () {
 
 });
 
-gulp.task('clean', ['jshint'], function (callback) {
+gulp.task('clean', function (callback) {
 	del([
 		'public/**/*'
 	], callback);
@@ -128,7 +128,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean'], function (callback) {
+gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
