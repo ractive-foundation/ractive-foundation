@@ -1,18 +1,17 @@
 var gulp = require('gulp'),
 	del = require('del'),
 	runSequence = require('run-sequence'),
-	watch = require('gulp-watch'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 
 	plugins = require('gulp-load-plugins')();
 
-	ractiveParse = require('./tasks/ractiveParse.js'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
-	generateDocs = require('./tasks/generateDocs.js'),
-	renderDocumentation = require('./tasks/renderDocumentation.js'),
-	concatManifests = require('./tasks/concatManifests.js'),
-	gulpWing = require('./tasks/gulpWing.js');
+	ractiveParse = require('./tasks/ractiveParse'),
+	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
+	generateDocs = require('./tasks/generateDocs'),
+	renderDocumentation = require('./tasks/renderDocumentation'),
+	concatManifests = require('./tasks/concatManifests'),
+	gulpWing = require('./tasks/gulpWing');
 
 gulp.task('connect', function () {
 	plugins.connect.server({
