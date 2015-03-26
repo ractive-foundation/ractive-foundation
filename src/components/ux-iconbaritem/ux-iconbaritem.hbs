@@ -7,7 +7,13 @@
     <img src="{{src}}">
 
     {{#if labels !== false}}
-    	<label id="{{guid}}">{{yield}}</label>
+    	<label id="{{guid}}">
+    		{{#if isDataModel}}
+    			{{label}}
+    		{{else}}
+    			{{yield}}
+    		{{/if}}
+		</label>
     {{/if}}
 
 </a>

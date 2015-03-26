@@ -4,7 +4,9 @@ RactiveF = {
 	widgets: [],
 	initInstance: function (container) {
 
+		// Have we mixed in extensions to all instances yet?
 		if (!Ractive.prototype.findAllChildComponents) {
+
 			// FIXME: Is there any other way to do it? Without using lodash dependency.
 			_.mixin(Ractive.prototype, {
 				/*
@@ -16,8 +18,24 @@ RactiveF = {
 					return _.filter(this.findAllComponents(name), function (component) {
 						return this._guid === component.parent._guid;
 					}.bind(this));
+				},
+
+				/**
+				 * If we have a "datamodel" property, that should override any other data.
+				 * This is now a "data-driven" component.
+				 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+				 * @see http://docs.ractivejs.org/latest/ractive-reset
+				 */
+				onconfig: function () {
+					var data = this.get();
+					if (data.datamodel) {
+						data.datamodel.isDataModel = true;
+						this.reset(data.datamodel);
+					}
 				}
+
 			});
+
 		}
 
 		return new Ractive({

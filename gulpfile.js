@@ -64,8 +64,11 @@ gulp.task('build-sass', function () {
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation')),
 
-		gulp.src('./src/index.html')
-			.pipe(gulp.dest('./public/'))
+		gulp.src([
+			'./src/index.html',
+			'./src/data.html',
+		])
+		.pipe(gulp.dest('./public/'))
 
 	);
 
