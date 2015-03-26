@@ -27,6 +27,7 @@ var WorldConstructor = function WorldConstructor(callback) {
 	};
 
 	// Start webdriver server.
+	// TODO we need to move this out from here. No need to start this server everytime. Only once.
 	selenium.start({ stdio: 'pipe' }, function (err, child) {
 		if (err) {
 			throw new Error(err);
