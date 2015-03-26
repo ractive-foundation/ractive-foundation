@@ -1,31 +1,24 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<div class="ractivef">
 
-<head>
-	<meta charset="utf-8">
-	<!-- If you delete this meta tag World War Z will become a reality -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ractive.js & Foundation 5</title>
+	<ux-row>
+		<ux-col class="small-3"> some content </ux-col>
+		<ux-col class="small-9">
+			{{#components}}
+			{{{doco}}}
+			<ux-tabarea>
+				<ux-tablinks>
+					<ux-tablink active="true">Use Cases</ux-tablink>
+					<ux-tablink>Manifest</ux-tablink>
+				</ux-tablinks>
 
-	<link rel="stylesheet" href="/css/foundation/normalize.css">
-	<link rel="stylesheet" href="/css/foundation/foundation.css">
-	<link rel="stylesheet" href="/css/components.css">
+				<ux-tabpanes>
+					<ux-tabpane>{{{useCasesHTML}}}</ux-tabpane>
+					<ux-tabpane>{{{manifestHTML}}}</ux-tabpane>
+				</ux-tabpanes>
+			</ux-tabarea>
+			<hr/>
+			{{/}}
+		</ux-col>
+	</ux-row>
 
-</head>
-<body>
-<br/>
-
-<div class="panel clearfix">
-	This is a kitchensink demo of all the ractive components available in the styleguide.
-	Later, stuff like should be auto-generated into the styleguide website.
 </div>
-
-<h2>Accordion demo</h2>
-{{{ux_accordion}}}
-
-<script src="/js/lodash.min.js"></script>
-<script src="/js/ractive.min.js"></script>
-<script src="/js/ractivef.js"></script>
-
-</body>
-</html>

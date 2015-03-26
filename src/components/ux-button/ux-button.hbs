@@ -2,4 +2,12 @@
 	{{#href}} href="{{href}}" {{/href}}
 	{{#role}} role="{{role}}" {{/role}}
 	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
-	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}>{{>content}}</a>
+	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
+	on-click="clickHandler()"
+	>
+	{{#if text}}
+		{{text}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</a>
