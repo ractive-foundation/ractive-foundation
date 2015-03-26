@@ -48,7 +48,6 @@ function renderDocumentation(fileName) {
 
 		this.emit('data', joinedFile);
 		this.emit('end');
-		;
 	}
 
 	return through(bufferContents, endStream);
