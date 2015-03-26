@@ -128,7 +128,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['jshint', 'clean'], function (callback) {
+gulp.task('build', ['clean'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -164,8 +164,8 @@ gulp.task('docs', function () {
 
 gulp.task('jshint', function (callback) {
 	return gulp.src('./src/**/*.js')
-		.pipe(jshint('./.jshintrc'))
-		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(plugins.jshint('./.jshintrc'))
+		.pipe(plugins.jshint.reporter('jshint-stylish'))
 		.pipe(jshintFailReporter());
 });
 
