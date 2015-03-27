@@ -14,32 +14,25 @@ const PLUGIN_NAME = 'gulp-concat-documentation';
 
 Ractive.DEBUG = false;
 
-function renderAttributes(title, options) {
+function renderAttributes(options) {
 
-	var html = makeHTML([
-		{
-			tag: 'hr'
-		},
-		{
-			tag: 'h3',
-			content: title
-		}
-	]);
-
-	_.forEach(_.zipObject(_.keys(options), _.values(options)), function (value, key) {
-		html += makeHTML([
+	var html = _.map(_.zipObject(_.keys(options), _.values(options)), function (value, key) {
+		return makeHTML([
 			{
-				tag: 'h4',
+				tag: 'kbd',
 				content: key
 			},
 			{
-				tag: 'p',
-				content: value
+				tag: 'span',
+				content: ' - ' + value
+			},
+			{
+				tag: 'br'
 			}
 		]);
 	});
 
-	return html;
+	return html.join('');
 }
 
 function renderUseCases(usecase) {
@@ -56,15 +49,24 @@ function renderUseCases(usecase) {
 		].join('_')
 	);
 
+	var attr;
+
+	if (json.isDataModel) {
+		attr = {
+			datamodel: '{{dataModel}}'
+		};
+	} else {
+		attr = _.zipObject(_.keys(json.data), _.values(json.data));
+	}
+
 	var componentObj = {
-		// rendering component props. key="value"
 		tag: componentName,
-		attr: _.zipObject(_.keys(json.data), _.values(json.data)),
+		attr: attr,
 		content: ''
 	};
 
-	var componentObjToRender = _.cloneDeep(componentObj);
-	componentObjToRender.attr.uid = useCaseUid;
+	var componentUseCase = _.cloneDeep(componentObj);
+	componentUseCase.attr.uid = useCaseUid;
 
 	// render use case doco
 	var component = makeHTML([
@@ -74,7 +76,7 @@ function renderUseCases(usecase) {
 		},
 		{
 			tag: 'div',
-			content: makeHTML([componentObjToRender]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
+			content: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
 			attr: {
 				class: 'ractivef-use-case',
 				id: useCaseUid
@@ -107,31 +109,23 @@ function renderDocumentation() {
 			//manifests = _.indexBy(manifests, 'componentName');
 
 			var componentsHTML = _(manifests).map(function (manifest) {
-				var paths = {
-					componentDir : ['.', 'src', 'components', manifest.componentName, ''].join(path.sep)
-				};
+				var paths = {},
+					out = {};
+
+				paths.componentDir = ['.', 'src', 'components', manifest.componentName, ''].join(path.sep);
 				paths.readme = paths.componentDir + 'README.md';
 				paths.useCasesDir = paths.componentDir + 'use-cases';
 
-				var readmeMd = fs.readFileSync(paths.readme);
+				out.useCasesHTML = _.map(find.fileSync(/.*\.json/, paths.useCasesDir), renderUseCases).join('');
 
-				var doco = makeHTML([
-					{
-						tag: 'h3',
-						content: manifest.componentName
-					},
-					{
-						tag: 'br'
-					}
-				]);
-				doco += marked(String(readmeMd));
+				out.readmeMd = marked(String(fs.readFileSync(paths.readme)));
 
-				var out = {
-					doco: doco,
-					useCasesHTML: _.map(find.fileSync(/.*\.json/, paths.useCasesDir), renderUseCases).join('')
+				out.componentName = manifest.componentName;
+
+				out.manifestHTML = {
+					events: renderAttributes(manifest.events),
+					dataModel: renderAttributes(manifest.data)
 				};
-				out.manifestHTML = renderAttributes('Semantic Event Mapping', manifest.events);
-				out.manifestHTML += renderAttributes('Semantic Data Model', manifest.data);
 
 				return out;
 
