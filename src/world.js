@@ -43,7 +43,7 @@ var WorldConstructor = function WorldConstructor(callback) {
 
 	client.addCommand('loadComponentWithUseCase', function(componentName, useCase, callback) {
 		var url = COMPONENT_BASE_PATH.replace('$1', componentName).replace('$2', useCase);
-		this.url(url, callback);
+		return this.url(url, callback);
 	});
 
 	callback(world);

@@ -27,7 +27,13 @@ module.exports = function () {
 	this.Then(/^the element "([^"]*)" should be displayed$/, function (selector, callback) {
 		var self = this;
 		this.client.isExisting(this.component.container + selector, function (err, isExisting) {
-			self.assert(isExisting);
+			try {
+				self.assert(isExisting);
+				callback();
+			} catch (e) {
+				callback.fail('Assertion failed, element not found');
+			}
+
 			callback();
 		});
 	});
@@ -35,11 +41,19 @@ module.exports = function () {
 	this.Then(/^the element "([^"]*)" should have the "([^"]*)" of "([^"]*)"$/,
 		function (selector, attribName, attribValue, callback) {
 		var self = this;
-		this.client.getAttribute(this.component.container + selector, this.component.button.attribs[attribName],
+		this.client.getAttribute(this.component.container + selector,
+			this.component.button.attribs[attribName],
 			function (err, attr) {
-				self.assert.equal(attr, attribValue);
-				callback();
+				try {
+					self.assert.equal(attr, attribValue);
+					callback();
+				} catch (e) {
+					callback.fail('Assertion failed: ' + attr + ' !== ' + attribValue);
+				}
+
 			});
+
+
 	});
 
 

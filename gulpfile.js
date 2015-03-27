@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
+	nodePath = require('path'),
 
 	plugins = require('gulp-load-plugins')();
 
@@ -60,7 +61,7 @@ gulp.task('copy-use-cases', function () {
 	])
 		.pipe(plugins.rename(function (path) {
 			// Get rid of the extra "use-cases" folder for the destination.
-			path.dirname = path.dirname.split('/')[0];
+			path.dirname = path.dirname.split(nodePath.sep)[0];
 		}))
 		.pipe(gulp.dest('public/use-cases/'));
 });
@@ -187,7 +188,9 @@ gulp.task('cucumber', function(callback) {
 });
 
 gulp.task('test', function (callback) {
-	runSequence('build', 'connect', 'cucumber', callback);
+	runSequence('build', 'connect', 'cucumber', function (err) {
+   		process.exit(err ? 1 : 0);
+    });
 });
 
 gulp.task('docs', function () {
