@@ -10,11 +10,11 @@ Ractive.extend({
 
 	oninit: function () {
 
-		this.set('items', this.findAllChildComponents('ux-accordionitem'));
+		this.set('componentItems', this.findAllChildComponents('ux-accordionitem'));
 
 		this.on('*.changeAccordion', function (srcItem) {
 
-			_.each(this.get('items'), function (component) {
+			_.each(this.get('componentItems'), function (component) {
 
 				// Is this the item the user clicked on?
 				if (component._guid === srcItem._guid) {
