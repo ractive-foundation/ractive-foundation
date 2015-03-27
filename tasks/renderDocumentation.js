@@ -53,7 +53,7 @@ function renderUseCases(usecase) {
 
 	if (json.isDataModel) {
 		attr = {
-			datamodel: '{{dataModel}}'
+			datamodel: _.escape(_.escape(JSON.stringify(json.data)))
 		};
 	} else {
 		attr = _.zipObject(_.keys(json.data), _.values(json.data));
@@ -67,6 +67,10 @@ function renderUseCases(usecase) {
 
 	var componentUseCase = _.cloneDeep(componentObj);
 	componentUseCase.attr.uid = useCaseUid;
+
+	if (json.isDataModel) {
+		componentObj.attr.datamodel = '{{dataModel}}';
+	}
 
 	// render use case doco
 	var component = makeHTML([
