@@ -1,22 +1,24 @@
-page.base('/test.html')
+/*global page, superagent*/
+page.base('/testRunner.html');
 page('/component/:name/use-case/:useCase', function (ctx) {
 	var params = ctx.params;
 	var url = ['/use-cases/', params.name, '/', params.useCase, '.json'];
 
 	superagent.get(url.join(''), function (err, res) {
 
-		window.currentComponent =  new Ractive({
+		window.currentComponent = new Ractive({
 			el: '#childComponent',
 			template: '<child-component></child-component>',
 			components: {
 				'child-component': RactiveF.components[params.name]
 			},
 			onrender: function () {
-				var component = this.findComponent('child-component');
-				var data = _.extend(res.body, {
-					isDataModel: true
-				});
-				component.set(data);
+				this
+					.findComponent('child-component')
+					.set( _.extend(res.body.data, {
+						isDataModel: true
+					})
+				);
 			}
 		});
 
