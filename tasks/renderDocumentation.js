@@ -49,8 +49,6 @@ function renderUseCases(usecase) {
 		].join('_')
 	);
 
-	console.log('json.isDataModel', json.isDataModel);
-
 	var attr;
 
 	if (json.isDataModel) {
@@ -60,8 +58,6 @@ function renderUseCases(usecase) {
 	} else {
 		attr = _.zipObject(_.keys(json.data), _.values(json.data));
 	}
-
-	console.log('attr', attr);
 
 	var componentObj = {
 		tag: componentName,
@@ -148,8 +144,6 @@ function renderDocumentation() {
 			});
 
 			var toHTML = ractive.toHTML();
-
-			console.log('toHTML', toHTML);
 
 			file.contents = new Buffer(toHTML);
 
