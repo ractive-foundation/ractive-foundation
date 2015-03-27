@@ -3,9 +3,11 @@ var gulp = require('gulp'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
+	nodePath = require('path'),
 
 	plugins = require('gulp-load-plugins')();
 
+	testSuite = require('./tasks/testSuite'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
 	generateDocs = require('./tasks/generateDocs'),
@@ -37,7 +39,10 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
-			'./node_modules/lodash/lodash.min.js'
+			'./node_modules/lodash/lodash.min.js',
+			'./node_modules/superagent/superagent.js',
+			'./node_modules/page/page.js',
+			'./src/route.js'
 		])
 		.pipe(gulp.dest('./public/js')),
 
@@ -49,6 +54,18 @@ gulp.task('copy-vendors', function () {
 	);
 
 });
+
+gulp.task('copy-use-cases', function () {
+	return gulp.src([
+		'./src/components/**/use-cases/*.json'
+	])
+		.pipe(plugins.rename(function (path) {
+			// Get rid of the extra "use-cases" folder for the destination.
+			path.dirname = path.dirname.split(nodePath.sep)[0];
+		}))
+		.pipe(gulp.dest('public/use-cases/'));
+});
+
 
 gulp.task('clean', function (callback) {
 	del([
@@ -71,10 +88,13 @@ gulp.task('build-sass', function () {
 
 		gulp.src([
 				'./src/index.html',
-				'./src/data.html',
+				'./src/data.html'
 			])
 			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+			.pipe(gulp.dest('./public/')),
+
+		gulp.src('./src/testRunner.html')
 			.pipe(gulp.dest('./public/'))
 
 	);
@@ -91,7 +111,10 @@ gulp.task('ractive-build-templates', function () {
 });
 
 gulp.task('ractive-build-components', function () {
-	return gulp.src('./src/components/**/*.js')
+	return gulp.src([
+			'./src/components/**/*.js',
+			'!./src/components/**/*.steps.js'
+		])
 		.pipe(ractiveConcatComponents({
 			'prefix': 'RactiveF'
 		}))
@@ -136,6 +159,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-documentation'
 	], [
 		'copy-vendors',
+		'copy-use-cases',
 		'concat-app'
 	], callback);
 });
@@ -157,10 +181,22 @@ gulp.task('watch', function () {
 
 });
 
+gulp.task('cucumber', function(callback) {
+	return gulp
+		.src('./src/components/**/*.feature')
+		.pipe(testSuite({ steps: './src/components/**/*.steps.js' }));
+});
+
+gulp.task('test', function (callback) {
+	runSequence('build', 'connect', 'cucumber', function (err) {
+   		process.exit(err ? 1 : 0);
+    });
+});
+
 gulp.task('docs', function () {
 	return gulp.src('./src/docs.html')
 		.pipe(generateDocs())
-		.pipe(gulp.dest('./public/'));;
+		.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('jshint', function (callback) {
