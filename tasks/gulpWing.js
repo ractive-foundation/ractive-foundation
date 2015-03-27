@@ -59,7 +59,7 @@ module.exports = function () {
 	var destPath = GULP_WING_TARGET_PATH_PREFIX + option.name + '/';
 	fs.mkdirSync(destPath);
 
-	_.each(['js', 'hbs', 'scss'], function (fileType) {
+	_.each(['js', 'hbs', 'scss', 'steps.js', 'feature'], function (fileType) {
 		processFileAndSave(option.name, fileType, destPath);
 	});
 
