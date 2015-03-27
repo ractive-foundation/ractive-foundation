@@ -13,9 +13,9 @@ module.exports = function (options) {
 			throw new Error(err);
 		}
 		// Purely selenium server debugging output.
-		//child.stderr.on('data', function (data){
-		//	console.log(data.toString());
-		//});
+		child.stderr.on('data', function (data){
+			console.log(data.toString());
+		});
 	});
 
 	return cucumber(options);
