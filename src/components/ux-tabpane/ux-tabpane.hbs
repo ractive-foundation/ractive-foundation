@@ -1,3 +1,7 @@
 <section class="content {{class}} {{#if !active}}hide{{/if}}" role="tabpanel" aria-hidden="{{#if active}}false{{else}}true{{/if}}">
-	{{yield}}
+	{{#if isDataModel}}
+		{{>dynamicContent}}
+	{{else}}
+		{{yield}}
+	{{/if}}
 </section>
