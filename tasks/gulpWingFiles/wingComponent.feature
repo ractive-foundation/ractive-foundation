@@ -1,4 +1,4 @@
 Feature: wingComponent test suite
 
-  Scenario: wingComponent is loaded
-    Given I have loaded "wingComponent" component
+  Scenario: Loading wingComponent
+    Given I have loaded component "wingComponent" with use case "UseCase"
