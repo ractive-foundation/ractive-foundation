@@ -49,19 +49,15 @@ function renderUseCases(usecase) {
 		].join('_')
 	);
 
-	console.log('json.isDataModel', json.isDataModel);
-
 	var attr;
 
 	if (json.isDataModel) {
 		attr = {
-			datamodel: _.escape(_.escape(JSON.stringify(json.data)))
+			datamodel: '{{dataModel}}'
 		};
 	} else {
 		attr = _.zipObject(_.keys(json.data), _.values(json.data));
 	}
-
-	console.log('attr', attr);
 
 	var componentObj = {
 		tag: componentName,
@@ -71,8 +67,6 @@ function renderUseCases(usecase) {
 
 	var componentUseCase = _.cloneDeep(componentObj);
 	componentUseCase.attr.uid = useCaseUid;
-
-	componentObj.attr.datamodel = '{{dataModel}}';
 
 	// render use case doco
 	var component = makeHTML([
@@ -148,8 +142,6 @@ function renderDocumentation() {
 			});
 
 			var toHTML = ractive.toHTML();
-
-			console.log('toHTML', toHTML);
 
 			file.contents = new Buffer(toHTML);
 

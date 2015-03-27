@@ -1,9 +1,6 @@
 {
-	"data":{
+	"data": {
 		"class": "CSS class.",
 		"items": "List of child items"
-	},
-	"events": {
-		"onclick": "Event to fire when button is clicked"
 	}
 }
