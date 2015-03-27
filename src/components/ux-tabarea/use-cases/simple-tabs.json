@@ -1,5 +1,6 @@
 {
 	"title": "Simple tabs demo",
+	"isDataModel": true,
 	"data": {
 		"items": [{
 			"id": "structure",
