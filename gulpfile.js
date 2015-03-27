@@ -54,7 +54,7 @@ gulp.task('copy-vendors', function () {
 
 });
 
-gulp.task('copy-uc', function () {
+gulp.task('copy-use-cases', function () {
 	return gulp.src([
 		'./src/components/**/use-cases/*.json'
 	])
@@ -68,8 +68,7 @@ gulp.task('copy-uc', function () {
 
 gulp.task('clean', function (callback) {
 	del([
-		'public/**/*',
-		'!public/*.html'
+		'public/**/*'
 	], callback);
 });
 
@@ -88,10 +87,13 @@ gulp.task('build-sass', function () {
 
 		gulp.src([
 				'./src/index.html',
-				'./src/data.html',
+				'./src/data.html'
 			])
 			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+			.pipe(gulp.dest('./public/')),
+
+		gulp.src('./src/testRunner.html')
 			.pipe(gulp.dest('./public/'))
 
 	);
@@ -156,6 +158,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-documentation'
 	], [
 		'copy-vendors',
+		'copy-use-cases',
 		'concat-app'
 	], callback);
 });
