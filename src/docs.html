@@ -28,16 +28,19 @@
 						</ux-tabpane>
 						<ux-tabpane>
 
+							{{#manifestHTML.events}}
 								<strong>Semantic Event Mapping</strong>
 								<br/>
 								{{{manifestHTML.events}}}
 								<br/>
+							{{/}}
 
+							{{#manifestHTML.dataModel}}
 								<br/>
-
 								<strong>Semantic Data Model</strong>
 								<br/>
 								{{{manifestHTML.dataModel}}}
+							{{/}}
 
 						</ux-tabpane>
 					</ux-tabpanes>
