@@ -143,6 +143,7 @@ gulp.task('watch', function () {
 
 	plugins.watch([
 		'src/*.html',
+		'src/**.*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',
