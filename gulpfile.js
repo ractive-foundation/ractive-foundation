@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 
 	plugins = require('gulp-load-plugins')();
 
+	testSuite = require('./tasks/testSuite'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
 	generateDocs = require('./tasks/generateDocs'),
@@ -175,16 +176,20 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['connect', 'copy-vendors', 'copy-uc'], function(callback) {
+gulp.task('cucumber', function(callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
-		.pipe(plugins.cucumber({ steps: './src/components/**/*.steps.js' }));
+		.pipe(testSuite({ steps: './src/components/**/*.steps.js' }));
+});
+
+gulp.task('test', function (callback) {
+	runSequence('build', 'connect', 'cucumber', callback);
 });
 
 gulp.task('docs', function () {
 	return gulp.src('./src/docs.html')
 		.pipe(generateDocs())
-		.pipe(gulp.dest('./public/'));;
+		.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('jshint', function (callback) {
