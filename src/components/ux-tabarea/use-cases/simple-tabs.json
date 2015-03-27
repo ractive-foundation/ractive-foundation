@@ -1,0 +1,16 @@
+{
+	"title": "Simple tabs demo",
+	"data": {
+		"items": [{
+			"id": "structure",
+			"active": true,
+			"title": "Structure",
+			"content": "Here be structure. Blah blah blah."
+		}, {
+			"id": "buttons",
+			"active": false,
+			"title": "Buttons",
+			"content": "<p>Buttons content - here be buttons</p><ux-button class=\"primary radius\">Primary</ux-button><ux-button class=\"radius\">Secondary</ux-button>"
+		}]
+	}
+}
