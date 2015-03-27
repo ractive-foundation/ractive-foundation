@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<!-- If you delete this meta tag World War Z will become a reality -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ractive.js & Foundation 5 : Documentation</title>
+	<title>Ractive Foundation Test Runner</title>
 
 	<link rel="stylesheet" href="/css/foundation/normalize.css">
 	<link rel="stylesheet" href="/css/foundation/foundation.css">
@@ -14,14 +14,18 @@
 </head>
 <body>
 
-<nav class="top-bar foundation-bar" data-topbar>
-	<section class="top-bar-section">
-		<ul class="right">
-			<li><a href="/">Home</a></li>
-			<li><a href="/docs.html">Docs</a></li>
-			<li><a href="/data.html">Data</a></li>
-		</ul>
-	</section>
-</nav>
+<div class="ractivef hide">
+	<div id="childComponent">
+		<child-component/>
+	</div>
+</div>
 
-<br/>
+<script src="/js/lodash.min.js"></script>
+<script src="/js/ractive.min.js"></script>
+<script src="/js/ractivef.js"></script>
+<script src="/js/page.js"></script>
+<script src="/js/superagent.js"></script>
+<script src="/js/route.js"></script>
+
+</body>
+</html>

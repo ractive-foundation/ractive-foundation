@@ -1,8 +1,6 @@
 {
-	"data":{
-		"class": "CSS class for parent. <code>vertical</code>, <code>label-right</code> affect layout.",
-		"items": "Array of ux-iconbaritem types."
-	},
-	"events": {
+	"data": {
+		"class": "CSS class.",
+		"items": "List of child items"
 	}
 }

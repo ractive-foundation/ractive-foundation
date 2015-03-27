@@ -1,28 +1,9 @@
-#### Basic usage
-```
-<ux-accordion>
-	<ux-accordionitem>
-		<ux-anchor>Testing an anchor1</ux-anchor>
-		<ux-content>Accordion 2: Lorem ipsum</ux-content>
-	</ux-accordionitem>
+> Accordions are elements used to expand and collapse content that is broken into logical sections, much like tabs.
 
-	<ux-accordionitem active="true">
-		<ux-anchor>Testing an anchor2</ux-anchor>
-		<ux-content>Accordion 2: Dolor sit amet</ux-content>
-	</ux-accordionitem>
-</ux-accordion>
-```
+See [Foundation's accordion.html docs](http://foundation.zurb.com/docs/components/accordion.html) for details.
 
-<div class="ractivef hide">
-	<ux-accordion>
-		<ux-accordionitem>
-			<ux-anchor>Testing an anchor1</ux-anchor>
-			<ux-content>Accordion 2: Lorem ipsum</ux-content>
-		</ux-accordionitem>
+Features:
 
-		<ux-accordionitem active="true">
-			<ux-anchor>Testing an anchor2</ux-anchor>
-			<ux-content>Accordion 2: Dolor sit amet</ux-content>
-		</ux-accordionitem>
-	</ux-accordion>
-</div>
+* (TODO) Distributed accordion groups
+* (TODO) Accessibility
+* (TODO) Callbacks (fire RactiveJS semantic event)
