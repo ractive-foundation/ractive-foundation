@@ -1,1 +1,1 @@
-## wingComponent Documentation
+> wingComponent Documentation
