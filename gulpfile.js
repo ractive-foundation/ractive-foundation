@@ -184,7 +184,14 @@ gulp.task('watch', function () {
 gulp.task('cucumber', function(callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
-		.pipe(testSuite({ steps: './src/components/**/*.steps.js' }));
+		.pipe(
+			testSuite(
+				{ steps: './src/components/**/*.steps.js' }
+			).on('error', function () {
+				// Prevent stack trace
+				this.emit('end');
+			})
+		);
 });
 
 gulp.task('test', function (callback) {
