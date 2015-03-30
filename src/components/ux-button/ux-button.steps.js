@@ -45,10 +45,10 @@ module.exports = function () {
 			this.component.button.attribs[attribName],
 			function (err, attr) {
 				try {
-					self.assert.equal(attr, attribValue);
+					self.assert.deepEqual(attr, attribValue);
 					callback();
 				} catch (e) {
-					callback.fail('Assertion failed: ' + attr + ' !== ' + attribValue);
+					callback.fail(e.name + ' ' + e.message);
 				}
 
 			});
