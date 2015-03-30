@@ -10,7 +10,7 @@ var _ = require('lodash'),
 	fs = require('fs'),
 	gutil = require('gulp-util'),
 	path = require('path'),
-	walk    = require('walk');
+	walk = require('walk');
 
 const PLUGIN_NAME = 'gulp-wing';
 
@@ -26,8 +26,7 @@ var lowerCaseOnly = new RegExp('^[a-z-]+$', 'g');
 
 function processFileAndSave(name, destPath, root, sourceFile) {
 
-	var ext = path.extname(sourceFile),
-		source = [root, '/', sourceFile],
+	var source = [root, '/', sourceFile],
 		fc = fs.readFileSync(source.join(''), 'UTF-8');
 
 	fc = fc.replace(new RegExp(GULP_WING_PLACEHOLDER, 'g'), name);
@@ -39,7 +38,7 @@ function processFileAndSave(name, destPath, root, sourceFile) {
 
 	var targetFile = sourceFile;
 	if (sourceFile.indexOf(GULP_WING_PLACEHOLDER) !== -1) {
-		targetFile = name + ext;
+		targetFile = sourceFile.replace(GULP_WING_PLACEHOLDER, name);
 	}
 
 	fs.writeFileSync(destPath + dir + targetFile, fc);
@@ -80,20 +79,19 @@ module.exports = function () {
 
 
 	// Recurse through all files and folders in source.
-	var walker  = walk.walk(GULP_WING_SOURCE_PATH_PREFIX, { followLinks: false });
-	walker.on('file', function(root, stat, next) {
+	var walker = walk.walk(GULP_WING_SOURCE_PATH_PREFIX, {followLinks: false});
+	walker.on('file', function (root, stat, next) {
 		var ext = path.extname(stat.name),
 			name = option.name,
 			sourceFile = stat.name;
 
 		if (stat.name.indexOf('steps.js') !== -1) {
-			name = option.name + '.steps' + ext;
 			sourceFile = GULP_WING_PLACEHOLDER + '.steps' + ext;
 		} else if (stat.name.indexOf(GULP_WING_PLACEHOLDER) !== -1) {
 			sourceFile = GULP_WING_PLACEHOLDER + ext;
 		}
 
-		processFileAndSave(option.name, destPath, root, (!sourceFile) ? name : sourceFile);
+		processFileAndSave(option.name, destPath, root, sourceFile);
 		next();
 	});
 
