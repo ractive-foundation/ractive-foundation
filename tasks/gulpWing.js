@@ -27,18 +27,15 @@ var lowerCaseOnly = new RegExp('^[a-z-]+$', 'g');
 function processFileAndSave(name, destPath, root, sourceFile) {
 
 	var source = [root, '/', sourceFile],
+		regex = new RegExp(GULP_WING_PLACEHOLDER, 'g'),
+		targetFile = sourceFile.replace(regex, name),
 		fc = fs.readFileSync(source.join(''), 'UTF-8');
 
-	fc = fc.replace(new RegExp(GULP_WING_PLACEHOLDER, 'g'), name);
+	fc = fc.replace(regex, name);
 
 	var dir = root.replace(GULP_WING_SOURCE_PATH_PREFIX, '');
 	if (dir) {
 		dir += '/';
-	}
-
-	var targetFile = sourceFile;
-	if (sourceFile.indexOf(GULP_WING_PLACEHOLDER) !== -1) {
-		targetFile = sourceFile.replace(GULP_WING_PLACEHOLDER, name);
 	}
 
 	fs.writeFileSync(destPath + dir + targetFile, fc);
@@ -81,17 +78,7 @@ module.exports = function () {
 	// Recurse through all files and folders in source.
 	var walker = walk.walk(GULP_WING_SOURCE_PATH_PREFIX, {followLinks: false});
 	walker.on('file', function (root, stat, next) {
-		var ext = path.extname(stat.name),
-			name = option.name,
-			sourceFile = stat.name;
-
-		if (stat.name.indexOf('steps.js') !== -1) {
-			sourceFile = GULP_WING_PLACEHOLDER + '.steps' + ext;
-		} else if (stat.name.indexOf(GULP_WING_PLACEHOLDER) !== -1) {
-			sourceFile = GULP_WING_PLACEHOLDER + ext;
-		}
-
-		processFileAndSave(option.name, destPath, root, sourceFile);
+		processFileAndSave(option.name, destPath, root, stat.name);
 		next();
 	});
 
