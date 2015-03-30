@@ -42,9 +42,10 @@
     "q": "^1.2.0",
     "run-sequence": "~1.0.2",
     "selenium-standalone": "^4.2.2",
-    "through": "^2.3.6",
     "superagent": "0.21.0",
+    "through": "^2.3.6",
     "through2": "^0.6.3",
+    "walk": "^2.3.9",
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
