@@ -200,12 +200,6 @@ gulp.task('test', function (callback) {
     });
 });
 
-gulp.task('docs', function () {
-	return gulp.src('./src/docs.html')
-		.pipe(generateDocs())
-		.pipe(gulp.dest('./public/'));
-});
-
 gulp.task('jshint', function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
