@@ -1,8 +1,9 @@
 {
 	"data": {
 		"title": "For accessibility - define the title of this navigation element.",
-		"itemss": "Array of objects - see use case for example."
+		"items": "Array of objects - see use case for example."
 	},
 	"events": {
-	}
+	},
+	"category": "navigation"
 }
