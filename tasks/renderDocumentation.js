@@ -99,6 +99,44 @@ function renderUseCases(usecase) {
 
 }
 
+/**
+ * Transform intermediate data into final data model for sidenav.
+ */
+function getSideNavDataModel(sideNavData) {
+
+	var sideNavDataModel = {
+		title: 'Docs Nav',
+		items: []
+	}
+
+	// Sort categories alphabetically for display.
+	var sortedCategories = Object.keys(sideNavData).sort();
+
+	_.each(sortedCategories, function (categoryName) {
+
+		sideNavDataModel.items.push({
+			isHeading: true,
+			label: categoryName
+		});
+
+		_.each(sideNavData[categoryName], function (componentName) {
+
+			sideNavDataModel.items.push({
+				label: componentName,
+				href: '#' + componentName
+			});
+
+		});
+
+	});
+
+	return sideNavDataModel;
+
+}
+
+/**
+ * Stream through manifest-all.js - all the component manifest files.
+ */
 function renderDocumentation() {
 	var stream = through.obj(function (file, enc, callback) {
 
@@ -112,9 +150,16 @@ function renderDocumentation() {
 			var manifests = JSON.parse(String(file.contents));
 			//manifests = _.indexBy(manifests, 'componentName');
 
+			var sideNavData = {};
+
 			var componentsHTML = _(manifests).map(function (manifest) {
 				var paths = {},
 					out = {};
+
+				// Build up sideNavDataModel
+				var cat = manifest.category || 'uncategorised';
+				sideNavData[cat] = sideNavData[cat] || [];
+				sideNavData[cat].push(manifest.componentName);
 
 				paths.componentDir = ['.', 'src', 'components', manifest.componentName, ''].join(path.sep);
 				paths.readme = paths.componentDir + 'README.md';
@@ -135,12 +180,12 @@ function renderDocumentation() {
 
 			}).value();
 
-
 			var docFile = String(fs.readFileSync('./src/docs.html'));
 
 			var ractive = new Ractive({
 				template: docFile,
 				data: {
+					sideNavDataModel: _.escape(JSON.stringify(getSideNavDataModel(sideNavData))),
 					components: componentsHTML
 				}
 			});
