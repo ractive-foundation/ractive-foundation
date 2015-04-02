@@ -10,7 +10,6 @@ var gulp = require('gulp'),
 	testSuite = require('./tasks/testSuite'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
-	generateDocs = require('./tasks/generateDocs'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
@@ -198,12 +197,6 @@ gulp.task('test', function (callback) {
 	runSequence('build', 'connect', 'cucumber', function (err) {
    		process.exit(err ? 1 : 0);
     });
-});
-
-gulp.task('docs', function () {
-	return gulp.src('./src/docs.html')
-		.pipe(generateDocs())
-		.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('jshint', function (callback) {
