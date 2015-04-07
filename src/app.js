@@ -22,20 +22,20 @@ RactiveF = {
 				},
 
 				/**
-				 * If we have a "datamodel" property, that should override any other data.
-				 * This is now a "data-driven" component.
-				 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
-				 * @see http://docs.ractivejs.org/latest/ractive-reset
-				 *
-				 * TODO Understand the difference between rendering components off the page vs nested inside others.
-				 * onconstruct has empty opts for the latter.
-				 */
-				onconfig: function () {
-					var data = this.get();
-					if (data.datamodel) {
-						var datamodel = _.cloneDeep(data.datamodel);
+				* If we have a "datamodel" property, that should override any other data.
+				* This is now a "data-driven" component.
+				* isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+				* @see http://docs.ractivejs.org/latest/ractive-reset
+				*
+				* TODO Understand the difference between rendering components off the page vs nested inside others.
+				* onconstruct has empty opts for the latter.
+				*/
+				onconstruct: function (opts) {
+					if (opts.data && opts.data.datamodel) {
+						var datamodel = _.cloneDeep(opts.data.datamodel);
 						datamodel.isDataModel = true;
-						this.reset(datamodel);
+						opts.data = _.assign(opts.data, datamodel);
+						delete opts.data.datamodel;
 					}
 				}
 
@@ -68,7 +68,7 @@ if (typeof document !== 'undefined') {
 
 			// list of events below copied from Ractive source code v0.7.1
 			// Filtering out ractive lifecycle events to not pollute log output.
-			var reservedEventNames = 
+			var reservedEventNames =
 			/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
 
 			if (!reservedEventNames.test(this.event.name)) {
