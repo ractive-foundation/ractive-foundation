@@ -25,7 +25,7 @@ Ractive.extend({
 
 	oninit: function () {
 
-		// We have to wait until oninit for markup-driven components to be setup correctly.
+		// FIXME We have to wait until oninit for markup-driven components to be setup correctly.
 		var itemComponents = this.findAllChildComponents('ux-iconbaritem');
 		this.set('upNumClass', this.calculateUpNum(itemComponents.length));
 
@@ -43,6 +43,8 @@ Ractive.extend({
 			if (keypaths.items) {
 
 				var itemComponents = this.findAllChildComponents('ux-iconbaritem');
+
+				debugger;
 
 				_.each(itemComponents, function (component, i) {
 					component.set(keypaths.items[i]);
