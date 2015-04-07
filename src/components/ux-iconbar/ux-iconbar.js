@@ -44,8 +44,6 @@ Ractive.extend({
 
 				var itemComponents = this.findAllChildComponents('ux-iconbaritem');
 
-				debugger;
-
 				_.each(itemComponents, function (component, i) {
 					component.set(keypaths.items[i]);
 				});
