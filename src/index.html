@@ -17,7 +17,8 @@
                 <ux-tabarea>
 
                     <ux-tablinks>
-                        <ux-tablink id="structure" active="true">Structure</ux-tablink>
+                        <ux-tablink id="structure">Structure</ux-tablink>
+                        <ux-tablink id="checkout" active="true" >Checkout</ux-tablink>
                         <ux-tablink id="buttons">Buttons</ux-tablink>
                         <ux-tablink id="buttons">Typography</ux-tablink>
                         <ux-tablink id="content">Content</ux-tablink>
@@ -35,6 +36,28 @@
                             </ux-row>
 
                         </ux-tabpane>
+
+
+
+                         <!-- checkout -->
+                        <ux-tabpane>
+
+                            <ux-row>
+                                <ux-col class="large-12"> 
+                                    <ux-checkout-identity datamodel="{&quot;uploadIdentity&quot;: {&quot;text&quot;:&quot;Select NRIC File&quot;}}"/>
+
+                                </ux-col>
+                            </ux-row>
+                            <ux-row>
+                                <ux-col class="large-12"> 
+                                
+
+                                </ux-col>
+                            </ux-row>
+
+                        </ux-tabpane>
+
+
 
                         <!-- buttons -->
                         <ux-tabpane>

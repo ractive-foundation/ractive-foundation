@@ -1,0 +1,52 @@
+<div class="ux-checkout-identity">
+	<ux-row>
+        <ux-col class="large-3"> 
+        	{{uploadIdentity.text}}
+        	
+        </ux-col>
+
+        <ux-col class="large-6"> 
+        	<ux-form-input-file datamodel="{{uploadIdentityDataModel}}"/>
+        </ux-col>
+        <ux-col class="large-3"> 	
+        </ux-col>
+    </ux-row>
+	<ux-row>
+        <ux-col class="large-3"> 
+        	ID Number
+        	
+        </ux-col>
+
+        <ux-col class="large-6"> 
+        	<ux-form-input-text datamodel="{{populateIdNumber}}" />
+        </ux-col>
+        <ux-col class="large-3"> 	
+        </ux-col>
+    </ux-row>
+
+    <ux-row>
+        <ux-col class="large-3"> 
+        	Name
+        	
+        </ux-col>
+
+        <ux-col class="large-6">
+
+        	<ux-form-input-text datamodel="{{populateName}}"/>
+        </ux-col>
+        <ux-col class="large-3"> 	
+        </ux-col>
+    </ux-row>
+
+    <ux-row>
+        <ux-col class="large-3"> 
+        	&nbsp;
+        </ux-col>
+        <ux-col class="large-6"> 
+        	&nbsp;
+        </ux-col>
+        <ux-col class="large-3"> 	
+        </ux-col>
+    	<ux-button datamodel="{{submitButtonDataModel}}" />
+    </ux-row>
+</div>
