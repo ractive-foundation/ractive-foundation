@@ -37,6 +37,21 @@ RactiveF = {
 						opts.data = _.assign(opts.data, datamodel);
 						delete opts.data.datamodel;
 					}
+				},
+
+				/**
+				 * For any data-driven component - if something sets 'datamodel', lift that into root scope.
+				 */
+				onrender: function () {
+
+					// Wait for parent component to set "datamodel" and then map that back into data again.
+					this.observe('datamodel', function (newDataModel) {
+						if (newDataModel) {
+							// Lift datamodel data into root data scope.
+							this.set(newDataModel);
+						}
+					});
+
 				}
 
 			});
