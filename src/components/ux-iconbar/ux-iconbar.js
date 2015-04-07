@@ -1,36 +1,47 @@
 Ractive.extend({
 
+	getUpNumClass: function (num) {
+
+		var supportedWords = [
+			'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
+		];
+
+		if (!supportedWords[num]) {
+			//console.error('ux-iconbar#numberToWord: num NOT supported: ' + num);
+			return '';
+		}
+
+		return supportedWords[num] + '-up';
+
+	},
+
 	template: RactiveF.templates['ux-iconbar'],
+
+	data: {
+
+		getItemData: function (itemData) {
+			// Nothing needs to be mapped, but we don't want parent data leaking down.
+			return itemData;
+		}
+
+	},
 
 	computed: {
 
 		/**
-		 * TODO Move to generic helpers location?
-		 * @returns {string} The number of child items as a css class, e.g. "one-up", "three-up", etc.
-		 */
-		upNum: function () {
+		* TODO Move to generic helpers location?
+		* @returns {string} The number of child items as a css class, e.g. "one-up", "three-up", etc.
+		*/
+		upNumClass: function () {
 
-			var num = 0;
-			var data = this.get();
+			var items = this.get('items');
 
-			// FIXME Bit of a hack for data-driven components.
-			// Understand why this occurs. Why has oninit not set "items" yet?
-			if (data.isDataModel) {
-				num = _.isArray(data.items) ? data.items.length : 0;
-			} else {
-				num = _.isArray(data.itemComponents) ? data.itemComponents.length : 0;
-			}
-
-			var supportedWords = [
-				'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
-			];
-
-			if (!supportedWords[num]) {
-				console.error('ux-iconbar#numberToWord: num NOT supported: ' + num);
+			if (!items) {
 				return '';
 			}
 
-			return supportedWords[num] + '-up';
+			// Data-driven component has items data.
+			return this.getUpNumClass(items.length);
 
 		}
 
@@ -38,15 +49,12 @@ Ractive.extend({
 
 	oninit: function () {
 
-		var itemComponents = this.findAllComponents('ux-iconbaritem');
-
-		var childCount = itemComponents.length;
-		if (childCount < 1 || childCount > 8) {
-			console.error('ux-iconbar only supports between 1-8 items.');
+		// Only needed for markup mode.
+		if (!this.get('isDataModel')) {
+			var itemComponents = this.findAllChildComponents('ux-iconbaritem');
+			var cssClass = this.get('class') || '';
+			this.set('class', cssClass + ' ' + this.getUpNumClass(itemComponents.length));
 		}
-
-		// Store for later use.
-		this.set('itemComponents', itemComponents);
 
 	}
 
