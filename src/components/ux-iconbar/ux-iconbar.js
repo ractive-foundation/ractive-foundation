@@ -1,56 +1,60 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-iconbar'],
-
-	/**
-	 * TODO Move to generic helpers location?
-	 * @returns {string} The number of child items as a css class, e.g. "one-up", "three-up", etc.
-	 */
-	calculateUpNum: function (num) {
+	getUpNumClass: function (num) {
 
 		var supportedWords = [
 			'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
 		];
 
 		if (!supportedWords[num]) {
-			console.error('ux-iconbar#numberToWord: num NOT supported: ' + num);
+			//console.error('ux-iconbar#numberToWord: num NOT supported: ' + num);
 			return '';
 		}
 
-		var returnValue = supportedWords[num] + '-up';
+		return supportedWords[num] + '-up';
 
-		return returnValue;
+	},
+
+	template: RactiveF.templates['ux-iconbar'],
+
+	data: {
+
+		getItemData: function (itemData) {
+			// Nothing needs to be mapped, but we don't want parent data leaking down.
+			return itemData;
+		}
+
+	},
+
+	computed: {
+
+		/**
+		* TODO Move to generic helpers location?
+		* @returns {string} The number of child items as a css class, e.g. "one-up", "three-up", etc.
+		*/
+		upNumClass: function () {
+
+			var items = this.get('items');
+
+			if (!items) {
+				return '';
+			}
+
+			// Data-driven component has items data.
+			return this.getUpNumClass(items.length);
+
+		}
 
 	},
 
 	oninit: function () {
 
-		// FIXME We have to wait until oninit for markup-driven components to be setup correctly.
-		var itemComponents = this.findAllChildComponents('ux-iconbaritem');
-		this.set('upNumClass', this.calculateUpNum(itemComponents.length));
-
-		if (this.get('isDataModel')) {
-			// Only observe on data-driven components.
-			this.observe('items', function (newValue) {
-				this.set('upNumClass', this.calculateUpNum(newValue.length));
-			});
+		// Only needed for markup mode.
+		if (!this.get('isDataModel')) {
+			var itemComponents = this.findAllChildComponents('ux-iconbaritem');
+			var cssClass = this.get('class') || '';
+			this.set('class', cssClass + ' ' + this.getUpNumClass(itemComponents.length));
 		}
-
-		// FIXME Need to propagate change event down into child components, if data is changed.
-		// We shouldn't have to do this?
-		this.on('change', function (keypaths) {
-
-			if (keypaths.items) {
-
-				var itemComponents = this.findAllChildComponents('ux-iconbaritem');
-
-				_.each(itemComponents, function (component, i) {
-					component.set(keypaths.items[i]);
-				});
-
-			}
-
-		});
 
 	}
 
