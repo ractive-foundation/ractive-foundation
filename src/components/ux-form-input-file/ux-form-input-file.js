@@ -9,10 +9,10 @@ Ractive.extend({
 		this.observe('value', function (newValue, oldValue) {
 
 			// Only trigger the semantic event if the data has been set|changed.
-		    if (newValue !== void 0 && newValue !== oldValue) {
+			if (newValue !== void 0 && newValue !== oldValue) {
 
-		    	// Fire semantic event passed in by parent component.
-		    	this.fire(this.get('onchange'), newValue);
+				// Fire semantic event passed in by parent component.
+				this.fire(this.get('onchange'), newValue);
 
 			}
 
