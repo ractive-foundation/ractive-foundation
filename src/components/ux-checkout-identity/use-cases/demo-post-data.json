@@ -1,0 +1,9 @@
+{
+	"title": "Use case with custom attributes",
+	"data": {
+		"person": {
+			"personId": "server123",
+			"personName": "Tiberius Gracchus"
+		}
+	}
+}

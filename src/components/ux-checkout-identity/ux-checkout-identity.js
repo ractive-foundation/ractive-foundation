@@ -3,6 +3,7 @@ Ractive.extend({
 
 	data: function () {
 		return {
+			endpoint: '/use-cases/ux-checkout-identity/demo-post-data.json',
 			person: {
 				personId : 'default ID1111',
 				personName : 'default value222'
@@ -39,41 +40,32 @@ Ractive.extend({
 			};
 		}
 	},
+
 	oninit: function () {
-		var self = this;
-		this.on( '*.changedNRICUpload', function (event) {
-			return self.changedNRICUpload(event);
+
+		this.on('*.changedNRICUpload', function (fileList) {
+			this.submitIdentity(fileList[0]);
+			return false;
 		});
 
 		this.observe( 'populateIdNumber', function() {
 			console.log('something changed');
 		});
+
 	},
 
-	changedNRICUpload : function (event) {
-		console.log('event' + event);
-		this.submitIdentity(event);
-		return false;
-	},
-	submitIdentity : function(event) {
+	submitIdentity: function (event) {
+
 		//Disable some stuff
 
 		//Enable after then
-		console.log('asdasd');
+		console.log('submitIdentity');
 		console.log(this.get('serviceURL'));
 
-
-
-
-
-		var personId = '1234123';
-		var personName = 'personName';
-
-		this.set('person.personId', personId);
-		this.set('person.personName', personName);
-
-
-		//console.log(JSON.stringify(this.get('populateIdNumber()')));
+		this.set('person', {
+			personId: '8888888888888',
+			personName: 'fix me'
+		});
 
 	}
 
