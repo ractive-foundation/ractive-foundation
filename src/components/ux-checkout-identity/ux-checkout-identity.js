@@ -1,5 +1,15 @@
 Ractive.extend({
 	template: RactiveF.templates['ux-checkout-identity'],
+
+	data: function () {
+		return {
+			person: {
+				personId : 'default ID1111',
+				personName : 'default value222'
+			}
+		};
+	},
+
 	computed: {
 		submitButtonDataModel: function () {
 			return {
@@ -39,14 +49,6 @@ Ractive.extend({
 			console.log('something changed');
 		});
 	},
-	onconfig: function () {
-		var person = {
-			personName : 'default value',
-			personId : 'default ID'
-		};
-		this.set('person' , person);
-		console.log('BLAH@@@@');
-	},
 
 	changedNRICUpload : function (event) {
 		console.log('event' + event);
@@ -63,14 +65,14 @@ Ractive.extend({
 
 
 
-		
+
 		var personId = '1234123';
 		var personName = 'personName';
 
 		this.set('person.personId', personId);
 		this.set('person.personName', personName);
 
-		
+
 		//console.log(JSON.stringify(this.get('populateIdNumber()')));
 
 	}
