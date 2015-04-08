@@ -1,7 +1,10 @@
-/*global hljs*/
+/*global hljs,qwest*/
 RactiveF = {
 	components: {},
 	templates: {},
+	plugins: {
+		qwest: qwest
+	},
 	widgets: [],
 	initInstance: function (container) {
 
@@ -10,6 +13,7 @@ RactiveF = {
 
 			// FIXME: Is there any other way to do it? Without using lodash dependency.
 			_.mixin(Ractive.prototype, {
+
 				/*
 				 * When working with nested components we only want to find child
 				 * components, not all decendants.
