@@ -15,8 +15,15 @@ Ractive.extend({
 
 	oninit: function () {
 
+		var self = this;
+
 		this.findComponent('ux-button').on('doSomeXhr', function () {
-			debugger;
+
+			self.set('person', {
+				name: 'new name',
+				id: '6666666'
+			});
+
 		});
 
 	}
