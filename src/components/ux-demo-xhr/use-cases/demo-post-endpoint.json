@@ -1,0 +1,12 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"title": "Demo XHR Component",
+		"intro": "Demonstrate a top-level component that posts to an endpoint and gets data back.",
+		"person": {
+			"name": "Elmer Fudd",
+			"id": "123123123"
+		}
+	}
+}
