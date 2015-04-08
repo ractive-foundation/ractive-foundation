@@ -51,6 +51,7 @@
   "dependencies": {
     "lodash": "git+https://github.com/lodash/lodash.git#master",
     "node-notifier": "^4.1.2",
+    "qwest": "^1.5.11",
     "ractive": "^0.7.1",
     "zurb-foundation-5": "^5.4.7"
   }

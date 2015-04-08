@@ -41,6 +41,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/lodash/lodash.min.js',
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
+			'./node_modules/qwest/qwest.min.js',
 			'./src/route.js'
 		])
 		.pipe(gulp.dest('./public/js')),
