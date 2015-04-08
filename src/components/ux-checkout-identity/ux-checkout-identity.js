@@ -40,15 +40,6 @@ Ractive.extend({
 		});
 	},
 	onconfig: function () {
-		//BLINDY COPY!!!!!
-		var data = this.get();
-		if (data.datamodel) {
-			var datamodel = _.cloneDeep(data.datamodel);
-			datamodel.isDataModel = true;
-			this.reset(datamodel);
-		}
-
-
 		var person = {
 			personName : 'default value',
 			personId : 'default ID'
@@ -66,8 +57,13 @@ Ractive.extend({
 		//Disable some stuff
 
 		//Enable after then
+		console.log('asdasd');
+		console.log(this.get('serviceURL'));
 
 
+
+
+		
 		var personId = '1234123';
 		var personName = 'personName';
 
