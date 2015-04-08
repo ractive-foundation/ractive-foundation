@@ -3,7 +3,6 @@ Ractive.extend({
 
 	data: function () {
 		return {
-			endpoint: '/use-cases/ux-checkout-identity/demo-post-data.json',
 			person: {
 				personId : 'default ID1111',
 				personName : 'default value222'
@@ -54,18 +53,29 @@ Ractive.extend({
 
 	},
 
-	submitIdentity: function (event) {
+	submitIdentity: function (file) {
 
-		//Disable some stuff
+		var self = this;
 
-		//Enable after then
-		console.log('submitIdentity');
-		console.log(this.get('serviceURL'));
+		// TODO Disable some stuff
 
-		this.set('person', {
-			personId: '8888888888888',
-			personName: 'fix me'
-		});
+		// Use the service URL provided in initial datamodel - see index.html.
+		var serviceURL = this.get('uploadIdentity.serviceURL');
+
+		// Create some payload using the uploaded file data or whatever.
+		var payload = this.get('person');
+		payload.fileName = file.name;
+
+		// See https://github.com/pyrsmk/qwest for API details.
+		RactiveF.plugins.qwest
+			// Using get because ractive-foundation server only supports GET by default.
+			.get(serviceURL, payload)
+			.then(function (response) {
+				self.set('person', response.data.person);
+			})
+			.catch(function (err) {
+				debugger;
+			});
 
 	}
 
