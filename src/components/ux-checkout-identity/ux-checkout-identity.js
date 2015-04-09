@@ -4,9 +4,10 @@ Ractive.extend({
 	data: function () {
 		return {
 			person: {
-				personId : 'default ID1111',
-				personName : 'default value222'
-			}
+				personId : 'please enter your id',
+				personName : 'please enter number'
+			},
+			message : ''
 		};
 	},
 
@@ -43,7 +44,8 @@ Ractive.extend({
 	oninit: function () {
 
 		this.on('*.changedNRICUpload', function (fileList) {
-			this.submitIdentity(fileList[0]);
+			//console.log('fileList' + JSON.stringify(fileList));
+			this.submitIdentity(fileList);
 			return false;
 		});
 
@@ -56,22 +58,37 @@ Ractive.extend({
 	submitIdentity: function (file) {
 
 		var self = this;
-
+		self.set('message', 'Currently Uploading File');
 		// TODO Disable some stuff
 
 		// Use the service URL provided in initial datamodel - see index.html.
 		var serviceURL = this.get('uploadIdentity.serviceURL');
 
 		// Create some payload using the uploaded file data or whatever.
-		var payload = this.get('person');
-		payload.fileName = file.name;
+		var formData = new FormData();
+		formData.append('userPhoto', file);
 
 		// See https://github.com/pyrsmk/qwest for API details.
 		RactiveF.plugins.qwest
 			// Using get because ractive-foundation server only supports GET by default.
-			.get(serviceURL, payload)
+			.post(serviceURL, formData,{dataType:'document', timeout : '10000'})
 			.then(function (response) {
-				self.set('person', response.data.person);
+				self.set('message', 'Completed');
+
+				var person ={};
+				if(response.data.person.ErrorMessage) {
+					self.set('message', response.data.person.ErrorMessage);
+				}
+
+				if(response.data.person.idimage) {
+					person.idimage = response.data.person.idimage;
+				} else {
+					person.idimage ='';
+				}
+				person.personId = response.data.person.ID;
+				person.personName = response.data.person.FullName;
+
+				self.set('person', person);
 			})
 			.catch(function (err) {
 				debugger;
