@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	nodePath = require('path'),
 
-	plugins = require('gulp-load-plugins')();
+	plugins = require('gulp-load-plugins')(),
 
 	testSuite = require('./tasks/testSuite'),
 	ractiveParse = require('./tasks/ractiveParse'),
