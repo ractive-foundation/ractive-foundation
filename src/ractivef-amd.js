@@ -1,4 +1,4 @@
-define([], function (RactiveF) {
+define(['Ractive'], function (Ractive, RactiveF) {
 /* jshint ignore:start */
 <%= contents %>
 /* jshint ignore:end */
