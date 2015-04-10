@@ -1,4 +1,3 @@
-/*global hljs*/
 RactiveF = {
 	components: {},
 	templates: {},
@@ -22,14 +21,14 @@ RactiveF = {
 				},
 
 				/**
-				* If we have a "datamodel" property, that should override any other data.
-				* This is now a "data-driven" component.
-				* isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
-				* @see http://docs.ractivejs.org/latest/ractive-reset
-				*
-				* TODO Understand the difference between rendering components off the page vs nested inside others.
-				* onconstruct has empty opts for the latter.
-				*/
+				 * If we have a "datamodel" property, that should override any other data.
+				 * This is now a "data-driven" component.
+				 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+				 * @see http://docs.ractivejs.org/latest/ractive-reset
+				 *
+				 * TODO Understand the difference between rendering components off the page vs nested inside others.
+				 * onconstruct has empty opts for the latter.
+				 */
 				onconstruct: function (opts) {
 					if (opts.data && opts.data.datamodel) {
 						var datamodel = _.cloneDeep(opts.data.datamodel);
@@ -57,8 +56,7 @@ RactiveF = {
 			});
 
 		}
-
-		return new Ractive({
+		var instance = new Ractive({
 			el: container,
 			template: Ractive.parse(container.innerHTML),
 			components: RactiveF.components,
@@ -67,19 +65,8 @@ RactiveF = {
 				this.el.classList.add('initialize');
 			}
 		});
-	}
-};
 
-if (typeof document !== 'undefined') {
-	document.addEventListener('DOMContentLoaded', function () {
-
-		var codeBlocks = document.querySelectorAll('pre code');
-		_.each(codeBlocks, function (block) {
-			block.innerHTML = _.escape(block.innerHTML);
-			hljs.highlightBlock(block);
-		});
-
-		var handler = function (origin) {
+		instance.on('*.*', function (origin) {
 
 			// list of events below copied from Ractive source code v0.7.1
 			// Filtering out ractive lifecycle events to not pollute log output.
@@ -87,8 +74,8 @@ if (typeof document !== 'undefined') {
 			/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
 
 			if (!reservedEventNames.test(this.event.name)) {
-				console.log('Event',  this.event.name);
-				console.log('Event handler arguments',  origin);
+				console.log('Event', this.event.name);
+				console.log('Event handler arguments', origin);
 
 				var eventName = 'events.' + origin.get('uid');
 				if (!this.get(eventName)) {
@@ -97,15 +84,10 @@ if (typeof document !== 'undefined') {
 				this.push(eventName, this.event.name);
 			}
 
-		};
+		});
 
-		var containers = document.querySelectorAll('.ractivef');
-		for (var i = 0; i < containers.length; i++) {
-			var instance = RactiveF.initInstance(containers[i]);
-			instance.on('*.*', handler);
-			instance.set('dataModel', '{{dataModel}}');
-			RactiveF.widgets.push(instance);
-		}
+		instance.set('dataModel', '{{dataModel}}');
 
-	});
-}
+		return instance;
+	}
+};

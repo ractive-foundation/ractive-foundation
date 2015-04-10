@@ -133,13 +133,28 @@ gulp.task('build-documentation', function () {
 });
 
 gulp.task('concat-app', function () {
-	return gulp.src([
-			'./src/app.js',
-			'./public/js/templates.js',
-			'./public/js/components.js'
-		])
-		.pipe(plugins.concat('ractivef.js'))
+	var files = [
+		'./src/ractivef.base.js',
+		'./public/js/templates.js',
+		'./public/js/components.js'
+	];
+	return gulp.src(files)
+		.pipe(plugins.concat('ractivef-base.js'))
 		.pipe(gulp.dest('./public/js/'))
+		.pipe(plugins.footer(fs.readFileSync('./src/ractivef.initializer.js')))
+		.pipe(plugins.concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-amd', function () {
+	return gulp.src('./public/js/ractivef-base.js')
+		.pipe(plugins.wrap({ src: './src/ractivef-amd.js'}))
+		.pipe(plugins.concat('ractivef-amd.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-commonjs', function () {
+	return gulp.src('./public/js/ractivef-base.js')
 		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
 		.pipe(plugins.concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -160,6 +175,9 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'copy-vendors',
 		'copy-use-cases',
 		'concat-app'
+	], [
+		'concat-app-amd',
+		'concat-app-commonjs'
 	], callback);
 });
 
