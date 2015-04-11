@@ -19,29 +19,31 @@ RactiveF = {
 			}
 		});
 
-		instance.on('*.*', function (origin) {
-
-			// list of events below copied from Ractive source code v0.7.1
-			// Filtering out ractive lifecycle events to not pollute log output.
-			var reservedEventNames =
-			/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
-
-			if (!reservedEventNames.test(this.event.name)) {
-				console.log('Event', this.event.name);
-				console.log('Event handler arguments', origin);
-
-				var eventName = 'events.' + origin.get('uid');
-				if (!this.get(eventName)) {
-					this.set(eventName, []);
-				}
-				this.push(eventName, this.event.name);
-			}
-
-		});
+		instance.on('*.*', RactiveF.genericEventHandler);
 
 		instance.set('dataModel', '{{dataModel}}');
 
 		return instance;
+	},
+
+	genericEventHandler: function (origin) {
+
+		// list of events below copied from Ractive source code v0.7.1
+		// Filtering out ractive lifecycle events to not pollute log output.
+		var reservedEventNames =
+				/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
+
+		if (!reservedEventNames.test(this.event.name)) {
+			console.log('Event', this.event.name);
+			console.log('Event handler arguments', origin);
+
+			var eventName = 'events.' + origin.get('uid');
+			if (!this.get(eventName)) {
+				this.set(eventName, []);
+			}
+			this.push(eventName, this.event.name);
+		}
+
 	},
 
 	mixin: {
