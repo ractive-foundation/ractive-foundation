@@ -6,7 +6,7 @@ RactiveF = {
 
 		// Have we mixed in extensions to all instances yet?
 		if (!Ractive.prototype.findAllChildComponents) {
-			_.mixin(Ractive.prototype, RactiveF.mixin);
+			_.mixin(Ractive.prototype, RactiveF.mixins);
 		}
 
 		var instance = new Ractive({
@@ -46,7 +46,7 @@ RactiveF = {
 
 	},
 
-	mixin: {
+	mixins: {
 		/*
 		 * When working with nested components we only want to find child
 		 * components, not all decendants.
