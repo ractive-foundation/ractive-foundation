@@ -181,6 +181,15 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	], callback);
 });
 
+gulp.task('dist', ['build'], function () {
+	return gulp.src([
+		'public/js/ractivef-amd.js',
+		'public/js/ractivef-base.js',
+		'public/js/ractivef-cjs.js',
+		'public/css/components.css'
+	]).pipe(gulp.dest('dist'));
+});
+
 gulp.task('watch', function () {
 	var self = this;
 	plugins.watch([
