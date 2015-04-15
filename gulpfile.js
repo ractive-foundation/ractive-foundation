@@ -91,7 +91,7 @@ gulp.task('build-sass', function () {
 gulp.task('ractive-build-templates', function () {
 	return gulp.src('./src/components/**/*.hbs')
 		.pipe(ractiveParse({
-			'prefix': 'RactiveF'
+			'prefix': 'RactiveF.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -103,7 +103,7 @@ gulp.task('ractive-build-components', function () {
 			'!./src/components/**/*.steps.js'
 		])
 		.pipe(ractiveConcatComponents({
-			'prefix': 'RactiveF'
+			'prefix': 'RactiveF.components'
 		}))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
