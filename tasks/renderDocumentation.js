@@ -137,7 +137,7 @@ function getSideNavDataModel(sideNavData) {
 /**
  * Stream through manifest-all.js - all the component manifest files.
  */
-function renderDocumentation() {
+function renderDocumentation(options) {
 	var stream = through.obj(function (file, enc, callback) {
 
 		if (file.isStream()) {
@@ -161,9 +161,9 @@ function renderDocumentation() {
 				sideNavData[cat] = sideNavData[cat] || [];
 				sideNavData[cat].push(manifest.componentName);
 
-				paths.componentDir = ['.', 'src', 'components', manifest.componentName, ''].join(path.sep);
-				paths.readme = paths.componentDir + 'README.md';
-				paths.useCasesDir = paths.componentDir + 'use-cases';
+				paths.componentDir = path.join(options.componentsDir, manifest.componentName);
+				paths.readme = path.join(paths.componentDir, 'README.md');
+				paths.useCasesDir =  path.join(paths.componentDir, 'use-cases');
 
 				out.useCasesHTML = _.map(find.fileSync(/.*\.json/, paths.useCasesDir), renderUseCases).join('');
 
@@ -180,7 +180,7 @@ function renderDocumentation() {
 
 			}).value();
 
-			var docFile = String(fs.readFileSync('./src/docs.html'));
+			var docFile = String(fs.readFileSync(options.docSrcPath));
 
 			var ractive = new Ractive({
 				template: docFile,

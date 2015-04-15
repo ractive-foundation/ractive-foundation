@@ -117,7 +117,10 @@ gulp.task('build-documentation', function () {
 		gulp.src('./src/components/**/manifest.json')
 		.pipe(concatManifests('manifest-all.js'))
 		.pipe(gulp.dest('./public/'))
-		.pipe(renderDocumentation())
+		.pipe(renderDocumentation({
+			componentsDir: './src/components/',
+			docSrcPath: './src/docs.html'
+		}))
 		.pipe(plugins.concat('docs.html'))
 		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
