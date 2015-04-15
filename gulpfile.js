@@ -65,7 +65,6 @@ gulp.task('copy-use-cases', function () {
 		.pipe(gulp.dest('public/use-cases/'));
 });
 
-
 gulp.task('clean', function (callback) {
 	del([
 		'public/**/*'
@@ -83,18 +82,7 @@ gulp.task('build-sass', function () {
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
 			.pipe(plugins.sass())
-			.pipe(gulp.dest('./public/css/foundation')),
-
-		gulp.src([
-				'./src/index.html',
-				'./src/data.html'
-			])
-			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
-			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
-			.pipe(gulp.dest('./public/')),
-
-		gulp.src('./src/testRunner.html')
-			.pipe(gulp.dest('./public/'))
+			.pipe(gulp.dest('./public/css/foundation'))
 
 	);
 
@@ -122,14 +110,31 @@ gulp.task('ractive-build-components', function () {
 });
 
 gulp.task('build-documentation', function () {
-	return gulp.src('./src/components/**/manifest.json')
+
+	return mergeStream(
+
+		// Component docs page.
+		gulp.src('./src/components/**/manifest.json')
 		.pipe(concatManifests('manifest-all.js'))
 		.pipe(gulp.dest('./public/'))
 		.pipe(renderDocumentation())
 		.pipe(plugins.concat('docs.html'))
 		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
 		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
-		.pipe(gulp.dest('./public/'));
+		.pipe(gulp.dest('./public/')),
+
+		// Documentation pages.
+		gulp.src([ './src/pages/*.html' ])
+		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
+		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(gulp.dest('./public/')),
+
+		// Test runner while we're at it.
+		gulp.src('./src/testRunner.html')
+			.pipe(gulp.dest('./public/'))
+
+	);
+
 });
 
 gulp.task('concat-app', function () {
@@ -194,6 +199,7 @@ gulp.task('watch', function () {
 	var self = this;
 	plugins.watch([
 		'src/*.html',
+		'src/pages/*.html',
 		'src/**.*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
