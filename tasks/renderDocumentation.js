@@ -141,6 +141,8 @@ function renderDocumentation(options) {
 			return callback();
 		}
 
+		try {
+
 			// load the interface specification
 			var manifests = JSON.parse(String(file.contents));
 
@@ -185,7 +187,7 @@ function renderDocumentation(options) {
 
 			this.push(file);
 
-		try {}
+		}
 
 		catch (e) {
 			console.warn('Error caught: ' + e);
