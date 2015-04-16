@@ -194,6 +194,7 @@ gulp.task('dist', ['build'], function () {
 		'public/js/ractivef-amd.js',
 		'public/js/ractivef-base.js',
 		'public/js/ractivef-cjs.js',
+		'public/manifest-rf.json',
 		'public/css/components.css'
 	]).pipe(gulp.dest('dist'));
 });
