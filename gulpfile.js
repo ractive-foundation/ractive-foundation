@@ -15,6 +15,8 @@ var gulp = require('gulp'),
 	gulpWing = require('./tasks/gulpWing'),
 	jshintFailReporter = require('./tasks/jshintFailReporter');
 
+var pkg = require('./package.json');
+
 gulp.task('connect', function () {
 	plugins.connect.server({
 		root: 'public',
@@ -111,6 +113,9 @@ gulp.task('ractive-build-components', function () {
 
 gulp.task('build-documentation', function () {
 
+	var headerHtml = fs.readFileSync('./src/header.html');
+	var footerHtml = fs.readFileSync('./src/footer.html');
+
 	return mergeStream(
 
 		// Component docs page.
@@ -122,14 +127,14 @@ gulp.task('build-documentation', function () {
 			docSrcPath: './src/docs.html'
 		}))
 		.pipe(plugins.concat('docs.html'))
-		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
-		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(plugins.header(headerHtml, { pkg: pkg }))
+		.pipe(plugins.footer(footerHtml))
 		.pipe(gulp.dest('./public/')),
 
 		// Documentation pages.
 		gulp.src([ './src/pages/*.html' ])
-		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
-		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(plugins.header(headerHtml, { pkg: pkg }))
+		.pipe(plugins.footer(footerHtml))
 		.pipe(gulp.dest('./public/')),
 
 		// Test runner while we're at it.
