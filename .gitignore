@@ -1,7 +1,6 @@
 bower_components
 node_modules
 .tmp
-dist
 *.log
 logs
 .DS_Store
@@ -11,3 +10,6 @@ public/css
 public/js
 .c9
 *.orig
+
+# Ignore everything except for index.html in public folder.
+public/*

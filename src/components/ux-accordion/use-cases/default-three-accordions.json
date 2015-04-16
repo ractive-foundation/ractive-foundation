@@ -1,0 +1,20 @@
+{
+	"title": "Default - Three Accordions",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"title": "Accordion item 1",
+				"content": "Accordion 1: Lorem ipsum dolor"
+			},
+			{
+				"title": "Accordion item 2",
+				"content": "Accordion 2: Lorem ipsum dolor"
+			},
+			{
+				"title": "Accordion item 3",
+				"content": "Accordion 3: Lorem ipsum dolor"
+			}
+		]
+	}
+}

@@ -1,0 +1,19 @@
+<a href="{{href}}" class="item {{class}}"
+	tabindex="0" role="button"
+	{{#if labels !== false}}aria-labelledby="{{guid}}"{{/if}}
+	{{#if arialabel}}aria-label={{arialabel}}{{/if}}
+>
+
+    <img src="{{src}}">
+
+    {{#if labels !== false}}
+    	<label id="{{guid}}">
+    		{{#if isDataModel}}
+    			{{label}}
+    		{{else}}
+    			{{yield}}
+    		{{/if}}
+		</label>
+    {{/if}}
+
+</a>

@@ -1,0 +1,10 @@
+<a id="{{guid}}" href="{{href}}" {{#if target}}target="{{target}}"{{/if}} on-click="anchorClicked">
+    {{#if isDataModel}}
+        {{{content}}}
+    {{else}}
+        {{yield}}
+    {{/if}}
+</a>
+
+
+

@@ -1,0 +1,23 @@
+<div class="tabs-area">
+
+	{{#if isDataModel}}
+
+		<ux-tablinks>
+			{{#items}}
+				<ux-tablink id="{{.id}}" active="{{.active}}">{{.title}}</ux-tablink>
+			{{/items}}
+		</ux-tablinks>
+
+		<ux-tabpanes>
+			{{#items}}
+				<ux-tabpane datamodel="{{tabPaneDataModel(this)}}"></ux-tabpane>
+			{{/items}}
+		</ux-tabpanes>
+
+	{{else}}
+
+		{{>content}}
+
+	{{/if}}
+
+</div>

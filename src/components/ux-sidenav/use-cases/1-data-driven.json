@@ -1,0 +1,33 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"title": "Sidenav demo navigation",
+		"items": [
+			{
+				"isHeading": true,
+				"label": "Test Heading"
+			},
+			{
+				"active": true,
+				"label": "Link 1",
+				"href": "/path/to/link1"
+			},
+			{
+				"label": "Link 2",
+				"href": "/path/to/link2"
+			},
+			{
+				"isDivider": true
+			},
+			{
+				"label": "Link 3",
+				"href": "/path/to/link3"
+			},
+			{
+				"label": "Link 4",
+				"href": "/path/to/link4"
+			}
+		]
+	}
+}

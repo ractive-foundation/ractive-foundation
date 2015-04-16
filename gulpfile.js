@@ -1,45 +1,91 @@
 var gulp = require('gulp'),
-	sass = require('gulp-sass'),
-	concat = require('gulp-concat'),
-	connect = require('gulp-connect'),
+	del = require('del'),
 	runSequence = require('run-sequence'),
-	watch = require('gulp-watch'),
-	ractiveParse = require('./tasks/ractiveParse.js'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents.js'),
-	generateDocs = require('./tasks/generateDocs.js'),
-	gulpWing = require('./tasks/gulpWing.js');
+	mergeStream = require('merge-stream'),
+	fs = require('fs'),
+	nodePath = require('path'),
+
+	plugins = require('gulp-load-plugins')(),
+
+	testSuite = require('./tasks/testSuite'),
+	ractiveParse = require('./tasks/ractiveParse'),
+	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
+	renderDocumentation = require('./tasks/renderDocumentation'),
+	concatManifests = require('./tasks/concatManifests'),
+	gulpWing = require('./tasks/gulpWing'),
+	jshintFailReporter = require('./tasks/jshintFailReporter');
 
 gulp.task('connect', function () {
-	connect.server({
+	plugins.connect.server({
 		root: 'public',
-		livereload: true
+		livereload: true,
+		port: 9080
 	});
 });
 
 gulp.task('html', function () {
-	gulp.src('./public/*.html')
-		.pipe(connect.reload());
+	return gulp.src('./public/*.html')
+		.pipe(plugins.connect.reload());
 });
 
 gulp.task('copy-vendors', function () {
-	gulp.src([
-		'./node_modules/ractive/ractive.js',
-		'./node_modules/jquery/dist/jquery.min.js',
-		'./node_modules/lodash/lodash.min.js'
-	])
-		.pipe(gulp.dest('./public/js'));
+
+	return mergeStream(
+
+		gulp.src([
+			'./node_modules/ractive/ractive.js',
+			'./node_modules/ractive/ractive.min.js',
+			'./node_modules/ractive/ractive.min.js.map',
+			'./node_modules/jquery/dist/jquery.min.js',
+			'./node_modules/jquery/dist/jquery.min.map',
+			'./node_modules/lodash/lodash.min.js',
+			'./node_modules/superagent/superagent.js',
+			'./node_modules/page/page.js',
+			'./src/route.js'
+		])
+		.pipe(gulp.dest('./public/js')),
+
+		gulp.src([
+			'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
+		])
+		.pipe(gulp.dest('public/images/'))
+
+	);
+
 });
 
+gulp.task('copy-use-cases', function () {
+	return gulp.src([
+		'./src/components/**/use-cases/*.json'
+	])
+		.pipe(plugins.rename(function (path) {
+			// Get rid of the extra "use-cases" folder for the destination.
+			path.dirname = path.dirname.split(nodePath.sep)[0];
+		}))
+		.pipe(gulp.dest('public/use-cases/'));
+});
+
+gulp.task('clean', function (callback) {
+	del([
+		'public/**/*'
+	], callback);
+});
 
 gulp.task('build-sass', function () {
-	gulp.src('./src/**/*.scss')
-		.pipe(sass())
-		.pipe(concat('components.css'))
-		.pipe(gulp.dest('./public/css'));
 
-	gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
-		.pipe(sass())
-		.pipe(gulp.dest('./public/css/foundation'));
+	return mergeStream(
+
+		gulp.src('./src/**/*.scss')
+			.pipe(plugins.sass())
+			.pipe(plugins.concat('components.css'))
+			.pipe(gulp.dest('./public/css')),
+
+		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
+			.pipe(plugins.sass())
+			.pipe(gulp.dest('./public/css/foundation'))
+
+	);
+
 });
 
 gulp.task('ractive-build-templates', function () {
@@ -47,25 +93,78 @@ gulp.task('ractive-build-templates', function () {
 		.pipe(ractiveParse({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('templates.js'))
+		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('ractive-build-components', function () {
-	return gulp.src('./src/components/**/*.js')
+	return gulp.src([
+			'./src/components/**/*.js',
+			'!./src/components/**/*.steps.js'
+		])
 		.pipe(ractiveConcatComponents({
 			'prefix': 'RactiveF'
 		}))
-		.pipe(concat('components.js'))
+		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('build-documentation', function () {
+
+	return mergeStream(
+
+		// Component docs page.
+		gulp.src('./src/components/**/manifest.json')
+		.pipe(concatManifests('manifest-all.js'))
+		.pipe(gulp.dest('./public/'))
+		.pipe(renderDocumentation({
+			componentsDir: './src/components/',
+			docSrcPath: './src/docs.html'
+		}))
+		.pipe(plugins.concat('docs.html'))
+		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
+		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(gulp.dest('./public/')),
+
+		// Documentation pages.
+		gulp.src([ './src/pages/*.html' ])
+		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
+		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
+		.pipe(gulp.dest('./public/')),
+
+		// Test runner while we're at it.
+		gulp.src('./src/testRunner.html')
+			.pipe(gulp.dest('./public/'))
+
+	);
+
+});
+
 gulp.task('concat-app', function () {
-	return gulp.src([
-		'./src/app.js',
+	var files = [
+		'./src/ractivef.base.js',
 		'./public/js/templates.js',
-		'./public/js/components.js'])
-		.pipe(concat('ractivef.js'))
+		'./public/js/components.js'
+	];
+	return gulp.src(files)
+		.pipe(plugins.concat('ractivef-base.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(plugins.footer(fs.readFileSync('./src/ractivef.initializer.js')))
+		.pipe(plugins.concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-amd', function () {
+	return gulp.src('./public/js/ractivef-base.js')
+		.pipe(plugins.wrap({ src: './src/ractivef-amd.js'}))
+		.pipe(plugins.concat('ractivef-amd.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-commonjs', function () {
+	return gulp.src('./public/js/ractivef-base.js')
+		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
+		.pipe(plugins.concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -74,35 +173,78 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', function (callback) {
+gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
-		'ractive-build-components'
+		'ractive-build-components',
+		'build-documentation'
 	], [
 		'copy-vendors',
+		'copy-use-cases',
 		'concat-app'
+	], [
+		'concat-app-amd',
+		'concat-app-commonjs'
 	], callback);
 });
 
-gulp.task('watch', function () {
+gulp.task('dist', ['build'], function () {
+	return gulp.src([
+		'public/js/ractivef-amd.js',
+		'public/js/ractivef-base.js',
+		'public/js/ractivef-cjs.js',
+		'public/css/components.css'
+	]).pipe(gulp.dest('dist'));
+});
 
-	watch([
-		'public/*.html',
+gulp.task('watch', function () {
+	var self = this;
+	plugins.watch([
+		'src/*.html',
+		'src/pages/*.html',
+		'src/**.*.json',
 		'src/**/*.hbs',
+		'src/**/*.md',
 		'src/**/*.js',
 		'src/**/*.scss'
 	], function () {
-		runSequence('build', 'html');
+		runSequence('build', 'html', function (err) {
+			self.emit('end');
+		});
 	});
 
 });
 
-gulp.task('docs', function (callback) {
-	generateDocs('./public/indextest.html');
-	callback();
+gulp.task('cucumber', function(callback) {
+	return gulp
+		.src('./src/components/**/*.feature')
+		.pipe(
+			testSuite(
+				{ steps: './src/components/**/*.steps.js' }
+			).on('error', function () {
+				// Prevent stack trace
+				this.emit('end');
+			})
+		);
 });
 
-gulp.task('default', function (callback) {
-	runSequence('build', 'connect', 'watch', callback);
+gulp.task('test', function (callback) {
+	runSequence('build', 'connect', 'cucumber', function (err) {
+   		process.exit(err ? 1 : 0);
+    });
+});
+
+gulp.task('jshint', function (callback) {
+	return gulp.src('./src/**/*.js')
+		.pipe(plugins.jshint('./.jshintrc'))
+		.pipe(plugins.jshint.reporter('jshint-stylish'))
+		.pipe(jshintFailReporter());
+});
+
+gulp.task('default', function () {
+	var self = this;
+	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
+		self.emit('end');
+	});
 });

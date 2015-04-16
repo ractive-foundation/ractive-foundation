@@ -1,0 +1,9 @@
+<div class="icon-bar {{upNumClass}} {{class}}" role="navigation">
+	{{#if isDataModel}}
+		{{#items}}
+			<ux-iconbaritem datamodel="{{getItemData(this)}}"></ux-iconbaritem>
+		{{/items}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</div>

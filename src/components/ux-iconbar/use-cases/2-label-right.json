@@ -1,0 +1,33 @@
+{
+	"title": "Label right",
+	"isDataModel": true,
+	"data": {
+		"class": "label-right",
+		"items": [
+			{
+				"href": "/",
+				"src": "images/fi-home.svg",
+				"label": "Home"
+			},
+			{
+				"href": "/path/to/blah",
+				"src": "images/fi-bookmark.svg",
+				"label": "Bookmark"
+			},
+			{
+				"src": "images/fi-info.svg",
+				"label": "Info",
+				"class": "disabled"
+			},
+			{
+				"src": "images/fi-mail.svg",
+				"label": "Mail"
+			},
+			{
+				"src": "images/fi-like.svg",
+				"label": "Like"
+			}
+		]
+	}
+}
+

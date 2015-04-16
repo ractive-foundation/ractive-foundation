@@ -1,0 +1,8 @@
+<li id="{{guid}}" class="accordion-navigation">
+	{{#if isDataModel}}
+		<ux-anchor>{{title}}</ux-anchor>
+        <ux-content>{{{content}}}</ux-content>
+	{{else}}
+    	{{yield}}
+	{{/if}}
+</li>
