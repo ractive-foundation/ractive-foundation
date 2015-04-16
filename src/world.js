@@ -2,6 +2,8 @@
  * Shared environment for all tests.
  */
 
+var path = require('path');
+
 // @see http://webdriver.io/api.html
 var webdriverio = require('webdriverio');
 
@@ -19,9 +21,13 @@ var COMPONENT_BASE_PATH = 'http://localhost:9080/testRunner.html#!/component/$1/
 
 var WorldConstructor = function WorldConstructor(callback) {
 
+	// npm module binary path.
+	var phantomBinPath = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
+
 	var options = {
 		desiredCapabilities: {
-			browserName: BROWSER_PHANTOMJS
+			browserName: BROWSER_PHANTOMJS,
+			'phantomjs.binary.path': phantomBinPath
 		}
 	};
 
