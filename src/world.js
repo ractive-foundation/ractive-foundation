@@ -13,6 +13,7 @@ var assert = require('assert');
 
 // WebdriverIO Browser choices.
 const BROWSER_PHANTOMJS = 'phantomjs';
+const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
 
 const WEBDRIVER_TIMEOUT = 5000;
 
@@ -21,13 +22,10 @@ var COMPONENT_BASE_PATH = 'http://localhost:9080/testRunner.html#!/component/$1/
 
 var WorldConstructor = function WorldConstructor(callback) {
 
-	// npm module binary path.
-	var phantomBinPath = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
-
 	var options = {
 		desiredCapabilities: {
 			browserName: BROWSER_PHANTOMJS,
-			'phantomjs.binary.path': phantomBinPath
+			'phantomjs.binary.path': BROWSER_PHANTOMJS_PATH
 		}
 	};
 
