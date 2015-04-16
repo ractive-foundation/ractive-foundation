@@ -1,11 +1,11 @@
-var through = require('through2'),
+var through  = require('through2'),
 	gulputil = require('gulp-util'),
-	Ractive = require('ractive'),
-	marked = require('marked'),
-	fs = require('fs'),
-	find = require('find'),
-	_ = require('lodash'),
-	path = require('path'),
+	Ractive  = require('ractive'),
+	marked   = require('marked'),
+	fs       = require('fs'),
+	find     = require('find'),
+	_        = require('lodash'),
+	path     = require('path'),
 	makeHTML = require('json2htmljson2css').makeHTML;
 
 var PluginError = gulputil.PluginError;
@@ -35,28 +35,24 @@ function renderAttributes(options) {
 	return html.join('');
 }
 
-function renderUseCases(usecase) {
-
-	var json = JSON.parse(fs.readFileSync(usecase));
-
-	var componentName = usecase.split(path.sep).slice(-3)[0];
+function renderUseCases(useCase, componentName) {
 
 	var useCaseUid = _.uniqueId(
 		[
 			_.camelCase(componentName),
-			_.camelCase(path.basename(usecase).replace('.json', '')),
+			_.camelCase(path.basename(useCase).replace('.useCase', '')),
 			''
 		].join('_')
 	);
 
 	var attr;
 
-	if (json.isDataModel) {
+	if (useCase.isDataModel) {
 		attr = {
-			datamodel: _.escape(_.escape(JSON.stringify(json.data)))
+			datamodel: _.escape(_.escape(JSON.stringify(useCase.data)))
 		};
 	} else {
-		attr = _.zipObject(_.keys(json.data), _.values(json.data));
+		attr = _.zipObject(_.keys(useCase.data), _.values(useCase.data));
 	}
 
 	var componentObj = {
@@ -68,7 +64,7 @@ function renderUseCases(usecase) {
 	var componentUseCase = _.cloneDeep(componentObj);
 	componentUseCase.attr.uid = useCaseUid;
 
-	if (json.isDataModel) {
+	if (useCase.isDataModel) {
 		componentObj.attr.datamodel = '{{dataModel}}';
 	}
 
@@ -76,7 +72,7 @@ function renderUseCases(usecase) {
 	var component = makeHTML([
 		{
 			tag: 'h5',
-			content: 'Use case: ' + json.title
+			content: 'Use case: ' + useCase.title
 		},
 		{
 			tag: 'div',
@@ -145,42 +141,35 @@ function renderDocumentation(options) {
 			return callback();
 		}
 
-		try {
 			// load the interface specification
 			var manifests = JSON.parse(String(file.contents));
-			//manifests = _.indexBy(manifests, 'componentName');
 
 			var sideNavData = {};
 
 			var componentsHTML = _(manifests).map(function (manifest) {
-				var paths = {},
-					out = {};
 
 				// Build up sideNavDataModel
-				var cat = manifest.category || 'uncategorised';
+				var cat = manifest.manifest.category || 'uncategorised';
 				sideNavData[cat] = sideNavData[cat] || [];
 				sideNavData[cat].push(manifest.componentName);
 
-				paths.componentDir = path.join(options.componentsDir, manifest.componentName);
-				paths.readme = path.join(paths.componentDir, 'README.md');
-				paths.useCasesDir =  path.join(paths.componentDir, 'use-cases');
-
-				out.useCasesHTML = _.map(find.fileSync(/.*\.json/, paths.useCasesDir), renderUseCases).join('');
-
-				out.readmeMd = marked(String(fs.readFileSync(paths.readme)));
-
-				out.componentName = manifest.componentName;
-
-				out.manifestHTML = {
-					events: renderAttributes(manifest.events),
-					dataModel: renderAttributes(manifest.data)
+				var out = {
+					readmeMd:      marked(manifest.readme),
+					componentName: manifest.componentName,
+					manifestHTML:  {
+						events:    renderAttributes(manifest.manifest.events),
+						dataModel: renderAttributes(manifest.manifest.data)
+					}
 				};
+				out.useCasesHTML= _.map(manifest.useCases, function (useCase) {
+					return renderUseCases(useCase, manifest.componentName);
+				}).join('');
 
 				return out;
 
 			}).value();
 
-			var docFile = String(fs.readFileSync(options.docSrcPath));
+			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
 
 			var ractive = new Ractive({
 				template: docFile,
@@ -195,7 +184,8 @@ function renderDocumentation(options) {
 			file.contents = new Buffer(toHTML);
 
 			this.push(file);
-		}
+
+		try {}
 
 		catch (e) {
 			console.warn('Error caught: ' + e);
