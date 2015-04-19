@@ -71,7 +71,7 @@ Ractive.extend({
 		// See https://github.com/pyrsmk/qwest for API details.
 		RactiveF.plugins.qwest
 			// Using get because ractive-foundation server only supports GET by default.
-			.post(serviceURL, formData,{dataType:'document', timeout : '10000'})
+			.post(serviceURL, formData,{dataType:'document', timeout : '50000'})
 			.then(function (response) {
 				self.set('message', 'Completed');
 

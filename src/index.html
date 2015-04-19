@@ -3,29 +3,11 @@
 		<ux-col class="small-12">
 			<ux-header level="1">Ractive Foundation Kitchensink Demo</ux-header>
 			<ux-panel>
-				This is a kitchensink demo of all the ractive components available in the styleguide.
-				Later, stuff like should be auto-generated into the styleguide website.
 			</ux-panel>
 		</ux-col>
 	</ux-row>
 </div>
 
-<!-- demo to showcase XHR usage in a component. -->
-<div class="ractivef hide">
-
-    <ux-row>
-        <ux-col class="small-12">
-
-            <hr/>
-
-            <ux-demo-xhr></ux-demo-xhr>
-
-            <hr/>
-
-        </ux-col>
-    </ux-row>
-
-</div>
 
 <div class="ractivef hide">
         <!-- tabs to wrap everything -->
@@ -60,18 +42,12 @@
                          <!-- checkout -->
                         <ux-tabpane>
 
-                            <ux-row>
-                                <ux-col class="small-12">
-                                    <ux-header level="2">ux-checkout-identity demo</ux-header>
-                                </ux-col>
-                            </ux-row>
-
                             <ux-row><ux-col class="small-12"><hr/></ux-col></ux-row>
 
                             <ux-row>
                                 <ux-col class="small-12">
 
-                                    <ux-checkout-identity datamodel="{&quot;uploadIdentity&quot;: {&quot;text&quot;:&quot;Select NRIC File&quot;,&quot;serviceURL&quot;:&quot;/use-cases/ux-checkout-identity/responseIdDetails.json&quot;}}"/>
+                                    <ux-checkout-identity datamodel="{&quot;uploadIdentity&quot;: {&quot;text&quot;:&quot;Select NRIC File&quot;,&quot;serviceURL&quot;:&quot;http://localhost:8000/api/photo&quot;}}"/>
 
                                 </ux-col>
                             </ux-row>
