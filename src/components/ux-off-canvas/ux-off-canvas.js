@@ -5,7 +5,7 @@ Ractive.extend({
 	data: function () {
 		return {
 			title: 'UX Off Canvas Demo',
-			isExpanded: false,
+			expandedState: '',
 			leftItems: [
 
 				{ label: 'Learn Move' },
@@ -39,12 +39,19 @@ Ractive.extend({
 	computed: {
 
 		/**
-		 * You can expand from left and/or right, or none.
-		 * @returns {string} CSS class: move-right or move-left.
+		 * @returns {string} CSS class: left = move-right or right = move-left.
 		 */
 		getExpandedClass: function () {
 
-			return this.get('isExpanded') ? 'move-right' : '';
+			switch (this.get('expandedState')) {
+				case 'left':
+					return 'move-right';
+				case 'right':
+					return 'move-left';
+			}
+
+			// Default is empty string for no css class.
+			return '';
 
 		}
 
@@ -52,9 +59,9 @@ Ractive.extend({
 
 	oninit: function () {
 
+		// You can expand from left or right, or none. Can't do both at the same time.
 		this.on('toggleMenu', function (event, direction) {
-			debugger;
-			this.toggle('isExpanded');
+			this.set('expandedState', direction);
 		});
 
 	}
