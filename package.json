@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
-    "start": "npm prune && npm install && gulp"
+    "start": "npm prune && npm install && gulp",
+    "postinstall": "./node_modules/selenium-standalone/bin/selenium-standalone install"
   },
   "repository": {
     "type": "git",
