@@ -1,0 +1,65 @@
+<div class="off-canvas-wrap {{getExpandedClass}}" data-offcanvas>
+    <div class="inner-wrap">
+
+        <nav class="tab-bar">
+
+            {{#if leftItems}}
+                <section class="left-small">
+                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'left' ? 'true' : 'false' }}" on-click="toggleMenu:left"><span></span></a>
+                </section>
+            {{/if}}
+
+            <section class="middle tab-bar-section">
+                <h1 class="title">{{title}}</h1>
+            </section>
+
+            {{#if rightItems}}
+                <section class="right-small">
+                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'right' ? 'true' : 'false' }}" on-click="toggleMenu:right"><span></span></a>
+                </section>
+            {{/if}}
+
+        </nav>
+
+        {{#if leftItems}}
+            <aside class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    {{#leftItems}}
+                        <li>
+                            {{#if href}}
+                                <a href="{{href}}" {{#target}}target="{{target}}"{{/target}}>{{label}}</a>
+                            {{else}}
+                                <label>{{label}}</label>
+                            {{/if}}
+                        </li>
+                    {{/leftItems}}
+                </ul>
+            </aside>
+        {{/if}}
+
+        {{#if rightItems}}
+            <aside class="right-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    {{#rightItems}}
+                        <li>
+                            {{#if href}}
+                                <a href="{{href}}" {{#target}}target="{{target}}"{{/target}}>{{label}}</a>
+                            {{else}}
+                                <label>{{label}}</label>
+                            {{/if}}
+                        </li>
+                    {{/rightItems}}
+                </ul>
+            </aside>
+        {{/if}}
+
+        <section class="main-section">
+
+            {{{mainContent}}}
+
+        </section>
+
+        <a class="exit-off-canvas" on-click="toggleMenu"></a>
+
+    </div>
+</div>

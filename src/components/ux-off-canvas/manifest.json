@@ -1,0 +1,12 @@
+{
+	"data": {
+		"title": "The text to display on the ux-off-canvas component",
+		"expandedState": "left, right or empty string",
+		"leftItems": "Array of nav items for the LHS",
+		"rightItems": "Array of nav items for the RHS",
+		"mainContent": "HTML string with component's contents."
+	},
+	"events": {
+	},
+	"category": "navigation"
+}
