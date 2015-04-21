@@ -1,0 +1,10 @@
+{
+	"data": {
+		"title": "The text to display on the ux-off-canvas component",
+		"menu": "Array of items, which have a label and href properties.",
+		"isExpanded": "Show expanded by default or not. Default false."
+	},
+	"events": {
+	},
+	"category": "navigation"
+}

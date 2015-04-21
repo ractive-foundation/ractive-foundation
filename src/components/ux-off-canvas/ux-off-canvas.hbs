@@ -1,0 +1,43 @@
+<div class="off-canvas-wrap {{#isExpanded}}move-right{{/}}" data-offcanvas>
+    <div class="inner-wrap">
+
+        <nav class="tab-bar">
+
+            <section class="left-small">
+
+                {{! Controls the expand/collapse of off-canvas. }}
+                <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ isExpanded ? 'true' : 'false' }}" on-click="toggleMenu">
+                    <span></span>
+                </a>
+
+            </section>
+
+            <section class="middle tab-bar-section">
+                <h1 class="title">UX Off Canvas</h1>
+            </section>
+
+        </nav>
+
+        <aside class="left-off-canvas-menu">
+            <ul class="off-canvas-list">
+                <li><label>Learn More</label></li>
+                <li><a href=".">Home</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="demo.html">Demo</a></li>
+                <li><label>External Links</label></li>
+                <li><a href="http://foundation.zurb.com/docs/">Foundation docs</a></li>
+                <li><a href="http://docs.ractivejs.org/latest/get-started">RactiveJS docs</a></li>
+            </ul>
+        </aside>
+
+        <section class="main-section">
+
+            {{>content}}
+
+        </section>
+
+        <a class="exit-off-canvas" on-click="toggleMenu"></a>
+
+    </div>
+</div>

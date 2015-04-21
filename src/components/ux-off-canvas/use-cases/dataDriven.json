@@ -1,0 +1,10 @@
+{
+	"title": "Use case with custom attributes",
+	"isDataModel": true,
+	"data": {
+		"title": "Display title",
+		"isExpanded": false,
+		"menu": [],
+		"content": "Main component html goes here."
+	}
+}
