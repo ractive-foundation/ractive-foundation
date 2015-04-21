@@ -5,7 +5,7 @@
 
             {{#if leftItems}}
                 <section class="left-small">
-                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'left' ? 'true' : 'false' }}" on-click="toggleMenu:left"><span></span></a>
+                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'left' ? 'true' : 'false' }}" on-tap="updateMenu:left"><span></span></a>
                 </section>
             {{/if}}
 
@@ -15,7 +15,7 @@
 
             {{#if rightItems}}
                 <section class="right-small">
-                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'right' ? 'true' : 'false' }}" on-click="toggleMenu:right"><span></span></a>
+                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'right' ? 'true' : 'false' }}" on-tap="updateMenu:right"><span></span></a>
                 </section>
             {{/if}}
 
@@ -59,7 +59,7 @@
 
         </section>
 
-        <a class="exit-off-canvas" on-click="toggleMenu"></a>
+        <a class="exit-off-canvas" on-tap="updateMenu"></a>
 
     </div>
 </div>
