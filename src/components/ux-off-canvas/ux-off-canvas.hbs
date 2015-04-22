@@ -55,7 +55,11 @@
 
         <section class="main-section">
 
-            {{{mainContent}}}
+            {{#if mainContent}}
+                {{{mainContent}}}
+            {{else}}
+                {{>content}}
+            {{/if}}
 
         </section>
 
