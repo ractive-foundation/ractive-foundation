@@ -38,7 +38,9 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.js',
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
-			'./node_modules/ractive-events-tap/dist/ractive-events-tap.js',
+			//'./node_modules/ractive-events-tap/dist/ractive-events-tap.js',
+			'./node_modules/hammerjs/hammer.min.js',
+			'./node_modules/ractive-touch/index.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
 			'./node_modules/lodash/lodash.min.js',
@@ -137,6 +139,10 @@ gulp.task('build-documentation', function () {
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
 		.pipe(gulp.dest('./public/')),
+
+		// Blank pages
+		gulp.src([ './src/blank-pages/*.html' ])
+			.pipe(gulp.dest('./public/')),
 
 		// Test runner while we're at it.
 		gulp.src('./src/testRunner.html')
