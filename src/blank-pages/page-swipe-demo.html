@@ -20,23 +20,174 @@
     <ux-page-swipe>
 
         <div class="page page1" on-swipeleft="nextPage">
-            <ux-header level="2">Page 1</ux-header>
+
+            <ux-row><ux-col class="small-12"><ux-header level="1">Page 1</ux-header></ux-col></ux-row>
+
+            <ux-row>
+                <ux-col class="small-12">
+
+                    <ux-header level="1">h1. This is a very large header.</ux-header>
+                    <ux-header level="2">h2. This is a large header.</ux-header>
+                    <ux-header level="3">h3. This is a medium header.</ux-header>
+                    <ux-header level="4">h4. This is a moderate header.</ux-header>
+                    <ux-header level="5">h5. This is a small header.</ux-header>
+                    <ux-header level="6">h6. This is a tiny header.</ux-header>
+
+                    <ux-header class="subheader" level="1">h1.subheader</ux-header>
+                    <ux-header class="subheader" level="2">h2.subheader</ux-header>
+                    <ux-header class="subheader" level="3">h3.subheader</ux-header>
+                    <ux-header class="subheader" level="4">h4.subheader</ux-header>
+                    <ux-header class="subheader" level="5">h5.subheader</ux-header>
+                    <ux-header class="subheader" level="6">h6.subheader</ux-header>
+
+                </ux-col>
+            </ux-row>
+
+
         </div>
 
         <div class="page page2" on-swipeleft="nextPage" on-swiperight="prevPage">
-            <ux-header level="2">Page 2</ux-header>
+            <ux-row><ux-col class="small-12"><ux-header level="1">Page 2</ux-header></ux-col></ux-row>
+            <ux-row>
+                <ux-col class="small-12">
+
+                    <ux-pricingtable href="/buy/samsunggalaxys6/now" status="comingsoon">
+                        <ux-li class="title">Samsung Galaxy S6</ux-li>
+                        <ux-li class="price">$49.99</ux-li>
+                        <ux-li class="description">
+                            Introducing the Samsung Galaxy S6 edge. Welcome to beauty without borders:
+                            a design that feels like it melts away for a stunning, immersive experience.
+                            Swiping the edge checks for calls and notifications from your loved ones.
+                            It also makes staying connected via email, messages or social feeds simple and accessible*.
+                            More than just dazzling, it lives in that special place where form meets function.
+                        </ux-li>
+                        <ux-li class="bullet-item">5.1 inches</ux-li>
+                        <ux-li class="bullet-item">2k display</ux-li>
+                        <ux-li class="bullet-item">138grams</ux-li>
+                        <ux-li class="bullet-item">6.8mm thick</ux-li>
+                    </ux-pricingtable>
+
+                </ux-col>
+            </ux-row>
         </div>
 
         <div class="page page3" on-swipeleft="nextPage" on-swiperight="prevPage">
-            <ux-header level="2">Page 3</ux-header>
+            <ux-row><ux-col class="small-12"><ux-header level="1">Page 3</ux-header></ux-col></ux-row>
+            <ux-row>
+                <ux-col class="small-12">
+
+                    <ux-tabarea>
+                        <ux-tablinks>
+                            <ux-tablink active="true">Tab One</ux-tablink>
+                            <ux-tablink>Tab Two</ux-tablink>
+                            <ux-tablink>Tab Three</ux-tablink>
+                            <ux-tablink>Tab Four</ux-tablink>
+                            <ux-tablink id="tab-deeplink-5">Tab Five</ux-tablink>
+                        </ux-tablinks>
+
+                        <ux-tabpanes>
+                            <ux-tabpane>
+                                First tab content
+                            </ux-tabpane>
+                            <ux-tabpane>
+                                Second tab content
+
+                                <ux-tabarea>
+                                    <ux-tablinks>
+                                        <ux-tablink active="true">Nested Tab One</ux-tablink>
+                                        <ux-tablink>Nested Tab Two</ux-tablink>
+                                        <ux-tablink>Nested Tab Three</ux-tablink>
+                                        <ux-tablink>Nested Tab Fourth</ux-tablink>
+                                    </ux-tablinks>
+
+                                    <ux-tabpanes>
+                                        <ux-tabpane>
+                                            Nested first tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested second tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested third tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested fouth tab content
+                                        </ux-tabpane>
+                                    </ux-tabpanes>
+                                </ux-tabarea>
+
+                            </ux-tabpane>
+                            <ux-tabpane>
+                                Third tab content
+                            </ux-tabpane>
+                            <ux-tabpane>
+                                Four tab content
+
+                                <ux-tabarea>
+                                    <ux-tablinks>
+                                        <ux-tablink>Nested Tab One</ux-tablink>
+                                        <ux-tablink>Nested Tab Two</ux-tablink>
+                                        <ux-tablink active="true">Nested Tab Three</ux-tablink>
+                                        <ux-tablink>Nested Tab Fourth</ux-tablink>
+                                    </ux-tablinks>
+
+                                    <ux-tabpanes>
+                                        <ux-tabpane>
+                                            Nested first tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested second tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested third tab content
+                                        </ux-tabpane>
+                                        <ux-tabpane>
+                                            Nested fouth tab content
+                                        </ux-tabpane>
+                                    </ux-tabpanes>
+                                </ux-tabarea>
+
+                            </ux-tabpane>
+                            <ux-tabpane>
+                                Five tab content
+                            </ux-tabpane>
+
+
+                        </ux-tabpanes>
+                    </ux-tabarea>
+
+                </ux-col>
+            </ux-row>
         </div>
 
         <div class="page page4" on-swipeleft="nextPage" on-swiperight="prevPage">
-            <ux-header level="2">Page 4</ux-header>
+            <ux-row><ux-col class="small-12"><ux-header level="1">Page 4</ux-header></ux-col></ux-row>
+            <ux-row>
+                <ux-col class="small-12">
+                    <ux-iconbar>
+                        <ux-iconbaritem href="/" src="images/fi-home.svg">Home</ux-iconbaritem>
+                        <ux-iconbaritem href="/path/to/blah" src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+                        <ux-iconbaritem src="images/fi-info.svg" class="disabled">Info</ux-iconbaritem>
+                        <ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+                        <ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
+                    </ux-iconbar>
+                </ux-col>
+            </ux-row>
         </div>
 
         <div class="page page5" on-swiperight="prevPage">
-            <ux-header level="2">Page 5</ux-header>
+            <ux-row><ux-col class="small-12"><ux-header level="1">Page 5</ux-header></ux-col></ux-row>
+            <ux-row>
+                <ux-col class="small-12">
+                    <ux-button class="primary radius">Primary</ux-button>
+                </ux-col>
+                <ux-col class="small-12">
+                    <ux-button class="success small radius">Success</ux-button>
+                </ux-col>
+                <ux-col class="small-12">
+                    <ux-button class="alert tiny radius" href="#test">Link</ux-button>
+                </ux-col>
+            </ux-row>
         </div>
 
     </ux-page-swipe>
