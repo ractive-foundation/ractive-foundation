@@ -1,0 +1,66 @@
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+$max-pages: 10;
+
+.ractivef {
+	height: 100%;
+}
+
+.ux-page-swipe {
+
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+
+	@for $i from 0 through $max-pages {
+		&.is-onPage#{$i+1} {
+			.page {
+				position: relative;
+				left: -#{(100% / $max-pages) * $i};
+			}
+		}
+	}
+
+	.pageContainer {
+		height: 100%;
+		width: 100% * $max-pages;
+		@include clearfix;
+	}
+
+	.page {
+
+		float: left;
+		width: 100% / $max-pages;
+		height: 100%;
+
+		-webkit-transition: left .25s ease-in;
+		transition: left .25s ease-in;
+
+		&.page1 {
+			background-color: #ccc;
+		}
+		&.page2 {
+			background-color: darkred;
+		}
+		&.page3 {
+			background-color: indianred;
+		}
+		&.page4 {
+			background-color: chartreuse;
+		}
+		&.page5 {
+			background-color: lightblue;
+		}
+
+
+	}
+
+
+
+}
