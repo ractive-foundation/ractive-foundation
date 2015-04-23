@@ -3,7 +3,7 @@
 
 [![Code Quality](https://www.codacy.com/project/badge/abe39910d64144fc9219964f3652dbda)](https://www.codacy.com/app/pv-shum/ractive-foundation) 
 
-[![Dependencies Status](https://david-dm.org/themacclesoft/ractive-foundation.svg)](https://david-dm.org/themacclesoft/ractive-foundation.svg) 
+[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation.svg) 
 
 [![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
