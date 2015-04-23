@@ -38,6 +38,7 @@ $max-pages: 10;
 		float: left;
 		width: 100% / $max-pages;
 		height: 100%;
+		overflow-y: scroll;
 
 		-webkit-transition: left .25s ease-in;
 		transition: left .25s ease-in;
