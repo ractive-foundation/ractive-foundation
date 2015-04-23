@@ -236,8 +236,8 @@ gulp.task('cucumber', function(callback) {
 		);
 });
 
-gulp.task('test', function (callback) {
-	runSequence('build', 'connect', 'cucumber', function (err) {
+gulp.task('test', [ 'selenium-standalone-install', 'build' ], function (callback) {
+	runSequence('connect', 'cucumber', function (err) {
    		process.exit(err ? 1 : 0);
     });
 });
@@ -247,6 +247,11 @@ gulp.task('jshint', function (callback) {
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
 		.pipe(jshintFailReporter());
+});
+
+gulp.task('selenium-standalone-install', function () {
+	return plugins.run('./node_modules/selenium-standalone/bin/selenium-standalone install')
+		.exec();
 });
 
 gulp.task('default', function () {
