@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>RF: Page Swipe Demo</title>
+
+    <link rel="stylesheet" href="css/foundation/normalize.css">
+    <link rel="stylesheet" href="css/foundation/foundation.css">
+    <link rel="stylesheet" href="css/components.css">
+
+</head>
+<body>
+
+<div class="ractivef hide">
+
+    <ux-page-swipe>
+
+        <div class="page page1" on-swipeleft="nextPage">
+            <ux-header level="2">Page 1</ux-header>
+        </div>
+
+        <div class="page page2" on-swipeleft="nextPage" on-swiperight="prevPage">
+            <ux-header level="2">Page 2</ux-header>
+        </div>
+
+        <div class="page page3" on-swipeleft="nextPage" on-swiperight="prevPage">
+            <ux-header level="2">Page 3</ux-header>
+        </div>
+
+        <div class="page page4" on-swipeleft="nextPage" on-swiperight="prevPage">
+            <ux-header level="2">Page 4</ux-header>
+        </div>
+
+        <div class="page page5" on-swiperight="prevPage">
+            <ux-header level="2">Page 5</ux-header>
+        </div>
+
+    </ux-page-swipe>
+
+</div>
+
+<script src="js/lodash.min.js"></script>
+<script src="js/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammer.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>
