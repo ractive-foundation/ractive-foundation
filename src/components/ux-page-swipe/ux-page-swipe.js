@@ -11,26 +11,25 @@ Ractive.extend({
 		// see oncomplete.
 		this.container = null;
 		this.pageWidth = 0;
-		this.totalPages = 0;
 
 		// Intent: User has stopped panning with their finger, so lets move the position of the overflow element to
 		// the closest page (Math.round).
-		this.on('scrollToNearestPage', function (e) {
+		this.on('scrollToNearestPage *.scrollToNearestPage', function (e) {
 			var currentPos = this.container.scrollLeft;
-			var currentPageIndex = Math.round(currentPos /  this.pageWidth);
-			this.container.scrollLeft = currentPageIndex * this.pageWidth;
+			var closestPageIndex = Math.round(currentPos /  this.pageWidth);
+			var closestPageScrollLeft = closestPageIndex * this.pageWidth;
+			this.container.scrollLeft = closestPageScrollLeft;
 			return false;
 		});
 
 	},
 
 	/**
-	 * Find DOM elements and cache refernces to them.
+	 * Find DOM elements and cache references to them.
 	 */
 	oncomplete: function () {
 		this.container = this.find('.ux-page-swipe');
-		this.pageWidth = this.find('.page').scrollWidth;
-		this.totalPages = this.findAll('.page').length;
+		this.pageWidth = this.find('.page').offsetWidth;
 	}
 
 });
