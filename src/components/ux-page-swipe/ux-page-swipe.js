@@ -15,7 +15,7 @@ Ractive.extend({
 
 		// Intent: User has stopped panning with their finger, so lets move the position of the overflow element to
 		// the closest page (Math.round).
-		this.on('scrollToNearestPage *.scrollToNearestPage', function (e) {
+		this.on('scrollToNearestPage', function (e) {
 
 			// Get the pageWidth every time, because the viewport size can change.
 			var pageWidth = this.find('.page').offsetWidth;
