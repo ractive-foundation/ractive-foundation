@@ -1,47 +1,18 @@
-@mixin clearfix {
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-}
-
-$max-pages: 10;
-
-.ractivef {
-	height: 100%;
-}
-
 .ux-page-swipe {
 
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-
-	@for $i from 0 through $max-pages {
-		&.is-onPage#{$i+1} {
-			.page {
-				position: relative;
-				left: -#{(100% / $max-pages) * $i};
-			}
-		}
-	}
-
-	.pageContainer {
-		height: 100%;
-		width: 100% * $max-pages;
-		@include clearfix;
-	}
+	width: 100vw;
+	white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
 
 	.page {
 
-		float: left;
-		width: 100% / $max-pages;
-		height: 100%;
+		display: inline-block;
+		width: 100vw;
+		height: 100vh;
 		overflow-y: scroll;
-
-		-webkit-transition: left .25s ease-in;
-		transition: left .25s ease-in;
+		overflow-x: hidden;
 
 		&.page1 {
 			background-color: #ccc;
