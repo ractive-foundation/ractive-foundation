@@ -11,15 +11,17 @@ Ractive.extend({
 
 		// see oncomplete.
 		this.container = null;
-		this.pageWidth = 0;
 		this.closestPageIndex = 0;
 
 		// Intent: User has stopped panning with their finger, so lets move the position of the overflow element to
 		// the closest page (Math.round).
 		this.on('scrollToNearestPage *.scrollToNearestPage', function (e) {
+
+			// Get the pageWidth every time, because the viewport size can change.
+			var pageWidth = this.find('.page').offsetWidth;
 			var currentPos = this.container.scrollLeft;
-			this.closestPageIndex = Math.round(currentPos /  this.pageWidth);
-			var closestPageScrollLeft = this.closestPageIndex * this.pageWidth;
+			this.closestPageIndex = Math.round(currentPos / pageWidth);
+			var closestPageScrollLeft = this.closestPageIndex * pageWidth;
 
 			//this.container.scrollLeft = closestPageScrollLeft;
 			TinyAnimate.animate(this.container.scrollLeft, closestPageScrollLeft, 100, function(x) {
@@ -27,6 +29,7 @@ Ractive.extend({
 			}.bind(this));
 
 			return false;
+
 		});
 
 	},
@@ -36,7 +39,6 @@ Ractive.extend({
 	 */
 	oncomplete: function () {
 		this.container = this.find('.ux-page-swipe');
-		this.pageWidth = this.find('.page').offsetWidth;
 	}
 
 });
