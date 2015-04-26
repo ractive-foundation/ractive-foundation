@@ -1,10 +1,10 @@
 <div class="ractivef hide">
 	<ux-swipe-slide>
 		<!--<ux-tablinks>-->
-			<!--<ux-tablink id="structure" active="true">Structure</ux-tablink>-->
-			<!--<ux-tablink id="buttons">Buttons</ux-tablink>-->
-			<!--<ux-tablink id="buttons">Typography</ux-tablink>-->
-			<!--<ux-tablink id="content">Content</ux-tablink>-->
+		<!--<ux-tablink id="structure" active="true">Structure</ux-tablink>-->
+		<!--<ux-tablink id="buttons">Buttons</ux-tablink>-->
+		<!--<ux-tablink id="buttons">Typography</ux-tablink>-->
+		<!--<ux-tablink id="content">Content</ux-tablink>-->
 		<!--</ux-tablinks>-->
 
 
@@ -283,11 +283,76 @@
 
 			</ux-row>
 
-
 		</ux-swipe-slide-page>
 
+		<!-- Iconbar examples -->
 		<ux-swipe-slide-page>
-
+			<ux-row>
+				<ux-col class="small-12">
+					<ux-header level="2">Iconbar</ux-header>
+					<p>See
+						<ux-anchor href="http://foundation.zurb.com/docs/components/icon-bar.html" target="_blank">Foundation docs for icon-bar</ux-anchor>
+						for usage details etc.
+					</p>
+				</ux-col>
+				<ux-col class="small-12">
+					<ux-header level="3">Default</ux-header>
+					<ux-iconbar>
+						<ux-iconbaritem href="/" src="images/fi-home.svg">Home</ux-iconbaritem>
+						<ux-iconbaritem href="/path/to/blah" src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-info.svg" class="disabled">Info</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+				<ux-col class="small-12">
+					<ux-header level="3">label right</ux-header>
+					<ux-iconbar class="label-right">
+						<ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-info.svg" class="disabled">Info</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+				<ux-col class="small-12">
+					<ux-header level="3">no labels</ux-header>
+					<ux-iconbar labels="false">
+						<ux-iconbaritem arialabel="Home" src="images/fi-home.svg"></ux-iconbaritem>
+						<ux-iconbaritem arialabel="Bookmark" src="images/fi-bookmark.svg"></ux-iconbaritem>
+						<ux-iconbaritem arialabel="Info" src="images/fi-info.svg" class="disabled"></ux-iconbaritem>
+						<ux-iconbaritem arialabel="Mail" src="images/fi-mail.svg"></ux-iconbaritem>
+						<ux-iconbaritem arialabel="Like" src="images/fi-like.svg"></ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+				<ux-col class="small-12 large-4">
+					<ux-header level="3">default-vertical</ux-header>
+					<ux-iconbar class="vertical">
+						<ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+				<ux-col class="small-12 large-4">
+					<ux-header level="3">medium-vertical</ux-header>
+					<ux-iconbar class="medium-vertical">
+						<ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+				<ux-col class="small-12 large-4">
+					<ux-header level="3">large-vertical</ux-header>
+					<ux-iconbar class="large-vertical">
+						<ux-iconbaritem src="images/fi-home.svg">Home</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-bookmark.svg">Bookmark</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-info.svg">Info</ux-iconbaritem>
+						<ux-iconbaritem src="images/fi-mail.svg">Mail</ux-iconbaritem>
+					</ux-iconbar>
+				</ux-col>
+			</ux-row>
 
 
 		</ux-swipe-slide-page>
