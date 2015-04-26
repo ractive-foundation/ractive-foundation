@@ -3,15 +3,10 @@ Ractive.extend({
 
 	template: RactiveF.templates['ux-page-swipe'],
 
-	data: {
-		currentPage: 1
-	},
-
 	oninit: function () {
 
 		// see oncomplete.
 		this.container = null;
-		this.closestPageIndex = 0;
 
 		// Intent: User has stopped panning with their finger, so lets move the position of the overflow element to
 		// the closest page (Math.round).
@@ -20,8 +15,8 @@ Ractive.extend({
 			// Get the pageWidth every time, because the viewport size can change.
 			var pageWidth = this.find('.page').offsetWidth;
 			var currentPos = this.container.scrollLeft;
-			this.closestPageIndex = Math.round(currentPos / pageWidth);
-			var closestPageScrollLeft = this.closestPageIndex * pageWidth;
+			var closestPageIndex = Math.round(currentPos / pageWidth);
+			var closestPageScrollLeft = closestPageIndex * pageWidth;
 
 			//this.container.scrollLeft = closestPageScrollLeft;
 			TinyAnimate.animate(this.container.scrollLeft, closestPageScrollLeft, 100, function(x) {
