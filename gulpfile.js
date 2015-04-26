@@ -50,7 +50,11 @@ gulp.task('copy-vendors', function () {
 		gulp.src([
 			'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
 		])
-		.pipe(gulp.dest('public/images/'))
+			.pipe(gulp.dest('public/images/')),
+
+		gulp.src('./src/swiper.min.js').pipe(gulp.dest('./public/js/')),
+
+		gulp.src('./src/swiper.min.css').pipe(gulp.dest('./public/css/'))
 
 	);
 
