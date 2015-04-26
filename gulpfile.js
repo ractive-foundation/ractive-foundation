@@ -39,6 +39,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/hammerjs/hammer.min.js',
+			'./node_modules/TinyAnimate/bin/TinyAnimate.js',
 			'./node_modules/ractive-touch/index.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
