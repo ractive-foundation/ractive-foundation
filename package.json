@@ -53,7 +53,7 @@
   "dependencies": {
     "lodash": "git+https://github.com/lodash/lodash.git#master",
     "node-notifier": "^4.1.2",
-    "ractive": "^0.7.2",
+    "ractive": "^0.7.3",
     "ractive-events-tap": "^0.2.0",
     "zurb-foundation-5": "^5.4.7"
   }

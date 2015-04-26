@@ -36,7 +36,6 @@ RactiveF = {
 		if (!reservedEventNames.test(this.event.name)) {
 			console.log('Event', this.event.name);
 			console.log('Event handler arguments', origin);
-
 			var eventName = 'events.' + origin.get('uid');
 			if (!this.get(eventName)) {
 				this.set(eventName, []);
