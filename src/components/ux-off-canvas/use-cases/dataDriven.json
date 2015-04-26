@@ -1,12 +1,12 @@
 {
-	"title": "Use case with datamodel data",
+	"title": "data-driven example",
 	"isDataModel": true,
 	"data": {
 		"title": "UX Off Canvas Data Demo",
 		"expandedState": "",
 		"leftItems": [
 			{
-				"label": "Learn Move"
+				"label": "Learn More"
 			},
 			{
 				"label": "Home",
