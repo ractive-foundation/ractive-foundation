@@ -1,12 +1,12 @@
-var through  = require('through2'),
-	gulputil = require('gulp-util'),
-	Ractive  = require('ractive'),
-	marked   = require('marked'),
-	fs       = require('fs'),
-	find     = require('find'),
-	_        = require('lodash'),
-	path     = require('path'),
-	makeHTML = require('json2htmljson2css').makeHTML;
+var through   = require('through2'),
+	gulputil  = require('gulp-util'),
+	Ractive   = require('ractive'),
+	marked    = require('marked'),
+	fs        = require('fs'),
+	_         = require('lodash'),
+	path      = require('path'),
+	makeHTML  = require('json2htmljson2css').makeHTML,
+	VinylFile = require('vinyl');
 
 var PluginError = gulputil.PluginError;
 
@@ -103,7 +103,7 @@ function getSideNavDataModel(sideNavData) {
 	var sideNavDataModel = {
 		title: 'Docs Nav',
 		items: []
-	}
+	};
 
 	// Sort categories alphabetically for display.
 	var sortedCategories = Object.keys(sideNavData).sort();
@@ -119,7 +119,8 @@ function getSideNavDataModel(sideNavData) {
 
 			sideNavDataModel.items.push({
 				label: componentName,
-				href: '#' + componentName
+				// Link to individual component pages.
+				href: componentName + '.html'
 			});
 
 		});
@@ -157,7 +158,7 @@ function renderDocumentation(options) {
 				sideNavData[cat] = sideNavData[cat] || [];
 				sideNavData[cat].push(manifest.componentName);
 			});
-			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(sideNavData)))
+			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(sideNavData)));
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
@@ -176,9 +177,6 @@ function renderDocumentation(options) {
 					return renderUseCases(useCase, manifest.componentName);
 				}).join('');
 
-				console.log('\n\n****************', manifest.componentName,
-					'component:', JSON.stringify(component, null, 4));
-
 				var ractive = new Ractive({
 					template: docFile,
 					data: {
@@ -189,11 +187,22 @@ function renderDocumentation(options) {
 
 				var toHTML = ractive.toHTML();
 
-				file.contents = new Buffer(toHTML);
+				// Modify manifest-rf.json file data to create individual component html files for output.
+				var parsed = path.parse(file.path);
+				parsed.name = manifest.componentName;
+				parsed.base = manifest.componentName + '.html';
+				parsed.ext = '.html';
 
-				this.push(file);
+				var componentFile = new VinylFile({
+					cwd: './',
+					base: 'public',
+					path: path.format(parsed),
+					contents: new Buffer(toHTML)
+				});
 
-			}).value();
+				this.push(componentFile);
+
+			}.bind(this));
 
 		}
 
@@ -203,8 +212,8 @@ function renderDocumentation(options) {
 			return callback();
 		}
 
-
 		callback();
+
 	});
 
 	return stream;
