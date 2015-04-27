@@ -126,7 +126,8 @@ gulp.task('build-documentation', function () {
 		// Create one doc file per component, using single manifest-rf.json file data.
 		.pipe(renderDocumentation({
 			componentsDir: './src/components/',
-			docSrcPath: './src/docs.html'
+			docSrcPath: './src/component-page.html',
+			indexSrcPath: './src/components.html'
 		}))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
