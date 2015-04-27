@@ -1,7 +1,22 @@
-/*global TinyAnimate*/
 Ractive.extend({
 
 	template: RactiveF.templates['ux-page-swipe'],
+
+	data: {
+		currentPos: 0,
+		moveIncrement: 2
+	},
+
+	computed: {
+		calculateContainerStyle: function () {
+			return [
+				'transition-duration: 0ms',
+				'-webkit-transition-duration: 0ms',
+				'transform: translate3d(' + this.get('currentPos') + 'px, 0px, 0px)',
+				'-webkit-transform: translate3d(' + this.get('currentPos') + 'px, 0px, 0px)'
+			].join('; ');
+		}
+	},
 
 	oninit: function () {
 
@@ -14,17 +29,30 @@ Ractive.extend({
 
 			// Get the pageWidth every time, because the viewport size can change.
 			var pageWidth = this.find('.page').offsetWidth;
-			var currentPos = this.container.scrollLeft;
-			var closestPageIndex = Math.round(currentPos / pageWidth);
-			var closestPageScrollLeft = closestPageIndex * pageWidth;
+			var closestPageIndex = Math.round(this.get('currentPos') / pageWidth);
+			var closestPagePos = closestPageIndex * pageWidth;
 
-			//this.container.scrollLeft = closestPageScrollLeft;
-			TinyAnimate.animate(this.container.scrollLeft, closestPageScrollLeft, 100, function(x) {
-				this.container.scrollLeft = x;
-			}.bind(this));
+			this.set('currentPos', closestPagePos);
 
 			return false;
 
+		});
+
+		this.on('moveNext', function (e) {
+			// Drag backwards to go "next"
+			var newPos = this.get('currentPos') - this.get('moveIncrement');
+			// TODO Check for outer bound.
+			this.set('currentPos', newPos);
+			return false;
+		});
+
+		this.on('movePrev', function (e) {
+			// Push forwards to go "prev".
+			var newPos = this.get('currentPos') + this.get('moveIncrement');
+			// Check bounds.
+			newPos = newPos > 0 ? 0 : newPos;
+			this.set('currentPos', newPos);
+			return false;
 		});
 
 	},

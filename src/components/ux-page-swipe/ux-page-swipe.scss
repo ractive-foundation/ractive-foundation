@@ -4,8 +4,9 @@
 	height: 100vh;
 	width: 100vw;
 	white-space: nowrap;
-	overflow-y: hidden;
-	overflow-x: scroll;
+	//overflow-y: hidden;
+	//overflow-x: scroll;
+	overflow: hidden;
 	
 	// auto = Content immediately ceases to scroll when you remove finger from touchscreen.
 	-webkit-overflow-scrolling: auto;
@@ -20,7 +21,7 @@
 		height: 100%;
 		padding: 0;
 		overflow-y: scroll;
-		overflow-x: hidden;
+		//overflow-x: hidden;
 		white-space: normal;
 
 		&.page1 {
