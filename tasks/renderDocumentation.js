@@ -134,6 +134,7 @@ function getSideNavDataModel(sideNavData) {
  * Stream through manifest-all.js - all the component manifest files.
  */
 function renderDocumentation(options) {
+
 	var stream = through.obj(function (file, enc, callback) {
 
 		if (file.isStream()) {
@@ -148,14 +149,20 @@ function renderDocumentation(options) {
 
 			var sideNavData = {};
 
-			var componentsHTML = _(manifests).map(function (manifest) {
+			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
 
-				// Build up sideNavDataModel
+			// Build up sideNavDataModel first.
+			_.each(manifests, function (manifest) {
 				var cat = manifest.manifest.category || 'uncategorised';
 				sideNavData[cat] = sideNavData[cat] || [];
 				sideNavData[cat].push(manifest.componentName);
+			});
+			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(sideNavData)))
 
-				var out = {
+			// Now create separate component docs pages.
+			_.each(manifests, function (manifest) {
+
+				var component = {
 					readmeMd:      marked(manifest.readme),
 					componentName: manifest.componentName,
 					manifestHTML:  {
@@ -163,29 +170,30 @@ function renderDocumentation(options) {
 						dataModel: renderAttributes(manifest.manifest.data)
 					}
 				};
-				out.useCasesHTML= _.map(manifest.useCases, function (useCase) {
+
+				// Render all use cases into html.
+				component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
 					return renderUseCases(useCase, manifest.componentName);
 				}).join('');
 
-				return out;
+				console.log('\n\n****************', manifest.componentName,
+					'component:', JSON.stringify(component, null, 4));
+
+				var ractive = new Ractive({
+					template: docFile,
+					data: {
+						sideNavDataModel: sideNavDataModel,
+						component: component
+					}
+				});
+
+				var toHTML = ractive.toHTML();
+
+				file.contents = new Buffer(toHTML);
+
+				this.push(file);
 
 			}).value();
-
-			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
-
-			var ractive = new Ractive({
-				template: docFile,
-				data: {
-					sideNavDataModel: _.escape(JSON.stringify(getSideNavDataModel(sideNavData))),
-					components: componentsHTML
-				}
-			});
-
-			var toHTML = ractive.toHTML();
-
-			file.contents = new Buffer(toHTML);
-
-			this.push(file);
 
 		}
 

@@ -123,11 +123,11 @@ gulp.task('build-documentation', function () {
 		gulp.src('./src/components/**/manifest.json')
 		.pipe(concatManifests('manifest-rf.json'))
 		.pipe(gulp.dest('./public/'))
+		// Create one doc file per component.
 		.pipe(renderDocumentation({
 			componentsDir: './src/components/',
 			docSrcPath: './src/docs.html'
 		}))
-		.pipe(plugins.concat('docs.html'))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
 		.pipe(gulp.dest('./public/')),
