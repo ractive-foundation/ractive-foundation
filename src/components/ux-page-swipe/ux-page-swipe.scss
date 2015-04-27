@@ -6,7 +6,10 @@
 	white-space: nowrap;
 	overflow-y: hidden;
 	overflow-x: scroll;
-	//-webkit-overflow-scrolling: touch;
+	
+	// auto = Content immediately ceases to scroll when you remove finger from touchscreen.
+	-webkit-overflow-scrolling: auto;
+	
 	// Whitespace gap between page elements.
 	font-size: 0;
 
@@ -15,8 +18,6 @@
 		display: inline-block;
 		width: 100%;
 		height: 100%;
-		// Whitespace gap between page elements.
-		//margin-right: -4px;
 		padding: 0;
 		overflow-y: scroll;
 		overflow-x: hidden;
