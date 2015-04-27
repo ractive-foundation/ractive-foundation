@@ -98,7 +98,16 @@ function renderUseCases(useCase, componentName) {
 /**
  * Transform intermediate data into final data model for sidenav.
  */
-function getSideNavDataModel(sideNavData) {
+function getSideNavDataModel(manifests) {
+
+	var sideNavData = {};
+
+	// Build up sideNavDataModel first.
+	_.each(manifests, function (manifest) {
+		var cat = manifest.manifest.category || 'uncategorised';
+		sideNavData[cat] = sideNavData[cat] || [];
+		sideNavData[cat].push(manifest.componentName);
+	});
 
 	var sideNavDataModel = {
 		title: 'Docs Nav',
@@ -132,6 +141,83 @@ function getSideNavDataModel(sideNavData) {
 }
 
 /**
+ * All these components need an index page to get started.
+ */
+function getIndexFile (indexFile, sideNavDataModel, file) {
+
+	var ractive = new Ractive({
+		template: indexFile,
+		data: {
+			sideNavDataModel: sideNavDataModel
+		}
+	});
+
+	var html = ractive.toHTML();
+
+	// Modify manifest-rf.json file data to create individual component html files for output.
+	var parsed = path.parse(file.path);
+	parsed.name = 'components';
+	parsed.base = 'components.html';
+	parsed.ext = '.html';
+
+	var componentFile = new VinylFile({
+		cwd: './',
+		base: 'public',
+		path: path.format(parsed),
+		contents: new Buffer(html)
+	});
+
+	return componentFile;
+
+}
+
+/**
+ * Create a single component documentation file.
+ */
+function getComponentFile (manifest, docFile, sideNavDataModel, file) {
+
+	var component = {
+		readmeMd:      marked(manifest.readme),
+		componentName: manifest.componentName,
+		manifestHTML:  {
+			events:    renderAttributes(manifest.manifest.events),
+			dataModel: renderAttributes(manifest.manifest.data)
+		}
+	};
+
+	// Render all use cases into html.
+	component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
+		return renderUseCases(useCase, manifest.componentName);
+	}).join('');
+
+	var ractive = new Ractive({
+		template: docFile,
+		data: {
+			sideNavDataModel: sideNavDataModel,
+			component: component
+		}
+	});
+
+	var toHTML = ractive.toHTML();
+
+	// Modify manifest-rf.json file data to create individual component html files for output.
+	var parsed = path.parse(file.path);
+	parsed.name = manifest.componentName;
+	parsed.base = manifest.componentName + '.html';
+	parsed.ext = '.html';
+
+	var componentFile = new VinylFile({
+		cwd: './',
+		base: 'public',
+		path: path.format(parsed),
+		contents: new Buffer(toHTML)
+	});
+
+	return componentFile;
+
+}
+
+/**
  * Stream through manifest-all.js - all the component manifest files.
  */
 function renderDocumentation(options) {
@@ -148,60 +234,18 @@ function renderDocumentation(options) {
 			// load the interface specification
 			var manifests = JSON.parse(String(file.contents));
 
-			var sideNavData = {};
-
 			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
+			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
 			// Build up sideNavDataModel first.
-			_.each(manifests, function (manifest) {
-				var cat = manifest.manifest.category || 'uncategorised';
-				sideNavData[cat] = sideNavData[cat] || [];
-				sideNavData[cat].push(manifest.componentName);
-			});
-			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(sideNavData)));
+			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(manifests)));
+
+			// Create the component index page, using the sidenav.
+			this.push(getIndexFile(indexFile, sideNavDataModel, file));
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
-
-				var component = {
-					readmeMd:      marked(manifest.readme),
-					componentName: manifest.componentName,
-					manifestHTML:  {
-						events:    renderAttributes(manifest.manifest.events),
-						dataModel: renderAttributes(manifest.manifest.data)
-					}
-				};
-
-				// Render all use cases into html.
-				component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
-					return renderUseCases(useCase, manifest.componentName);
-				}).join('');
-
-				var ractive = new Ractive({
-					template: docFile,
-					data: {
-						sideNavDataModel: sideNavDataModel,
-						component: component
-					}
-				});
-
-				var toHTML = ractive.toHTML();
-
-				// Modify manifest-rf.json file data to create individual component html files for output.
-				var parsed = path.parse(file.path);
-				parsed.name = manifest.componentName;
-				parsed.base = manifest.componentName + '.html';
-				parsed.ext = '.html';
-
-				var componentFile = new VinylFile({
-					cwd: './',
-					base: 'public',
-					path: path.format(parsed),
-					contents: new Buffer(toHTML)
-				});
-
-				this.push(componentFile);
-
+				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file));
 			}.bind(this));
 
 		}
