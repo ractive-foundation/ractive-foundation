@@ -1,12 +1,12 @@
 <div class="{{class}}">
-    <nav class="top-bar" data-topbar role="navigation" data-options="{{dataOptions}}">
+    <nav class="top-bar {{#if isExpanded}}expanded{{/if}}" data-topbar role="navigation" data-options="{{dataOptions}}">
+
         <ul class="title-area">
             <li class="name">
-                <h1><a href="#">{{title}}</a></h1>
+                <h1><a href="#">{{title}}</a></h1>2
             </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
             <li class="toggle-topbar menu-icon">
-                <a href="#">
+                <a href="#" on-tap="toggleThis">
                     <span>{{menuLabel}}</span>
                 </a>
             </li>
@@ -15,31 +15,40 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
 
-            {{#if rightItems}}
-                <ul class="right">
-                    {{#rightItems}}
-                        <li class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}">
-                            <a href="{{href}}">
+            {{#if isDataModel}}
+
+                {{#if rightItems}}
+                    <ux-topbar-container class="right">
+                        {{#rightItems}}
+                            <ux-topbar-item
+                                class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}"
+                                href="{{href}}">
                                 {{label}}
-                            </a>
-                        </li>
-                    {{/rightItems}}
-                </ul>
-            {{/if}}
+                            </ux-topbar-item>
+                        {{/rightItems}}
+                    </ux-topbar-container>
+                {{/if}}
 
 
-            <!-- Left Nav Section -->
-            {{#if leftItems}}
-                <ul class="left">
-                    {{#leftItems}}
-                        <li class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}">
-                            <a href="{{href}}">
+                <!-- Left Nav Section -->
+                {{#if leftItems}}
+                    <ux-topbar-container class="left">
+                        {{#leftItems}}
+                            <ux-topbar-item
+                                class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}"
+                                href="{{href}}">
                                 {{label}}
-                            </a>
-                        </li>
-                    {{/leftItems}}
-                </ul>
+                            </ux-topbar-item>
+                        {{/leftItems}}
+                    </ux-topbar-container>
+                {{/if}}
+
+            {{else}}
+
+                {{>content}}
+
             {{/if}}
+
         </section>
     </nav>
 </div>

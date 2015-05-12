@@ -13,3 +13,4 @@ public/js
 
 # Ignore everything except for index.html in public folder.
 public/*
+src/pages/test.html
