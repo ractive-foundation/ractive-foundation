@@ -1,0 +1,45 @@
+<div class="{{class}}">
+    <nav class="top-bar" data-topbar role="navigation" data-options="{{dataOptions}}">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">{{title}}</a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon">
+                <a href="#">
+                    <span>{{menuLabel}}</span>
+                </a>
+            </li>
+        </ul>
+
+        <section class="top-bar-section">
+            <!-- Right Nav Section -->
+
+            {{#if rightItems}}
+                <ul class="right">
+                    {{#rightItems}}
+                        <li class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}">
+                            <a href="{{href}}">
+                                {{label}}
+                            </a>
+                        </li>
+                    {{/rightItems}}
+                </ul>
+            {{/if}}
+
+
+            <!-- Left Nav Section -->
+            {{#if leftItems}}
+                <ul class="left">
+                    {{#leftItems}}
+                        <li class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}">
+                            <a href="{{href}}">
+                                {{label}}
+                            </a>
+                        </li>
+                    {{/leftItems}}
+                </ul>
+            {{/if}}
+        </section>
+    </nav>
+</div>

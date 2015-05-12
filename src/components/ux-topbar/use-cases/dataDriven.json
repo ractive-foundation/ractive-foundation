@@ -1,0 +1,28 @@
+{
+	"title": "data-driven example",
+	"isDataModel": true,
+	"data": {
+		"title": "UX Top Bar Data Demo",
+		"menuLabel": "Menu",
+		"dataOptions": "",
+		"leftItems": [
+			{
+				"label": "Learn More"
+			},
+			{
+				"label": "Home",
+				"href": "."
+			}
+		],
+		"rightItems": [
+			{
+				"label": "Asimov's Works",
+				"active": true
+			},
+			{
+				"label": "Recommended order",
+				"href": "http://scifi.stackexchange.com/questions/39669/what-is-the-correct-order-for-reading-material-of-isaac-asimov"
+			}
+		]
+	}
+}
