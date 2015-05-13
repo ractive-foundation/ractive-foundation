@@ -5,16 +5,17 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	nodePath = require('path'),
 
-	plugins = require('gulp-load-plugins')();
+	plugins = require('gulp-load-plugins')(),
 
 	testSuite = require('./tasks/testSuite'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
-	generateDocs = require('./tasks/generateDocs'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
 	jshintFailReporter = require('./tasks/jshintFailReporter');
+
+var pkg = require('./package.json');
 
 gulp.task('connect', function () {
 	plugins.connect.server({
@@ -37,6 +38,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.js',
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
+			'./node_modules/ractive-events-tap/dist/ractive-events-tap.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
 			'./node_modules/lodash/lodash.min.js',
@@ -66,7 +68,6 @@ gulp.task('copy-use-cases', function () {
 		.pipe(gulp.dest('public/use-cases/'));
 });
 
-
 gulp.task('clean', function (callback) {
 	del([
 		'public/**/*'
@@ -84,18 +85,7 @@ gulp.task('build-sass', function () {
 
 		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
 			.pipe(plugins.sass())
-			.pipe(gulp.dest('./public/css/foundation')),
-
-		gulp.src([
-				'./src/index.html',
-				'./src/data.html'
-			])
-			.pipe(plugins.header(fs.readFileSync('./src/header.html')))
-			.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
-			.pipe(gulp.dest('./public/')),
-
-		gulp.src('./src/testRunner.html')
-			.pipe(gulp.dest('./public/'))
+			.pipe(gulp.dest('./public/css/foundation'))
 
 	);
 
@@ -104,7 +94,7 @@ gulp.task('build-sass', function () {
 gulp.task('ractive-build-templates', function () {
 	return gulp.src('./src/components/**/*.hbs')
 		.pipe(ractiveParse({
-			'prefix': 'RactiveF'
+			'prefix': 'RactiveF.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -116,31 +106,70 @@ gulp.task('ractive-build-components', function () {
 			'!./src/components/**/*.steps.js'
 		])
 		.pipe(ractiveConcatComponents({
-			'prefix': 'RactiveF'
+			'prefix': 'RactiveF.components'
 		}))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('build-documentation', function () {
-	return gulp.src('./src/components/**/manifest.json')
-		.pipe(concatManifests('manifest-all.js'))
+
+	var headerHtml = fs.readFileSync('./src/header.html');
+	var footerHtml = fs.readFileSync('./src/footer.html');
+
+	return mergeStream(
+
+		// Component docs page.
+		gulp.src('./src/components/**/manifest.json')
+		.pipe(concatManifests('manifest-rf.json'))
 		.pipe(gulp.dest('./public/'))
-		.pipe(renderDocumentation())
-		.pipe(plugins.concat('docs.html'))
-		.pipe(plugins.header(fs.readFileSync('./src/header.html')))
-		.pipe(plugins.footer(fs.readFileSync('./src/footer.html')))
-		.pipe(gulp.dest('./public/'));
+		// Create one doc file per component, using single manifest-rf.json file data.
+		.pipe(renderDocumentation({
+			componentsDir: './src/components/',
+			docSrcPath: './src/component-page.html',
+			indexSrcPath: './src/components.html'
+		}))
+		.pipe(plugins.header(headerHtml, { pkg: pkg }))
+		.pipe(plugins.footer(footerHtml))
+		.pipe(gulp.dest('./public/')),
+
+		// Documentation pages.
+		gulp.src([ './src/pages/*.html' ])
+		.pipe(plugins.header(headerHtml, { pkg: pkg }))
+		.pipe(plugins.footer(footerHtml))
+		.pipe(gulp.dest('./public/')),
+
+		// Test runner while we're at it.
+		gulp.src('./src/testRunner.html')
+			.pipe(gulp.dest('./public/'))
+
+	);
+
 });
 
 gulp.task('concat-app', function () {
-	return gulp.src([
-			'./src/app.js',
-			'./public/js/templates.js',
-			'./public/js/components.js'
-		])
-		.pipe(plugins.concat('ractivef.js'))
+	var files = [
+		'./src/ractivef.base.js',
+		'./public/js/templates.js',
+		'./public/js/components.js'
+	];
+	return gulp.src(files)
+		.pipe(plugins.concat('ractivef-base.js'))
 		.pipe(gulp.dest('./public/js/'))
+		.pipe(plugins.footer(fs.readFileSync('./src/ractivef.initializer.js')))
+		.pipe(plugins.concat('ractivef.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-amd', function () {
+	return gulp.src('./public/js/ractivef-base.js')
+		.pipe(plugins.wrap({ src: './src/ractivef-amd.js'}))
+		.pipe(plugins.concat('ractivef-amd.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('concat-app-commonjs', function () {
+	return gulp.src('./public/js/ractivef-base.js')
 		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
 		.pipe(plugins.concat('ractivef-cjs.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -161,13 +190,27 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'copy-vendors',
 		'copy-use-cases',
 		'concat-app'
+	], [
+		'concat-app-amd',
+		'concat-app-commonjs'
 	], callback);
+});
+
+gulp.task('dist', ['build'], function () {
+	return gulp.src([
+		'public/js/ractivef-amd.js',
+		'public/js/ractivef-base.js',
+		'public/js/ractivef-cjs.js',
+		'public/manifest-rf.json',
+		'public/css/components.css'
+	]).pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {
 	var self = this;
 	plugins.watch([
 		'src/*.html',
+		'src/pages/*.html',
 		'src/**.*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
@@ -194,16 +237,10 @@ gulp.task('cucumber', function(callback) {
 		);
 });
 
-gulp.task('test', function (callback) {
-	runSequence('build', 'connect', 'cucumber', function (err) {
+gulp.task('test', [ 'selenium-standalone-install', 'build' ], function (callback) {
+	runSequence('connect', 'cucumber', function (err) {
    		process.exit(err ? 1 : 0);
     });
-});
-
-gulp.task('docs', function () {
-	return gulp.src('./src/docs.html')
-		.pipe(generateDocs())
-		.pipe(gulp.dest('./public/'));
 });
 
 gulp.task('jshint', function (callback) {
@@ -211,6 +248,11 @@ gulp.task('jshint', function (callback) {
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
 		.pipe(jshintFailReporter());
+});
+
+gulp.task('selenium-standalone-install', function () {
+	return plugins.run('./node_modules/selenium-standalone/bin/selenium-standalone install')
+		.exec();
 });
 
 gulp.task('default', function () {

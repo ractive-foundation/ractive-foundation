@@ -5,11 +5,11 @@
     <li class="cta-button">
 
         {{#if (status == 'comingsoon')}}
-            <a class="button disabled" href="#" on-click="buyNow">Coming Soon</a>
+            <a class="button disabled" href="#" on-tap="buyNow">Coming Soon</a>
         {{/if}}
 
         {{#if !status}}
-            <a class="button" href="{{href}}" on-click="buyNow">Buy Now</a>
+            <a class="button" href="{{href}}" on-tap="buyNow">Buy Now</a>
         {{/if}}
 
     </li>

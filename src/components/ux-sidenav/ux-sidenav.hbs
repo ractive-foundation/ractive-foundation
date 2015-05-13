@@ -1,0 +1,25 @@
+<ul class="side-nav" role="navigation" {{#title}}title="{{title}}"{{/}}>
+
+	{{#if isDataModel}}
+		{{#each items}}
+
+			{{#isHeading}}
+				<ux-li class="heading">{{.label}}</ux-li>
+			{{/}}
+
+			{{#isDivider}}
+				<ux-li class="divider"></ux-li>
+			{{/}}
+
+			{{#href}}
+				<ux-li class="{{#active}}active{{/}}" role="menuitem">
+					<a href="{{.href}}">{{.label}}</a>
+				</ux-li>
+			{{/}}
+
+		{{/each}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+
+</ul>

@@ -1,7 +1,9 @@
-var through = require('through'),
+var through  = require('through'),
 	gulputil = require('gulp-util'),
-	path = require('path'),
-	File = gulputil.File;
+	path     = require('path'),
+	fs       = require('fs'),
+	find     = require('find'),
+	File     = gulputil.File;
 
 var PluginError = gulputil.PluginError;
 
@@ -16,6 +18,13 @@ function renderDocumentation(fileName) {
 	var data = [];
 	var firstFile = null;
 
+	function getPaths(filePath) {
+		return {
+			readme:      path.join(path.dirname(filePath), 'README.md'),
+			useCasesDir: path.join(path.dirname(filePath), 'use-cases')
+		}
+	}
+
 	function bufferContents(file) {
 		if (!firstFile) {
 			firstFile = file;
@@ -28,12 +37,20 @@ function renderDocumentation(fileName) {
 			return this.emit('error', new PluginError(PLUGIN_NAME, 'Streaming not supported'));
 		}
 
-		var key = file.history[0].split(path.sep).reverse()[1];
-		var obj = JSON.parse(file.contents.toString());
+		var paths = getPaths(file.history[0]);
 
-		obj.componentName = key;
+		var out = {
+			componentName: file.history[0].split(path.sep).reverse()[1],
+			readme:        fs.readFileSync(paths.readme, 'UTF-8'),
+			manifest:      JSON.parse(file.contents.toString())
+		};
 
-		data.push(obj);
+		out.useCases = find.fileSync(/.*\.json/, paths.useCasesDir)
+			.map(function (useCase) {
+				return JSON.parse(fs.readFileSync(useCase, 'UTF-8'));
+			});
+
+		data.push(out);
 	}
 
 	function endStream() {

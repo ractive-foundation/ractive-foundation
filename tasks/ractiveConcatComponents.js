@@ -21,7 +21,12 @@ function gulpRactive(options) {
         try {
             filecontents = String(file.contents);
 
-            filecontents = options.prefix + '.components[\'' + componentName + '\'] = ' + filecontents;
+			var prefix = '';
+			if (options && options.prefix) {
+				prefix = options.prefix + '.';
+			}
+
+			filecontents = options.prefix + '[\'' + componentName + '\'] = ' + filecontents;
 
             file.contents = new Buffer(filecontents);
             this.push(file);

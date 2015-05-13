@@ -1,8 +1,11 @@
 # ractive-foundation
+[![Build Status](https://travis-ci.org/themacclesoft/ractive-foundation.svg?branch=master)](https://travis-ci.org/themacclesoft/ractive-foundation) 
 
-[![Build Status](https://travis-ci.org/themacclesoft/ractive-foundation.svg?branch=master)](https://travis-ci.org/themacclesoft/ractive-foundation)
+[![Code Quality](https://www.codacy.com/project/badge/abe39910d64144fc9219964f3652dbda)](https://www.codacy.com/app/pv-shum/ractive-foundation) 
 
-[![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation.svg) 
+
+[![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
 ## Overview
 
