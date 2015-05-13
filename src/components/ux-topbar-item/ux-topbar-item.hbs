@@ -1,5 +1,15 @@
-<li class="{{class}}">
+<li class="
+    {{#if active}}active{{/if}}
+    {{.class}}">
+    {{if hasDropdown}}
     <a href="{{href}}">
         {{>content}}
     </a>
+    {{else}}
+        <a href="{{href}}">
+            <!-- TODO: FIX THIS! -->
+        </a>
+        {{>content}}
+    {{/if}}
+
 </li>
