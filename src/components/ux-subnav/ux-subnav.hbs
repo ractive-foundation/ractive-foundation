@@ -1,0 +1,22 @@
+<dl class="sub-nav {{class}}">
+
+    {{#if isDataModel}}
+
+        {{#if .title}}
+            <dt>{{.title}}</dt>
+        {{/if}}
+
+        {{#each items}}
+
+            {{#href}}
+                <ux-subnavitem class="{{#if .active}}active{{/if}} {{.class}}">
+                    <a href="{{.href}}">{{.title}}</a>
+                </ux-subnavitem>
+            {{/}}
+
+        {{/each}}
+    {{else}}
+        {{>content}}
+    {{/if}}
+
+</dl>
