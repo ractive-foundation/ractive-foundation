@@ -1,0 +1,33 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"title": "Filter",
+		"items": [
+			{
+				"active": true,
+				"title": "All",
+				"href": "#",
+				"class": ""
+			},
+			{
+				"active": false,
+				"title": "Active",
+				"href": "#",
+				"class": ""
+			},
+			{
+				"active": false,
+				"title": "Pending",
+				"href": "#",
+				"class": ""
+			},
+			{
+				"active": false,
+				"title": "Suspended",
+				"href": "#",
+				"class": "hide-for-small-only"
+			}
+		]
+	}
+}
