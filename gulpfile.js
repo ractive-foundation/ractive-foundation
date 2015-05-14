@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 	plugins = require('gulp-load-plugins')(),
 
-	testSuite = require('./tasks/testSuite'),
+	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
@@ -225,22 +225,23 @@ gulp.task('watch', function () {
 });
 
 gulp.task('cucumber', function(callback) {
-	return gulp
+	gulp
 		.src('./src/components/**/*.feature')
-		.pipe(
-			testSuite(
-				{ steps: './src/components/**/*.steps.js' }
-			).on('error', function () {
-				// Prevent stack trace
-				this.emit('end');
-			})
-		);
+		.pipe(rfCucumber(
+			{ steps: './src/components/**/*.steps.js' }
+		)).on('end', callback);
 });
 
-gulp.task('test', [ 'selenium-standalone-install', 'build' ], function (callback) {
+gulp.task('test', [ 'build' ], function (callback) {
 	runSequence('connect', 'cucumber', function (err) {
-   		process.exit(err ? 1 : 0);
-    });
+		if (!err) {
+			callback();
+			// Work around for task success not exiting.
+			return process.exit(1);
+		}
+	});
+
+	this.on('end', callback);
 });
 
 gulp.task('jshint', function (callback) {
