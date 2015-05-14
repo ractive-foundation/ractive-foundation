@@ -4,7 +4,7 @@ Ractive.extend({
 
 		var _self = this;
 
-		this.on('toggleThis', function() {
+		this.on('toggleThis', function(e) {
 
 			if (_self.get('isExpanded')) {
 				_self.set('isExpanded', false);
@@ -12,10 +12,10 @@ Ractive.extend({
 				_self.set('isExpanded', true);
 			}
 
+			e.original.preventDefault();
+
 		});
 
-
-
-
 	}
+	
 });
