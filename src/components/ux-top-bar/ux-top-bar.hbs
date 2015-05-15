@@ -1,12 +1,12 @@
 <div class="{{class}}">
-    <nav class="top-bar {{#if isExpanded}}expanded{{/if}}" data-topbar role="navigation" data-options="{{dataOptions}}">
+    <nav class="top-bar {{#if isExpanded}}expanded{{/if}}" data-top-bar role="navigation" data-options="{{dataOptions}}">
 
         <ul class="title-area">
             <li class="name">
                 <h1><a href="#">{{title}}</a></h1>
             </li>
             <li class="toggle-topbar menu-icon">
-                <a href="#" on-tap="toggleThis">
+                <a href="#" on-tap="toggle">
                     <span>{{menuLabel}}</span>
                 </a>
             </li>
@@ -18,29 +18,29 @@
             {{#if isDataModel}}
 
                 {{#if rightItems}}
-                    <ux-topbar-container class="right">
+                    <ux-top-bar-container class="right">
                         {{#rightItems}}
-                            <ux-topbar-item
+                            <ux-top-bar-item
                                 class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}"
                                 href="{{href}}">
                                 {{label}}
-                            </ux-topbar-item>
+                            </ux-top-bar-item>
                         {{/rightItems}}
-                    </ux-topbar-container>
+                    </ux-top-bar-container>
                 {{/if}}
 
 
                 <!-- Left Nav Section -->
                 {{#if leftItems}}
-                    <ux-topbar-container class="left">
+                    <ux-top-bar-container class="left">
                         {{#leftItems}}
-                            <ux-topbar-item
+                            <ux-top-bar-item
                                 class="{{#if hasForm}}has-form{{/if}} {{#if active}}active{{/if}}"
                                 href="{{href}}">
                                 {{label}}
-                            </ux-topbar-item>
+                            </ux-top-bar-item>
                         {{/leftItems}}
-                    </ux-topbar-container>
+                    </ux-top-bar-container>
                 {{/if}}
 
             {{else}}

@@ -1,9 +1,0 @@
-{
-	"data": {
-		"text": "The text to display on the ux-topbar-item component",
-		"url": "The link to follow when the component is clicked"
-	},
-	"events": {
-		"onclick": "Event to fire when component is clicked"
-	}
-}

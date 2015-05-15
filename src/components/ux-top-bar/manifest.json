@@ -5,7 +5,7 @@
 		"menuLabel": "Label for the menu button",
 		"leftItems": "Array of nav items for the left hand side of the top bar",
 		"rightItems": "Array of nav items for the right hand side of the top bar",
-		"dataOptions": "Array of options like as outlined in Foundation topbar documentation (dropdown_autoclose, is_hover, etc.)"
+		"dataOptions": "Array of options like as outlined in Foundation top bar documentation (dropdown_autoclose, is_hover, etc.)"
 	},
 	"events": {
 	},

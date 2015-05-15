@@ -1,10 +1,10 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-topbar'],
+	template: RactiveF.templates['ux-top-bar'],
 	oninit: function () {
 
 		var _self = this;
 
-		this.on('toggleThis', function(e) {
+		this.on('toggle', function(e) {
 
 			if (_self.get('isExpanded')) {
 				_self.set('isExpanded', false);
@@ -17,5 +17,5 @@ Ractive.extend({
 		});
 
 	}
-	
+
 });
