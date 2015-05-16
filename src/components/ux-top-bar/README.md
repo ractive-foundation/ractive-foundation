@@ -8,12 +8,12 @@ Example markup:
 
 ```html
 <ux-top-bar>
-    <ux-top-bar-container class="right">
-        <ux-top-bar-item active="true">Right Button Active</ux-top-bar-item>
-        <ux-top-bar-item>Right Button</ux-top-bar-item>
-    </ux-top-bar-container>
-    <ux-top-bar-container class="left">
-        <ux-top-bar-item href="#">Left Button</ux-top-bar-item>
-    </ux-top-bar-container>
+    <ux-top-bar-items class="right">
+        <ux-li active="true"><ux-anchor href="#">Right Button Active</ux-anchor></ux-li>
+        <ux-li>Right Button</ux-li>
+    </ux-top-bar-items>
+    <ux-top-bar-items class="left">
+        <ux-li href="#"><ux-anchor href="#">Left Button</ux-anchor></ux-li>
+    </ux-top-bar-items>
 </ux-top-bar>
 ```

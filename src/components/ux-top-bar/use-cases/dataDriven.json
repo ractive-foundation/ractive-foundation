@@ -1,8 +1,9 @@
 {
-	"title": "data-driven example",
+	"title": "data-driven example - contain-to-grid mode",
 	"isDataModel": true,
 	"data": {
-		"title": "Menu",
+		"class": "contain-to-grid",
+		"title": "Test Title",
 		"menuLabel": "Menu",
 		"dataOptions": "",
 		"leftItems": [
@@ -18,7 +19,7 @@
 				"active": true
 			},
 			{
-				"label": "Right Button",
+				"label": "Right nesting",
 				"href": "#",
 				"items": [
 					{

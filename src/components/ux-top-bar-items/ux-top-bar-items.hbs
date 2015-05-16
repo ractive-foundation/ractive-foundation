@@ -1,0 +1,12 @@
+<ul class="ux-top-bar-items {{class}}">
+
+    {{#each items}}
+
+        {{! TODO Use ux-li and ux-anchor, resolve nested scopes. }}
+        <li class="{{#if this.hasForm}}has-form{{/if}} {{#if this.active}}active{{/if}}">
+            <a href="{{this.href}}">{{this.label}}</a>
+        </li>
+
+    {{/each}}
+
+</ul>
