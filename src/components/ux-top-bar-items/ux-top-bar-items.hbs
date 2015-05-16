@@ -3,8 +3,11 @@
     {{#each items}}
 
         {{! TODO Use ux-li and ux-anchor, resolve nested scopes. }}
-        <li class="{{#if this.hasForm}}has-form{{/if}} {{#if this.active}}active{{/if}}">
+        <li class="{{getTopBarItemCssClass(this)}}">
             <a href="{{this.href}}">{{this.label}}</a>
+            {{#if this.items}}
+                <ux-top-bar-items class="dropdown" items="{{this.items}}"></ux-top-bar-items>
+            {{/if}}
         </li>
 
     {{/each}}
