@@ -6,6 +6,7 @@
         <li class="{{getTopBarItemCssClass(this)}}">
             <a href="{{this.href}}">{{this.label}}</a>
             {{#if this.items}}
+                {{! Recursively reference the same component, to create the hierarchy of items. }}
                 <ux-top-bar-items class="dropdown" items="{{this.items}}"></ux-top-bar-items>
             {{/if}}
         </li>

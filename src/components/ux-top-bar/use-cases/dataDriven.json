@@ -15,20 +15,28 @@
 		"rightItems": [
 			{
 				"label": "Right Button Active",
-				"href": "#",
+				"href": "#r1",
 				"active": true
 			},
 			{
 				"label": "Right nesting",
-				"href": "#",
+				"href": "#r2",
 				"items": [
 					{
 						"label": "First link in dropdown",
-						"href": "#"
+						"href": "#r21"
+					},
+					{
+						"label": "Second link with items",
+						"items": [
+							{ "label": "nested item 1", "href": "#r221" },
+							{ "label": "nested item 2", "href": "#r222" },
+							{ "label": "nested item 3", "href": "#r223" }
+						]
 					},
 					{
 						"label": "Active link in dropdown",
-						"href": "#",
+						"href": "#r23",
 						"active": true
 					}
 				]
