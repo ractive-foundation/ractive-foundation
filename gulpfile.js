@@ -237,7 +237,7 @@ gulp.task('test', [ 'build' ], function (callback) {
 		if (!err) {
 			callback();
 			// Work around for task success not exiting.
-			return process.exit(1);
+			return process.exit(0);
 		}
 	});
 
