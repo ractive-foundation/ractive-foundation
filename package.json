@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ractive-foundation/ractive-foundation"
+    "url": "https://github.com/ractive-foundation/ractive-foundation.git"
   },
   "author": "Pavel Shum <pv.shum@gmail.com>",
   "license": "ISC",
