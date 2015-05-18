@@ -4,6 +4,7 @@
 	"data": {
 		"class": "contain-to-grid",
 		"title": "Test Title",
+		"href": "#titleHref",
 		"menuLabel": "Menu",
 		"dataOptions": "",
 		"isSticky": true,
