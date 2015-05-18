@@ -1,5 +1,5 @@
 <a id="{{guid}}" href="{{href}}" {{#if target}}target="{{target}}"{{/if}} on-tap="anchorClicked">
-    {{#if isDataModel}}
+    {{#if .isDataModel}}
         {{{content}}}
     {{else}}
         {{yield}}
