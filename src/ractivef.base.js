@@ -47,6 +47,18 @@ RactiveF = {
 	},
 
 	mixins: {
+
+		// FIXME Where should this belong?
+		getYPos: function (elem) {
+			var box = elem.getBoundingClientRect();
+			var body = document.body;
+			var docEl = document.documentElement;
+			var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+			var clientTop = docEl.clientTop || body.clientTop || 0;
+			var top  = box.top +  scrollTop - clientTop;
+			return Math.round(top);
+		},
+
 		/*
 		 * When working with nested components we only want to find child
 		 * components, not all decendants.
