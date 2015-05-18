@@ -9,11 +9,11 @@ Example markup:
 ```html
 <ux-top-bar>
     <ux-top-bar-items class="right">
-        <ux-li active="true"><ux-anchor href="#">Right Button Active</ux-anchor></ux-li>
-        <ux-li>Right Button</ux-li>
+        <li active="true"><a href="#">Right Button Active</a></li>
+        <li>Right Button</li>
     </ux-top-bar-items>
     <ux-top-bar-items class="left">
-        <ux-li href="#"><ux-anchor href="#">Left Button</ux-anchor></ux-li>
+        <li href="#"><a href="#">Left Button</a></li>
     </ux-top-bar-items>
 </ux-top-bar>
 ```
