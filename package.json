@@ -9,15 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pvshum/ractive-foundation.git"
+    "url": "https://github.com/ractive-foundation/ractive-foundation.git"
   },
   "author": "Pavel Shum <pv.shum@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pvshum/ractive-foundation/issues"
+    "url": "https://github.com/ractive-foundation/ractive-foundation/issues"
   },
-  "homepage": "https://github.com/pvshum/ractive-foundation",
+  "homepage": "https://github.com/ractive-foundation/ractive-foundation",
   "devDependencies": {
+    "async": "^0.9.0",
+    "cucumber": "~0.4.8",
     "del": "^1.1.1",
     "find": "^0.1.7",
     "gulp": "^3.8.11",
@@ -45,15 +47,14 @@
     "q": "^1.2.0",
     "run-sequence": "~1.0.2",
     "selenium-standalone": "^4.2.2",
+    "simple-glob": "~0.1.0",
     "superagent": "0.21.0",
+    "sync": "~0.2.5",
     "through": "^2.3.6",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",
     "walk": "^2.3.9",
-    "webdriverio": "^2.4.5",
-    "sync": "~0.2.5",
-    "cucumber": "~0.4.8",
-    "simple-glob": "~0.1.0"
+    "webdriverio": "^2.4.5"
   },
   "dependencies": {
     "node-notifier": "^4.1.2",
