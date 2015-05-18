@@ -1,4 +1,7 @@
-<div class="ux-top-bar {{class}}">
+<div class="ux-top-bar
+    {{#if isSticky}}sticky{{/if}}
+    {{#if isFixed}}fixed{{/if}}
+    {{class}}">
 
     <nav class="top-bar {{#if isExpanded}}expanded{{/if}}"
          data-top-bar role="navigation" data-options="{{dataOptions}}">
