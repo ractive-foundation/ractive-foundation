@@ -36,6 +36,7 @@
     "gulp-wrap": "^0.11.0",
     "jshint-stylish": "^1.0.1",
     "json2htmljson2css": "0.0.1",
+    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "marked": "^0.3.3",
     "merge-stream": "^0.1.7",
     "node-getopt-long": "^0.1.1",
@@ -55,7 +56,6 @@
     "simple-glob": "~0.1.0"
   },
   "dependencies": {
-    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
     "ractive-events-tap": "^0.2.0",
