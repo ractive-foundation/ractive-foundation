@@ -42,7 +42,14 @@
 					<ux-top-bar href="." class="contain-to-grid" title="Test Title" menuLabel="Menuz">
 						<ux-top-bar-items class="right">
 							<li active="true"><a href="#rb1">Right Button1 Active</a></li>
-							<li><a href="#rb2">Right Button2</a></li>
+							<li class="has-dropdown">
+								<a href="#rb2">Right nested</a>
+								<ul class="dropdown">
+									<li><a href="#nest1">Nested 1</a></li>
+									<li><a href="#nest2">Nested 2</a></li>
+									<li><a href="#nest3">Nested 3</a></li>
+								</ul>
+							</li>
 						</ux-top-bar-items>
 						<ux-top-bar-items class="left">
 							<li><a href="#lb1">Left Button1</a></li>
