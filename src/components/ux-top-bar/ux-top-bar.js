@@ -26,11 +26,11 @@ Ractive.extend({
 
 		var self = this;
 		var topbar = self.find('.top-bar');
-		var topbarPos = self.getYPos(topbar);
+		var topbarOffset = RactiveF.elementOffset(topbar);
 
 		window.onscroll = function (e) {
 			if (self.get('isSticky')) {
-				self.set('isFixed', window.pageYOffset >= topbarPos);
+				self.set('isFixed', RactiveF.pageYOffset() >= topbarOffset.top);
 			}
 		};
 

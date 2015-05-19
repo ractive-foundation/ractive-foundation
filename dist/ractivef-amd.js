@@ -48,18 +48,48 @@ RactiveF = {
 
 	},
 
-	mixins: {
+	/**
+	 * Get the current coordinates of the given element, relative to the document.
+	 *
+	 * Useful for viewport checks etc
+	 *
+	 * Use Ractive's this.find(selector) to pass that element in.
+	 *
+	 * Helper function for cross-browser element offset.
+	 * window.pageYOffset is not supported below IE 9.
+	 *
+	 * FIXME Where should this belong?
+	 */
+	elementOffset: function (elem) {
 
-		// FIXME Where should this belong?
-		getYPos: function (elem) {
-			var box = elem.getBoundingClientRect();
-			var body = document.body;
-			var docEl = document.documentElement;
-			var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-			var clientTop = docEl.clientTop || body.clientTop || 0;
-			var top  = box.top +  scrollTop - clientTop;
-			return Math.round(top);
-		},
+		var box = elem.getBoundingClientRect();
+
+		var body = document.body;
+		var docEl = document.documentElement;
+		var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+		var clientTop = docEl.clientTop || body.clientTop || 0;
+
+		var top = box.top + (scrollTop - clientTop);
+		var pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
+
+		return {
+			top: Math.round(top),
+			right: Math.round(box.right + pageXOffset),
+			bottom: Math.round(box.bottom + top),
+			left: Math.round(box.left + pageXOffset)
+		};
+
+	},
+
+	/**
+	 * IE8 friendly function.
+	 * TODO Make the return object the same as offset?
+	 */
+	pageYOffset: function () {
+		return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+	},
+
+	mixins: {
 
 		/*
 		 * When working with nested components we only want to find child
@@ -129,7 +159,7 @@ RactiveF.templates['ux-tablinks'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["t
 RactiveF.templates['ux-tabpane'] = {"v":3,"t":[{"t":7,"e":"section","a":{"class":["content ",{"t":2,"r":"class"}," ",{"t":4,"f":["hide"],"n":50,"x":{"r":["active"],"s":"!_0"}}],"role":"tabpanel","aria-hidden":[{"t":4,"f":["false"],"n":50,"r":"active"},{"t":4,"n":51,"f":["true"],"r":"active"}]},"f":[{"t":4,"f":[{"t":8,"r":"dynamicContent"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 RactiveF.templates['ux-tabpanes'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"tabs-content"},"f":[{"t":8,"r":"content"}]}]};
 RactiveF.templates['ux-top-bar'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-top-bar ",{"t":4,"f":["fixed"],"n":50,"r":"isFixed"}," ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"nav","a":{"class":["top-bar ",{"t":4,"f":["expanded"],"n":50,"r":"isExpanded"}],"data-top-bar":0,"role":"navigation","data-options":[{"t":2,"r":"dataOptions"}]},"f":[{"t":7,"e":"ul","a":{"class":"title-area"},"f":[{"t":7,"e":"li","a":{"class":"name"},"f":[{"t":7,"e":"h1","f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":2,"r":"title"}]}]}]}," ",{"t":7,"e":"li","a":{"class":"toggle-topbar menu-icon"},"f":[{"t":7,"e":"a","a":{"href":"#"},"v":{"tap":"toggleMenu"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"menuLabel"}]}]}]}]}," ",{"t":7,"e":"section","a":{"class":"top-bar-section"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"right","items":[{"t":2,"r":"rightItems"}]}}],"n":50,"r":"rightItems"}," ",{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"left","items":[{"t":2,"r":"leftItems"}]}}],"n":50,"r":"leftItems"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]}]}]};
-RactiveF.templates['ux-top-bar-items'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["ux-top-bar-items ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[" ",{"t":7,"e":"li","a":{"class":[{"t":2,"x":{"r":["getTopBarItemCssClass","."],"s":"_0(_1)"}}]},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"f":[{"t":2,"r":"./label"}]}," ",{"t":4,"f":[" ",{"t":7,"e":"ux-top-bar-items","a":{"class":"dropdown","items":[{"t":2,"r":"./items"}]}}],"n":50,"r":"./items"}]}],"n":52,"r":"items"}]}]};
+RactiveF.templates['ux-top-bar-items'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["ux-top-bar-items ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[" ",{"t":7,"e":"li","a":{"class":[{"t":2,"x":{"r":["getTopBarItemCssClass","."],"s":"_0(_1)"}}]},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"f":[{"t":3,"r":"./label"}]}," ",{"t":4,"f":[" ",{"t":7,"e":"ux-top-bar-items","a":{"class":"dropdown","items":[{"t":2,"r":"./items"}]}}],"n":50,"r":"./items"}]}],"n":52,"r":"items"}],"n":50,"r":"items"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"items"}]}]};
 RactiveF.components['ux-accordion'] = Ractive.extend({
 
 	template: RactiveF.templates['ux-accordion'],
@@ -549,11 +579,11 @@ RactiveF.components['ux-top-bar'] = Ractive.extend({
 
 		var self = this;
 		var topbar = self.find('.top-bar');
-		var topbarPos = self.getYPos(topbar);
+		var topbarOffset = RactiveF.elementOffset(topbar);
 
 		window.onscroll = function (e) {
 			if (self.get('isSticky')) {
-				self.set('isFixed', window.pageYOffset >= topbarPos);
+				self.set('isFixed', RactiveF.pageYOffset() >= topbarOffset.top);
 			}
 		};
 

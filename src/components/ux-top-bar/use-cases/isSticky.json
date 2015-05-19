@@ -3,45 +3,48 @@
 	"isDataModel": true,
 	"data": {
 		"class": "contain-to-grid",
-		"title": "Test Title",
-		"href": "#titleHref",
+		"isSticky": true,
+		"title": "",
+		"href": ".",
 		"menuLabel": "Menu",
 		"dataOptions": "",
-		"isSticky": true,
 		"leftItems": [
 			{
-				"label": "Left Button",
-				"href": "#"
+				"label": "<i class=\"icon icon_solid-screen\"></i>Responsive Web",
+				"href": ".",
+				"items": [
+					{
+						"label": "<i class=\"icon icon_tv\"></i>TV",
+						"href": "."
+					},
+					{
+						"label": "<i class=\"icon icon_mobile\"></i>Mobile Apps",
+						"href": "."
+					}
+				]
 			}
 		],
 		"rightItems": [
 			{
-				"label": "Right Button Active",
-				"href": "#r1",
+				"label": "Overview",
+				"href": "/pages",
 				"active": true
 			},
 			{
-				"label": "Right nesting",
-				"href": "#r2",
-				"items": [
-					{
-						"label": "First link in dropdown",
-						"href": "#r21"
-					},
-					{
-						"label": "Second link with items",
-						"items": [
-							{ "label": "nested item 1", "href": "#r221" },
-							{ "label": "nested item 2", "href": "#r222" },
-							{ "label": "nested item 3", "href": "#r223" }
-						]
-					},
-					{
-						"label": "Active link in dropdown",
-						"href": "#r23",
-						"active": true
-					}
-				]
+				"label": "Style",
+				"href": "/pages/web-responsive/style"
+			},
+			{
+				"label": "UI Components",
+				"href": "/pages/web-responsive/style"
+			},
+			{
+				"label": "Layout",
+				"href": "/pages/web-responsive/layout"
+			},
+			{
+				"label": "Resources",
+				"href": "/pages/web-responsive/resources"
 			}
 		]
 	}
