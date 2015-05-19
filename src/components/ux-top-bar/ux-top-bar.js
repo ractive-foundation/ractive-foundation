@@ -28,8 +28,6 @@ Ractive.extend({
 		var topbar = self.find('.top-bar');
 		var topbarOffset = self.elementOffset(topbar);
 
-		console.debug('topbarOffset:', topbarOffset);
-
 		window.onscroll = function (e) {
 			if (self.get('isSticky')) {
 				self.set('isFixed', self.pageYOffset() >= topbarOffset.top);
