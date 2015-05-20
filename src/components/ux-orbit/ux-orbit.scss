@@ -16,7 +16,7 @@ $max-pages: 10;
 
 	@for $i from 0 through $max-pages {
 		&.currentPage#{$i+1} {
-			.page {
+			.orbit-slides-slide  {
 				position: relative;
 				left: -#{(100% / $max-pages) * $i};
 			}
@@ -29,17 +29,13 @@ $max-pages: 10;
 		@include clearfix;
 	}
 
-	.page {
-
+	.orbit-slides-slide  {
 		float: left;
 		width: 100% / $max-pages;
 		height: 100%;
-
 		-webkit-transition: left .25s ease-in;
 		transition: left .25s ease-in;
-
 		margin-left: 0;
-
 	}
 
 }

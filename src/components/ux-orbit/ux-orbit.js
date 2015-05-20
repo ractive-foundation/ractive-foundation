@@ -4,7 +4,8 @@ Ractive.extend({
 
 	data: {
 		currentPage: 1,
-		navigation_arrows: true
+		navigation_arrows: true,
+		slide_number: true
 	},
 
 	computed: {
@@ -31,6 +32,11 @@ Ractive.extend({
 			return false;
 		});
 
+	},
+
+	oncomplete: function () {
+		var slidesTotal = this.findAll('.orbit-slides-slide').length;
+		this.set('slidesTotal', slidesTotal);
 	}
 
 });
