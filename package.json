@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
-    "start": "npm prune && npm install && gulp",
-    "postinstall": "node node_modules/modernizr/bin/modernizr -c ./node_modules/modernizr/lib/config-all.json -d ./node_modules/modernizr/"
+    "start": "npm prune && npm install && gulp"
   },
   "repository": {
     "type": "git",
@@ -41,6 +40,7 @@
     "json2htmljson2css": "0.0.1",
     "marked": "^0.3.3",
     "merge-stream": "^0.1.7",
+    "modernizr": "^3.0.0-alpha.4",
     "node-getopt-long": "^0.1.1",
     "page": "^1.6.1",
     "phantomjs": "^1.9.16",
@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "lodash": "git+https://github.com/lodash/lodash.git#master",
-    "modernizr": "^3.0.0-alpha.4",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
     "ractive-events-tap": "^0.2.0",
