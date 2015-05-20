@@ -1,0 +1,14 @@
+<div class="ux-orbit orbit-container {{currentPageCssClass}}">
+	<ul class="pageContainer example-orbit orbit-slides-container">
+		{{#if isDataModel}}
+			{{#items:i}}
+				<li class="page page{{i}} {{active}}" on-swipeleft="nextPage" on-swiperight="prevPage">
+					<img src="{{imagesrc}}" alt="{{imagealt}}" />
+					<div class="orbit-caption">{{caption}}</div>
+				</li>
+			{{/}}
+		{{else}}
+			{{>content}}
+		{{/if}}
+	</ul>
+</div>

@@ -38,25 +38,8 @@ $max-pages: 10;
 		-webkit-transition: left .25s ease-in;
 		transition: left .25s ease-in;
 
-		&.page1 {
-			background-color: #ccc;
-		}
-		&.page2 {
-			background-color: darkred;
-		}
-		&.page3 {
-			background-color: indianred;
-		}
-		&.page4 {
-			background-color: chartreuse;
-		}
-		&.page5 {
-			background-color: lightblue;
-		}
-
+		margin-left: 0;
 
 	}
-
-
 
 }

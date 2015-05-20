@@ -4,14 +4,14 @@
 	"data": {
 		"items": [
 			{
-				"imagesrc": "../assets/img/examples/satelite-orbit.jpg",
+				"imagesrc": "http://placekitten.com/g/200/300",
 				"link": ".",
 				"imagealt": "Slide 1",
 				"caption": "Caption One",
 				"active": true
 			},
 			{
-				"imagesrc": "../assets/img/examples/andromeda-orbit.jpg",
+				"imagesrc": "http://placekitten.com/g/200/300",
 				"imagealt": "Slide 2",
 				"link": ".",
 				"caption": "Caption Two",
