@@ -3,6 +3,58 @@
 
 
 
+.ux-orbit {
+  height: 100%;
+  position: relative;
+  overflow: hidden; }
+  .ux-orbit.currentPage1 .page {
+    position: relative;
+    left: -0%; }
+  .ux-orbit.currentPage2 .page {
+    position: relative;
+    left: -10%; }
+  .ux-orbit.currentPage3 .page {
+    position: relative;
+    left: -20%; }
+  .ux-orbit.currentPage4 .page {
+    position: relative;
+    left: -30%; }
+  .ux-orbit.currentPage5 .page {
+    position: relative;
+    left: -40%; }
+  .ux-orbit.currentPage6 .page {
+    position: relative;
+    left: -50%; }
+  .ux-orbit.currentPage7 .page {
+    position: relative;
+    left: -60%; }
+  .ux-orbit.currentPage8 .page {
+    position: relative;
+    left: -70%; }
+  .ux-orbit.currentPage9 .page {
+    position: relative;
+    left: -80%; }
+  .ux-orbit.currentPage10 .page {
+    position: relative;
+    left: -90%; }
+  .ux-orbit.currentPage11 .page {
+    position: relative;
+    left: -100%; }
+  .ux-orbit .pageContainer {
+    height: 100%;
+    width: 1000%; }
+    .ux-orbit .pageContainer:after {
+      content: "";
+      display: table;
+      clear: both; }
+  .ux-orbit .page {
+    float: left;
+    width: 10%;
+    height: 100%;
+    -webkit-transition: left .25s ease-in;
+    transition: left .25s ease-in;
+    margin-left: 0; }
+
 
 .side-nav .divider {
   border-top-color: inherit !important; }
