@@ -1,12 +1,12 @@
-var through  = require('through2'),
-	gulputil = require('gulp-util'),
-	Ractive  = require('ractive'),
-	marked   = require('marked'),
-	fs       = require('fs'),
-	find     = require('find'),
-	_        = require('lodash'),
-	path     = require('path'),
-	makeHTML = require('json2htmljson2css').makeHTML;
+var through   = require('through2'),
+	gulputil  = require('gulp-util'),
+	Ractive   = require('ractive'),
+	marked    = require('marked'),
+	fs        = require('fs'),
+	_         = require('lodash'),
+	path      = require('path'),
+	makeHTML  = require('json2htmljson2css').makeHTML,
+	VinylFile = require('vinyl');
 
 var PluginError = gulputil.PluginError;
 
@@ -98,12 +98,21 @@ function renderUseCases(useCase, componentName) {
 /**
  * Transform intermediate data into final data model for sidenav.
  */
-function getSideNavDataModel(sideNavData) {
+function getSideNavDataModel(manifests) {
+
+	var sideNavData = {};
+
+	// Build up sideNavDataModel first.
+	_.each(manifests, function (manifest) {
+		var cat = manifest.manifest.category || 'uncategorised';
+		sideNavData[cat] = sideNavData[cat] || [];
+		sideNavData[cat].push(manifest.componentName);
+	});
 
 	var sideNavDataModel = {
 		title: 'Docs Nav',
 		items: []
-	}
+	};
 
 	// Sort categories alphabetically for display.
 	var sortedCategories = Object.keys(sideNavData).sort();
@@ -119,7 +128,8 @@ function getSideNavDataModel(sideNavData) {
 
 			sideNavDataModel.items.push({
 				label: componentName,
-				href: '#' + componentName
+				// Link to individual component pages.
+				href: componentName + '.html'
 			});
 
 		});
@@ -131,9 +141,87 @@ function getSideNavDataModel(sideNavData) {
 }
 
 /**
+ * All these components need an index page to get started.
+ */
+function getIndexFile (indexFile, sideNavDataModel, file) {
+
+	var ractive = new Ractive({
+		template: indexFile,
+		data: {
+			sideNavDataModel: sideNavDataModel
+		}
+	});
+
+	var html = ractive.toHTML();
+
+	// Modify manifest-rf.json file data to create individual component html files for output.
+	var parsed = path.parse(file.path);
+	parsed.name = 'components';
+	parsed.base = 'components.html';
+	parsed.ext = '.html';
+
+	var componentFile = new VinylFile({
+		cwd: './',
+		base: 'public',
+		path: path.format(parsed),
+		contents: new Buffer(html)
+	});
+
+	return componentFile;
+
+}
+
+/**
+ * Create a single component documentation file.
+ */
+function getComponentFile (manifest, docFile, sideNavDataModel, file) {
+
+	var component = {
+		readmeMd:      marked(manifest.readme),
+		componentName: manifest.componentName,
+		manifestHTML:  {
+			events:    renderAttributes(manifest.manifest.events),
+			dataModel: renderAttributes(manifest.manifest.data)
+		}
+	};
+
+	// Render all use cases into html.
+	component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
+		return renderUseCases(useCase, manifest.componentName);
+	}).join('');
+
+	var ractive = new Ractive({
+		template: docFile,
+		data: {
+			sideNavDataModel: sideNavDataModel,
+			component: component
+		}
+	});
+
+	var toHTML = ractive.toHTML();
+
+	// Modify manifest-rf.json file data to create individual component html files for output.
+	var parsed = path.parse(file.path);
+	parsed.name = manifest.componentName;
+	parsed.base = manifest.componentName + '.html';
+	parsed.ext = '.html';
+
+	var componentFile = new VinylFile({
+		cwd: './',
+		base: 'public',
+		path: path.format(parsed),
+		contents: new Buffer(toHTML)
+	});
+
+	return componentFile;
+
+}
+
+/**
  * Stream through manifest-all.js - all the component manifest files.
  */
 function renderDocumentation(options) {
+
 	var stream = through.obj(function (file, enc, callback) {
 
 		if (file.isStream()) {
@@ -146,46 +234,19 @@ function renderDocumentation(options) {
 			// load the interface specification
 			var manifests = JSON.parse(String(file.contents));
 
-			var sideNavData = {};
-
-			var componentsHTML = _(manifests).map(function (manifest) {
-
-				// Build up sideNavDataModel
-				var cat = manifest.manifest.category || 'uncategorised';
-				sideNavData[cat] = sideNavData[cat] || [];
-				sideNavData[cat].push(manifest.componentName);
-
-				var out = {
-					readmeMd:      marked(manifest.readme),
-					componentName: manifest.componentName,
-					manifestHTML:  {
-						events:    renderAttributes(manifest.manifest.events),
-						dataModel: renderAttributes(manifest.manifest.data)
-					}
-				};
-				out.useCasesHTML= _.map(manifest.useCases, function (useCase) {
-					return renderUseCases(useCase, manifest.componentName);
-				}).join('');
-
-				return out;
-
-			}).value();
-
 			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
+			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
-			var ractive = new Ractive({
-				template: docFile,
-				data: {
-					sideNavDataModel: _.escape(JSON.stringify(getSideNavDataModel(sideNavData))),
-					components: componentsHTML
-				}
-			});
+			// Build up sideNavDataModel first.
+			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(manifests)));
 
-			var toHTML = ractive.toHTML();
+			// Create the component index page, using the sidenav.
+			this.push(getIndexFile(indexFile, sideNavDataModel, file));
 
-			file.contents = new Buffer(toHTML);
-
-			this.push(file);
+			// Now create separate component docs pages.
+			_.each(manifests, function (manifest) {
+				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file));
+			}.bind(this));
 
 		}
 
@@ -195,8 +256,8 @@ function renderDocumentation(options) {
 			return callback();
 		}
 
-
 		callback();
+
 	});
 
 	return stream;

@@ -1,5 +1,5 @@
 # ractive-foundation
-[![Build Status](https://travis-ci.org/themacclesoft/ractive-foundation.svg?branch=master)](https://travis-ci.org/themacclesoft/ractive-foundation) 
+[![Build Status](https://travis-ci.org/ractive-foundation/ractive-foundation.svg?branch=master)](https://travis-ci.org/ractive-foundation/ractive-foundation)
 
 [![Code Quality](https://www.codacy.com/project/badge/abe39910d64144fc9219964f3652dbda)](https://www.codacy.com/app/pv-shum/ractive-foundation) 
 

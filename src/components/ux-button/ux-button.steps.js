@@ -30,8 +30,6 @@ module.exports = function () {
 			} catch (e) {
 				callback.fail('Assertion failed, element not found');
 			}
-
-			callback();
 		});
 	});
 

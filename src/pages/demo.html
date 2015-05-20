@@ -16,7 +16,8 @@
 		<ux-tabarea>
 
 			<ux-tablinks>
-				<ux-tablink id="structure" active="true">Structure</ux-tablink>
+				<ux-tablink id="structure">Structure</ux-tablink>
+				<ux-tablink id="navigation" active="true">Navigation</ux-tablink>
 				<ux-tablink id="buttons">Buttons</ux-tablink>
 				<ux-tablink id="buttons">Typography</ux-tablink>
 				<ux-tablink id="content">Content</ux-tablink>
@@ -32,6 +33,28 @@
 						<ux-col class="large-3"> second column </ux-col>
 						<ux-col class="large-3"> third column </ux-col>
 					</ux-row>
+
+				</ux-tabpane>
+
+				<!-- navigation -->
+				<ux-tabpane>
+
+					<ux-top-bar href="." class="contain-to-grid" title="Test Title" menuLabel="Menuz">
+						<ux-top-bar-items class="right">
+							<li active="true"><a href="#rb1">Right Button1 Active</a></li>
+							<li class="has-dropdown">
+								<a href="#rb2">Right nested</a>
+								<ul class="dropdown">
+									<li><a href="#nest1">Nested 1</a></li>
+									<li><a href="#nest2">Nested 2</a></li>
+									<li><a href="#nest3">Nested 3</a></li>
+								</ul>
+							</li>
+						</ux-top-bar-items>
+						<ux-top-bar-items class="left">
+							<li><a href="#lb1">Left Button1</a></li>
+						</ux-top-bar-items>
+					</ux-top-bar>
 
 				</ux-tabpane>
 
