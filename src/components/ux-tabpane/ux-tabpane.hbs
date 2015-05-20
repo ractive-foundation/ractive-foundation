@@ -1,4 +1,4 @@
-<section class="content {{class}} {{#if !active}}hide{{/if}}" role="tabpanel" aria-hidden="{{#if active}}false{{else}}true{{/if}}">
+<section class="content {{class}} {{#if active}}active{{else}}hide{{/if}}" role="tabpanel" aria-hidden="{{#if active}}false{{else}}true{{/if}}">
 	{{#if isDataModel}}
 		{{>dynamicContent}}
 	{{else}}

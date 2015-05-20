@@ -1,7 +1,7 @@
-<div class="ux-top-bar {{#if isFixed}}fixed{{/if}} {{class}}">
+<div class="ux-top-bar {{#if isfixed}}fixed{{/if}} {{class}}">
 
-	<nav class="top-bar {{#if isExpanded}}expanded{{/if}}"
-		 data-top-bar role="navigation" data-options="{{dataOptions}}">
+	<nav class="top-bar {{#if isexpanded}}expanded{{/if}}"
+		 data-top-bar role="navigation" data-options="{{dataoptions}}">
 
 		<ul class="title-area">
 			<li class="name">
@@ -9,7 +9,7 @@
 			</li>
 			<li class="toggle-topbar menu-icon">
 				<a href="#" on-tap="toggleMenu">
-					<span>{{menuLabel}}</span>
+					<span>{{menulabel}}</span>
 				</a>
 			</li>
 		</ul>
@@ -18,12 +18,12 @@
 
 			{{#if isDataModel}}
 
-				{{#if rightItems}}
-					<ux-top-bar-items class="right" items="{{rightItems}}"></ux-top-bar-items>
+				{{#if rightitems}}
+					<ux-top-bar-items class="right" items="{{rightitems}}"></ux-top-bar-items>
 				{{/if}}
 
-				{{#if leftItems}}
-					<ux-top-bar-items class="left" items="{{leftItems}}"></ux-top-bar-items>
+				{{#if leftitems}}
+					<ux-top-bar-items class="left" items="{{leftitems}}"></ux-top-bar-items>
 				{{/if}}
 
 			{{else}}

@@ -30,6 +30,13 @@ gulp.task('html', function () {
 		.pipe(plugins.connect.reload());
 });
 
+gulp.task('build-modernizr', function () {
+	return plugins.run('node node_modules/modernizr/bin/modernizr ' +
+	'-c ./node_modules/modernizr/lib/config-all.json ' +
+	'-d ./node_modules/modernizr/')
+		.exec();
+});
+
 gulp.task('copy-vendors', function () {
 
 	return mergeStream(
@@ -45,6 +52,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/lodash/lodash.min.js',
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
+			'./node_modules/modernizr/modernizr.js',
 			'./src/route.js'
 		])
 		.pipe(gulp.dest('./public/js')),
@@ -190,7 +198,8 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-components',
-		'build-documentation'
+		'build-documentation',
+		'build-modernizr'
 	], [
 		'copy-vendors',
 		'copy-use-cases',
@@ -207,7 +216,8 @@ gulp.task('dist', ['build'], function () {
 		'public/js/ractivef-base.js',
 		'public/js/ractivef-cjs.js',
 		'public/manifest-rf.json',
-		'public/css/components.css'
+		'public/css/components.css',
+		'node_modules/modernizr/modernizr.js'
 	]).pipe(gulp.dest('dist'));
 });
 

@@ -3,12 +3,12 @@
 	"isDataModel": true,
 	"data": {
 		"class": "contain-to-grid",
-		"isSticky": true,
+		"issticky": true,
 		"title": "",
 		"href": ".",
-		"menuLabel": "Menu",
-		"dataOptions": "",
-		"leftItems": [
+		"menulabel": "Menu",
+		"dataoptions": "",
+		"leftitems": [
 			{
 				"label": "<i class=\"icon icon_solid-screen\"></i>Responsive Web",
 				"href": ".",
@@ -24,7 +24,7 @@
 				]
 			}
 		],
-		"rightItems": [
+		"rightitems": [
 			{
 				"label": "Overview",
 				"href": "/pages",
