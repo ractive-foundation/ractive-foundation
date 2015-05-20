@@ -584,7 +584,7 @@ RactiveF.components['ux-top-bar'] = Ractive.extend({
 
 		window.onscroll = function (e) {
 			if (self.get('isSticky')) {
-				self.set('isFixed', RactiveF.pageYOffset() >= topbarOffset.top);
+				self.set('isFixed', RactiveF.pageYOffset() > topbarOffset.top);
 			}
 		};
 
