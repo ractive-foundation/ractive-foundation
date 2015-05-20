@@ -1,14 +1,14 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-page-swipe'],
+	template: RactiveF.templates['ux-orbit'],
 
 	data: {
 		currentPage: 1
 	},
 
 	computed: {
-		isOnPage: function () {
-			return 'is-onPage' + this.get('currentPage');
+		currentPageCssClass: function () {
+			return 'currentPage' + this.get('currentPage');
 		}
 	},
 

@@ -8,18 +8,14 @@
 
 $max-pages: 10;
 
-.ractivef {
-	height: 100%;
-}
-
-.ux-page-swipe {
+.ux-orbit {
 
 	height: 100%;
 	position: relative;
 	overflow: hidden;
 
 	@for $i from 0 through $max-pages {
-		&.is-onPage#{$i+1} {
+		&.currentPage#{$i+1} {
 			.page {
 				position: relative;
 				left: -#{(100% / $max-pages) * $i};
@@ -38,7 +34,6 @@ $max-pages: 10;
 		float: left;
 		width: 100% / $max-pages;
 		height: 100%;
-		overflow-y: scroll;
 
 		-webkit-transition: left .25s ease-in;
 		transition: left .25s ease-in;

@@ -1,0 +1,26 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"imagesrc": "../assets/img/examples/satelite-orbit.jpg",
+				"link": ".",
+				"imagealt": "Slide 1",
+				"caption": "Caption One",
+				"active": true
+			},
+			{
+				"imagesrc": "../assets/img/examples/andromeda-orbit.jpg",
+				"imagealt": "Slide 2",
+				"link": ".",
+				"caption": "Caption Two",
+				"active": false
+			},
+			{
+				"content": "",
+				"active": false
+			}
+		]
+	}
+}

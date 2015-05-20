@@ -1,1 +1,0 @@
-> ux-page-swipe Documentation
