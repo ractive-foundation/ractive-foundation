@@ -4,15 +4,15 @@
 	"data": {
 		"class": "contain-to-grid",
 		"title": "Test Title",
-		"menuLabel": "Menu",
-		"dataOptions": "",
-		"leftItems": [
+		"menulabel": "Menu",
+		"dataoptions": "",
+		"leftitems": [
 			{
 				"label": "Left Button",
 				"href": "#"
 			}
 		],
-		"rightItems": [
+		"rightitems": [
 			{
 				"label": "Right Button Active",
 				"href": "#r1",

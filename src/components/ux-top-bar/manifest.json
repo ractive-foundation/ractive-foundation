@@ -1,11 +1,13 @@
 {
 	"data": {
 		"class": "Class for the top bar wrapper",
+		"issticky": "Activate sticky mode",
 		"title": "Leading text to display on the ux-off-canvas component",
-		"menuLabel": "Label for the menu button",
-		"leftItems": "Array of nav items for the left hand side of the top bar",
-		"rightItems": "Array of nav items for the right hand side of the top bar",
-		"dataOptions": "Array of options like as outlined in Foundation top bar documentation (dropdown_autoclose, is_hover, etc.)"
+		"href": "Link for your title",
+		"menulabel": "Label for the menu button",
+		"leftitems": "Array of nav items for the left hand side of the top bar",
+		"rightitems": "Array of nav items for the right hand side of the top bar",
+		"dataoptions": "Array of options like as outlined in Foundation top bar documentation (dropdown_autoclose, is_hover, etc.)"
 	},
 	"events": {
 	},

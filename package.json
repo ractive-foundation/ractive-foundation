@@ -38,9 +38,9 @@
     "gulp-wrap": "^0.11.0",
     "jshint-stylish": "^1.0.1",
     "json2htmljson2css": "0.0.1",
-    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "marked": "^0.3.3",
     "merge-stream": "^0.1.7",
+    "modernizr": "^3.0.0-alpha.4",
     "node-getopt-long": "^0.1.1",
     "page": "^1.6.1",
     "phantomjs": "^1.9.16",
@@ -57,6 +57,7 @@
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
+    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
     "ractive-events-tap": "^0.2.0",

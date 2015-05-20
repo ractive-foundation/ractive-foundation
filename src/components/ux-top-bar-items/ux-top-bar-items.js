@@ -10,7 +10,8 @@ Ractive.extend({
 				classes.push('has-form');
 			}
 			if (item.items && item.items.length > 0) {
-				classes.push('has-dropdown');
+				// Note: not-click needed for focus/hover with html class=js. Silly.
+				classes.push('has-dropdown not-click');
 			}
 			return classes.join(' ');
 		}
