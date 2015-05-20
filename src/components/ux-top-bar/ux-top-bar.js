@@ -6,14 +6,12 @@ Ractive.extend({
 
 		var self = this;
 
-		self.set('yPos', 0);
-
 		this.on('toggleMenu', function(e) {
 
-			if (self.get('isExpanded')) {
-				self.set('isExpanded', false);
+			if (self.get('isexpanded')) {
+				self.set('isexpanded', false);
 			} else {
-				self.set('isExpanded', true);
+				self.set('isexpanded', true);
 			}
 
 			return false;
@@ -29,8 +27,8 @@ Ractive.extend({
 		var topbarOffset = RactiveF.elementOffset(topbar);
 
 		window.onscroll = function (e) {
-			if (self.get('isSticky')) {
-				self.set('isFixed', RactiveF.pageYOffset() > topbarOffset.top);
+			if (self.get('issticky')) {
+				self.set('isfixed', RactiveF.pageYOffset() > topbarOffset.top);
 			}
 		};
 
