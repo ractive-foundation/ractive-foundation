@@ -3,7 +3,8 @@ Ractive.extend({
 	template: RactiveF.templates['ux-orbit'],
 
 	data: {
-		currentPage: 1
+		currentPage: 1,
+		navigation_arrows: true
 	},
 
 	computed: {
