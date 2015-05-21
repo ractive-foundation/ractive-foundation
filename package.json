@@ -1,6 +1,6 @@
 {
   "name": "ractive-foundation",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "Ractive components for Foundation 5",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pvshum/ractive-foundation.git"
+    "url": "https://github.com/ractive-foundation/ractive-foundation.git"
   },
   "author": "Pavel Shum <pv.shum@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pvshum/ractive-foundation/issues"
+    "url": "https://github.com/ractive-foundation/ractive-foundation/issues"
   },
-  "homepage": "https://github.com/pvshum/ractive-foundation",
+  "homepage": "https://github.com/ractive-foundation/ractive-foundation",
   "devDependencies": {
     "async": "^1.0.0",
     "cucumber": "~0.4.8",
@@ -38,6 +38,7 @@
     "gulp-wrap": "^0.11.0",
     "jshint-stylish": "^1.0.1",
     "json2htmljson2css": "0.0.1",
+    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "marked": "^0.3.3",
     "merge-stream": "^0.1.7",
     "node-getopt-long": "^0.1.1",
@@ -56,7 +57,6 @@
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
-    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
     "ractive-events-tap": "^0.2.0",
