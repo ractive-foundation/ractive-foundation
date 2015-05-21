@@ -12,6 +12,13 @@ Ractive.extend({
 	computed: {
 		currentPageCssClass: function () {
 			return 'currentPage' + this.get('currentPage');
+		},
+		isFirstSlide: function () {
+			return this.get('currentPage') === 1;
+		},
+		isLastSlide: function () {
+			console.log('isLastSlide', this.get());
+			return this.get('currentPage') === this.get('slidesTotal');
 		}
 	},
 
@@ -19,16 +26,12 @@ Ractive.extend({
 
 		this.on('nextPage', function (e) {
 			var nextPage = this.get('currentPage') + 1;
-			// FIXME Quick hack for bounds.
-			nextPage = nextPage > 5 ? 5 : nextPage;
 			this.set('currentPage', nextPage);
 			return false;
 		});
 
 		this.on('prevPage', function (e) {
-			var prevPage = this.get('currentPage') -1 ;
-			// FIXME Quick hack for bounds.
-			prevPage = prevPage < 1 ? 1 : prevPage;
+			var prevPage = this.get('currentPage') - 1;
 			this.set('currentPage', prevPage);
 			return false;
 		});
