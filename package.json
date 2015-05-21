@@ -1,6 +1,6 @@
 {
   "name": "ractive-foundation",
-  "version": "0.0.12",
+  "version": "0.0.17",
   "description": "Ractive components for Foundation 5",
   "main": "index.js",
   "scripts": {
@@ -18,13 +18,15 @@
   },
   "homepage": "https://github.com/ractive-foundation/ractive-foundation",
   "devDependencies": {
-    "async": "^0.9.0",
+    "async": "^1.0.0",
     "cucumber": "~0.4.8",
     "del": "^1.1.1",
     "find": "^0.1.7",
+    "foundation-sites": "git+https://github.com/zurb/bower-foundation.git#5.5.2",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-connect": "^2.2.0",
+    "gulp-copy": "0.0.2",
     "gulp-cucumber": "0.0.8",
     "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
@@ -40,7 +42,6 @@
     "json2htmljson2css": "0.0.1",
     "marked": "^0.3.3",
     "merge-stream": "^0.1.7",
-    "modernizr": "^3.0.0-alpha.4",
     "node-getopt-long": "^0.1.1",
     "page": "^1.6.1",
     "phantomjs": "^1.9.16",
@@ -57,10 +58,10 @@
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
-    "lodash": "git+https://github.com/lodash/lodash.git#master",
+    "hammerjs": "^2.0.4",
+    "lodash-compat": "^3.9.1",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
-    "ractive-events-tap": "^0.2.0",
-    "zurb-foundation-5": "^5.4.7"
+    "ractive-touch": "^0.4.0"
   }
 }

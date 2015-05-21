@@ -30,13 +30,6 @@ gulp.task('html', function () {
 		.pipe(plugins.connect.reload());
 });
 
-gulp.task('build-modernizr', function () {
-	return plugins.run('node node_modules/modernizr/bin/modernizr ' +
-	'-c ./node_modules/modernizr/lib/config-all.json ' +
-	'-d ./node_modules/modernizr/')
-		.exec();
-});
-
 gulp.task('copy-vendors', function () {
 
 	return mergeStream(
@@ -45,19 +38,25 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.js',
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
-			'./node_modules/ractive-events-tap/dist/ractive-events-tap.js',
+			'./node_modules/hammerjs/hammer.min.js',
+			'./node_modules/ractive-touch/index.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
 			'./node_modules/lodash/lodash.min.js',
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
-			'./node_modules/modernizr/modernizr.js',
-			'./src/route.js'
+			'./node_modules/foundation-sites/js/vendor/modernizr.js',
+			'./node_modules/lodash-compat/index.js'
 		])
+		.pipe(plugins.copy('./public/js', { prefix: 1 })),
+
+		// Our own project files.
+		gulp.src('./src/route.js')
 		.pipe(gulp.dest('./public/js')),
 
+		// Some reference images, taken from Zurb for demo'ing, but not part of the real source.
 		gulp.src([
-			'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
+			'./src/assets/images/**/*'
 		])
 		.pipe(gulp.dest('public/images/'))
 
@@ -91,7 +90,7 @@ gulp.task('build-sass', function () {
 			.pipe(plugins.concat('components.css'))
 			.pipe(gulp.dest('./public/css')),
 
-		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
+		gulp.src('./node_modules/foundation-sites/scss/*.scss')
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation'))
 
@@ -147,6 +146,10 @@ gulp.task('build-documentation', function () {
 		.pipe(plugins.footer(footerHtml))
 		.pipe(gulp.dest('./public/')),
 
+		// Blank pages
+		gulp.src([ './src/blank-pages/*.html' ])
+			.pipe(gulp.dest('./public/')),
+
 		// Test runner while we're at it.
 		gulp.src('./src/testRunner.html')
 			.pipe(gulp.dest('./public/'))
@@ -193,8 +196,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-components',
-		'build-documentation',
-		'build-modernizr'
+		'build-documentation'
 	], [
 		'copy-vendors',
 		'copy-use-cases',
@@ -210,9 +212,7 @@ gulp.task('dist', ['build'], function () {
 		'public/js/ractivef-amd.js',
 		'public/js/ractivef-base.js',
 		'public/js/ractivef-cjs.js',
-		'public/manifest-rf.json',
-		'public/css/components.css',
-		'node_modules/modernizr/modernizr.js'
+		'public/manifest-rf.json'
 	]).pipe(gulp.dest('dist'));
 });
 
@@ -221,6 +221,7 @@ gulp.task('watch', function () {
 	plugins.watch([
 		'src/*.html',
 		'src/pages/*.html',
+		'src/blank-pages/*.html',
 		'src/**.*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
@@ -234,24 +235,17 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('cucumber', function(callback) {
-	gulp
+gulp.task('test', ['build', 'connect'], function (callback) {
+	return gulp
 		.src('./src/components/**/*.feature')
 		.pipe(rfCucumber(
 			{ steps: './src/components/**/*.steps.js' }
-		)).on('end', callback);
-});
-
-gulp.task('test', [ 'build' ], function (callback) {
-	runSequence('connect', 'cucumber', function (err) {
-		if (!err) {
-			callback();
-			// Work around for task success not exiting.
-			return process.exit(0);
-		}
-	});
-
-	this.on('end', callback);
+		)).on('end', function (err) {
+			if (!err) {
+				callback();
+				return process.exit(0);
+			}
+		});
 });
 
 gulp.task('jshint', function (callback) {

@@ -5,13 +5,13 @@ if (typeof document !== 'undefined') {
 
 		var codeBlocks = document.querySelectorAll('pre code');
 
-		if (_ && _.each && _.escape && hljs && hljs.highlightBlock) {
+		try {
 			_.each(codeBlocks, function (block) {
 				block.innerHTML = _.escape(block.innerHTML);
 				hljs.highlightBlock(block);
 			});
-		} else {
-			console.warn('Failed to enable syntax highlight.');
+		} catch (err) {
+			console.warn('Failed to enable syntax highlight, err:', err);
 		}
 
 		var containers = document.querySelectorAll('.ractivef');

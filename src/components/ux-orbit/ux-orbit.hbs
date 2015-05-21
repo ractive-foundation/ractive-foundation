@@ -1,0 +1,40 @@
+<div class="ux-orbit">
+	<div class="orbit-container {{currentPageCssClass}}">
+		<ul class="pageContainer example-orbit orbit-slides-container">
+			{{#if isDataModel}}
+				{{#items}}
+					<li class="orbit-slides-slide {{#active}} active{{/}}" on-swipeleft="nextPage" on-swiperight="prevPage">
+						<img src="{{imagesrc}}" alt="{{imagealt}}" />
+						<div class="orbit-caption">{{caption}}</div>
+					</li>
+				{{/}}
+			{{else}}
+				{{>content}}
+			{{/if}}
+			{{#slidesTotal == 0}}
+				<li class="orbit-slides-slide">
+					<h2>No slides found</h2>
+				</li>
+			{{/if}}
+		</ul>
+
+		{{#if navigation_arrows}}
+			<a class="orbit-prev" on-tap="prevPage">Prev <span></span></a>
+			<a class="orbit-next" on-tap="nextPage">Next <span></span></a>
+		{{/if}}
+
+		{{#if slide_number}}
+			<div class="orbit-slide-number">
+				<span>{{currentPage}}</span> of <span>{{slidesTotal}}</span>
+			</div>
+		{{/if}}
+	</div>
+
+	{{#if bullets}}
+		<ol class="orbit-bullets">
+			{{#items:i}}
+				<li data-orbit-slide-number="{{i}}" class="{{#active}}active{{/}}">
+			{{/}}
+		</ol>
+	{{/if}}
+</div>
