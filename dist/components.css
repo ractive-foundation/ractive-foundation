@@ -3,51 +3,51 @@
 
 
 
-.ux-orbit {
+.ux-orbit .orbit-container {
   height: 100%;
   position: relative;
   overflow: hidden; }
-  .ux-orbit.currentPage1 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage1 .orbit-slides-slide {
     position: relative;
     left: -0%; }
-  .ux-orbit.currentPage2 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage2 .orbit-slides-slide {
     position: relative;
     left: -10%; }
-  .ux-orbit.currentPage3 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage3 .orbit-slides-slide {
     position: relative;
     left: -20%; }
-  .ux-orbit.currentPage4 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage4 .orbit-slides-slide {
     position: relative;
     left: -30%; }
-  .ux-orbit.currentPage5 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage5 .orbit-slides-slide {
     position: relative;
     left: -40%; }
-  .ux-orbit.currentPage6 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage6 .orbit-slides-slide {
     position: relative;
     left: -50%; }
-  .ux-orbit.currentPage7 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage7 .orbit-slides-slide {
     position: relative;
     left: -60%; }
-  .ux-orbit.currentPage8 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage8 .orbit-slides-slide {
     position: relative;
     left: -70%; }
-  .ux-orbit.currentPage9 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage9 .orbit-slides-slide {
     position: relative;
     left: -80%; }
-  .ux-orbit.currentPage10 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage10 .orbit-slides-slide {
     position: relative;
     left: -90%; }
-  .ux-orbit.currentPage11 .orbit-slides-slide {
+  .ux-orbit .orbit-container.currentPage11 .orbit-slides-slide {
     position: relative;
     left: -100%; }
-  .ux-orbit .pageContainer {
+  .ux-orbit .orbit-container .pageContainer {
     height: 100%;
     width: 1000%; }
-    .ux-orbit .pageContainer:after {
+    .ux-orbit .orbit-container .pageContainer:after {
       content: "";
       display: table;
       clear: both; }
-  .ux-orbit .orbit-slides-slide {
+  .ux-orbit .orbit-container .orbit-slides-slide {
     float: left;
     width: 10%;
     height: 100%;
