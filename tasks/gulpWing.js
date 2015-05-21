@@ -6,7 +6,7 @@
  * TODO Consider async code style, but really, it takes 1.16ms to run this code on my laptop.
  */
 
-var _ = require('lodash'),
+var _ = require('lodash-compat'),
 	fs = require('fs'),
 	gutil = require('gulp-util'),
 	path = require('path'),
