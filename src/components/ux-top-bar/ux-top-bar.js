@@ -10,7 +10,7 @@ Ractive.extend({
 			if (!expandedlevel) { return ''; }
 
 			// As per Foundation's setup.
-			var newStyle = 'left: -' + (this.get('expandedlevel') * 100) + '%';
+			var newStyle = 'left: -' + (expandedlevel * 100) + '%';
 			return newStyle;
 
 		}
