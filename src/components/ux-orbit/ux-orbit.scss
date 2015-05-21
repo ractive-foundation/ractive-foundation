@@ -24,12 +24,18 @@ $max-pages: 10;
 			}
 		}
 
+		.orbit-slides-container {
+			img {
+				width: 100%;
+			}
+		}
+
 		.pageContainer {
 			width: 100% * $max-pages;
 			@include clearfix;
 		}
 
-		.orbit-slides-slide  {
+		.orbit-slides-slide {
 			float: left;
 			width: 100% / $max-pages;
 			-webkit-transition: left .25s ease-in;
