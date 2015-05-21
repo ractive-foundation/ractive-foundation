@@ -6,7 +6,7 @@ var through = require('through2');
 var Cucumber = require('cucumber');
 var glob = require('simple-glob');
 var async = require('async');
-var Promise = require('promise');
+var Q = require('q');
 
 /**
  * Combination of gulp-cucumber and gulp-webdriverio
@@ -103,7 +103,7 @@ module.exports = function (options) {
 	var killServer = function () {
 		var promise;
 		if (seleniumServer) {
-			promise = new Promise(function (resolve, reject) {
+			promise = Q.promise(function (resolve, reject) {
 				seleniumServer.kill();
 				seleniumServer.on('close', function (code, signal) {
 					gutil.log('Finished', gutil.colors.cyan('\'selenium standalone server\''));
@@ -115,7 +115,7 @@ module.exports = function (options) {
 				});
 			});
 		} else {
-			promise = Promise.resolve();
+			promise = Q.resolve();
 			gutil.log(gutil.colors.red('Cannot kill Standalone server.'));
 		}
 
