@@ -12,7 +12,6 @@ $max-pages: 10;
 
 	.orbit-container {
 
-		height: 100%;
 		position: relative;
 		overflow: hidden;
 
@@ -26,7 +25,6 @@ $max-pages: 10;
 		}
 
 		.pageContainer {
-			height: 100%;
 			width: 100% * $max-pages;
 			@include clearfix;
 		}
@@ -34,7 +32,6 @@ $max-pages: 10;
 		.orbit-slides-slide  {
 			float: left;
 			width: 100% / $max-pages;
-			height: 100%;
 			-webkit-transition: left .25s ease-in;
 			transition: left .25s ease-in;
 			margin-left: 0;
