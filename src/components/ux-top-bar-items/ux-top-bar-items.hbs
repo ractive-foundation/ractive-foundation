@@ -1,14 +1,21 @@
 <ul class="ux-top-bar-items {{class}}">
 
 	{{#if items}}
-		{{#each items}}
 
+		{{#if parent}}
+			<li class="title back js-generated"><h5><a on-tap="collapseItem:{{this}}">Back</a></h5></li>
+			<li class="parent-link hide-for-medium-up"><a class="parent-link js-generated" href="{{parent.href}}">{{parent.label}}</a></li>
+		{{/if}}
+
+		{{#each items}}
 			{{! TODO Use ux-li and ux-anchor, resolve nested scopes. }}
 			<li class="{{getTopBarItemCssClass(this)}}">
-				<a href="{{this.href}}">{{{this.label}}}</a>
 				{{#if this.items}}
+					<a on-click="expandItem:{{this}}">{{{this.label}}}</a>
 					{{! Recursively reference the same component, to create the hierarchy of items. }}
-					<ux-top-bar-items class="dropdown" items="{{this.items}}"></ux-top-bar-items>
+					<ux-top-bar-items class="dropdown" items="{{this.items}}" parent="{{this}}"></ux-top-bar-items>
+				{{else}}
+					<a href="{{this.href}}">{{{this.label}}}</a>
 				{{/if}}
 			</li>
 

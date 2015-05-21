@@ -13,7 +13,17 @@ Ractive.extend({
 				// Note: not-click needed for focus/hover with html class=js. Silly.
 				classes.push('has-dropdown not-click');
 			}
+			if (item.expanded && item.expanded !== 'false') {
+				// For sub-nav on mobi.
+				classes.push('moved');
+			}
 			return classes.join(' ');
 		}
+	},
+	oninit: function () {
+		this.on('expandItem', function (e) {
+			//this.set(e.keypath + '.expanded', true);
+			// Allow event through to parent component to act upon.
+		});
 	}
 });
