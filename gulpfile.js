@@ -222,7 +222,7 @@ gulp.task('dist-build', ['build'], function () {
 });
 
 gulp.task('dist', ['dist-build'], function () {
-	return plugins.run('git add dist/*.* && git commit -m "Regenerate dist assets"')
+	return plugins.run('git add dist/*.* && git commit -m "Redist"')
 		.exec();
 });
 
