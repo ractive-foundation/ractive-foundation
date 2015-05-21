@@ -19,8 +19,12 @@
 		</ul>
 
 		{{#if navigation_arrows}}
-			<a href="#" class="orbit-prev" on-tap="prevPage">Prev <span></span></a>
-			<a href="#" class="orbit-next" on-tap="nextPage">Next <span></span></a>
+			{{#if currentPage !== 1}}
+				<a href="#" class="orbit-prev" on-tap="prevPage">Prev <span></span></a>
+			{{/if}}
+			{{#if currentPage !== slidesTotal}}
+				<a href="#" class="orbit-next" on-tap="nextPage">Next <span></span></a>
+			{{/if}}
 		{{/if}}
 
 		{{#if slide_number}}
