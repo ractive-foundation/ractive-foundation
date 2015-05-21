@@ -1,0 +1,44 @@
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+$max-pages: 10;
+
+.ux-orbit {
+
+	.orbit-container {
+
+		height: 100%;
+		position: relative;
+		overflow: hidden;
+
+		@for $i from 0 through $max-pages {
+			&.currentPage#{$i+1} {
+				.orbit-slides-slide  {
+					position: relative;
+					left: -#{(100% / $max-pages) * $i};
+				}
+			}
+		}
+
+		.pageContainer {
+			height: 100%;
+			width: 100% * $max-pages;
+			@include clearfix;
+		}
+
+		.orbit-slides-slide  {
+			float: left;
+			width: 100% / $max-pages;
+			height: 100%;
+			-webkit-transition: left .25s ease-in;
+			transition: left .25s ease-in;
+			margin-left: 0;
+		}
+
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"imagesrc": "http://placekitten.com/g/1500/500",
+				"link": ".",
+				"imagealt": "Slide 1",
+				"caption": "Caption One",
+				"active": true
+			},
+			{
+				"imagesrc": "http://placekitten.com/1500/500",
+				"imagealt": "Slide 2",
+				"link": ".",
+				"caption": "Caption Two",
+				"active": false
+			},
+			{
+				"content": "",
+				"active": false
+			}
+		]
+	}
+}
