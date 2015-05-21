@@ -5,7 +5,8 @@ Ractive.extend({
 	data: {
 		currentPage: 1,
 		navigation_arrows: true,
-		slide_number: true
+		slide_number: true,
+		bullets: true
 	},
 
 	computed: {
