@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pvshum/ractive-foundation",
   "devDependencies": {
+    "async": "^1.0.0",
     "cucumber": "~0.4.8",
     "del": "^1.1.1",
     "find": "^0.1.7",
