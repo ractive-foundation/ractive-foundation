@@ -6,6 +6,7 @@ var through = require('through2');
 var Cucumber = require('cucumber');
 var glob = require('simple-glob');
 var async = require('async');
+var Promise = require('promise');
 
 /**
  * Combination of gulp-cucumber and gulp-webdriverio
@@ -49,7 +50,7 @@ module.exports = function (options) {
 	 */
 	var pingSelenium = function(callback) {
 
-		gutil.log('Checking if Selenium server is running');
+		gutil.log(gutil.colors.gray('Checking if Selenium server is running'));
 
 		var opts = {
 			host: options.host || 'localhost',
@@ -58,11 +59,11 @@ module.exports = function (options) {
 		};
 
 		http.get(opts, function() {
-			gutil.log('Selenium server is running');
+			gutil.log(gutil.colors.green('Selenium server is running'));
 			isSeleniumServerRunning = true;
 			callback(null);
 		}).on('error', function() {
-			gutil.log('Selenium server is not running');
+			gutil.log(gutil.colors.gray('Selenium server is not running'));
 			callback(null);
 		});
 
@@ -76,21 +77,21 @@ module.exports = function (options) {
 
 		if (!server && !isSeleniumServerRunning && !options.nospawn) {
 
-			gutil.log('Starting Selenium standalone server');
+			gutil.log('Starting', gutil.colors.cyan('\'selenium standalone server\''));
 
 			server = selenium.start(seleniumOptions, function(err, child) {
 				if (err) {
 					return callback(err);
 				}
 
-				gutil.log('Selenium server successfully started');
+				gutil.log(gutil.colors.green('Selenium server successfully started'));
 				seleniumServer = child;
 				isSeleniumServerRunning = true;
 				callback(null);
 			});
 
 		} else {
-			gutil.log('Standalone server is running');
+			gutil.log(gutil.colors.gray('Standalone server is running'));
 			callback(null);
 		}
 
@@ -100,12 +101,25 @@ module.exports = function (options) {
 	 * Process to kill server on completion
 	 */
 	var killServer = function () {
+		var promise;
 		if (seleniumServer) {
-			gutil.log('Killing Selenium server');
-			seleniumServer.kill();
+			promise = new Promise(function (resolve, reject) {
+				seleniumServer.kill();
+				seleniumServer.on('close', function (code, signal) {
+					gutil.log('Finished', gutil.colors.cyan('\'selenium standalone server\''));
+					return resolve(signal);
+				});
+				seleniumServer.on('error', function (code, signal) {
+					gutil.log(gutil.colors.red('Failed to kill server!'));
+					return reject(signal);
+				});
+			});
 		} else {
-			gutil.log('Cannot kill Standalone server.');
+			promise = Promise.resolve();
+			gutil.log(gutil.colors.red('Cannot kill Standalone server.'));
 		}
+
+		return promise;
 	};
 
 	/**
@@ -113,13 +127,13 @@ module.exports = function (options) {
 	 * @param callback
 	 */
 	var installDrivers = function (callback) {
-		gutil.log('Installing driver(s) if needed');
+		gutil.log(gutil.colors.gray('Installing driver(s) if needed'));
 		selenium.install(seleniumInstallOptions, function(err) {
 			if (err) {
 				return callback(err);
 			}
 
-			gutil.log('Driver installed');
+			gutil.log(gutil.colors.green('Driver installed!'));
 			callback(null);
 		});
 	};
@@ -165,20 +179,19 @@ module.exports = function (options) {
 		], function (err) {
 
 			// Kill server regardless of result.
-			killServer();
+			killServer().then(function () {
+				if (!err) {
+					return callback();
+				}
 
-			if (!err) {
+				var error = new gutil.PluginError('rf-cucumber', {
+					message: err,
+					showStack: false
+				});
+
+				callback(error);
 				stream.emit('end');
-				return callback();
-			}
-
-			var error = new gutil.PluginError('rf-cucumber', {
-				message: err,
-				showStack: false
-			});
-
-			callback(error);
-			stream.emit('end');
+			}).catch(console.log.bind(console));
 		});
 	};
 
