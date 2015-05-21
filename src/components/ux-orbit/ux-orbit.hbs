@@ -11,11 +11,11 @@
 			{{else}}
 				{{>content}}
 			{{/if}}
-			{{#slidesTotal == 0}}
+			{{#unless items}}
 				<li class="orbit-slides-slide">
 					<h2>No slides found</h2>
 				</li>
-			{{/if}}
+			{{/unless}}
 		</ul>
 
 		{{#if navigation_arrows}}
