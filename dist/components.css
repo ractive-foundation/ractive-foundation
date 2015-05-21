@@ -39,6 +39,8 @@
   .ux-orbit .orbit-container.currentPage11 .orbit-slides-slide {
     position: relative;
     left: -100%; }
+  .ux-orbit .orbit-container .orbit-slides-container img {
+    width: 100%; }
   .ux-orbit .orbit-container .pageContainer {
     width: 1000%; }
     .ux-orbit .orbit-container .pageContainer:after {
