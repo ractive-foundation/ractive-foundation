@@ -11,16 +11,20 @@
 			{{else}}
 				{{>content}}
 			{{/if}}
-			{{#slidesTotal == 0}}
+			{{#unless items}}
 				<li class="orbit-slides-slide">
 					<h2>No slides found</h2>
 				</li>
-			{{/if}}
+			{{/unless}}
 		</ul>
 
 		{{#if navigation_arrows}}
-			<a class="orbit-prev" on-tap="prevPage">Prev <span></span></a>
-			<a class="orbit-next" on-tap="nextPage">Next <span></span></a>
+			{{#if currentPage !== 1}}
+				<a href="#" class="orbit-prev" on-tap="prevPage">Prev <span></span></a>
+			{{/if}}
+			{{#if currentPage !== slidesTotal}}
+				<a href="#" class="orbit-next" on-tap="nextPage">Next <span></span></a>
+			{{/if}}
 		{{/if}}
 
 		{{#if slide_number}}

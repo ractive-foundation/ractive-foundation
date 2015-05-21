@@ -214,7 +214,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	], callback);
 });
 
-gulp.task('dist', ['build'], function () {
+gulp.task('dist-build', ['build'], function () {
 	return gulp.src([
 		'public/js/ractivef-amd.js',
 		'public/js/ractivef-base.js',
@@ -223,6 +223,11 @@ gulp.task('dist', ['build'], function () {
 		'public/css/components.css',
 		'node_modules/modernizr/modernizr.js'
 	]).pipe(gulp.dest('dist'));
+});
+
+gulp.task('dist', ['dist-build'], function () {
+	return plugins.run('git add dist/*.* && git commit -m "Redist"')
+		.exec();
 });
 
 gulp.task('watch', function () {
