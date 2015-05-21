@@ -25,6 +25,7 @@
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-connect": "^2.2.0",
+    "gulp-copy": "0.0.2",
     "gulp-cucumber": "0.0.8",
     "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
@@ -57,8 +58,8 @@
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
-    "lodash": "git+https://github.com/lodash/lodash.git#master",
     "hammerjs": "^2.0.4",
+    "lodash-compat": "^3.9.1",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
     "ractive-touch": "^0.4.0",
