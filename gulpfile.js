@@ -53,8 +53,12 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
 			'./node_modules/modernizr/modernizr.js',
-			'./src/route.js'
+			'./node_modules/lodash-compat/index.js'
 		])
+		.pipe(plugins.copy('./public/js', { prefix: 1 })),
+
+		// Our own project files.
+		gulp.src('./src/route.js')
 		.pipe(gulp.dest('./public/js')),
 
 		gulp.src([
