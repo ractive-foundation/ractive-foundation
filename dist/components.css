@@ -2,7 +2,6 @@
 
 
 
-
 .ux-orbit .orbit-container {
   position: relative;
   overflow: hidden; }
@@ -53,6 +52,7 @@
     -webkit-transition: left .25s ease-in;
     transition: left .25s ease-in;
     margin-left: 0; }
+
 
 
 .side-nav .divider {
