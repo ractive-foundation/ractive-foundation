@@ -30,13 +30,6 @@ gulp.task('html', function () {
 		.pipe(plugins.connect.reload());
 });
 
-gulp.task('build-modernizr', function () {
-	return plugins.run('node node_modules/modernizr/bin/modernizr ' +
-	'-c ./node_modules/modernizr/lib/config-all.json ' +
-	'-d ./node_modules/modernizr/')
-		.exec();
-});
-
 gulp.task('copy-vendors', function () {
 
 	return mergeStream(
@@ -52,7 +45,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/lodash/lodash.min.js',
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
-			'./node_modules/modernizr/modernizr.js',
+			'./node_modules/foundation-sites/js/vendor/modernizr.js',
 			'./node_modules/lodash-compat/index.js'
 		])
 		.pipe(plugins.copy('./public/js', { prefix: 1 })),
@@ -61,8 +54,9 @@ gulp.task('copy-vendors', function () {
 		gulp.src('./src/route.js')
 		.pipe(gulp.dest('./public/js')),
 
+		// Some reference images, taken from Zurb for demo'ing, but not part of the real source.
 		gulp.src([
-			'node_modules/zurb-foundation-5/doc/assets/img/images/**/*'
+			'./src/assets/images/**/*'
 		])
 		.pipe(gulp.dest('public/images/'))
 
@@ -96,7 +90,7 @@ gulp.task('build-sass', function () {
 			.pipe(plugins.concat('components.css'))
 			.pipe(gulp.dest('./public/css')),
 
-		gulp.src('./node_modules/zurb-foundation-5/scss/*.scss')
+		gulp.src('./node_modules/foundation-sites/scss/*.scss')
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation'))
 
@@ -202,8 +196,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-components',
-		'build-documentation',
-		'build-modernizr'
+		'build-documentation'
 	], [
 		'copy-vendors',
 		'copy-use-cases',
