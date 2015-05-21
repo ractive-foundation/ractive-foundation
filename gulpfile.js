@@ -224,24 +224,17 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('cucumber', function(callback) {
-	gulp
+gulp.task('test', ['build', 'connect'], function (callback) {
+	return gulp
 		.src('./src/components/**/*.feature')
 		.pipe(rfCucumber(
 			{ steps: './src/components/**/*.steps.js' }
-		)).on('end', callback);
-});
-
-gulp.task('test', [ 'build' ], function (callback) {
-	runSequence('connect', 'cucumber', function (err) {
-		if (!err) {
-			callback();
-			// Work around for task success not exiting.
-			return process.exit(1);
-		}
-	});
-
-	this.on('end', callback);
+		)).on('end', function (err) {
+			if (!err) {
+				callback();
+				return process.exit(0);
+			}
+		});
 });
 
 gulp.task('jshint', function (callback) {
