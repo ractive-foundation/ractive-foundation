@@ -7,7 +7,9 @@ Ractive.extend({
 		topBarSectionStyle: function () {
 
 			var expandedlevel = this.get('expandedlevel');
-			if (!expandedlevel) { return ''; }
+			if (!expandedlevel) {
+				return '';
+			}
 
 			// As per Foundation's setup.
 			var newStyle = 'left: -' + (expandedlevel * 100) + '%';
