@@ -54,12 +54,12 @@
     "lodash-compat": "^3.9.1",
     "node-notifier": "^4.1.2",
     "ractive": "^0.7.2",
-    "ractive-touch": "^0.4.0"
+    "ractive-touch": "^0.4.0",
     "zurb-foundation-5": "^5.4.7",
     "gulp-util": "^3.0.4",
     "simple-glob": "~0.1.0",
     "q": "^1.2.0",
-    "async": "^1.0.0",
+    "async": "1.0.0",
     "cucumber": "~0.4.8",
     "through2": "^0.6.3",
     "selenium-standalone": "^4.2.2"
