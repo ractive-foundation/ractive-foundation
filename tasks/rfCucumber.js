@@ -1,5 +1,4 @@
 var selenium = require('selenium-standalone');
-var cucumber = require('gulp-cucumber');
 var gutil = require('gulp-util');
 var http = require('http');
 var through = require('through2');
