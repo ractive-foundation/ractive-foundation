@@ -1,5 +1,5 @@
 <ul class="off-canvas-list">
-    {{#items}}
+    {{#each this.items}}
         <li>
             {{#if this.href}}
                 <a href="{{this.href}}" {{#if this.target}}target="{{this.target}}"{{/if}}>
@@ -9,5 +9,5 @@
                 <label>{{{this.label}}}</label>
             {{/if}}
         </li>
-    {{/items}}
+    {{/each}}
 </ul>
