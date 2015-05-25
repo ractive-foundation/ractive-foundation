@@ -23,33 +23,13 @@
 
         {{#if leftItems}}
             <aside class="left-off-canvas-menu">
-                <ul class="off-canvas-list">
-                    {{#leftItems}}
-                        <li>
-                            {{#if href}}
-                                <a href="{{href}}" {{#target}}target="{{target}}"{{/target}}>{{label}}</a>
-                            {{else}}
-                                <label>{{label}}</label>
-                            {{/if}}
-                        </li>
-                    {{/leftItems}}
-                </ul>
+                <ux-off-canvas-list items="{{leftItems}}"></ux-off-canvas-list>
             </aside>
         {{/if}}
 
         {{#if rightItems}}
             <aside class="right-off-canvas-menu">
-                <ul class="off-canvas-list">
-                    {{#rightItems}}
-                        <li>
-                            {{#if href}}
-                                <a href="{{href}}" {{#target}}target="{{target}}"{{/target}}>{{label}}</a>
-                            {{else}}
-                                <label>{{label}}</label>
-                            {{/if}}
-                        </li>
-                    {{/rightItems}}
-                </ul>
+				<ux-off-canvas-list items="{{rightItems}}"></ux-off-canvas-list>
             </aside>
         {{/if}}
 

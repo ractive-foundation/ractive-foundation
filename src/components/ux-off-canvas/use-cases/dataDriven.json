@@ -6,18 +6,18 @@
 		"expandedState": "",
 		"leftItems": [
 			{
-				"label": "Learn More"
+				"label": "Learn <em>More</em>"
 			},
 			{
 				"label": "Home",
 				"href": "."
 			},
 			{
-				"label": "Docs",
-				"href": "docs.html"
+				"label": "интернационализация",
+				"href": "."
 			},
 			{
-				"label": "Data",
+				"label": "<b>Data</b>",
 				"href": "data.html"
 			},
 			{

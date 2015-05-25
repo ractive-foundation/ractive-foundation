@@ -1,0 +1,13 @@
+<ul class="off-canvas-list">
+    {{#each this.items}}
+        <li>
+            {{#if this.href}}
+                <a href="{{this.href}}" {{#if this.target}}target="{{this.target}}"{{/if}}>
+                    {{{this.label}}}
+                </a>
+            {{else}}
+                <label>{{{this.label}}}</label>
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>
