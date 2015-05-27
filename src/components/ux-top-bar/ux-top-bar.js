@@ -30,7 +30,7 @@ Ractive.extend({
 			if (self.get('issticky')) {
 				self.set('isfixed', RactiveF.pageYOffset() > topbarOffset.top);
 			}
-		};
+		});
 
 	}
 
