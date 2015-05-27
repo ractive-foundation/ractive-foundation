@@ -22,6 +22,13 @@ Ractive.extend({
 		}
 
 		this.on('*.changeTab', function (event) {
+
+			/**
+			 * This currently doesnt work.
+			 * @see https://github.com/ractive-foundation/ractive-foundation/issues/122
+			 */
+			event.original.preventDefault();
+
 			var components = this.findAllChildComponents('ux-tablink');
 
 			_.each(components, function (component) {
