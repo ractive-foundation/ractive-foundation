@@ -6,11 +6,18 @@ Ractive.extend({
 		if (window.location.hash.length) {
 			var hash = window.location.hash.substr(1);
 			var components = this.findAllChildComponents('ux-tablink');
-			_.each(components, function (component) {
-				var isActive = component.get('id') === hash;
-				component.set('active', isActive);
-				component.get('tabPane').set('active', isActive);
+
+			var hasMatchingHash = _.filter(components, function (component) {
+				return component.get('id') === hash;
 			});
+
+			if (hasMatchingHash.length) {
+				_.each(components, function (component) {
+					var isActive = component.get('id') === hash;
+					component.set('active', isActive);
+					component.get('tabPane').set('active', isActive);
+				});
+			}
 
 		}
 
