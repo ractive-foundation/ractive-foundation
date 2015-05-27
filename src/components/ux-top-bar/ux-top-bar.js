@@ -26,7 +26,7 @@ Ractive.extend({
 		var topbar = self.find('.top-bar');
 		var topbarOffset = RactiveF.elementOffset(topbar);
 
-		window.onscroll = function (e) {
+		window.addEventListener('scroll', function (e) {
 			if (self.get('issticky')) {
 				self.set('isfixed', RactiveF.pageYOffset() > topbarOffset.top);
 			}
