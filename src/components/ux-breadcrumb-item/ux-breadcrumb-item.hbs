@@ -1,0 +1,9 @@
+{{#if isnav}}
+    <a class="{{#if isunavailable}}unavailable{{/if}} {{#if iscurrent}}current{{/if}}" href="{{href}}">{{>content}}</a>
+{{else}}
+    <li class="{{#if isunavailable}}unavailable{{/if}} {{#if iscurrent}}current{{/if}}">
+        <a href="{{href}}">
+            {{>content}}
+        </a>
+    </li>
+{{/if}}

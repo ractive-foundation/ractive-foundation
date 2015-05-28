@@ -1,0 +1,17 @@
+{{#if isnav}}
+<nav class="breadcrumbs">
+    {{#if items}}
+        {{#each items}}
+            <ux-breadcrumb-item isnav="true" isunavailable="{{isunavailable}}" iscurrent="{{iscurrent}}" href="{{href}}">{{label}}</ux-breadcrumb-item>
+        {{/each}}
+    {{/if}}
+</nav>
+{{else}}
+<ul class="breadcrumbs">
+    {{#if items}}
+        {{#each items}}
+            <ux-breadcrumb-item isnav="false" isunavailable="{{isunavailable}}" iscurrent="{{iscurrent}}" href="{{href}}">{{label}}</ux-breadcrumb-item>
+        {{/each}}
+    {{/if}}
+</ul>
+{{/if}}
