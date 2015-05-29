@@ -1,0 +1,10 @@
+{
+	"title": "Data driven use case centered",
+	"isDataModel": true,
+	"data": {
+		"itemlimit": 10,
+		"pagecount": 20,
+		"currentpage": 4,
+		"iscentered": true
+	}
+}

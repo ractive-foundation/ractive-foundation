@@ -1,0 +1,13 @@
+{
+	"title": "Data driven use case with accessibility with pagination URL defined",
+	"isDataModel": true,
+	"data": {
+		"pageurl": "/?page=((page))",
+		"itemlimit": 15,
+		"iscentered": false,
+		"pagecount": 50,
+		"currentpage": 48,
+		"nextlabel": "Next",
+		"previouslabel": "Previous"
+	}
+}
