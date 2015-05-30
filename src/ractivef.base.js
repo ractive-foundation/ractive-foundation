@@ -87,6 +87,25 @@ RactiveF = {
 		return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 	},
 
+	scrollToPosition: function(elem) {
+		var scrollDuration = 500,
+			elementPosition = RactiveF.elementOffset(elem).top - 150,
+			scrollIntervals = Math.round(scrollDuration / 15),
+			scrollDistance = window.scrollY - elementPosition,
+			scrollStep = scrollDistance / scrollIntervals,
+			scrollCount = 0;
+
+		var scrollInterval = setInterval(function() {
+			if (scrollCount !== scrollIntervals) {
+				window.scrollBy(0, -scrollStep);
+				scrollCount++;
+			}
+			else {
+				clearInterval(scrollInterval);
+			}
+		}, 15);
+	},
+
 	mixins: {
 
 		/*
