@@ -1,0 +1,11 @@
+{
+	"title": "Data driven use case Group Item 1",
+	"isDataModel": true,
+	"data": {
+        "class": "small",
+        "id": "dataDrivenGroup2",
+        "group": "currentGroup",
+		"checked": false,
+        "value": "ok"
+	}
+}

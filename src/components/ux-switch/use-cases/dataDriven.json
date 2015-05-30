@@ -1,0 +1,9 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"id": "dataDrivenSingle",
+		"checked": true,
+		"label": "Single Switch"
+	}
+}

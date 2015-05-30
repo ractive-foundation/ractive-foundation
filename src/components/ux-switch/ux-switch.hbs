@@ -1,0 +1,8 @@
+<div class="switch {{class}}">
+    {{#if group}}
+        <input id="{{id}}" type="radio" name="{{{group}}}" {{#if checked}}checked{{/if}} value="{{value}}">
+    {{else}}
+        <input id="{{id}}" type="checkbox" {{#if checked}}checked{{/if}} value="{{value}}">
+    {{/if}}
+    <label for="{{id}}"></label>
+</div>
