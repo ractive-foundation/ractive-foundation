@@ -17,7 +17,13 @@ _.extend(RactiveF, {
 
 		options = _.extend(defaults, options);
 
-		return this.forge(options);
+		var instance = this.forge(options);
+
+		instance.on('*.*', RactiveF.genericEventHandler);
+
+		instance.set('dataModel', '{{dataModel}}');
+
+		return instance;
 	},
 
 	genericEventHandler: function (origin) {
@@ -99,13 +105,10 @@ if (typeof document !== 'undefined') {
 		}
 
 		var containers = document.querySelectorAll('.ractivef');
+		RactiveF.widgets = [];
 
 		for (var i = 0; i < containers.length; i++) {
 			var instance = RactiveF.initInstance(containers[i]);
-
-			instance.on('*.*', RactiveF.genericEventHandler);
-
-			instance.set('dataModel', '{{dataModel}}');
 
 			RactiveF.widgets.push(instance);
 		}
