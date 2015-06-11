@@ -7,24 +7,6 @@ RactiveF = {
 		var Instance = Ractive.extend(this);
 		return new Instance(options);
 	},
-	initInstance: function (el, options) {
-		el = typeof el === 'string' ? document.querySelector(el) : el;
-
-		options = options || {};
-
-		var defaults = {
-			el: el,
-			template: Ractive.parse(el.innerHTML),
-			onrender: function () {
-				this.el.classList.remove('hide');
-				this.el.classList.add('initialize');
-			}
-		};
-
-		options = _.extend(defaults, options);
-
-		return this.forge(options);
-	},
 
 	/*
 	 * When working with nested components we only want to find child

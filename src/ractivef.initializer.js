@@ -1,5 +1,25 @@
 /*helpers*/
 _.extend(RactiveF, {
+
+	initInstance: function (el, options) {
+		el = typeof el === 'string' ? document.querySelector(el) : el;
+
+		options = options || {};
+
+		var defaults = {
+			el: el,
+			template: Ractive.parse(el.innerHTML),
+			onrender: function () {
+				this.el.classList.remove('hide');
+				this.el.classList.add('initialize');
+			}
+		};
+
+		options = _.extend(defaults, options);
+
+		return this.forge(options);
+	},
+
 	genericEventHandler: function (origin) {
 
 		// list of events below copied from Ractive source code v0.7.1
