@@ -227,12 +227,25 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 });
 
 gulp.task('dist', ['build'], function () {
-	return gulp.src([
-		'public/js/ractivef-amd.js',
-		'public/js/ractivef-base.js',
-		'public/js/ractivef-cjs.js',
-		'public/manifest-rf.json'
-	]).pipe(gulp.dest('dist'));
+
+	return mergeStream(
+
+		gulp.src([
+			'public/js/ractivef-amd.js',
+			'public/js/ractivef-base.js',
+			'public/js/ractivef-cjs.js',
+			'public/manifest-rf.json',
+			'public/js/lodash-compat/index.js',
+			'public/js/hammerjs/hammer.min.js',
+			'public/js/ractive-touch/index.js'
+		])
+		.pipe(gulp.dest('dist')),
+
+		gulp.src([
+			'public/css/**/*.css'
+		]).pipe(gulp.dest('dist/css'))
+	);
+
 });
 
 gulp.task('watch', function () {
