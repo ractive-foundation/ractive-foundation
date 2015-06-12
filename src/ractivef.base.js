@@ -1,4 +1,5 @@
 RactiveF = {
+	VERSION: '<@version@>',
 	components: {},
 	templates: {},
 	getInstance: function () {

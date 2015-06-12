@@ -186,6 +186,23 @@ gulp.task('concat-app-commonjs', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('apply-versions', function () {
+	return gulp.src([
+		'public/js/ractivef-amd.js',
+		'public/js/ractivef-base.js',
+		'public/js/ractivef-cjs.js',
+		'public/js/ractivef.js'
+	]).pipe(plugins.foreach(function (stream, file) {
+		var regex = new RegExp('<@version@>', 'g');
+		var contents = fs.readFileSync(file.path, 'utf8');
+		var newContents = contents.replace(regex, pkg.version);
+
+		fs.writeFileSync(file.path, newContents);
+
+		return stream;
+	}));
+});
+
 gulp.task('wing', function (callback) {
 	gulpWing();
 	callback();
@@ -204,6 +221,8 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	], [
 		'concat-app-amd',
 		'concat-app-commonjs'
+	], [
+		'apply-versions'
 	], callback);
 });
 
