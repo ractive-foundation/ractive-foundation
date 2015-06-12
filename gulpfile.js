@@ -229,16 +229,23 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 gulp.task('dist', ['build'], function () {
 
 	return mergeStream(
-
 		gulp.src([
-			'public/js/ractivef-amd.js',
-			'public/js/ractivef-base.js',
-			'public/js/ractivef-cjs.js',
-			'public/manifest-rf.json',
-			'public/js/lodash-compat/index.js',
-			'public/js/hammerjs/hammer.min.js',
-			'public/js/ractive-touch/index.js'
-		])
+			'./public/js/ractivef-*.js',
+			'./public/manifest-rf.json',
+			'./public/js/lodash-compat/*',
+			'./public/js/hammerjs/hammer.min.js',
+			'./public/js/ractive-touch/*'
+		], { base: process.cwd() })
+		.pipe(plugins.rename(function (path) {
+			// If file is the default npm name 'index', rename to folder name.
+			if (path.basename === 'index') {
+				var basename = path.dirname.split(nodePath.sep).reverse()[0];
+				path.basename = basename;
+			}
+
+			// Flatten to top level directory
+			path.dirname = '.';
+		}))
 		.pipe(gulp.dest('dist')),
 
 		gulp.src([
