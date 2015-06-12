@@ -2,69 +2,67 @@
 var Ractive = require('ractive');
 /* jshint ignore:start */
 RactiveF = {
+	VERSION: '0.0.22',
 	components: {},
 	templates: {},
+	getInstance: function () {
+		return Ractive.extend(RactiveF);
+	},
 	forge: function (options) {
 		options = options || {};
-
-		if (!Ractive.prototype.findAllChildComponents) {
-			_.mixin(Ractive.prototype, RactiveF.mixins);
-		}
-
-		var Instance = Ractive.extend(this);
+		var Instance = RactiveF.getInstance();
 		return new Instance(options);
 	},
 
-	mixins: {
+	/*
+	 * When working with nested components we only want to find child
+	 * components, not all decendants.
+	 * @param name
+	 */
+	findAllChildComponents: function (name) {
+		return _.filter(this.findAllComponents(name), function (component) {
+			return this._guid === component.parent._guid;
+		}.bind(this));
+	},
 
-			/*
-			 * When working with nested components we only want to find child
-			 * components, not all decendants.
-			 * @param name
-			 */
-			findAllChildComponents: function (name) {
-				return _.filter(this.findAllComponents(name), function (component) {
-					return this._guid === component.parent._guid;
-				}.bind(this));
-			},
+	/**
+	 * If we have a "datamodel" property, that should override any other data.
+	 * This is now a "data-driven" component.
+	 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+	 * @see http://docs.ractivejs.org/latest/ractive-reset
+	 *
+	 * TODO Understand the difference between rendering components off the page vs nested inside others.
+	 * onconstruct has empty opts for the latter.
+	 */
+	onconstruct: function (opts) {
+		if (opts.data && opts.data.datamodel) {
+			var datamodel = _.cloneDeep(opts.data.datamodel);
+			datamodel.isDataModel = true;
+			opts.data = _.assign(opts.data, datamodel);
+			delete opts.data.datamodel;
+		}
+	},
 
-			/**
-			 * If we have a "datamodel" property, that should override any other data.
-			 * This is now a "data-driven" component.
-			 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
-			 * @see http://docs.ractivejs.org/latest/ractive-reset
-			 *
-			 * TODO Understand the difference between rendering components off the page vs nested inside others.
-			 * onconstruct has empty opts for the latter.
-			 */
-			onconstruct: function (opts) {
-				if (opts.data && opts.data.datamodel) {
-					var datamodel = _.cloneDeep(opts.data.datamodel);
-					datamodel.isDataModel = true;
-					opts.data = _.assign(opts.data, datamodel);
-					delete opts.data.datamodel;
-				}
-			},
+	/**
+	 * For any data-driven component - if something sets 'datamodel', lift that into root scope.
+	 */
+	onrender: function () {
 
-			/**
-			 * For any data-driven component - if something sets 'datamodel', lift that into root scope.
-			 */
-			onrender: function () {
-
-				// Wait for parent component to set "datamodel" and then map that back into data again.
-				this.observe('datamodel', function (newDataModel) {
-					if (newDataModel) {
-						// Lift datamodel data into root data scope.
-						this.set(newDataModel);
-					}
-				});
-
+		// Wait for parent component to set "datamodel" and then map that back into data again.
+		this.observe('datamodel', function (newDataModel) {
+			if (newDataModel) {
+				// Lift datamodel data into root data scope.
+				this.set(newDataModel);
 			}
+		});
 
 	}
 
-
 };
+
+/* jshint ignore:start */
+var Component = RactiveF.getInstance();
+/* jshint ignore:end */
 
 RactiveF.templates['ux-accordion'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"id":[{"t":2,"r":"guid"}],"class":"accordion","data-accordion":0},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-accordionitem","a":{"datamodel":[{"t":2,"r":"."}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 RactiveF.templates['ux-accordionitem'] = {"v":3,"t":[{"t":7,"e":"li","a":{"id":[{"t":2,"r":"guid"}],"class":"accordion-navigation"},"f":[{"t":4,"f":[{"t":7,"e":"ux-anchor","f":[{"t":2,"r":"title"}]}," ",{"t":7,"e":"ux-content","f":[{"t":3,"r":"content"}]}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
@@ -76,7 +74,7 @@ RactiveF.templates['ux-header'] = {"v":3,"t":[{"t":4,"f":[{"t":7,"e":"h1","m":[{
 RactiveF.templates['ux-iconbar'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["icon-bar ",{"t":2,"r":"upNumClass"}," ",{"t":2,"r":"class"}],"role":"navigation"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-iconbaritem","a":{"datamodel":[{"t":2,"x":{"r":["getItemData","."],"s":"_0(_1)"}}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 RactiveF.templates['ux-iconbaritem'] = {"v":3,"t":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}],"class":["item ",{"t":2,"r":"class"}],"tabindex":"0","role":"button"},"m":[{"t":4,"f":["aria-labelledby=\"",{"t":2,"r":"guid"},"\""],"n":50,"x":{"r":["labels"],"s":"_0!==false"}},{"t":4,"f":["aria-label=",{"t":2,"r":"arialabel"}],"n":50,"r":"arialabel"}],"f":[{"t":4,"f":[{"t":7,"e":"img","a":{"src":[{"t":2,"r":"src"}]}}],"n":50,"r":"src"}," ",{"t":4,"f":[{"t":7,"e":"label","a":{"id":[{"t":2,"r":"guid"}]},"f":[{"t":4,"f":[{"t":3,"r":"label"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}],"n":50,"x":{"r":["labels"],"s":"_0!==false"}}]}]};
 RactiveF.templates['ux-li'] = {"v":3,"t":[{"t":7,"e":"li","a":{"class":[{"t":2,"r":"class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"r":"role"}],"f":[{"t":8,"r":"content"}]}]};
-RactiveF.templates['ux-off-canvas'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["off-canvas-wrap ",{"t":2,"r":"getExpandedClass"}],"data-offcanvas":0},"f":[{"t":7,"e":"div","a":{"class":"inner-wrap"},"f":[{"t":7,"e":"nav","a":{"class":"tab-bar"},"f":[{"t":4,"f":[{"t":7,"e":"section","a":{"class":"left-small"},"f":[{"t":7,"e":"a","a":{"class":"left-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"left\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"left"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"leftItems.length"}," ",{"t":7,"e":"section","a":{"class":"middle tab-bar-section"},"f":[{"t":7,"e":"h1","a":{"class":"title"},"f":[{"t":2,"r":"title"}]}]}," ",{"t":4,"f":[{"t":7,"e":"section","a":{"class":"right-small"},"f":[{"t":7,"e":"a","a":{"class":"left-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"right\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"right"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"rightItems"}]}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"left-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"leftItems"}]}}]}],"n":50,"r":"leftItems"}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"right-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"rightItems"}]}}]}],"n":50,"r":"rightItems"}," ",{"t":7,"e":"section","a":{"class":"main-section"},"f":[{"t":4,"f":[{"t":3,"r":"mainContent"}],"n":50,"r":"mainContent"},{"t":4,"n":51,"f":[{"t":16}],"r":"mainContent"}]}," ",{"t":7,"e":"a","a":{"class":"exit-off-canvas"},"v":{"tap":"updateMenu"}}]}]}]};
+RactiveF.templates['ux-off-canvas'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["off-canvas-wrap ",{"t":2,"r":"getExpandedClass"}],"data-offcanvas":0},"f":[{"t":7,"e":"div","a":{"class":"inner-wrap"},"f":[{"t":7,"e":"nav","a":{"class":"tab-bar"},"f":[{"t":4,"f":[{"t":7,"e":"section","a":{"class":"left-small"},"f":[{"t":7,"e":"a","a":{"class":"left-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"left\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"left"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"leftItems"}," ",{"t":7,"e":"section","a":{"class":"middle tab-bar-section"},"f":[{"t":7,"e":"h1","a":{"class":"title"},"f":[{"t":2,"r":"title"}]}]}," ",{"t":4,"f":[{"t":7,"e":"section","a":{"class":"right-small"},"f":[{"t":7,"e":"a","a":{"class":"left-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"right\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"right"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"rightItems"}]}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"left-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"leftItems"}]}}]}],"n":50,"r":"leftItems"}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"right-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"rightItems"}]}}]}],"n":50,"r":"rightItems"}," ",{"t":7,"e":"section","a":{"class":"main-section"},"f":[{"t":4,"f":[{"t":3,"r":"mainContent"}],"n":50,"r":"mainContent"},{"t":4,"n":51,"f":[{"t":16}],"r":"mainContent"}]}," ",{"t":7,"e":"a","a":{"class":"exit-off-canvas"},"v":{"tap":"updateMenu"}}]}]}]};
 RactiveF.templates['ux-off-canvas-list'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":"off-canvas-list"},"f":[{"t":4,"f":[{"t":7,"e":"li","f":[{"t":4,"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"m":[{"t":4,"f":["target=\"",{"t":2,"r":"./target"},"\""],"n":50,"r":"./target"}],"f":[{"t":3,"r":"./label"}]}],"n":50,"r":"./href"},{"t":4,"n":51,"f":[{"t":7,"e":"label","f":[{"t":3,"r":"./label"}]}],"r":"./href"}]}],"n":52,"r":"./items"}]}]};
 RactiveF.templates['ux-orbit'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-orbit"},"f":[{"t":7,"e":"div","a":{"class":["orbit-container ",{"t":2,"r":"currentPageCssClass"}]},"f":[{"t":7,"e":"ul","a":{"class":"pageContainer example-orbit orbit-slides-container"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"li","a":{"class":["orbit-slides-slide ",{"t":4,"f":["active"],"r":"active"}]},"v":{"swipeleft":"nextPage","swiperight":"prevPage"},"f":[{"t":7,"e":"img","a":{"src":[{"t":2,"r":"imagesrc"}],"alt":[{"t":2,"r":"imagealt"}]}}," ",{"t":7,"e":"div","a":{"class":"orbit-caption"},"f":[{"t":2,"r":"caption"}]}]}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}," ",{"t":4,"f":[{"t":7,"e":"li","a":{"class":"orbit-slides-slide"},"f":[{"t":7,"e":"h2","f":["No slides found"]}]}],"x":{"r":["slidesTotal"],"s":"_0==0"}}]}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"orbit-prev"},"v":{"tap":"prevPage"},"f":["Prev ",{"t":7,"e":"span"}]}," ",{"t":7,"e":"a","a":{"class":"orbit-next"},"v":{"tap":"nextPage"},"f":["Next ",{"t":7,"e":"span"}]}],"n":50,"r":"navigation_arrows"}," ",{"t":4,"f":[{"t":7,"e":"div","a":{"class":"orbit-slide-number"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"currentPage"}]}," of ",{"t":7,"e":"span","f":[{"t":2,"r":"slidesTotal"}]}]}],"n":50,"r":"slide_number"}]}," ",{"t":4,"f":[{"t":7,"e":"ol","a":{"class":"orbit-bullets"},"f":[{"t":4,"f":[{"t":7,"e":"li","a":{"data-orbit-slide-number":[{"t":2,"r":"i"}],"class":[{"t":4,"f":["active"],"r":"active"}]},"f":[]}],"i":"i","r":"items"}]}],"n":50,"r":"bullets"}]}]};
 RactiveF.templates['ux-page-swipe'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-page-swipe ",{"t":2,"r":"isOnPage"}]},"f":[{"t":7,"e":"div","a":{"class":"pageContainer "},"f":[{"t":8,"r":"content"}]}]}]};
@@ -92,7 +90,7 @@ RactiveF.templates['ux-tabpane'] = {"v":3,"t":[{"t":7,"e":"section","a":{"class"
 RactiveF.templates['ux-tabpanes'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"tabs-content"},"f":[{"t":8,"r":"content"}]}]};
 RactiveF.templates['ux-top-bar'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-top-bar ",{"t":4,"f":["fixed"],"n":50,"r":"isfixed"}," ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"nav","a":{"class":["top-bar ",{"t":4,"f":["expanded"],"n":50,"r":"isexpanded"}],"data-top-bar":0,"role":"navigation","data-options":[{"t":2,"r":"dataoptions"}]},"f":[{"t":7,"e":"ul","a":{"class":"title-area"},"f":[{"t":7,"e":"li","a":{"class":"name"},"f":[{"t":7,"e":"h1","f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":2,"r":"title"}]}]}]}," ",{"t":7,"e":"li","a":{"class":"toggle-topbar menu-icon"},"f":[{"t":7,"e":"a","a":{"href":"#"},"v":{"tap":"toggleMenu"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"menulabel"}]}]}]}]}," ",{"t":7,"e":"section","a":{"class":"top-bar-section"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"right","items":[{"t":2,"r":"rightitems"}]}}],"n":50,"r":"rightitems"}," ",{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"left","items":[{"t":2,"r":"leftitems"}]}}],"n":50,"r":"leftitems"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]}]}]};
 RactiveF.templates['ux-top-bar-items'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["ux-top-bar-items ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[" ",{"t":7,"e":"li","a":{"class":[{"t":2,"x":{"r":["getTopBarItemCssClass","."],"s":"_0(_1)"}}]},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"f":[{"t":3,"r":"./label"}]}," ",{"t":4,"f":[" ",{"t":7,"e":"ux-top-bar-items","a":{"class":"dropdown","items":[{"t":2,"r":"./items"}]}}],"n":50,"r":"./items"}]}],"n":52,"r":"items"}],"n":50,"r":"items"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"items"}]}]};
-RactiveF.components['ux-accordion'] = Ractive.extend({
+RactiveF.components['ux-accordion'] = Component.extend({
 
 	template: RactiveF.templates['ux-accordion'],
 
@@ -134,7 +132,7 @@ RactiveF.components['ux-accordion'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-accordionitem'] = Ractive.extend({
+RactiveF.components['ux-accordionitem'] = Component.extend({
 
 	template: RactiveF.templates['ux-accordionitem'],
 
@@ -186,7 +184,7 @@ RactiveF.components['ux-accordionitem'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-anchor'] = Ractive.extend({
+RactiveF.components['ux-anchor'] = Component.extend({
 	template: RactiveF.templates['ux-anchor'],
 	computed: {
 		guid: function () {
@@ -195,7 +193,7 @@ RactiveF.components['ux-anchor'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-button'] = Ractive.extend({
+RactiveF.components['ux-button'] = Component.extend({
 	template: RactiveF.templates['ux-button'],
 	clickHandler: function () {
 
@@ -213,11 +211,11 @@ RactiveF.components['ux-button'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-col'] = Ractive.extend({
+RactiveF.components['ux-col'] = Component.extend({
 	template: RactiveF.templates['ux-col']
 });
 
-RactiveF.components['ux-content'] = Ractive.extend({
+RactiveF.components['ux-content'] = Component.extend({
 	template: RactiveF.templates['ux-content'],
 	computed: {
 		guid: function () {
@@ -226,11 +224,11 @@ RactiveF.components['ux-content'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-header'] = Ractive.extend({
+RactiveF.components['ux-header'] = Component.extend({
 	template: RactiveF.templates['ux-header']
 });
 
-RactiveF.components['ux-iconbar'] = Ractive.extend({
+RactiveF.components['ux-iconbar'] = Component.extend({
 
 	getUpNumClass: function (num) {
 
@@ -292,7 +290,7 @@ RactiveF.components['ux-iconbar'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-iconbaritem'] = Ractive.extend({
+RactiveF.components['ux-iconbaritem'] = Component.extend({
 
 	template: RactiveF.templates['ux-iconbaritem'],
 
@@ -304,11 +302,11 @@ RactiveF.components['ux-iconbaritem'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-li'] = Ractive.extend({
+RactiveF.components['ux-li'] = Component.extend({
 	template: RactiveF.templates['ux-li']
 });
 
-RactiveF.components['ux-off-canvas'] = Ractive.extend({
+RactiveF.components['ux-off-canvas'] = Component.extend({
 
 	template: RactiveF.templates['ux-off-canvas'],
 
@@ -351,11 +349,11 @@ RactiveF.components['ux-off-canvas'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-off-canvas-list'] = Ractive.extend({
+RactiveF.components['ux-off-canvas-list'] = Component.extend({
 	template: RactiveF.templates['ux-off-canvas-list']
 });
 
-RactiveF.components['ux-orbit'] = Ractive.extend({
+RactiveF.components['ux-orbit'] = Component.extend({
 
 	template: RactiveF.templates['ux-orbit'],
 
@@ -399,11 +397,11 @@ RactiveF.components['ux-orbit'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-panel'] = Ractive.extend({
+RactiveF.components['ux-panel'] = Component.extend({
 	template: RactiveF.templates['ux-panel']
 });
 
-RactiveF.components['ux-pricingtable'] = Ractive.extend({
+RactiveF.components['ux-pricingtable'] = Component.extend({
 	template: RactiveF.templates['ux-pricingtable'],
 	oninit: function () {
 
@@ -421,7 +419,7 @@ RactiveF.components['ux-pricingtable'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-progress'] = Ractive.extend({
+RactiveF.components['ux-progress'] = Component.extend({
 	template: RactiveF.templates['ux-progress'],
 	computed: {
 		meterStyle: function () {
@@ -430,15 +428,15 @@ RactiveF.components['ux-progress'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-row'] = Ractive.extend({
+RactiveF.components['ux-row'] = Component.extend({
 	template: RactiveF.templates['ux-row']
 });
 
-RactiveF.components['ux-sidenav'] = Ractive.extend({
+RactiveF.components['ux-sidenav'] = Component.extend({
 	template: RactiveF.templates['ux-sidenav']
 });
 
-RactiveF.components['ux-tabarea'] = Ractive.extend({
+RactiveF.components['ux-tabarea'] = Component.extend({
 
 	template: RactiveF.templates['ux-tabarea'],
 
@@ -476,7 +474,7 @@ RactiveF.components['ux-tabarea'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-tablink'] = Ractive.extend({
+RactiveF.components['ux-tablink'] = Component.extend({
 	template: RactiveF.templates['ux-tablink'],
 	components: RactiveF.components,
 	isolated: true,
@@ -490,7 +488,7 @@ RactiveF.components['ux-tablink'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-tablinks'] = Ractive.extend({
+RactiveF.components['ux-tablinks'] = Component.extend({
 	template: RactiveF.templates['ux-tablinks'],
 	oninit: function () {
 
@@ -520,7 +518,7 @@ RactiveF.components['ux-tablinks'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-tabpane'] = Ractive.extend({
+RactiveF.components['ux-tabpane'] = Component.extend({
 
 	template: RactiveF.templates['ux-tabpane'],
 
@@ -536,11 +534,11 @@ RactiveF.components['ux-tabpane'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-tabpanes'] = Ractive.extend({
+RactiveF.components['ux-tabpanes'] = Component.extend({
 	template: RactiveF.templates['ux-tabpanes']
 });
 
-RactiveF.components['ux-top-bar'] = Ractive.extend({
+RactiveF.components['ux-top-bar'] = Component.extend({
 
 	template: RactiveF.templates['ux-top-bar'],
 
@@ -578,7 +576,7 @@ RactiveF.components['ux-top-bar'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-top-bar-items'] = Ractive.extend({
+RactiveF.components['ux-top-bar-items'] = Component.extend({
 	template: RactiveF.templates['ux-top-bar-items'],
 	data: {
 		getTopBarItemCssClass: function (item) {
