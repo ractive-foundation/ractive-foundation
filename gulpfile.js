@@ -7,6 +7,7 @@ var gulp = require('gulp'),
 
 	plugins = require('gulp-load-plugins')(),
 
+	applyVersions = require('./tasks/applyVersions'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
@@ -192,15 +193,9 @@ gulp.task('apply-versions', function () {
 		'public/js/ractivef-base.js',
 		'public/js/ractivef-cjs.js',
 		'public/js/ractivef.js'
-	]).pipe(plugins.foreach(function (stream, file) {
-		var regex = new RegExp('<@version@>', 'g');
-		var contents = fs.readFileSync(file.path, 'utf8');
-		var newContents = contents.replace(regex, pkg.version);
+	])
+	.pipe(applyVersions());
 
-		fs.writeFileSync(file.path, newContents);
-
-		return stream;
-	}));
 });
 
 gulp.task('wing', function (callback) {

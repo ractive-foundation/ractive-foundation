@@ -1,3 +1,9 @@
+/**
+ * ractive-foundation - Ractive components for Foundation 5
+ * @version 0.0.22
+ * @link https://github.com/ractive-foundation/ractive-foundation
+ * @license ISC
+ */
 RactiveF = {
 	VERSION: '0.0.22',
 	components: {},
