@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')(),
 
 	applyVersions = require('./tasks/applyVersions'),
+	rebaseDist = require('./tasks/rebaseDist'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
@@ -231,16 +232,8 @@ gulp.task('dist', ['build'], function () {
 			'./public/js/hammerjs/hammer.min.js',
 			'./public/js/ractive-touch/*'
 		], { base: process.cwd() })
-		.pipe(plugins.rename(function (path) {
-			// If file is the default npm name 'index', rename to folder name.
-			if (path.basename === 'index') {
-				var basename = path.dirname.split(nodePath.sep).reverse()[0];
-				path.basename = basename;
-			}
+			.pipe(rebaseDist())
 
-			// Flatten to top level directory
-			path.dirname = '.';
-		}))
 		.pipe(gulp.dest('dist')),
 
 		gulp.src([
