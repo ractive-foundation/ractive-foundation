@@ -2,6 +2,9 @@
 	"title": "Click Me Button",
 	"data": {
 		"text": "ClickMe",
-		"onclick": "WasClicked"
+		"onclick": "WasClicked",
+		"role": "button",
+		"ariaLabel": "somelabel",
+		"tabindex": 10
 	}
 }

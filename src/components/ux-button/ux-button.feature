@@ -1,7 +1,7 @@
 Feature: ux-button
 
   Scenario: Loading ux-button
-    Given I have loaded component "ux-button" with use case "BuyNow"
+    Given I have loaded component "ux-button" with use case "ClickMe"
     Then the element "button" should be displayed
     Then the element "button" should have the "className" of "button"
     Then the element "button" should have the "role" of "button"

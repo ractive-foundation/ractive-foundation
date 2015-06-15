@@ -243,8 +243,8 @@ gulp.task('test', ['build', 'connect'], function (callback) {
 		)).on('end', function (err) {
 			if (!err) {
 				callback();
-				return process.exit(0);
 			}
+			return process.exit(err ? 1 : 0);
 		});
 });
 

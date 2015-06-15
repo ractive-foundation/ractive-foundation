@@ -4,7 +4,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 
 	// Semantic mappings onto css selectors etc.
-	var component = { container: '#childComponent' };
+	var component = { container: '#component' };
 	component.button = {
 		selector: component.container + ' .button',
 		attribs: {
@@ -23,7 +23,7 @@ module.exports = function () {
 	this.Then(/^the element "([^"]*)" should be displayed$/, function (semanticName, callback) {
 
 		var self = this;
-		this.client.isExisting(component[semanticName].selector, function (err, isExisting) {
+		this.client.waitForExist(component[semanticName].selector, this.defaultTimeout, function (err, isExisting) {
 			try {
 				self.assert(isExisting);
 				callback();
