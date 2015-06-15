@@ -14,8 +14,8 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 
 		window.component = new Component({
 				el: '#component',
-				onrender: function () {
-					this.set( _.extend(result, { isDataModel: true }) );
+				data: function () {
+					return _.extend(result, { isDataModel: true });
 				}
 		});
 
