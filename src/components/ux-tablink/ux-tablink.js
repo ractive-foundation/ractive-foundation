@@ -1,4 +1,4 @@
-Ractive.extend({
+Component.extend({
 	template: RactiveF.templates['ux-tablink'],
 	components: RactiveF.components,
 	isolated: true,

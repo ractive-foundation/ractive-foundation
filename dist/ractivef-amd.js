@@ -1,142 +1,73 @@
-define(['Ractive'], function (Ractive, RactiveF) {
+/**
+ * ractive-foundation - Ractive components for Foundation 5
+ * @version 0.0.22
+ * @link https://github.com/ractive-foundation/ractive-foundation
+ * @license ISC
+ */
+define(['Ractive', 'underscore'], function (Ractive, _, RactiveF) {
 /* jshint ignore:start */
 RactiveF = {
+	VERSION: '0.0.22',
 	components: {},
 	templates: {},
-	widgets: [],
-	initInstance: function (container) {
+	getInstance: function () {
+		return Ractive.extend(RactiveF);
+	},
+	forge: function (options) {
+		options = options || {};
+		var Instance = RactiveF.getInstance();
+		return new Instance(options);
+	},
 
-		// Have we mixed in extensions to all instances yet?
-		if (!Ractive.prototype.findAllChildComponents) {
-			_.mixin(Ractive.prototype, RactiveF.mixins);
+	/*
+	 * When working with nested components we only want to find child
+	 * components, not all decendants.
+	 * @param name
+	 */
+	findAllChildComponents: function (name) {
+		return _.filter(this.findAllComponents(name), function (component) {
+			return this._guid === component.parent._guid;
+		}.bind(this));
+	},
+
+	/**
+	 * If we have a "datamodel" property, that should override any other data.
+	 * This is now a "data-driven" component.
+	 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
+	 * @see http://docs.ractivejs.org/latest/ractive-reset
+	 *
+	 * TODO Understand the difference between rendering components off the page vs nested inside others.
+	 * onconstruct has empty opts for the latter.
+	 */
+	onconstruct: function (opts) {
+		if (opts.data && opts.data.datamodel) {
+			var datamodel = _.cloneDeep(opts.data.datamodel);
+			datamodel.isDataModel = true;
+			opts.data = _.assign(opts.data, datamodel);
+			delete opts.data.datamodel;
 		}
+	},
 
-		var instance = new Ractive({
-			el: container,
-			template: Ractive.parse(container.innerHTML),
-			components: RactiveF.components,
-			onrender: function () {
-				this.el.classList.remove('hide');
-				this.el.classList.add('initialize');
+	/**
+	 * For any data-driven component - if something sets 'datamodel', lift that into root scope.
+	 */
+	onrender: function () {
+
+		// Wait for parent component to set "datamodel" and then map that back into data again.
+		this.observe('datamodel', function (newDataModel) {
+			if (newDataModel) {
+				// Lift datamodel data into root data scope.
+				this.set(newDataModel);
 			}
 		});
 
-		instance.on('*.*', RactiveF.genericEventHandler);
-
-		instance.set('dataModel', '{{dataModel}}');
-
-		return instance;
-	},
-
-	genericEventHandler: function (origin) {
-
-		// list of events below copied from Ractive source code v0.7.1
-		// Filtering out ractive lifecycle events to not pollute log output.
-		var reservedEventNames =
-				/^(?:change|complete|reset|teardown|update|construct|config|init|render|unrender|detach|insert)$/;
-
-		if (!reservedEventNames.test(this.event.name)) {
-			console.log('Event', this.event.name);
-			console.log('Event handler arguments', origin);
-
-			var eventName = 'events.' + origin.get('uid');
-			if (!this.get(eventName)) {
-				this.set(eventName, []);
-			}
-			this.push(eventName, this.event.name);
-		}
-
-	},
-
-	/**
-	 * Get the current coordinates of the given element, relative to the document.
-	 *
-	 * Useful for viewport checks etc
-	 *
-	 * Use Ractive's this.find(selector) to pass that element in.
-	 *
-	 * Helper function for cross-browser element offset.
-	 * window.pageYOffset is not supported below IE 9.
-	 *
-	 * FIXME Where should this belong?
-	 */
-	elementOffset: function (elem) {
-
-		var box = elem.getBoundingClientRect();
-
-		var body = document.body;
-		var docEl = document.documentElement;
-		var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-		var clientTop = docEl.clientTop || body.clientTop || 0;
-
-		var top = box.top + (scrollTop - clientTop);
-		var pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
-
-		return {
-			top: Math.round(top),
-			right: Math.round(box.right + pageXOffset),
-			bottom: Math.round(box.bottom + top),
-			left: Math.round(box.left + pageXOffset)
-		};
-
-	},
-
-	/**
-	 * IE8 friendly function.
-	 * TODO Make the return object the same as offset?
-	 */
-	pageYOffset: function () {
-		return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
-	},
-
-	mixins: {
-
-		/*
-		 * When working with nested components we only want to find child
-		 * components, not all decendants.
-		 * @param name
-		 */
-		findAllChildComponents: function (name) {
-			return _.filter(this.findAllComponents(name), function (component) {
-				return this._guid === component.parent._guid;
-			}.bind(this));
-		},
-
-		/**
-		 * If we have a "datamodel" property, that should override any other data.
-		 * This is now a "data-driven" component.
-		 * isDataModel is a flag for hbs logic, on whether to use datamodel data or call {{yield}}.
-		 * @see http://docs.ractivejs.org/latest/ractive-reset
-		 *
-		 * TODO Understand the difference between rendering components off the page vs nested inside others.
-		 * onconstruct has empty opts for the latter.
-		 */
-		onconstruct: function (opts) {
-			if (opts.data && opts.data.datamodel) {
-				var datamodel = _.cloneDeep(opts.data.datamodel);
-				datamodel.isDataModel = true;
-				opts.data = _.assign(opts.data, datamodel);
-				delete opts.data.datamodel;
-			}
-		},
-
-		/**
-		 * For any data-driven component - if something sets 'datamodel', lift that into root scope.
-		 */
-		onrender: function () {
-
-			// Wait for parent component to set "datamodel" and then map that back into data again.
-			this.observe('datamodel', function (newDataModel) {
-				if (newDataModel) {
-					// Lift datamodel data into root data scope.
-					this.set(newDataModel);
-				}
-			});
-
-		}
 	}
 
 };
+
+/* jshint ignore:start */
+var Component = RactiveF.getInstance();
+/* jshint ignore:end */
 
 RactiveF.templates['ux-accordion'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"id":[{"t":2,"r":"guid"}],"class":"accordion","data-accordion":0},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-accordionitem","a":{"datamodel":[{"t":2,"r":"."}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 RactiveF.templates['ux-accordionitem'] = {"v":3,"t":[{"t":7,"e":"li","a":{"id":[{"t":2,"r":"guid"}],"class":"accordion-navigation"},"f":[{"t":4,"f":[{"t":7,"e":"ux-anchor","f":[{"t":2,"r":"title"}]}," ",{"t":7,"e":"ux-content","f":[{"t":3,"r":"content"}]}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
@@ -164,7 +95,7 @@ RactiveF.templates['ux-tabpane'] = {"v":3,"t":[{"t":7,"e":"section","a":{"class"
 RactiveF.templates['ux-tabpanes'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"tabs-content"},"f":[{"t":8,"r":"content"}]}]};
 RactiveF.templates['ux-top-bar'] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-top-bar ",{"t":4,"f":["fixed"],"n":50,"r":"isfixed"}," ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"nav","a":{"class":["top-bar ",{"t":4,"f":["expanded"],"n":50,"r":"isexpanded"}],"data-top-bar":0,"role":"navigation","data-options":[{"t":2,"r":"dataoptions"}]},"f":[{"t":7,"e":"ul","a":{"class":"title-area"},"f":[{"t":7,"e":"li","a":{"class":"name"},"f":[{"t":7,"e":"h1","f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":2,"r":"title"}]}]}]}," ",{"t":7,"e":"li","a":{"class":"toggle-topbar menu-icon"},"f":[{"t":7,"e":"a","a":{"href":"#"},"v":{"tap":"toggleMenu"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"menulabel"}]}]}]}]}," ",{"t":7,"e":"section","a":{"class":"top-bar-section"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"right","items":[{"t":2,"r":"rightitems"}]}}],"n":50,"r":"rightitems"}," ",{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"left","items":[{"t":2,"r":"leftitems"}]}}],"n":50,"r":"leftitems"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]}]}]};
 RactiveF.templates['ux-top-bar-items'] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["ux-top-bar-items ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[" ",{"t":7,"e":"li","a":{"class":[{"t":2,"x":{"r":["getTopBarItemCssClass","."],"s":"_0(_1)"}}]},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"f":[{"t":3,"r":"./label"}]}," ",{"t":4,"f":[" ",{"t":7,"e":"ux-top-bar-items","a":{"class":"dropdown","items":[{"t":2,"r":"./items"}]}}],"n":50,"r":"./items"}]}],"n":52,"r":"items"}],"n":50,"r":"items"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"items"}]}]};
-RactiveF.components['ux-accordion'] = Ractive.extend({
+RactiveF.components['ux-accordion'] = Component.extend({
 
 	template: RactiveF.templates['ux-accordion'],
 
@@ -206,7 +137,7 @@ RactiveF.components['ux-accordion'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-accordionitem'] = Ractive.extend({
+RactiveF.components['ux-accordionitem'] = Component.extend({
 
 	template: RactiveF.templates['ux-accordionitem'],
 
@@ -258,7 +189,7 @@ RactiveF.components['ux-accordionitem'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-anchor'] = Ractive.extend({
+RactiveF.components['ux-anchor'] = Component.extend({
 	template: RactiveF.templates['ux-anchor'],
 	computed: {
 		guid: function () {
@@ -267,7 +198,7 @@ RactiveF.components['ux-anchor'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-button'] = Ractive.extend({
+RactiveF.components['ux-button'] = Component.extend({
 	template: RactiveF.templates['ux-button'],
 	clickHandler: function () {
 
@@ -285,11 +216,11 @@ RactiveF.components['ux-button'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-col'] = Ractive.extend({
+RactiveF.components['ux-col'] = Component.extend({
 	template: RactiveF.templates['ux-col']
 });
 
-RactiveF.components['ux-content'] = Ractive.extend({
+RactiveF.components['ux-content'] = Component.extend({
 	template: RactiveF.templates['ux-content'],
 	computed: {
 		guid: function () {
@@ -298,11 +229,11 @@ RactiveF.components['ux-content'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-header'] = Ractive.extend({
+RactiveF.components['ux-header'] = Component.extend({
 	template: RactiveF.templates['ux-header']
 });
 
-RactiveF.components['ux-iconbar'] = Ractive.extend({
+RactiveF.components['ux-iconbar'] = Component.extend({
 
 	getUpNumClass: function (num) {
 
@@ -364,7 +295,7 @@ RactiveF.components['ux-iconbar'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-iconbaritem'] = Ractive.extend({
+RactiveF.components['ux-iconbaritem'] = Component.extend({
 
 	template: RactiveF.templates['ux-iconbaritem'],
 
@@ -376,11 +307,11 @@ RactiveF.components['ux-iconbaritem'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-li'] = Ractive.extend({
+RactiveF.components['ux-li'] = Component.extend({
 	template: RactiveF.templates['ux-li']
 });
 
-RactiveF.components['ux-off-canvas'] = Ractive.extend({
+RactiveF.components['ux-off-canvas'] = Component.extend({
 
 	template: RactiveF.templates['ux-off-canvas'],
 
@@ -423,11 +354,11 @@ RactiveF.components['ux-off-canvas'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-off-canvas-list'] = Ractive.extend({
+RactiveF.components['ux-off-canvas-list'] = Component.extend({
 	template: RactiveF.templates['ux-off-canvas-list']
 });
 
-RactiveF.components['ux-orbit'] = Ractive.extend({
+RactiveF.components['ux-orbit'] = Component.extend({
 
 	template: RactiveF.templates['ux-orbit'],
 
@@ -471,11 +402,11 @@ RactiveF.components['ux-orbit'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-panel'] = Ractive.extend({
+RactiveF.components['ux-panel'] = Component.extend({
 	template: RactiveF.templates['ux-panel']
 });
 
-RactiveF.components['ux-pricingtable'] = Ractive.extend({
+RactiveF.components['ux-pricingtable'] = Component.extend({
 	template: RactiveF.templates['ux-pricingtable'],
 	oninit: function () {
 
@@ -493,7 +424,7 @@ RactiveF.components['ux-pricingtable'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-progress'] = Ractive.extend({
+RactiveF.components['ux-progress'] = Component.extend({
 	template: RactiveF.templates['ux-progress'],
 	computed: {
 		meterStyle: function () {
@@ -502,15 +433,15 @@ RactiveF.components['ux-progress'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-row'] = Ractive.extend({
+RactiveF.components['ux-row'] = Component.extend({
 	template: RactiveF.templates['ux-row']
 });
 
-RactiveF.components['ux-sidenav'] = Ractive.extend({
+RactiveF.components['ux-sidenav'] = Component.extend({
 	template: RactiveF.templates['ux-sidenav']
 });
 
-RactiveF.components['ux-tabarea'] = Ractive.extend({
+RactiveF.components['ux-tabarea'] = Component.extend({
 
 	template: RactiveF.templates['ux-tabarea'],
 
@@ -548,7 +479,7 @@ RactiveF.components['ux-tabarea'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-tablink'] = Ractive.extend({
+RactiveF.components['ux-tablink'] = Component.extend({
 	template: RactiveF.templates['ux-tablink'],
 	components: RactiveF.components,
 	isolated: true,
@@ -562,7 +493,7 @@ RactiveF.components['ux-tablink'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-tablinks'] = Ractive.extend({
+RactiveF.components['ux-tablinks'] = Component.extend({
 	template: RactiveF.templates['ux-tablinks'],
 	oninit: function () {
 
@@ -592,7 +523,7 @@ RactiveF.components['ux-tablinks'] = Ractive.extend({
 	}
 });
 
-RactiveF.components['ux-tabpane'] = Ractive.extend({
+RactiveF.components['ux-tabpane'] = Component.extend({
 
 	template: RactiveF.templates['ux-tabpane'],
 
@@ -608,11 +539,11 @@ RactiveF.components['ux-tabpane'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-tabpanes'] = Ractive.extend({
+RactiveF.components['ux-tabpanes'] = Component.extend({
 	template: RactiveF.templates['ux-tabpanes']
 });
 
-RactiveF.components['ux-top-bar'] = Ractive.extend({
+RactiveF.components['ux-top-bar'] = Component.extend({
 
 	template: RactiveF.templates['ux-top-bar'],
 
@@ -650,7 +581,7 @@ RactiveF.components['ux-top-bar'] = Ractive.extend({
 
 });
 
-RactiveF.components['ux-top-bar-items'] = Ractive.extend({
+RactiveF.components['ux-top-bar-items'] = Component.extend({
 	template: RactiveF.templates['ux-top-bar-items'],
 	data: {
 		getTopBarItemCssClass: function (item) {
