@@ -17,7 +17,7 @@ _.extend(RactiveF, {
 
 		options = _.extend(defaults, options);
 
-		var instance = this.forge(options);
+		var instance = new Ractive(options);
 
 		instance.on('*.*', RactiveF.genericEventHandler);
 
