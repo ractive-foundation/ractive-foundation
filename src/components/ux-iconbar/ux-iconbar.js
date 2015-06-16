@@ -1,4 +1,4 @@
-Component.extend({
+Ractive.extend({
 
 	getUpNumClass: function (num) {
 

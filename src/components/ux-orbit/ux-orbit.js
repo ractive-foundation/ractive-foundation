@@ -1,4 +1,4 @@
-Component.extend({
+Ractive.extend({
 
 	template: RactiveF.templates['ux-orbit'],
 
