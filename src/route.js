@@ -8,7 +8,7 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 
 	superagent.get(url.join(''), function (err, res) {
 
-		var result = res.body.data || {};
+		var result = res.body ? res.body.data : {};
 
 		var Component = RactiveF.components[params.name];
 
