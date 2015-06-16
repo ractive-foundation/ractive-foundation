@@ -95,7 +95,6 @@ gulp.task('build-sass', function () {
 		gulp.src('./node_modules/foundation-sites/scss/*.scss')
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation'))
-
 	);
 
 });
@@ -115,7 +114,7 @@ gulp.task('ractive-build-components', function () {
 			'!./src/components/**/*.steps.js'
 		])
 		.pipe(ractiveConcatComponents({
-			'prefix': 'RactiveF.components'
+			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
