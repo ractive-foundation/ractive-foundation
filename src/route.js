@@ -10,7 +10,7 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 			el: '#childComponent',
 			template: '<child-component></child-component>',
 			components: {
-				'child-component': RactiveF.components[params.name]
+				'child-component': Ractive.components[params.name]
 			},
 			onrender: function () {
 				this
