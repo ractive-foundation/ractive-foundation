@@ -1,4 +1,4 @@
-Ractive.extend({
+Component.extend({
 	template: RactiveF.templates['ux-top-bar-items'],
 	data: {
 		getTopBarItemCssClass: function (item) {

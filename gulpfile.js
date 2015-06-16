@@ -7,6 +7,8 @@ var gulp = require('gulp'),
 
 	plugins = require('gulp-load-plugins')(),
 
+	applyVersions = require('./tasks/applyVersions'),
+	rebaseDist = require('./tasks/rebaseDist'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
@@ -186,6 +188,17 @@ gulp.task('concat-app-commonjs', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('apply-versions', function () {
+	return gulp.src([
+		'public/js/ractivef-amd.js',
+		'public/js/ractivef-base.js',
+		'public/js/ractivef-cjs.js',
+		'public/js/ractivef.js'
+	])
+	.pipe(applyVersions());
+
+});
+
 gulp.task('wing', function (callback) {
 	gulpWing();
 	callback();
@@ -204,16 +217,30 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	], [
 		'concat-app-amd',
 		'concat-app-commonjs'
+	], [
+		'apply-versions'
 	], callback);
 });
 
 gulp.task('dist', ['build'], function () {
-	return gulp.src([
-		'public/js/ractivef-amd.js',
-		'public/js/ractivef-base.js',
-		'public/js/ractivef-cjs.js',
-		'public/manifest-rf.json'
-	]).pipe(gulp.dest('dist'));
+
+	return mergeStream(
+		gulp.src([
+			'./public/js/ractivef-*.js',
+			'./public/manifest-rf.json',
+			'./public/js/lodash-compat/*',
+			'./public/js/hammerjs/hammer.min.js',
+			'./public/js/ractive-touch/*'
+		], { base: process.cwd() })
+			.pipe(rebaseDist())
+
+		.pipe(gulp.dest('dist')),
+
+		gulp.src([
+			'public/css/**/*.css'
+		]).pipe(gulp.dest('dist/css'))
+	);
+
 });
 
 gulp.task('watch', function () {

@@ -89,7 +89,8 @@
 		"define": true,
 		"_": true,
 		"Ractive": true,
-		"RactiveF": true
+		"RactiveF": true,
+		"Component": true
 
 	}
 

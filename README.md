@@ -1,11 +1,11 @@
 # ractive-foundation
 [![Build Status](https://travis-ci.org/ractive-foundation/ractive-foundation.svg?branch=master)](https://travis-ci.org/ractive-foundation/ractive-foundation)
 
-[![Code Quality](https://www.codacy.com/project/badge/abe39910d64144fc9219964f3652dbda)](https://www.codacy.com/app/pv-shum/ractive-foundation) 
+[![Code Quality](https://www.codacy.com/project/badge/abe39910d64144fc9219964f3652dbda)](https://www.codacy.com/app/pv-shum/ractive-foundation)
 
-[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation.svg) 
+[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation.svg)
 
-[![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Overview
 
@@ -22,7 +22,41 @@ End goal is to build up a library of reusable components for Foundation v5.
 * nodejs
 * `sudo npm install -g gulp`
 
-## Getting started
+## Getting Started
+
+Install the package via npm
+
+```shell
+$ npm install ractive-foundation --save
+```
+
+To start building your application using Ractive Foundation, you need to include your `ractivef` flavour of choice (global, amd, commonjs). Along with `hammer`, `ractive-touch` and `lodash-compat`. These can be found in the `dist` directory after install.
+
+#### Example Setup
+
+JavaScript:
+
+```javascript
+var options = {
+  el: '#container',
+  template: '#template'
+};
+
+var ractive = RactiveF.forge(options);
+```
+
+Markup:
+```html
+<div id="container"></div>
+
+<script id="template" type="text/ractive">
+  <ux-panel>
+    <ux-header level="1">Hello World</ux-header>
+  </ux-panel>
+</script>
+```
+
+## Get Involved
 
 Clone the repo, then from the root folder:
 
@@ -71,4 +105,3 @@ is basically the same as:
     <ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
 </ux-iconbar>
 ```
-
