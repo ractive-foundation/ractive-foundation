@@ -1,8 +1,3 @@
-RactiveF = {
-	// Apply all templates to this object so they dont get accidently overwritten.
-	templates: {}
-};
-
 /*
  * When working with nested components we only want to find child
  * components, not all decendants.
