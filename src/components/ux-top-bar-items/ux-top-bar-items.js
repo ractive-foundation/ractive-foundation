@@ -1,5 +1,5 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-top-bar-items'],
+	template: Ractive.defaults.templates['ux-top-bar-items'],
 	data: {
 		getTopBarItemCssClass: function (item) {
 			var classes = [];

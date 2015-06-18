@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-off-canvas-list']
+	template: Ractive.defaults.templates['ux-off-canvas-list']
 });

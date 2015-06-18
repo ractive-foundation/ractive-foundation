@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-accordion'],
+	template: Ractive.defaults.templates['ux-accordion'],
 
 	computed: {
 		guid: function () {

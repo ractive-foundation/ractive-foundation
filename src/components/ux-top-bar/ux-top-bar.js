@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-top-bar'],
+	template: Ractive.defaults.templates['ux-top-bar'],
 
 	oninit: function () {
 

@@ -1,5 +1,5 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-button'],
+	template: Ractive.defaults.templates['ux-button'],
 	clickHandler: function () {
 
 		// if a click event is specified propagate the click event

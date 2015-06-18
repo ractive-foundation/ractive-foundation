@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-li']
+	template: Ractive.defaults.templates['ux-li']
 });

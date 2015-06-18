@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-panel']
+	template: Ractive.defaults.templates['ux-panel']
 });

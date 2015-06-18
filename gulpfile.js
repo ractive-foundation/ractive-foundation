@@ -102,7 +102,7 @@ gulp.task('build-sass', function () {
 gulp.task('ractive-build-templates', function () {
 	return gulp.src('./src/components/**/*.hbs')
 		.pipe(ractiveParse({
-			'prefix': 'RactiveF.templates'
+			'prefix': 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));

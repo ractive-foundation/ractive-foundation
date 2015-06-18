@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-off-canvas'],
+	template: Ractive.defaults.templates['ux-off-canvas'],
 
 	data: function () {
 		return {

@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates['ux-sidenav']
+	template: Ractive.defaults.templates['ux-sidenav']
 });

@@ -1,6 +1,6 @@
 Ractive.extend({
 
-	template: RactiveF.templates['ux-tabpane'],
+	template: Ractive.defaults.templates['ux-tabpane'],
 
 	onconfig: function () {
 		var datamodel = this.get('datamodel');
