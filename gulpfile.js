@@ -200,14 +200,29 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'concat-app-umd'
 	], callback);
 });
+
+
+gulp.task('clean-dist', function (callback) {
+	del([
+		'dist/**/*'
 	], callback);
 });
 
-gulp.task('dist', ['build'], function () {
+gulp.task('dist', ['clean-dist', 'build'], function () {
 
 	return mergeStream(
+
 		gulp.src([
-			'./public/js/ractivef-*.js',
+			'./public/js/ractivef-umd.js'
+			])
+		.pipe(plugins.rename(function (path) {
+			// Rename the dist file to 'ractivef'
+			path.dirname = '';
+			path.basename = 'ractivef';
+		}))
+		.pipe(gulp.dest('dist')),
+
+		gulp.src([
 			'./public/manifest-rf.json',
 			'./public/js/lodash-compat/*',
 			'./public/js/hammerjs/hammer.min.js',
