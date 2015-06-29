@@ -278,11 +278,6 @@ gulp.task('jshint', function (callback) {
 		.pipe(jshintFailReporter());
 });
 
-gulp.task('selenium-standalone-install', function () {
-	return plugins.run('./node_modules/selenium-standalone/bin/selenium-standalone install')
-		.exec();
-});
-
 gulp.task('default', function () {
 	var self = this;
 	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
