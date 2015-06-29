@@ -195,7 +195,8 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	], [
 		'copy-vendors',
 		'copy-use-cases',
-		'concat-app',
+		'concat-app'
+	], [
 		'concat-app-umd'
 	], callback);
 });
