@@ -24,28 +24,24 @@ End goal is to build up a library of reusable components for Foundation v5.
 
 ## Getting Started
 
-Install the package via npm
+Install the package via npm, all dependencies will be in the `dist` folder.
 
 ```shell
 $ npm install ractive-foundation --save
 ```
 
-To start building your application using Ractive Foundation, you need to include your `ractivef` flavour of choice (global, amd, commonjs). Along with `hammer`, `ractive-touch` and `lodash-compat`. These can be found in the `dist` directory after install.
+Or download and add the dependencies. (again all dependencies will be in the `dist` folder)
 
-#### Example Setup
-
-JavaScript:
-
-```javascript
-var options = {
-  el: '#container',
-  template: '#template'
-};
-
-var ractive = RactiveF.forge(options);
+```html
+<script src='ractive.js'></script>
+<script src='hammer.min.js'></script>
+<script src='lodash-compat.js'></script>
+<script src='ractive-touch.js'></script>
+<script src='ractivef.js'></script>
 ```
 
-Markup:
+
+Example use of components:
 ```html
 <div id="container"></div>
 
