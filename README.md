@@ -43,13 +43,13 @@ Or download and add the dependencies. (again all dependencies will be in the `di
 
 Example use of components:
 ```html
-<div id="container"></div>
-
-<script id="template" type="text/ractive">
-  <ux-panel>
-    <ux-header level="1">Hello World</ux-header>
-  </ux-panel>
-</script>
+<ux-row>
+    <ux-col class="large-12 medium-12 small-12">
+      <ux-panel>
+        <ux-header level="1">Hello World</ux-header>
+      </ux-panel>
+    </ux-col>
+</ux-row>
 ```
 
 ## Get Involved
