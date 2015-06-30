@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
 	del = require('del'),
+	exec = require('child_process').exec,
+	gutil = require('gulp-util'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
@@ -239,6 +241,21 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 
 });
 
+gulp.task('version-check', function (callback) {
+	exec('node ./bin/versionCheck.js', function(err, stdout) {
+		if (stdout) {
+			gutil.log(gutil.colors.red(stdout));
+		}
+
+		if (err) {
+			gutil.log(gutil.colors.red('Exiting...'));
+			process.exit(1);
+		}
+
+		callback(err);
+	});
+});
+
 gulp.task('watch', function () {
 	var self = this;
 	plugins.watch([
@@ -258,7 +275,7 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['build', 'connect'], function (callback) {
+gulp.task('test', ['version-check', 'build', 'connect'], function (callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
 		.pipe(rfCucumber(
@@ -280,7 +297,7 @@ gulp.task('jshint', function (callback) {
 
 gulp.task('default', function () {
 	var self = this;
-	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
+	runSequence('version-check', 'jshint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
 });

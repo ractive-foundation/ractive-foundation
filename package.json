@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
-    "start": "npm prune && npm install && gulp",
-    "preinstall": "node ./bin/versionCheck.js"
+    "start": "npm prune && npm install && gulp"
   },
   "repository": {
     "type": "git",
