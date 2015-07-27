@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
 	del = require('del'),
+	exec = require('child_process').exec,
+	gutil = require('gulp-util'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
@@ -95,7 +97,6 @@ gulp.task('build-sass', function () {
 		gulp.src('./node_modules/foundation-sites/scss/*.scss')
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./public/css/foundation'))
-
 	);
 
 });
@@ -103,7 +104,7 @@ gulp.task('build-sass', function () {
 gulp.task('ractive-build-templates', function () {
 	return gulp.src('./src/components/**/*.hbs')
 		.pipe(ractiveParse({
-			'prefix': 'RactiveF.templates'
+			'prefix': 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -115,7 +116,7 @@ gulp.task('ractive-build-components', function () {
 			'!./src/components/**/*.steps.js'
 		])
 		.pipe(ractiveConcatComponents({
-			'prefix': 'RactiveF.components'
+			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -174,29 +175,12 @@ gulp.task('concat-app', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('concat-app-amd', function () {
+gulp.task('concat-app-umd', function () {
 	return gulp.src('./public/js/ractivef-base.js')
-		.pipe(plugins.wrap({ src: './src/ractivef-amd.js'}))
-		.pipe(plugins.concat('ractivef-amd.js'))
-		.pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('concat-app-commonjs', function () {
-	return gulp.src('./public/js/ractivef-base.js')
-		.pipe(plugins.wrap({ src: './src/ractivef-cjs.js'}))
-		.pipe(plugins.concat('ractivef-cjs.js'))
-		.pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('apply-versions', function () {
-	return gulp.src([
-		'public/js/ractivef-amd.js',
-		'public/js/ractivef-base.js',
-		'public/js/ractivef-cjs.js',
-		'public/js/ractivef.js'
-	])
-	.pipe(applyVersions());
-
+		.pipe(plugins.wrap({ src: './src/ractivef-umd.js'}))
+		.pipe(plugins.concat('ractivef-umd.js'))
+		.pipe(gulp.dest('./public/js/'))
+		.pipe(applyVersions());
 });
 
 gulp.task('wing', function (callback) {
@@ -215,18 +199,32 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'copy-use-cases',
 		'concat-app'
 	], [
-		'concat-app-amd',
-		'concat-app-commonjs'
-	], [
-		'apply-versions'
+		'concat-app-umd'
 	], callback);
 });
 
-gulp.task('dist', ['build'], function () {
+
+gulp.task('clean-dist', function (callback) {
+	del([
+		'dist/**/*'
+	], callback);
+});
+
+gulp.task('dist', ['clean-dist', 'build'], function () {
 
 	return mergeStream(
+
 		gulp.src([
-			'./public/js/ractivef-*.js',
+			'./public/js/ractivef-umd.js'
+			])
+		.pipe(plugins.rename(function (path) {
+			// Rename the dist file to 'ractivef'
+			path.dirname = '';
+			path.basename = 'ractivef';
+		}))
+		.pipe(gulp.dest('dist')),
+
+		gulp.src([
 			'./public/manifest-rf.json',
 			'./public/js/lodash-compat/*',
 			'./public/js/hammerjs/hammer.min.js',
@@ -241,6 +239,21 @@ gulp.task('dist', ['build'], function () {
 		]).pipe(gulp.dest('dist/css'))
 	);
 
+});
+
+gulp.task('version-check', function (callback) {
+	exec('node ./bin/versionCheck.js', function(err, stdout) {
+		if (stdout) {
+			gutil.log(gutil.colors.red(stdout));
+		}
+
+		if (err) {
+			gutil.log(gutil.colors.red('Exiting...'));
+			process.exit(1);
+		}
+
+		callback(err);
+	});
 });
 
 gulp.task('watch', function () {
@@ -262,7 +275,7 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['build', 'connect'], function (callback) {
+gulp.task('test', ['version-check', 'build', 'connect'], function (callback) {
 	return gulp
 		.src('./src/components/**/*.feature')
 		.pipe(rfCucumber(
@@ -282,14 +295,9 @@ gulp.task('jshint', function (callback) {
 		.pipe(jshintFailReporter());
 });
 
-gulp.task('selenium-standalone-install', function () {
-	return plugins.run('./node_modules/selenium-standalone/bin/selenium-standalone install')
-		.exec();
-});
-
 gulp.task('default', function () {
 	var self = this;
-	runSequence('jshint', 'build',  'connect', 'watch', function (err) {
+	runSequence('version-check', 'jshint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
 });

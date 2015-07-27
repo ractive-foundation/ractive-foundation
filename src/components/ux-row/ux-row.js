@@ -1,3 +1,3 @@
-Component.extend({
-	template: RactiveF.templates['ux-row']
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-row']
 });

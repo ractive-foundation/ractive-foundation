@@ -1,4 +1,4 @@
-Component.extend({
+Ractive.extend({
 
 	getUpNumClass: function (num) {
 
@@ -15,7 +15,7 @@ Component.extend({
 
 	},
 
-	template: RactiveF.templates['ux-iconbar'],
+	template: Ractive.defaults.templates['ux-iconbar'],
 
 	data: {
 

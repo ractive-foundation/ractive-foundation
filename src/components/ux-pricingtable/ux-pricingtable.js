@@ -1,5 +1,5 @@
-Component.extend({
-	template: RactiveF.templates['ux-pricingtable'],
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-pricingtable'],
 	oninit: function () {
 
 		this.on('buyNow', function (syntheticEvent) {

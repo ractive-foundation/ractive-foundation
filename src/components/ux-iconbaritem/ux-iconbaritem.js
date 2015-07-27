@@ -1,6 +1,6 @@
-Component.extend({
+Ractive.extend({
 
-	template: RactiveF.templates['ux-iconbaritem'],
+	template: Ractive.defaults.templates['ux-iconbaritem'],
 
 	computed: {
 		guid: function () {

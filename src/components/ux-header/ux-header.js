@@ -1,3 +1,3 @@
-Component.extend({
-	template: RactiveF.templates['ux-header']
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-header']
 });

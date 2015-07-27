@@ -1,5 +1,5 @@
-Component.extend({
-	template: RactiveF.templates['ux-tablinks'],
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-tablinks'],
 	oninit: function () {
 
 		// If there is a hash. We want to check deeplinking.

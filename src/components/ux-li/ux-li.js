@@ -1,3 +1,3 @@
-Component.extend({
-	template: RactiveF.templates['ux-li']
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-li']
 });

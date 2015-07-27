@@ -1,5 +1,5 @@
 /*helpers*/
-_.extend(RactiveF, {
+RactiveF = {
 
 	initInstance: function (el, options) {
 		el = typeof el === 'string' ? document.querySelector(el) : el;
@@ -17,7 +17,7 @@ _.extend(RactiveF, {
 
 		options = _.extend(defaults, options);
 
-		var instance = this.forge(options);
+		var instance = new Ractive(options);
 
 		instance.on('*.*', RactiveF.genericEventHandler);
 
@@ -86,7 +86,7 @@ _.extend(RactiveF, {
 	pageYOffset: function () {
 		return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 	}
-});
+};
 
 /*global hljs*/
 if (typeof document !== 'undefined') {

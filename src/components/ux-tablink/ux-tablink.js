@@ -1,6 +1,6 @@
-Component.extend({
-	template: RactiveF.templates['ux-tablink'],
-	components: RactiveF.components,
+Ractive.extend({
+	template: Ractive.defaults.templates['ux-tablink'],
+	components: Ractive.components,
 	isolated: true,
 	oninit: function () {
 		var active = this.get('active') || false;

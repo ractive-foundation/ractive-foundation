@@ -1,6 +1,6 @@
-Component.extend({
+Ractive.extend({
 
-	template: RactiveF.templates['ux-orbit'],
+	template: Ractive.defaults.templates['ux-orbit'],
 
 	data: {
 		currentPage: 1,

@@ -1,6 +1,6 @@
-Component.extend({
+Ractive.extend({
 
-	template: RactiveF.templates['ux-tabarea'],
+	template: Ractive.defaults.templates['ux-tabarea'],
 
 	data: {
 		tabPaneDataModel: function (item) {

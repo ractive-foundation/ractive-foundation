@@ -16,14 +16,10 @@ module.exports = function () {
 
 	var run = function(callback) {
 		processable.forEach(function (file) {
-			var regex = new RegExp('<@version@>', 'g');
 			var contents = fs.readFileSync(file.path, 'utf8');
-			var newContents = contents.replace(regex, pkg.version);
+			var template = gutil.template(commentHeader, { file : file, pkg: pkg });
 
-
-			var template = gutil.template(commentHeader, {file : file, pkg: pkg });
-
-			fs.writeFileSync(file.path, template + newContents);
+			fs.writeFileSync(file.path, template + contents);
 			this.push(file);
 		}.bind(this));
 
