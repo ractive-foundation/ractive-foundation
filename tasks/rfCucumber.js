@@ -115,7 +115,7 @@ module.exports = function (options) {
 			});
 		} else {
 			promise = Q.resolve();
-			gutil.log(gutil.colors.red('Cannot kill Standalone server.'));
+			gutil.log(gutil.colors.red('Cannot kill standalone server.'));
 		}
 
 		return promise;
@@ -144,7 +144,7 @@ module.exports = function (options) {
 			if (succeeded) {
 				callback(null);
 			} else {
-				callback(new Error("Cucumber tests failed!"));
+				callback(new Error('Cucumber tests failed!'));
 			}
 		});
 	};
