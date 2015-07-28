@@ -1,8 +1,8 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['Ractive', 'lodash-compat'], factory);
+        define(['ractive', 'lodash-compat'], factory);
     } else if (typeof exports === 'object') {
-        factory(require('Ractive'), require('lodash-compat'));
+        factory(require('ractive'), require('lodash-compat'));
     } else {
         factory(root.Ractive, root._);
     }
