@@ -54,6 +54,16 @@ Ractive.defaults.onrender = function () {
  */
 Ractive.defaults.elementOffset = function (elem) {
 
+	// Defensive code for isomorphic execution.
+	if (typeof document === 'undefined' || typeof window === 'undefined') {
+		return {
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0
+		};
+	}
+
 	var box = elem.getBoundingClientRect();
 
 	var body = document.body;
