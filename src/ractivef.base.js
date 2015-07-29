@@ -88,6 +88,10 @@ Ractive.defaults.elementOffset = function (elem) {
  * TODO Make the return object the same as offset?
  */
 Ractive.defaults.pageYOffset = function () {
+	// Defensive code for isomorphic execution.
+	if (typeof document === 'undefined' || typeof window === 'undefined') {
+		return 0;
+	}
 	return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 };
 
