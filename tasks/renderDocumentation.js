@@ -238,7 +238,7 @@ function renderDocumentation(options) {
 			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
 			// Build up sideNavDataModel first.
-			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(manifests)));
+			var sideNavDataModel = getSideNavDataModel(manifests);
 
 			// Create the component index page, using the sidenav.
 			this.push(getIndexFile(indexFile, sideNavDataModel, file));
