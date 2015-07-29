@@ -22,15 +22,20 @@ Ractive.extend({
 
 	oncomplete: function () {
 
-		var self = this;
-		var topbar = self.find('.top-bar');
-		var topbarOffset = self.elementOffset(topbar);
+		// Defensive code for isomorphic execution.
+		if (typeof window !== 'undefined') {
 
-		window.addEventListener('scroll', function (e) {
-			if (self.get('issticky')) {
-				self.set('isfixed', self.pageYOffset() > topbarOffset.top);
-			}
-		});
+			var self = this;
+			var topbar = self.find('.top-bar');
+			var topbarOffset = self.elementOffset(topbar);
+
+			window.addEventListener('scroll', function (e) {
+				if (self.get('issticky')) {
+					self.set('isfixed', self.pageYOffset() > topbarOffset.top);
+				}
+			});
+
+		}
 
 	}
 

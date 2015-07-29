@@ -54,6 +54,16 @@ Ractive.defaults.onrender = function () {
  */
 Ractive.defaults.elementOffset = function (elem) {
 
+	// Defensive code for isomorphic execution.
+	if (typeof document === 'undefined' || typeof window === 'undefined') {
+		return {
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0
+		};
+	}
+
 	var box = elem.getBoundingClientRect();
 
 	var body = document.body;
@@ -78,6 +88,10 @@ Ractive.defaults.elementOffset = function (elem) {
  * TODO Make the return object the same as offset?
  */
 Ractive.defaults.pageYOffset = function () {
+	// Defensive code for isomorphic execution.
+	if (typeof document === 'undefined' || typeof window === 'undefined') {
+		return 0;
+	}
 	return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 };
 
