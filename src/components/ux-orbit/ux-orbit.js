@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-orbit'],
 
+	isolated: true,
+
 	data: {
 		currentPage: 1,
 		navigation_arrows: true,

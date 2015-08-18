@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-tabarea'],
 
+	isolated: true,
+
 	data: {
 		tabPaneDataModel: function (item) {
 			return {

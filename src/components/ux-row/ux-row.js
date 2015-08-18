@@ -1,3 +1,4 @@
 Ractive.extend({
-	template: Ractive.defaults.templates['ux-row']
+	template: Ractive.defaults.templates['ux-row'],
+	isolated: true
 });

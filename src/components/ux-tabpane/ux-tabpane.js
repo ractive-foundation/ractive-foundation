@@ -11,5 +11,6 @@ Ractive.extend({
 			this.partials.dynamicContent = Ractive.parse(datamodel.content);
 		}
 	}
+	isolated: true
 
 });

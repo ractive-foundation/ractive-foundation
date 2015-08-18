@@ -17,6 +17,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-iconbar'],
 
+	isolated: true,
+
 	data: {
 
 		getItemData: function (itemData) {
