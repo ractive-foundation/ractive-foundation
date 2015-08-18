@@ -88,8 +88,15 @@ function renderUseCases(useCase, componentName) {
 				tag: 'code',
 				content: _.escape(makeHTML([componentObj]))
 			}]
-		}
-	]).replace(/(\r\n|\n|\r)/gm, '');
+		},
+		{
+        	tag: 'pre',
+        	content: [{
+        		tag: 'code',
+        		content: JSON.stringify(useCase.data, null, 4)
+        	}]
+       	}
+	]).replace(/(\r\n|\r)/gm, '');
 
 	return component;
 
