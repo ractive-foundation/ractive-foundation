@@ -33,9 +33,6 @@ Ractive.extend({
 
 			});
 
-			// Stop bubbling.
-			return false;
-
 		});
 
 	}
