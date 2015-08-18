@@ -2,16 +2,16 @@
 
 	{{#if isDataModel}}
 
-		<ux-tablinks>
-			{{#items}}
+		<ux-tablinks items="{{items}}">
+			{{#each items}}
 				<ux-tablink id="{{.id}}" active="{{.active}}">{{.title}}</ux-tablink>
-			{{/items}}
+			{{/each}}
 		</ux-tablinks>
 
-		<ux-tabpanes>
-			{{#items}}
-				<ux-tabpane datamodel="{{tabPaneDataModel(this)}}"></ux-tabpane>
-			{{/items}}
+		<ux-tabpanes items="{{items}}">
+			{{#each items}}
+				<ux-tabpane>{{{.content}}}</ux-tabpane>
+			{{/each}}
 		</ux-tabpanes>
 
 	{{else}}
