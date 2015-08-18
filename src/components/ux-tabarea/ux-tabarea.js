@@ -4,14 +4,6 @@ Ractive.extend({
 
 	isolated: true,
 
-	data: {
-		tabPaneDataModel: function (item) {
-			return {
-				content: item.content
-			};
-		}
-	},
-
 	oninit: function () {
 
 		var tabLinks = this.findComponent('ux-tablinks');
