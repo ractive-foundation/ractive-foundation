@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-off-canvas'],
 
+	isolated: true,
+
 	data: function () {
 		return {
 			expandedState: '',

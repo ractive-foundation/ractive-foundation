@@ -1,8 +1,8 @@
 <ul id="{{guid}}" class="accordion {{class}}" data-accordion>
 	{{#if isDataModel}}
-		{{#items}}
-			<ux-accordionitem datamodel="{{.}}"></ux-accordionitem>
-		{{/}}
+		{{#each items}}
+			<ux-accordionitem datamodel="{{{.}}}"></ux-accordionitem>
+		{{/each}}
 	{{else}}
     	{{>content}}
 	{{/if}}
