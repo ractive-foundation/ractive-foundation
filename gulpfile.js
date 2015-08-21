@@ -229,7 +229,8 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 			'./public/manifest-rf.json',
 			'./public/js/lodash-compat/*',
 			'./public/js/hammerjs/hammer.min.js',
-			'./public/js/ractive-touch/*'
+			'./public/js/ractive-touch/*',
+			'./public/js/ractive-events-tap/dist/*'
 		], { base: process.cwd() })
 			.pipe(rebaseDist())
 
