@@ -152,6 +152,9 @@ function getSideNavDataModel(manifests) {
  */
 function getIndexFile (indexFile, sideNavDataModel, file) {
 
+	// empty out any default set components.
+	// We do not want Ractive to parse and resolve any components written in the template.
+	Ractive.components = {};
 	var ractive = new Ractive({
 		template: indexFile,
 		data: {
@@ -197,6 +200,9 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file) {
 		return renderUseCases(useCase, manifest.componentName);
 	}).join('');
 
+	// empty out any default set components.
+	// We do not want Ractive to parse and resolve any components written in the template.
+	Ractive.components = {};
 	var ractive = new Ractive({
 		template: docFile,
 		data: {

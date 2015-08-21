@@ -50,17 +50,18 @@
     "webdriverio": "^2.4.5"
   },
   "dependencies": {
+    "async": "1.0.0",
+    "cucumber": "~0.4.8",
+    "gulp-util": "^3.0.4",
     "hammerjs": "^2.0.4",
     "lodash-compat": "^3.9.1",
     "node-notifier": "^4.1.2",
-    "ractive": "^0.7.2",
-    "ractive-touch": "^0.4.0",
-    "gulp-util": "^3.0.4",
-    "simple-glob": "~0.1.0",
     "q": "^1.2.0",
-    "async": "1.0.0",
-    "cucumber": "~0.4.8",
-    "through2": "^0.6.3",
-    "selenium-standalone": "^4.2.2"
+    "ractive": "^0.7.2",
+    "ractive-events-tap": "^0.2.0",
+    "ractive-touch": "^0.4.0",
+    "selenium-standalone": "^4.2.2",
+    "simple-glob": "~0.1.0",
+    "through2": "^0.6.3"
   }
 }
