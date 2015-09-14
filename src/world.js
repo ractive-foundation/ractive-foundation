@@ -29,7 +29,9 @@ var WorldConstructor = function WorldConstructor(callback) {
 		}
 	};
 
-	var client = webdriverio.remote(options).init();
+	var client = webdriverio.remote(options).init().then(function () {
+		callback(world);
+	});
 
 	var world = {
 
@@ -47,10 +49,9 @@ var WorldConstructor = function WorldConstructor(callback) {
 
 	client.addCommand('loadComponentWithUseCase', function(componentName, useCase, callback) {
 		var url = COMPONENT_BASE_PATH.replace('$1', componentName).replace('$2', useCase);
+		console.log('url:', url);
 		return this.url(url, callback);
 	});
-
-	callback(world);
 
 };
 
