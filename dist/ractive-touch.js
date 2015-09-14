@@ -1,11 +1,11 @@
 ;(function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['ractive', 'hammerjs'], factory);
+    define(['Ractive', 'Hammer'], factory);
   }
 
   else if (typeof module !== 'undefined') {
-    factory(require('ractive'), require('hammerjs'));
+    factory(require('Ractive'), require('Hammer'));
   }
 
   else {
@@ -24,7 +24,7 @@
         time: 500
       },
       events: [
-        'tap' 
+        'tap'
       ]
     },
     doubletap: {
@@ -35,7 +35,7 @@
       },
       recognizeWith: ['tap'],
       events: [
-        'doubletap' 
+        'doubletap'
       ]
     },
     swipe: {
@@ -46,7 +46,7 @@
         'swipeleft',
         'swiperight',
         'swipeup',
-        'swipedown' 
+        'swipedown'
       ]
     },
     pan: {
@@ -64,14 +64,15 @@
         'panleft',
         'panright',
         'panup',
-        'pandown' 
+        'pandown'
       ]
     },
     press: {
       recognizerClass: Hammer.Press,
       options: {},
       events: [
-        'press' 
+        'press',
+        'pressup'
       ]
     },
     rotate: {
@@ -82,7 +83,7 @@
         'rotatestart',
         'rotatemove',
         'rotateend',
-        'rotatecancel' 
+        'rotatecancel'
       ]
     },
     pinch: {
@@ -96,7 +97,7 @@
         'pinchend',
         'pinchcancel',
         'pinchin',
-        'pinchout' 
+        'pinchout'
       ]
     }
   };
@@ -106,7 +107,7 @@
   // bind all events using buildEvent
   for (var recognizerName in defaults) {
     if (!defaults.hasOwnProperty(recognizerName)) continue;
-    
+
     var events = defaults[recognizerName].events;
     for (var i = 0; i < events.length; i++) {
       buildEvent(events[i], recognizerName, defaults[recognizerName]);
@@ -146,7 +147,7 @@
           recognizer.set(options);
 
         hammerManager.add(recognizer);
-        
+
         updateRecognizeWith(hammerManager);
       }
 
@@ -175,7 +176,7 @@
    * Since we add recognizers dynamically and without any strict order,
    *  we need to guard against trying to set a requireWith for a recognizer
    *  that haven't been created yet.
-   * 
+   *
    */
   function updateRecognizeWith(hammerManager) {
     for (var i = 0; i < hammerManager.recognizers.length; i++) {
@@ -183,7 +184,7 @@
       var recognizerName = recognizer.options.event;
 
       if (!defaults[recognizerName].hasOwnProperty('recognizeWith')) continue;
-      
+
       var recognizeWiths = defaults[recognizerName].recognizeWith;
       for (var k = 0; k < recognizeWiths.length; k++) {
         // Verify that the recgonizer we're trying to depend on is really there
@@ -228,7 +229,7 @@
    * needed. If `key` is given, it can also resolve aliases for that given
    * key.
    *
-   * Used by `getData()`. 
+   * Used by `getData()`.
    *
    *     parseHammerValue("100")   => 100
    *     parseHammerValue("right") => "right"
