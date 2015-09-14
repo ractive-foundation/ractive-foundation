@@ -2,13 +2,7 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-tabarea'],
 
-	data: {
-		tabPaneDataModel: function (item) {
-			return {
-				content: item.content
-			};
-		}
-	},
+	isolated: true,
 
 	oninit: function () {
 

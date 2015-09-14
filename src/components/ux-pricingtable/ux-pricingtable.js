@@ -1,5 +1,6 @@
 Ractive.extend({
 	template: Ractive.defaults.templates['ux-pricingtable'],
+	isolated: true,
 	oninit: function () {
 
 		this.on('buyNow', function (syntheticEvent) {

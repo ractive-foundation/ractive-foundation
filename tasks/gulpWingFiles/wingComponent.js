@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: RactiveF.templates['wingComponent']
+	template: Ractive.defaults.templates['wingComponent']
 });
