@@ -278,7 +278,7 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', function (callback) {
+gulp.task('test', ['version-check', 'build'], function (callback) {
 
 	plugins.connect.server({
 		root: 'public',
