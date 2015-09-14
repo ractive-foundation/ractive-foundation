@@ -6,7 +6,6 @@ var gulp = require('gulp'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
-	connect = require('gulp-connect'),
 
 	plugins = require('gulp-load-plugins')(),
 
