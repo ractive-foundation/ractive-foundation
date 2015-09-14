@@ -1,7 +1,7 @@
-var selenium = require('selenium-standalone');
-var gutil = require('gulp-util');
-var http = require('http');
-var Q = require('q');
+var selenium    = require('selenium-standalone');
+var gutil       = require('gulp-util');
+var http        = require('http');
+var Q           = require('q');
 
 module.exports = function (options) {
 
@@ -73,7 +73,7 @@ module.exports = function (options) {
 		return Q.Promise(function (resolve, reject) {
 			if (!seleniumServer) {
 				gutil.log(gutil.colors.red('Cannot kill standalone server.'));
-				return reject();
+				return reject('Cannot kill standalone server.');
 			}
 
 			seleniumServer.kill();
@@ -95,6 +95,10 @@ module.exports = function (options) {
 	var installDrivers = function () {
 		return Q.Promise(function (resolve, reject) {
 			gutil.log(gutil.colors.gray('Installing driver(s) if needed'));
+
+			if (!seleniumInstallOptions.logger) {
+				seleniumInstallOptions.logger = gutil.log;
+			}
 			selenium.install(seleniumInstallOptions, function(err) {
 				if (err) {
 					return reject(err);
