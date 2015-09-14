@@ -1,1 +1,7 @@
- <span class="{{class}} label">{{text}}</span>
+<span class="{{class}} label">
+	{{#if isDataModel}}
+		{{text}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</span>

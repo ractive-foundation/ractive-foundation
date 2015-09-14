@@ -1,5 +1,6 @@
 {
 	"title": "alert round class",
+	"isDataModel": true,
 	"data": {
 		"text": "Round Alert",
 		"class": "alert round"

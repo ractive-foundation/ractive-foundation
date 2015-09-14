@@ -1,5 +1,6 @@
 {
 	"title": "secondary radius class",
+	"isDataModel": true,
 	"data": {
 		"text": "Secondary Radius",
 		"class": "radius secondary"

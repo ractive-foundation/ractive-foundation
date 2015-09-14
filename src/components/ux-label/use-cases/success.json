@@ -1,5 +1,6 @@
 {
 	"title": "success class",
+	"isDataModel": true,
 	"data": {
 		"text": "Success",
 		"class": "success"
