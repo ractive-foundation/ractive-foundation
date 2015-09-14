@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
+	connect = require('gulp-connect'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -278,9 +279,14 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['version-check', 'build'], function (callback) {
+gulp.task('test', function (callback) {
 
-	var selServer = seleniumServer({ install: true });
+	plugins.connect.server({
+		root: 'public',
+		port: 8088
+	});
+
+	var selServer = seleniumServer();
 
 	selServer.init().then(function () {
 		var stream = gulp.src('./src/components/**/*.feature')
@@ -288,10 +294,25 @@ gulp.task('test', ['version-check', 'build'], function (callback) {
 				{ steps: './src/components/**/*.steps.js' }
 			));
 
-		stream.on('end', function (err) {
+		stream.on('end', function () {
+			selServer.killServer().then(function () {
+				callback();
+				process.exit(0);
+			}).catch(function () {
+				callback();
+				process.exit(0);
+			});
+		});
+
+		stream.on('error', function (err) {
+			var errorCode = err ? 1 : 0;
 			selServer.killServer().then(function () {
 				callback(err);
-			}).catch(callback);
+				process.exit(errorCode);
+			}).catch(function () {
+				callback(err);
+				process.exit(errorCode);
+			});
 		});
 	}).catch(gutil.log);
 });
