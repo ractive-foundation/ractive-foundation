@@ -11,6 +11,7 @@ var gulp = require('gulp'),
 
 	applyVersions = require('./tasks/applyVersions'),
 	rebaseDist = require('./tasks/rebaseDist'),
+	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
 	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
@@ -277,17 +278,42 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['version-check', 'build', 'connect'], function (callback) {
-	return gulp
-		.src('./src/components/**/*.feature')
-		.pipe(rfCucumber(
-			{ steps: './src/components/**/*.steps.js' }
-		)).on('end', function (err) {
-			if (!err) {
+gulp.task('test', ['version-check', 'build'], function (callback) {
+
+	plugins.connect.server({
+		root: 'public',
+		port: 8088
+	});
+
+	var selServer = seleniumServer();
+
+	selServer.init().then(function () {
+		var stream = gulp.src('./src/components/**/*.feature')
+			.pipe(rfCucumber(
+				{ steps: './src/components/**/*.steps.js' }
+			));
+
+		stream.on('end', function () {
+			selServer.killServer().then(function () {
 				callback();
-				return process.exit(0);
-			}
+				process.exit(0);
+			}).catch(function () {
+				callback();
+				process.exit(0);
+			});
 		});
+
+		stream.on('error', function (err) {
+			var errorCode = err ? 1 : 0;
+			selServer.killServer().then(function () {
+				callback(err);
+				process.exit(errorCode);
+			}).catch(function () {
+				callback(err);
+				process.exit(errorCode);
+			});
+		});
+	}).catch(gutil.log);
 });
 
 gulp.task('jshint', function (callback) {

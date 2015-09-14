@@ -18,7 +18,7 @@ const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'ph
 const WEBDRIVER_TIMEOUT = 5000;
 
 // TODO The port will inevitably need to be dynamic.
-var COMPONENT_BASE_PATH = 'http://localhost:9080/testRunner.html#!/component/$1/use-case/$2';
+var COMPONENT_BASE_PATH = 'http://localhost:8088/testRunner.html#!/component/$1/use-case/$2';
 
 var WorldConstructor = function WorldConstructor(callback) {
 
@@ -29,7 +29,9 @@ var WorldConstructor = function WorldConstructor(callback) {
 		}
 	};
 
-	var client = webdriverio.remote(options).init();
+	var client = webdriverio.remote(options).init().then(function () {
+		callback(world);
+	});
 
 	var world = {
 
@@ -47,10 +49,9 @@ var WorldConstructor = function WorldConstructor(callback) {
 
 	client.addCommand('loadComponentWithUseCase', function(componentName, useCase, callback) {
 		var url = COMPONENT_BASE_PATH.replace('$1', componentName).replace('$2', useCase);
+		console.log('url:', url);
 		return this.url(url, callback);
 	});
-
-	callback(world);
 
 };
 
