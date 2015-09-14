@@ -30,7 +30,7 @@ module.exports = function (options) {
 	if (options.tags) {
 		tags = ['--tags', options.tags];
 		if (_.isArray(options.tags)) {
-			if (options.requireBothTags) {
+			if (options.requireAllTags) {
 				tags = _(options.tags)
 					.map(function (tag) {
 						return ['--tags', tag]
