@@ -1,3 +1,4 @@
+var _           = require('lodash-compat');
 var selenium    = require('selenium-standalone');
 var gutil       = require('gulp-util');
 var http        = require('http');
@@ -11,6 +12,10 @@ module.exports = function (options) {
 	var options = options || {};
 	var seleniumOptions = options.seleniumOptions || {};
 	var seleniumInstallOptions = options.seleniumInstallOptions || {};
+
+	options = _.defaults(options, {
+		install: true
+	});
 
 	/**
 	 * Helper function to see if Selenium server is already running.
@@ -96,9 +101,10 @@ module.exports = function (options) {
 		return Q.Promise(function (resolve, reject) {
 			gutil.log(gutil.colors.gray('Installing driver(s) if needed'));
 
-			if (!seleniumInstallOptions.logger) {
-				seleniumInstallOptions.logger = gutil.log;
-			}
+			seleniumInstallOptions = _.defaults(seleniumInstallOptions, {
+				logger: gutil.log
+			});
+
 			selenium.install(seleniumInstallOptions, function(err) {
 				if (err) {
 					return reject(err);
@@ -109,7 +115,6 @@ module.exports = function (options) {
 			});
 		});
 	};
-
 
 	var init = function () {
 		return pingSelenium(options).then(function () {
