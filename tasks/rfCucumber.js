@@ -40,7 +40,12 @@ module.exports = function (options) {
 		}
 
 		var index = _.findIndex(files, function (step) {
-			return step.indexOf(feature.name) !== -1
+			var parsedStepPath = path.parse(step);
+			// Match step name with feature name, stop searching when we hit - or _
+			// after first part match. In case we are looking for ux-list and we
+			// come across ux-list-item.
+			var regex = new RegExp('^(' + feature.name + ')[^-_]', 'gi');
+			return parsedStepPath.name.match(regex);
 		});
 
 		var matchingStep = files[index];
