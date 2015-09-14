@@ -38,7 +38,7 @@ module.exports = function (options) {
 				resolve(isSeleniumServerRunning);
 			}).on('error', function() {
 				gutil.log(gutil.colors.gray('Selenium server is not running'));
-				resolve('Server not running');
+				resolve();
 			});
 		});
 	};
@@ -117,11 +117,15 @@ module.exports = function (options) {
 	};
 
 	var init = function () {
-		return pingSelenium(options).then(function () {
-			return options.install ? installDrivers(seleniumInstallOptions) : Q.resolve();
-		}).then(function () {
-			return startServer(seleniumOptions);
+
+		var promise = options.install ? installDrivers(seleniumInstallOptions) : Q.resolve();
+
+		return promise.then(function () {
+			return pingSelenium(options);
+		}).then(function (isServerRunning) {
+			return isServerRunning ? Q.resolve() : startServer(seleniumOptions);
 		});
+
 	};
 
 	return {

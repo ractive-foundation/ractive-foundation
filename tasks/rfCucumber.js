@@ -5,20 +5,17 @@ var glob        = require('simple-glob');
 var path        = require('path');
 
 /**
- * Combination of gulp-cucumber and gulp-webdriverio
- * Ensures Selenium is running and drivers are installed.
- * Kills server on completion.
- * @see https://github.com/vgamula/gulp-cucumber
- * @see https://github.com/webdriverio/gulp-webdriver
+ * rfCucumber runs each step and feature in isolation to avoid any
+ * contextual issues.
  * @param options
- * @returns {*|exports}
  */
 module.exports = function (options) {
 
 	var argv = ['node', 'cucumber-js'];
 	var format = options.format || 'pretty';
+	var tags = [];
 	var files = [];
-	var runOptions = [];
+	var runOptions = ['-f', format];
 
 	if (options.support) {
 		files = files.concat(glob([].concat(options.support)));
@@ -28,11 +25,25 @@ module.exports = function (options) {
 		files = files.concat(glob([].concat(options.steps)));
 	}
 
-	// Set output format
-	runOptions.push('-f');
-	runOptions.push(format);
+	// Support tags in array or string format
+	// @see https://github.com/cucumber/cucumber/wiki/Tags
+	if (options.tags) {
+		tags = ['--tags', options.tags];
+		if (_.isArray(options.tags)) {
+			if (options.requireBothTags) {
+				tags = _(options.tags)
+					.map(function (tag) {
+						return ['--tags', tag]
+					})
+					.flatten()
+					.value();
+			} else {
+				tags = ['--tags', options.tags.join(',')];
+			}
+		}
+	}
 
-	var collect = function(file, enc, callback) {
+	var parseAndRunTests = function(file, enc, callback) {
 		var feature = path.parse(file.path);
 
 		if (feature.ext !== '.feature') {
@@ -49,7 +60,7 @@ module.exports = function (options) {
 		});
 
 		var matchingStep = files[index];
-		var args = argv.concat(['-r', matchingStep, file.path], runOptions);
+		var args = argv.concat(['-r', matchingStep, file.path], runOptions, tags);
 
 		Cucumber.Cli(args).run(function(succeeded) {
 			if (succeeded) {
@@ -60,11 +71,11 @@ module.exports = function (options) {
 		});
 	};
 
-	var runTests = function (callback) {
+	var finish = function (callback) {
 		this.emit('end');
 		return callback();
 	};
 
-	return through.obj(collect, runTests);
+	return through.obj(parseAndRunTests, finish);
 
 };
