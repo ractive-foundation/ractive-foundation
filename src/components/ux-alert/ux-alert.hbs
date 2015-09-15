@@ -1,3 +1,8 @@
-<div class="ux-alert">
-    TODO component contents here.
+<div data-alert class="alert-box {{class}}">
+	{{#if isDataModel}}
+		{{{text}}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+	<a href="#" class="close">&times;</a>
 </div>
