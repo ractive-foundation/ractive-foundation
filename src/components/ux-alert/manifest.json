@@ -3,5 +3,5 @@
 		"text": "The text to display on the alert",
 		"class": "[success warning info alert secondary] [round radius]"
 	},
-	"category": "callouts & prompts"
+	"category": "Callouts & Prompts"
 }
