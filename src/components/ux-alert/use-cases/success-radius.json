@@ -1,0 +1,8 @@
+{
+	"title": "success radius class",
+	"isDataModel": true,
+	"data": {
+		"text": "This is a success alert with a radius.",
+		"class": "success radius"
+	}
+}
