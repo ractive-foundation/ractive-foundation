@@ -1,0 +1,8 @@
+{
+	"title": "Alert round class",
+	"isDataModel": true,
+	"data": {
+		"text": "This is an alert - alert that is rounded.",
+		"class": "alert round"
+	}
+}

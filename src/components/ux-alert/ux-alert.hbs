@@ -1,0 +1,8 @@
+<div data-alert class="alert-box {{class}}">
+	{{#if isDataModel}}
+		{{{text}}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+	<a href="#" class="close" on-tap="closeClicked">&times;</a>
+</div>
