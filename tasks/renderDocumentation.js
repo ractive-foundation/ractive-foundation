@@ -88,8 +88,15 @@ function renderUseCases(useCase, componentName) {
 				tag: 'code',
 				content: _.escape(makeHTML([componentObj]))
 			}]
-		}
-	]).replace(/(\r\n|\n|\r)/gm, '');
+		},
+		{
+        	tag: 'pre',
+        	content: [{
+        		tag: 'code',
+        		content: JSON.stringify(useCase.data, null, 4)
+        	}]
+       	}
+	]).replace(/(\r\n|\r)/gm, '');
 
 	return component;
 
@@ -145,6 +152,9 @@ function getSideNavDataModel(manifests) {
  */
 function getIndexFile (indexFile, sideNavDataModel, file) {
 
+	// empty out any default set components.
+	// We do not want Ractive to parse and resolve any components written in the template.
+	Ractive.components = {};
 	var ractive = new Ractive({
 		template: indexFile,
 		data: {
@@ -190,6 +200,9 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file) {
 		return renderUseCases(useCase, manifest.componentName);
 	}).join('');
 
+	// empty out any default set components.
+	// We do not want Ractive to parse and resolve any components written in the template.
+	Ractive.components = {};
 	var ractive = new Ractive({
 		template: docFile,
 		data: {
@@ -238,7 +251,7 @@ function renderDocumentation(options) {
 			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
 			// Build up sideNavDataModel first.
-			var sideNavDataModel = _.escape(JSON.stringify(getSideNavDataModel(manifests)));
+			var sideNavDataModel = getSideNavDataModel(manifests);
 
 			// Create the component index page, using the sidenav.
 			this.push(getIndexFile(indexFile, sideNavDataModel, file));

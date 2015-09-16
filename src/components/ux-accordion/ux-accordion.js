@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-accordion'],
 
+	isolated: true,
+
 	computed: {
 		guid: function () {
 			return this._guid;
@@ -30,9 +32,6 @@ Ractive.extend({
 				}
 
 			});
-
-			// Stop bubbling.
-			return false;
 
 		});
 

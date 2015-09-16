@@ -6,19 +6,13 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 
 	superagent.get(url.join(''), function (err, res) {
 
-		window.currentComponent = new Ractive({
+		window.currentComponent = new Ractive.components[params.name]({
 			el: '#childComponent',
-			template: '<child-component></child-component>',
-			components: {
-				'child-component': Ractive.components[params.name]
-			},
-			onrender: function () {
-				this
-					.findComponent('child-component')
-					.set( _.extend(res.body.data, {
-						isDataModel: true
-					})
-				);
+			data: function () {
+				var data = res.body && res.body.data || {};
+				return _.extend(data, {
+					isDataModel: true
+				});
 			}
 		});
 
