@@ -1,0 +1,8 @@
+{
+	"title": "secondary class",
+	"isDataModel": true,
+	"data": {
+		"text": "This is a secondary alert.",
+		"class": "secondary"
+	}
+}
