@@ -1,7 +1,7 @@
 {
 	"data": {
 		"text": "The text to display on the label",
-		"class": "[success alert secondary] [round radius] label"
+		"class": "[success warning info alert secondary] [round radius] label"
 	},
 	"category": "typography"
 }
