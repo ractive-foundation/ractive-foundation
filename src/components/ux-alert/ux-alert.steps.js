@@ -4,11 +4,18 @@ module.exports = function () {
 	this.World = require('../../world').World;
 
 	var component = { container: '#childComponent' };
-		component.div = {
-			selector: component.container + ' div',
-			attribs: { className: 'class' }
+	component.alert = {
+		selector: component.container + ' div',
+		attribs: { className: 'class' }
 		};
+	
+	this.Before(function (callback) {
+		this.component = {};
+		this.component.cross = '.close';
 
+		callback();
+
+	});
 
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
@@ -42,5 +49,20 @@ module.exports = function () {
 				}
 			}
 		);
+	});
+
+	this.When(/^I click "([^"]*)"$/, function (element, callback) {
+		this.client.waitForExist(this.component.cross, this.defaultTimeout).then(function () {
+			return this.client.click(this.component.cross);
+		}.bind(this)).then(function () {
+			callback();
+		}).catch(callback);
+	});
+
+	this.Then(/^"([^"]*)" will NOT be visible$/, function (element, callback) {
+		this.client.isVisible(component[element].selector).then(function (isVisible) {
+			var e = (isVisible) ? new Error('Element is visible! Selector: ' + this.component.cross) : void 0;
+			callback(e);
+		}.bind(this)).catch(callback);
 	});
 };
