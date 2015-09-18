@@ -42,7 +42,8 @@ module.exports = function () {
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
 		this.client.waitForExist(this.component[semanticName], this.defaultTimeout, function (whatIsThisArg, success) {
 			if (!success) {
-				callback.fail('Failed to wait for element "' + semanticName + '" (' + this.component[semanticName] + ')');
+				callback.fail('Failed to wait for element "' + semanticName + 
+					'" (' + this.component[semanticName] + ')');
 			}
 			callback();
 		});
@@ -102,7 +103,8 @@ module.exports = function () {
 				this.assert.notEqual(attr.indexOf(value), -1);
 				callback();
 			} catch (e) {
-				callback.fail('Element "' + semanticName + '" (' + this.component[semanticName] + ') attribute "' + attribute + 
+				callback.fail('Element "' + semanticName + 
+					'" (' + this.component[semanticName] + ') attribute "' + attribute + 
 					'" does NOT contain "' + value + '", currently "' + attr + '"');
 			}
 
