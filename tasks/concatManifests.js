@@ -22,7 +22,7 @@ function renderDocumentation(fileName) {
 		return {
 			readme:      path.join(path.dirname(filePath), 'README.md'),
 			useCasesDir: path.join(path.dirname(filePath), 'use-cases')
-		}
+		};
 	}
 
 	function bufferContents(file) {
@@ -46,6 +46,9 @@ function renderDocumentation(fileName) {
 		};
 
 		out.useCases = find.fileSync(/.*\.json/, paths.useCasesDir)
+			.filter(function (file) {
+				return file.match(/[.]json$/);
+			})
 			.map(function (useCase) {
 				return JSON.parse(fs.readFileSync(useCase, 'UTF-8'));
 			});
