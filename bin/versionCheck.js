@@ -1,6 +1,7 @@
 const MINIMUM_VERSION = '0.12.0';
 
 var compareVersions = function (installed, required) {
+	installed = installed.replace(/^v/, '');
 	var a = installed.split('.');
 	var b = required.split('.');
 
@@ -14,6 +15,7 @@ var compareVersions = function (installed, required) {
 		a[2] = 0;
 	}
 
+    process.stdout.write(a[0] + ' > ' + b[0] + ' = ' + (a[0] > b[0]));
 	if (a[0] > b[0]) return true;
 	if (a[0] < b[0]) return false;
 
