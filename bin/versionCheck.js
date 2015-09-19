@@ -15,7 +15,6 @@ var compareVersions = function (installed, required) {
 		a[2] = 0;
 	}
 
-    process.stdout.write(a[0] + ' > ' + b[0] + ' = ' + (a[0] > b[0]));
 	if (a[0] > b[0]) return true;
 	if (a[0] < b[0]) return false;
 
