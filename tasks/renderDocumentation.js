@@ -36,7 +36,6 @@ function renderAttributes(options) {
 }
 
 function renderUseCases(useCase, componentName) {
-
 	var useCaseUid = _.uniqueId(
 		[
 			_.camelCase(componentName),
@@ -68,6 +67,19 @@ function renderUseCases(useCase, componentName) {
 		componentObj.attr.datamodel = '{{dataModel}}';
 	}
 
+	var templateInline;
+	var templateDisplay;
+	if (useCase.template) {
+		templateInline = '\n<' + useCase.template + '/>\n';
+		templateDisplay = _.escape(fs.readFileSync(useCase.file, 'utf8'));
+		console.log(templateInline);
+		console.log(templateDisplay);
+	}
+	else {
+		templateInline = makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>';
+		templateDisplay = _.escape(makeHTML([componentObj]));
+	}
+
 	// render use case doco
 	var component = makeHTML([
 		{
@@ -76,7 +88,7 @@ function renderUseCases(useCase, componentName) {
 		},
 		{
 			tag: 'div',
-			content: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
+			content: templateInline,
 			attr: {
 				class: 'ractivef-use-case',
 				id: useCaseUid
@@ -86,16 +98,16 @@ function renderUseCases(useCase, componentName) {
 			tag: 'pre',
 			content: [{
 				tag: 'code',
-				content: _.escape(makeHTML([componentObj]))
+				content: templateDisplay,
 			}]
 		},
 		{
-        	tag: 'pre',
-        	content: [{
-        		tag: 'code',
-        		content: JSON.stringify(useCase.data, null, 4)
-        	}]
-       	}
+			tag: 'pre',
+			content: [{
+				tag: 'code',
+				content: JSON.stringify(useCase.data, null, 4)
+			}]
+		}
 	]).replace(/(\r\n|\r)/gm, '');
 
 	return component;

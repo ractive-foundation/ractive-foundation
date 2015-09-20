@@ -104,9 +104,19 @@ gulp.task('build-sass', function () {
 });
 
 gulp.task('ractive-build-templates', function () {
-	return gulp.src('./src/components/**/*.hbs')
+	return gulp.src('./src/components/*/*.hbs')
 		.pipe(ractiveParse({
 			'prefix': 'Ractive.defaults.templates'
+		}))
+		.pipe(plugins.concat('templates.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('ractive-build-test-templates', function () {
+	return gulp.src('./src/components/*/use-cases/*.hbs')
+		.pipe(ractiveParse({
+			'prefix': 'Ractive.defaults.templates',
+			'test': true
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -194,6 +204,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
+		'ractive-build-test-templates',
 		'ractive-build-components',
 		'build-documentation'
 	], [
