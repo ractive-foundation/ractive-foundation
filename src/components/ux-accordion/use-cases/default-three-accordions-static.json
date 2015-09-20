@@ -1,5 +1,5 @@
 {
-	"title": "Default - Three Accordions (static)",
+	"title": "Three Accordions (static)",
 	"isDataModel": false,
 	"template": "ux-accordion-default-three-accordions-static",
 	"file": "src/components/ux-accordion/use-cases/default-three-accordions-static.hbs",
