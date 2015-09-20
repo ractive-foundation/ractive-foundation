@@ -35,7 +35,7 @@ function renderAttributes(options) {
 	return html.join('');
 }
 
-function renderUseCases(useCase, componentName) {
+function useCases(useCase, componentName) {
 	var useCaseUid = _.uniqueId(
 		[
 			_.camelCase(componentName),
@@ -67,51 +67,26 @@ function renderUseCases(useCase, componentName) {
 		componentObj.attr.datamodel = '{{dataModel}}';
 	}
 
-	var templateInline;
-	var templateDisplay;
 	if (useCase.template) {
-		templateInline = '\n<' + useCase.template + '/>\n';
-		templateDisplay = _.escape(fs.readFileSync(useCase.file, 'utf8'));
-		console.log(templateInline);
-		console.log(templateDisplay);
+		var partial = fs.readFileSync(useCase.file, 'utf8');
+		return {
+			title: useCase.title,
+			useCaseUid: useCaseUid,
+			template: useCase.template,
+			display: _.escape(partial),
+			partial: partial,
+			data: JSON.stringify(useCase.data, null, 4)
+		};
 	}
 	else {
-		templateInline = makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>';
-		templateDisplay = _.escape(makeHTML([componentObj]));
+		return {
+			title: useCase.title,
+			useCaseUid: useCaseUid,
+			inline: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
+			display: _.escape(makeHTML([componentObj])),
+			data: JSON.stringify(useCase.data, null, 4)
+		};
 	}
-
-	// render use case doco
-	var component = makeHTML([
-		{
-			tag: 'h5',
-			content: 'Use case: ' + useCase.title
-		},
-		{
-			tag: 'div',
-			content: templateInline,
-			attr: {
-				class: 'ractivef-use-case',
-				id: useCaseUid
-			}
-		},
-		{
-			tag: 'pre',
-			content: [{
-				tag: 'code',
-				content: templateDisplay,
-			}]
-		},
-		{
-			tag: 'pre',
-			content: [{
-				tag: 'code',
-				content: JSON.stringify(useCase.data, null, 4)
-			}]
-		}
-	]).replace(/(\r\n|\r)/gm, '');
-
-	return component;
-
 }
 
 /**
@@ -196,7 +171,7 @@ function getIndexFile (indexFile, sideNavDataModel, file) {
 /**
  * Create a single component documentation file.
  */
-function getComponentFile (manifest, docFile, sideNavDataModel, file) {
+function getComponentFile (manifest, docFile, sideNavDataModel, file, partials) {
 
 	var component = {
 		readmeMd:      marked(manifest.readme),
@@ -208,15 +183,20 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file) {
 	};
 
 	// Render all use cases into html.
-	component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
-		return renderUseCases(useCase, manifest.componentName);
-	}).join('');
+	component.useCases = _.map(manifest.useCases, function (useCase) {
+		var data = useCases(useCase, manifest.componentName);
+		if (data.partial) {
+			partials[data.template] = data.partial;
+		}
+		return data;
+	});
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
 	Ractive.components = {};
 	var ractive = new Ractive({
 		template: docFile,
+		partials: partials,
 		data: {
 			sideNavDataModel: sideNavDataModel,
 			component: component
@@ -262,6 +242,12 @@ function renderDocumentation(options) {
 			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
 			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
+			var partials = {};
+			_.each(options.partials, function(file) {
+				var name = file.replace(/^.*\/|[.]html$/g, '');
+				partials[name] = fs.readFileSync(file, 'UTF-8');
+			});
+
 			// Build up sideNavDataModel first.
 			var sideNavDataModel = getSideNavDataModel(manifests);
 
@@ -270,7 +256,7 @@ function renderDocumentation(options) {
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
-				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file));
+				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file, partials));
 			}.bind(this));
 
 		}
