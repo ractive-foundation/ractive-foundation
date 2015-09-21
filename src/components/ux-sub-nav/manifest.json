@@ -6,5 +6,6 @@
 	"events": {
 		"anchorClicked": "Event fired when sub nav item clicked",
 		"onclick": "Event to fire when component is clicked"
-	}
+	},
+	"category": "navigation"
 }
