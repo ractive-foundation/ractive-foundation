@@ -1,0 +1,11 @@
+<nav class="breadcrumbs ux-breadcrumbs"
+	role="menubar"
+	aria-label="breadcrumbs">
+	{{#if .isDataModel}}
+		{{#items:i}}
+			<ux-breadcrumb isDataModel="true"/>
+		{{/items}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</nav>
