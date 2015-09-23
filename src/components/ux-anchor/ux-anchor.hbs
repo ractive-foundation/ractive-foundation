@@ -1,12 +1,12 @@
 <a id="{{guid}}" href="{{href}}"
-   {{#if target}}target="{{target}}"{{/if}}
-	{{#if class}}class="{{class}}"{{/if}} on-tap="anchorClicked">
-    {{#if .isDataModel}}
-        {{{content}}}
-    {{else}}
-        {{yield}}
-    {{/if}}
+	{{#if target}}target="{{target}}"{{/if}}
+	{{#if class}}class="{{class}}"{{/if}}
+	{{#if title}}title="{{title}}"{{/if}}
+	{{#if tabindex !== null}}tabindex="{{tabindex || 0}}"{{/if}}
+	on-tap="anchorClicked">
+	{{#if .isDataModel}}
+		{{{content}}}
+	{{else}}
+		{{yield}}
+	{{/if}}
 </a>
-
-
-

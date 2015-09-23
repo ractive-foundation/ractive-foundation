@@ -1,0 +1,16 @@
+<ul class="pagination" role="menubar" aria-label="Pagination">
+	{{#if isDataModel}}
+		{{#pages:i}}
+			<ux-pagination-page
+				isDataModel="true"
+				tabindex="0"
+				href="{{href}}"
+				>
+				content="{{page}}"
+			<ux-pagination-page>
+			
+		{{/pages}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</ul>

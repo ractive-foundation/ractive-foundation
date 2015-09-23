@@ -1,0 +1,14 @@
+{
+	"data": {
+		"currentPage": "The currently selected page",
+		"totalPages": "The total number of pages accessible",
+		"displayPages": "The number of pages to display",
+		"nextText": "The text for the next page (Default &raquo;)",
+		"prevText": "The text for the previous page (Default &laquo;)",
+		"skipText": "The text for the skipped pages (Default &hellip;)"
+	},
+	"events": {
+		"onclick": "Event to fire when component is clicked"
+	},
+	"category": "navigation"
+}
