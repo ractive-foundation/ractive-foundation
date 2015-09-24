@@ -1,6 +1,7 @@
 Ractive.extend({
 	template: Ractive.defaults.templates['ux-pagination'],
 	data: {
+		currentPage: 1,
 		displayPages: 10,
 		nextText: '&raquo;',
 		prevText: '&laquo;',

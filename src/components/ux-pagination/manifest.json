@@ -1,6 +1,6 @@
 {
 	"data": {
-		"currentPage": "The currently selected page",
+		"currentPage": "The currently selected page (Default 1)",
 		"totalPages": "The total number of pages accessible",
 		"displayPages": "The number of pages to display (Default 10)",
 		"nextText": "The text for the next page (Default &raquo;)",
