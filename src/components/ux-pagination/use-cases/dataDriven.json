@@ -2,8 +2,11 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"currentPage": 11,
+		"currentPage": 10,
 		"totalPages": 15,
-		"displayPages": 10
+		"displayPages": 10,
+		"nextText": "&raquo;",
+		"prevText": "&laquo;",
+		"skipText": "&hellip;"
 	}
 }

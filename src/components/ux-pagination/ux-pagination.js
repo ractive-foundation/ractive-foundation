@@ -1,23 +1,39 @@
 Ractive.extend({
 	template: Ractive.defaults.templates['ux-pagination'],
 	data: {
+		displayPages: 10,
 		nextText: '&raquo;',
 		prevText: '&laquo;',
-		skipText: '&hellip;'
+		skipText: '&hellip;',
+		isCollapsed: function(current, page, total, visible) {
+			// page is always shown if it is at the ends or is the current page
+			if (page === 1 || page === current || page === total) {
+				return false;
+			}
+
+			// are we showing 1 or 2 collapsed sections?
+			if (current < visible / 2) {
+				// 1 collapsed section
+				return page > visible - 2;
+			}
+			else if (total - current <= visible / 2) {
+				// 1 collapsed section
+				return page < total - visible + 3;
+			}
+			else {
+				// 2 collapsed sections
+				return Math.abs(current - page) > (visible - 4) / 2;
+			}
+		}
 	},
 	computed: {
 		pages: function() {
 			var pages        = [],
 				currentPage  = this.get('currentPage'),
 				totalPages   = this.get('totalPages'),
-				displayPages = this.get('displayPages');
-
-			var split2      = false,
-				split3      = false,
-				split2Start = 0,
-				split3Start = 0,
-				split2Size  = (displayPages - 1) / 2,
-				split3Size  = (displayPages - 2) / 3;
+				displayPages = this.get('displayPages'),
+				isCollapsed  = this.get('isCollapsed'),
+				splitStart   = false;
 
 			pages.push({
 				arrow: true,
@@ -27,54 +43,19 @@ Ractive.extend({
 				class: 'prev'
 			});
 
-			if (currentPage < Math.ceil(split2Size) ||
-				totalPages - currentPage < Math.ceil(split2Size)
-			) {
-				split2 = true;
-			}
-			else if (currentPage > Math.ceil(split3Size) ||
-				totalPages - currentPage < Math.ceil(split3Size)
-			) {
-				split3 = true;
-			}
-			console.log('doing split2', split2);
-
 			for (var i = 1; i <= totalPages; i++) {
-				console.log(i + ' - ', i > Math.floor(split2Size));
-				console.log(totalPages - i > Math.floor(split2Size));
-				if (split2 && (
-						i > Math.floor(split2Size) &&
-						totalPages - i > Math.floor(split2Size)
-					)
-				) {
-					if (!split2Start) {
-						split2Start = true;
+				if (isCollapsed(currentPage, i, totalPages, displayPages)) {
+					if (!splitStart) {
+						splitStart = true;
 						pages.push({
 							unavailable: true,
 							content: this.get('skipText'),
-							title: Math.ceil(split2Size) + ' - ' + (totalPages - Math.ceil(split2Size)),
 							class: 'skip'
 						});
 					}
 					continue;
 				}
-				else if (split3 && (
-						i > Math.floor(split3Size) &&
-						Math.abs(currentPage - i) > Math.floor(split3Size)
-					)
-				) {
-					if (!split3Start) {
-						split3Start = true;
-						pages.push({
-							unavailable: true,
-							content: this.get('skipText'),
-							title: Math.ceil(split3Size) + ' - ' + (totalPages - Math.ceil(split3Size)),
-							class: 'skip'
-						});
-					}
-					continue;
-				}
-				split3Start = false;
+				splitStart = false;
 				pages.push({
 					current: currentPage === i,
 					content: i,

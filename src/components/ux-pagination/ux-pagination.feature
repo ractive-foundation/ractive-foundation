@@ -1,7 +1,10 @@
 Feature: ux-pagination test suite
 
 	Scenario Outline: Loading ux-pagination
-		Given I have loaded component "ux-pagination" with use case "UseCase"
+		Given I have loaded component "ux-pagination" with use case "dataDriven"
+		Then the current page is "<current>"
+		And there are "<total>" elements displayed
+		And pages visible are "<visible>"
 			| total | display | current | visible              | hidden |
 			| 1     | 10      | 1       | 1                    |        |
 			| 2     | 10      | 1       | 1,2                  |        |
