@@ -48,7 +48,7 @@
     "vinyl": "~0.4.6",
     "walk": "~2.3.9",
     "webdriverio": "~3.2.3",
-    "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4"
+    "yargs": "^3.26.0"
   },
   "dependencies": {
     "async": "1.0.0",
