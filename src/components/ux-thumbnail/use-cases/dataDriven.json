@@ -2,6 +2,7 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"text": "ux-thumbnail button"
+		"src": "http://placekitten.com/g/1500/500",
+		"href": "#"
 	}
 }
