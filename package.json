@@ -2,7 +2,7 @@
   "name": "ractive-foundation",
   "version": "0.3.0",
   "description": "Ractive components for Foundation 5",
-  "main": "index.js",
+  "main": "dist/ractivef.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
     "start": "npm prune && npm install && gulp"
