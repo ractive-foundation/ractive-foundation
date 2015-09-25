@@ -1,11 +1,14 @@
 var gulp = require('gulp'),
+	args = require('yargs').argv,
 	del = require('del'),
+	glob = require('simple-glob'),
 	exec = require('child_process').exec,
 	gutil = require('gulp-util'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
+	_ = require('lodash-compat'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -52,9 +55,15 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
 			'./node_modules/foundation-sites/js/vendor/modernizr.js',
-			'./node_modules/lodash-compat/index.js'
+			'./node_modules/lodash-compat/index.js',
+			'./node_modules/hljs-cdn-release/build/highlight.min.js'
 		])
 		.pipe(plugins.copy('./public/js', { prefix: 1 })),
+
+		gulp.src([
+			'./node_modules/hljs-cdn-release/build/styles/github.min.css'
+		])
+		.pipe(plugins.copy('./public/css', { prefix: 1 })),
 
 		// Our own project files.
 		gulp.src('./src/route.js')
@@ -287,10 +296,40 @@ gulp.task('test', ['version-check', 'build'], function (callback) {
 
 	var selServer = seleniumServer();
 
+	var globFeature = [];
+
+	if (args.component) {
+
+		var componentName = args.component || '';
+
+		var paths = [
+			'./src/components/%s/*.feature'.replace('%s', componentName)
+		];
+
+		globFeature = glob(paths);
+
+		if (!globFeature.length) {
+			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
+		}
+	}
+
+	if (!globFeature.length) {
+
+		var paths = [
+			'./src/components/**/*.feature'
+		];
+
+		globFeature = glob(paths);
+	}
+
+	var globStep = [
+		'./src/components/**/*.steps.js'
+	];
+
 	selServer.init().then(function () {
-		var stream = gulp.src('./src/components/**/*.feature')
+		var stream = gulp.src(globFeature)
 			.pipe(rfCucumber(
-				{ steps: './src/components/**/*.steps.js' }
+				{ steps: globStep }
 			));
 
 		stream.on('end', function () {
