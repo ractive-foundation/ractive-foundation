@@ -52,9 +52,15 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
 			'./node_modules/foundation-sites/js/vendor/modernizr.js',
-			'./node_modules/lodash-compat/index.js'
+			'./node_modules/lodash-compat/index.js',
+			'./node_modules/hljs-cdn-release/build/highlight.min.js'
 		])
 		.pipe(plugins.copy('./public/js', { prefix: 1 })),
+
+		gulp.src([
+			'./node_modules/hljs-cdn-release/build/styles/github.min.css'
+		])
+		.pipe(plugins.copy('./public/css', { prefix: 1 })),
 
 		// Our own project files.
 		gulp.src('./src/route.js')

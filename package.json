@@ -47,7 +47,8 @@
     "through": "~2.3.6",
     "vinyl": "~0.4.6",
     "walk": "~2.3.9",
-    "webdriverio": "~3.2.3"
+    "webdriverio": "~3.2.3",
+    "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4"
   },
   "dependencies": {
     "async": "1.0.0",
