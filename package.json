@@ -34,6 +34,7 @@
     "gulp-sass": "~1.3.3",
     "gulp-watch": "~4.2.0",
     "gulp-wrap": "~0.11.0",
+    "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4",
     "jshint-stylish": "~1.0.1",
     "json2htmljson2css": "0.0.1",
     "marked": "~0.3.3",
@@ -48,7 +49,7 @@
     "vinyl": "~0.4.6",
     "walk": "~2.3.9",
     "webdriverio": "~3.2.3",
-    "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4"
+    "yargs": "^3.26.0"
   },
   "dependencies": {
     "async": "1.0.0",
