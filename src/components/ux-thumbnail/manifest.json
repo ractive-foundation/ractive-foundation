@@ -1,9 +1,10 @@
 {
 	"data": {
-		"text": "The text to display on the ux-thumbnail component",
-		"url": "The link to follow when the component is clicked"
+		"src": "The source url for the thumbnail image",
+		"href": "The link location for clicking on the image"
 	},
 	"events": {
-		"onclick": "Event to fire when component is clicked"
-	}
+		"onclick": "Thrown when the image is clicked on"
+	},
+	"category": "media"
 }
