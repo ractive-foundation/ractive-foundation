@@ -7,3 +7,10 @@ Features:
 * (TODO) Distributed accordion groups
 * (TODO) Accessibility
 * (TODO) Callbacks (fire RactiveJS semantic event)
+
+Markup example:
+
+```html
+<ux-accordion>
+</ux-accordion>
+```
