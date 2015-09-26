@@ -1,2 +1,1 @@
-
 > This renders a button
