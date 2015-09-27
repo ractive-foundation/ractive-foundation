@@ -5,7 +5,7 @@
 
 [![bitHound Score](https://www.bithound.io/github/ractive-foundation/ractive-foundation/badges/score.svg)](https://www.bithound.io/github/ractive-foundation/ractive-foundation/master)
 
-[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation.svg)
+[![Dependencies Status](https://david-dm.org/tractive-foundatio/ractive-foundation.svg)](https://david-dm.org/ractive-foundation/ractive-foundation)
 
 [![Join the chat at https://gitter.im/themacclesoft/ractive-foundation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/themacclesoft/ractive-foundation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
