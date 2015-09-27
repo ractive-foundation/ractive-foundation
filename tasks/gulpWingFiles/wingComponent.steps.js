@@ -7,7 +7,7 @@ module.exports = function () {
 	this.Before(function (callback) {
 		this.component = {};
 		this.component.container = '.wingComponent ';
-		this.component.dummy = this.component.container + 'h2`';
+		this.component.dummy = this.component.container + 'h2';
 
 		callback();
 	});
