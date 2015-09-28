@@ -22,7 +22,7 @@
 
 ## Media
 * ~~Orbit Slider JS~~
-* _Thumbnails_ (#182)
+* ~~Thumbnails~~ (#182)
 * Clearing Lightbox JS (#199)
 * Flex Video (#200)
 
