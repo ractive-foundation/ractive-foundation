@@ -360,9 +360,7 @@ gulp.task('testonly', function (callback) {
 
 // Build and test the project. Default choice. Used by npm test.
 gulp.task('test', function (callback) {
-	runSequence('version-check', 'build', 'testonly', function (err) {
-		callback(err);
-	});
+	runSequence([ 'version-check', 'build' ], 'testonly', callback);
 });
 
 gulp.task('jshint', function (callback) {
