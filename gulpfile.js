@@ -287,7 +287,9 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['version-check', 'build'], function (callback) {
+// Run the test suite alone, without re-building the project. Useful for rapid test debugging.
+// See 'test' for the full build and test task.
+gulp.task('testonly', function (callback) {
 
 	plugins.connect.server({
 		root: 'public',
@@ -353,6 +355,14 @@ gulp.task('test', ['version-check', 'build'], function (callback) {
 			});
 		});
 	}).catch(gutil.log);
+
+});
+
+// Build and test the project. Default choice. Used by npm test.
+gulp.task('test', function (callback) {
+	runSequence('version-check', 'build', 'testonly', function (err) {
+		callback(err);
+	});
 });
 
 gulp.task('jshint', function (callback) {
