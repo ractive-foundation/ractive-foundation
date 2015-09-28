@@ -124,7 +124,7 @@ module.exports = function () {
 		this.client.isVisible(this.component[element]).then(function (isVisible) {
 			var e = (isVisible) ? new Error('Element is visible! Selector: ' + this.component[element]) : void 0;
 			callback(e);
-		}).catch(callback);
+		}.bind(this)).catch(callback);
 	});
 
 	this.Then(/^the element "([^"]*)" should have the text "([^"]*)"$/, function (element, text, callback) {
