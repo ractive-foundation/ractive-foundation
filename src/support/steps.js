@@ -40,10 +40,11 @@ module.exports = function () {
 	});
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
-		this.client.waitForExist(this.component[semanticName], this.defaultTimeout, function (whatIsThisArg, success) {
+		var selector = this.component[semanticName];
+		this.client.waitForExist(selector, this.defaultTimeout, function (whatIsThisArg, success) {
 			if (!success) {
 				callback.fail('Failed to wait for element "' + semanticName + 
-					'" (' + this.component[semanticName] + ')');
+					'" (' + selector + ')');
 			}
 			callback();
 		});
