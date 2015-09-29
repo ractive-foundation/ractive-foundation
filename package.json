@@ -61,6 +61,7 @@
     "q": "~1.2.0",
     "ractive": "~0.7.2",
     "ractive-events-tap": "~0.2.0",
+    "ractive-events-hover": "~0.1.0",
     "ractive-touch": "~0.4.0",
     "selenium-standalone": "~4.2.2",
     "simple-glob": "~0.1.0",
