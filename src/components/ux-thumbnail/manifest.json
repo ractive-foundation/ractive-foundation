@@ -1,0 +1,10 @@
+{
+	"data": {
+		"src": "The source url for the thumbnail image",
+		"href": "The link location for clicking on the image"
+	},
+	"events": {
+		"onclick": "Thrown when the image is clicked on"
+	},
+	"category": "media"
+}

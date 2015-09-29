@@ -1,8 +1,8 @@
 {
   "name": "ractive-foundation",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Ractive components for Foundation 5",
-  "main": "index.js",
+  "main": "dist/ractivef.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
     "start": "npm prune && npm install && gulp"
@@ -34,6 +34,7 @@
     "gulp-sass": "~1.3.3",
     "gulp-watch": "~4.2.0",
     "gulp-wrap": "~0.11.0",
+    "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4",
     "jshint-stylish": "~1.0.1",
     "json2htmljson2css": "0.0.1",
     "marked": "~0.3.3",
@@ -47,7 +48,8 @@
     "through": "~2.3.6",
     "vinyl": "~0.4.6",
     "walk": "~2.3.9",
-    "webdriverio": "~3.2.3"
+    "webdriverio": "~3.2.3",
+    "yargs": "^3.26.0"
   },
   "dependencies": {
     "async": "1.0.0",
