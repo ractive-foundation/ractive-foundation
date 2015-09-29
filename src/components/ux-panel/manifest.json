@@ -3,5 +3,6 @@
 		"text": "The text to display on the button"
 	},
 	"events": {
-	}
+	},
+	"category": "Callouts & Prompts"
 }
