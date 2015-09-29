@@ -1,0 +1,15 @@
+<span data-tooltip=""
+	aria-haspopup="true"
+	class="has-tip {{class}} {{radius}} {{#if open}}open{{/if}}"
+	{{#with options}}data-options="{{#options:key}}{{key}}:{{this}},{{/options}}"{{/with}}
+	data-selector="{{selector}}"
+	aria-describedby="{{selector}}"
+	title="{{title}}"
+	on-hover="tooltipHovered"
+	>
+	{{#if isDataModel}}
+		{{text}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</span>
