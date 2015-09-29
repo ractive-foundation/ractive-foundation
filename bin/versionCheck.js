@@ -1,6 +1,7 @@
 const MINIMUM_VERSION = '0.12.0';
 
 var compareVersions = function (installed, required) {
+	installed = installed.replace(/^v/, '');
 	var a = installed.split('.');
 	var b = required.split('.');
 
