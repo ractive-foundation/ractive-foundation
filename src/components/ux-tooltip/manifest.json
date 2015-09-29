@@ -1,0 +1,22 @@
+{
+	"data": {
+		"text": "The text to display on the ux-tooltip component",
+		"class": "[tip-top tip-bottom tip-left tip-right] the position of the tooltip pointer",
+		"radius": "[radius round]",
+		"title": "The title for the tooltip",
+		"options": {
+			"selector": "[.has-tip]",
+			"additional_inheritable_classes": "[[]]",
+			"tooltip_class": "[.tooltip]",
+			"append_to": "[body]",
+			"touch_to_close": "[Tap To Close]",
+			"disable_for_touch": "[true] [false] Whether to disable tooltip on touch device",
+			"hover_delay": "50",
+			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
+		}
+	},
+	"events": {
+		"onclick": "Event to fire when component is clicked"
+	},
+	"category": "Callouts & Prompts"
+}

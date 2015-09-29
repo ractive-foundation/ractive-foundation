@@ -1,0 +1,13 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"text": "This is a ux-tooltip",
+		"class": "tip-top",
+		"radius": "radius",
+		"title": "Tooltip title",
+		"selector": "tooltipdiv123",
+		"options": {
+		}
+	}
+}
