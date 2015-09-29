@@ -69,6 +69,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/hammerjs/hammer.min.js',
 			'./node_modules/ractive-touch/index.js',
 			'./node_modules/ractive-events-tap/dist/ractive-events-tap.js',
+            './node_modules/ractive-events-hover/src/Ractive-hover.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
 			'./node_modules/lodash/lodash.min.js',
