@@ -3,5 +3,6 @@
 		"items": "Array of items - see ux-accordionitem."
 	},
 	"events": {
-	}
+	},
+	"category": "Content"
 }
