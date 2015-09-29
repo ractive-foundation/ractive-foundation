@@ -2,7 +2,7 @@
  * Shared environment for all tests.
  */
 
-var path = require('path');
+// var path = require('path');
 
 // @see http://webdriver.io/api.html
 var webdriverio = require('webdriverio');
@@ -13,7 +13,7 @@ var assert = require('assert');
 
 // WebdriverIO Browser choices.
 const BROWSER_PHANTOMJS = 'phantomjs';
-const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
+// const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
 
 const WEBDRIVER_TIMEOUT = 5000;
 
@@ -24,8 +24,8 @@ var WorldConstructor = function WorldConstructor(callback) {
 
 	var options = {
 		desiredCapabilities: {
-			browserName: BROWSER_PHANTOMJS,
-			'phantomjs.binary.path': BROWSER_PHANTOMJS_PATH
+			browserName: BROWSER_PHANTOMJS
+			// 'phantomjs.binary.path': BROWSER_PHANTOMJS_PATH
 		}
 	};
 

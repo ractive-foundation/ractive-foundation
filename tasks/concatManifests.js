@@ -45,10 +45,7 @@ function renderDocumentation(fileName) {
 			manifest:      JSON.parse(file.contents.toString())
 		};
 
-		out.useCases = find.fileSync(/.*\.json/, paths.useCasesDir)
-			.filter(function (file) {
-				return file.match(/[.]json$/);
-			})
+		out.useCases = find.fileSync(/.*\.json$/, paths.useCasesDir)
 			.map(function (useCase) {
 				return JSON.parse(fs.readFileSync(useCase, 'UTF-8'));
 			});
