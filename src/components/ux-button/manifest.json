@@ -6,5 +6,5 @@
 	"events": {
 		"onclick": "Event to fire when button is clicked"
 	},
-	"category": "Buttons"
+	"category": "buttons"
 }
