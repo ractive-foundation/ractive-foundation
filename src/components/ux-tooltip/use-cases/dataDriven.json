@@ -2,12 +2,13 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"text": "This is a ux-tooltip",
-		"class": "tip-top",
+		"text": "This is a link that points to the tooltip",
+		"class": "tip-bottom",
 		"radius": "radius",
-		"title": "Tooltip title",
+		"title": "",
 		"selector": "tooltipdiv123",
 		"options": {
-		}
+		},
+		"content": "This is a HTML tooltip content.<br/><a href='#'>We can add a link here</a>"
 	}
 }
