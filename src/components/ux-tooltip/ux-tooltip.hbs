@@ -1,6 +1,7 @@
+<!-- Approach #1 -->
 <span data-tooltip=""
 	aria-haspopup="true"
-	class="has-tip {{class}} {{radius}} {{#if open}}open{{/if}}"
+	class="ux-tooltip has-tip {{class}} {{radius}}"
 	{{#with options}}data-options="{{#options:key}}{{key}}:{{this}},{{/options}}"{{/with}}
 	data-selector="{{selector}}"
 	aria-describedby="{{selector}}"
@@ -12,4 +13,15 @@
 	{{else}}
 		{{yield}}
 	{{/if}}
+	<span data-selector="{{selector}}"
+          id="{{selector}}"
+          class="tooltip"
+          role="tooltip"
+          style="display: {{#if open}}block{{else}}none{{/if}};">
+		{{{content}}}<span class="nub"></span>
+	</span>
 </span>
+
+<!-- Approach # 2 -->
+<!--
+<span decorator='tooltip:{{content}}'>{{text}}</span>-->
