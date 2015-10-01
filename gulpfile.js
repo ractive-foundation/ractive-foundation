@@ -325,8 +325,12 @@ gulp.task('watch', function () {
 
 gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
+	// Command line overrides
+	var component = args.component || args.c || '*';
+	var usecase = args.usecase || args.u || '*'
+
 	// Create test harness URLs from all use cases in the repo.
-	var urls = _(glob('./src/components/ux-button/use-cases/*.json'))
+	var urls = _(glob('./src/components/' + component + '/use-cases/' + usecase + '.json'))
 		.map(function (useCase) {
 			var parsed = nodePath.parse(useCase);
 			var arr = parsed.dir.split(nodePath.sep);
@@ -340,6 +344,8 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 		.value();
 
 	var promises = _.map(urls, function (url) {
+
+		gutil.log('Running a11y for url', url);
 
 		return Q.Promise(function (resolve, reject) {
 			a11y(url, function (err, reports) {
@@ -364,12 +370,14 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 	});
 
 	// Only pass gulp task if ALL tests pass.
-	Q.all(promises)
-		.then(callback)
-		.catch(function (error) {
-			gutil.log(gutil.colors.red(error));
+	Q.allSettled(promises).then(function (results) {
+		var rejected = _.where(results, { state: 'rejected' });
+		if (rejected) {
+			callback(new Error('One or more a11y tests failed, see log.'));
 			process.exit(1);
-		});
+		}
+		callback();
+	});
 
 });
 
