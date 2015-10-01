@@ -33,6 +33,13 @@ gulp.task('connect', function () {
 	});
 });
 
+gulp.task('test-connect', function () {
+	plugins.connect.server({
+		root: 'public',
+		port: 8088
+	});
+});
+
 gulp.task('html', function () {
 	return gulp.src('./public/*.html')
 		.pipe(plugins.connect.reload());
