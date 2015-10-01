@@ -6,7 +6,7 @@
 	class="ux-tooltip {{#if hastip}}has-tip{{/if}} {{radius}}"
 	{{#with options}}data-options="{{#options:key}}{{key}}:{{this}},{{/options}}"{{/with}}
 	{{#if title}}title="{{title}}"{{/if}}
-	on-hover="tooltipHovered"
+	on-tap-hover="tooltipHovered"
 	>
 	{{#if isDataModel}}
 		{{text}}
@@ -16,10 +16,10 @@
 	{{#with tooltip}}
 		<span data-selector="{{selector}}"
 			  id="{{selector}}"
-			  class="tooltip {{tip}}"
+			  class="tooltip"
 			  role="tooltip"
 			  style="display: {{#if open}}block{{else}}none{{/if}};">
-			{{{content}}}<span class="nub"></span>
+			{{{content}}}
 		</span>
 	{{/with}}
 </span>

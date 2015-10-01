@@ -6,9 +6,7 @@
 		"hastip": true,
 		"selector": "tooltipdiv123",
 		"tooltip": {
-			"content": "This is a <strong>tooltip content</strong>.",
-			"tip": "tip-bottom"
+			"content": "This is a <strong>tooltip content</strong>."
 		}
-
 	}
 }

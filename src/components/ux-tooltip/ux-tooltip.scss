@@ -5,24 +5,6 @@
 		width: auto;
 		display: block;
 		left: 0rem;
-		&.tip-top {
-			bottom: 1.7rem;
-			top: auto;
-		}
-		&.tip-left {
-			/* WIP */
-			left: auto;
-			margin-top: -1.5em;
-			right: 100%;
-			top: 0;
-		}
-		&.tip-right {
-			/* WIP */
-			left: 105%;
-			margin-top: -1.5em;
-			right: auto;
-			top: 0;
-		}
 	}
 }
 

@@ -16,8 +16,7 @@
 			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
 		},
 		"tooltip": {
-			"content": "tooltip content",
-			"tip": "[tip-top tip-bottom tip-left tip-right] tooltip pointer position"
+			"content": "tooltip content"
 		}
 	},
 	"category": "Callouts & Prompts"
