@@ -294,14 +294,20 @@ gulp.task('watch', function () {
 
 });
 
+gulp.task('a11y', function () {
+
+	return gulp.src('http://localhost:8088/testRunner.html#!/component/ux-sidenav/use-case/1-data-driven')
+		.pipe(plugins.rename(function (path) {
+			console.log('path:', path);
+		}))
+		.pipe(plugins.a11y())
+		.pipe(plugins.a11y.reporter());
+
+});
+
 // Run the test suite alone, without re-building the project. Useful for rapid test debugging.
 // See 'test' for the full build and test task.
-gulp.task('testonly', function (callback) {
-
-	plugins.connect.server({
-		root: 'public',
-		port: 8088
-	});
+gulp.task('testonly', [ 'test-connect' ], function (callback) {
 
 	var selServer = seleniumServer();
 
