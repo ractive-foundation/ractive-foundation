@@ -1,0 +1,8 @@
+{
+    "data" : {
+        "header": "The headers for each column",
+        "body": "The main bulk of rows + cells",
+        "footer": "The footers for each column"
+    },
+    "category": "content"
+}

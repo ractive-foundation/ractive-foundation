@@ -1,0 +1,53 @@
+<table class="ux-table {{.class}}">
+
+    {{#if isDataModel}}
+
+        {{#if header}}
+            {{#with header}}
+                <thead {{#if class}}class="{{class}}"{{/if}}>
+                    <tr>
+                        {{#each cell}}
+                            <th {{#if class}}class="{{.class}}"{{/if}}>
+                                {{.label}}
+                            </th>
+                        {{/each}}
+                    </tr>
+                </thead>
+            {{/with}}
+        {{/if}}
+
+        {{#if body}}
+            {{#with body}}
+                <tbody {{#if class}}class="{{.class}}"{{/if}}>
+                    {{#each rows}}
+                        <tr {{#if class}}class="{{.class}}"{{/if}}>
+                            {{#each cell}}
+                                <td {{#if class}}class="{{.class}}"{{/if}}>
+                                    {{.label}}
+                                </td>
+                            {{/each}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            {{/with}}
+        {{/if}}
+
+        {{#if footer}}
+            {{#with footer}}
+                <tfoot {{#if class}}class="{{.class}}"{{/if}}>
+                    <tr>
+                        {{#each cell}}
+                            <td {{#if class}}class="{{.class}}"{{/if}}>
+                                {{.label}}
+                            </td>
+                        {{/each}}
+                    </tr>
+                </tfoot>
+            {{/with}}
+        {{/if}}
+
+    {{else}}
+        {{yield}}
+    {{/if}}
+
+</table>
