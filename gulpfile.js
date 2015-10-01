@@ -324,7 +324,7 @@ gulp.task('watch', function () {
 
 gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
-	rfA11y({ port: A11Y_SERVER_PORT })
+	rfA11y.auditComponents({ port: A11Y_SERVER_PORT })
 		.then(function () {
 			callback();
 			process.exit(0);
