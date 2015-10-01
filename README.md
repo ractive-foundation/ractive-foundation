@@ -104,3 +104,27 @@ is basically the same as:
     <ux-iconbaritem src="images/fi-like.svg">Like</ux-iconbaritem>
 </ux-iconbar>
 ```
+
+## Accessibility (a11y)
+
+ractive-foundation uses [a11y](http://addyosmani.github.io/a11y/) with gulp for automated accessibility testing.
+
+Example uses:
+
+```
+# Build and audit entire component list
+gulp a11y
+
+# Skip the build process, just audit
+gulp a11y-only
+
+# Single component with all its use cases
+gulp a11y --component=ux-button
+gulp a11y-only --component=ux-button
+
+# Run only a single use case
+gulp a11y --component=ux-button --usecase=ClickMe
+gulp a11y-only --component=ux-button --usecase=ClickMe
+```
+
+The gulp task will abort if any audits return and FAIL results.
