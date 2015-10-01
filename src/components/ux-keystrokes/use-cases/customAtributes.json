@@ -1,5 +1,6 @@
 {
 	"title": "Use case with custom attributes",
+	"isDataModel": true,
 	"data": {
 		"text": "Cmd"
 	}
