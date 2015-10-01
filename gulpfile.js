@@ -9,8 +9,6 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	nodePath = require('path'),
 	_ = require('lodash-compat'),
-	a11y = require('a11y'),
-	Q = require('q'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -23,7 +21,8 @@ var gulp = require('gulp'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
-	jshintFailReporter = require('./tasks/jshintFailReporter');
+	jshintFailReporter = require('./tasks/jshintFailReporter'),
+	rfA11y = require('./tasks/rfA11y');
 
 var pkg = require('./package.json');
 
@@ -310,59 +309,15 @@ gulp.task('watch', function () {
 
 gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
-	// Command line overrides
-	var component = args.component || args.c || '*';
-	var usecase = args.usecase || args.u || '*'
-
-	// Create test harness URLs from all use cases in the repo.
-	var urls = _(glob('./src/components/' + component + '/use-cases/' + usecase + '.json'))
-		.map(function (useCase) {
-			var parsed = nodePath.parse(useCase);
-			var arr = parsed.dir.split(nodePath.sep);
-			return [
-				'http://localhost:' + A11Y_SERVER_PORT + '/testRunner.html#!/component',
-				arr[3],
-				'use-case',
-				parsed.name
-			].join('/');
+	rfA11y({ port: A11Y_SERVER_PORT })
+		.then(function () {
+			callback();
+			process.exit(0);
 		})
-		.value();
-
-	var promises = _.map(urls, function (url) {
-
-		// gutil.log('Running a11y for url', url);
-
-		return Q.Promise(function (resolve, reject) {
-			a11y(url, function (err, reports) {
-
-				if (err) {
-					reject(err);
-				}
-
-				var failures = reports.audit && _.where(reports.audit, { result: 'FAIL' });
-
-				if (failures && failures.length > 0) {
-					gutil.log(gutil.colors.red('a11y FAIL ' +  url) +'\n\n' + reports.report + '\n');
-					reject('a11y FAIL on one or more urls, see log');
-				} else {
-					gutil.log(gutil.colors.green('a11y PASS ' +  url));
-					resolve('a11y PASS ' + url);
-				}
-
-			});
-		});
-
-	});
-
-	// Only pass gulp task if ALL tests pass.
-	Q.allSettled(promises).then(function (results) {
-		var rejected = _.where(results, { state: 'rejected' });
-		if (rejected && rejected.length > 0) {
-			callback(new Error('One or more a11y tests failed, see log.'));
+		.catch(function (error) {
+			callback(new Error(error));
 			process.exit(1);
-		}
-		process.exit(0);
-	});
+		});
 
 });
 
