@@ -1,0 +1,46 @@
+var through = require('through2'),
+    gulputil = require('gulp-util'),
+    Ractive = require('ractive'),
+    path = require('path');
+
+var PluginError = gulputil.PluginError;
+
+const PLUGIN_NAME = 'gulp-ractive-concat-decorators';
+
+function gulpRactive(options) {
+    var stream = through.obj(function (file, enc, callback) {
+        if (file.isStream()) {
+            this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+            return callback();
+        }
+
+        var decoratorName = file.history[0].split(path.sep).slice(-2)[0];
+
+        var filecontents = '';
+
+        try {
+            filecontents = String(file.contents);
+
+			var prefix = '';
+			if (options && options.prefix) {
+				prefix = options.prefix + '.';
+			}
+
+			filecontents = options.prefix + '[\'' + decoratorName + '\'] = ' + filecontents;
+
+            file.contents = new Buffer(filecontents);
+            this.push(file);
+        }
+        catch (e) {
+            console.warn('Error caught: ' + e);
+            this.push(file);
+            return callback();
+        }
+
+        callback();
+    });
+
+    return stream;
+}
+
+module.exports = gulpRactive;

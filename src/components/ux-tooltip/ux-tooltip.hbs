@@ -1,12 +1,10 @@
 <!-- Approach #1 -->
-<span data-tooltip=""
+<!--<span data-tooltip=""
 	aria-haspopup="true"
-	aria-describedby="{{selector}}"
-	data-selector="{{selector}}"
+	{{#if open}}aria-describedby="{{selector}}"{{/if}}
 	class="ux-tooltip {{#if hastip}}has-tip{{/if}} {{radius}}"
-	{{#with options}}data-options="{{#options:key}}{{key}}:{{this}},{{/options}}"{{/with}}
-	{{#if title}}title="{{title}}"{{/if}}
-	on-tap-hover="tooltipHovered"
+	tabindex="0"
+	on-tap-hover-focus-blur="tooltipHovered"
 	>
 	{{#if isDataModel}}
 		{{text}}
@@ -14,27 +12,16 @@
 		{{yield}}
 	{{/if}}
 	{{#with tooltip}}
-		<span data-selector="{{selector}}"
-			  id="{{selector}}"
+		<span id="{{selector}}"
 			  class="tooltip"
 			  role="tooltip"
 			  style="display: {{#if open}}block{{else}}none{{/if}};">
 			{{{content}}}
 		</span>
 	{{/with}}
-</span>
+</span>-->
 
 <!-- Approach # 2 -->
-<!--<span data-tooltip=""
-	aria-haspopup="true"
-	aria-describedby="{{selector}}"
-	class="ux-tooltip"
-	data-selector="{{selector}}"
-	title="{{title}}"
-	decorator="tooltip:'{{selector}}','{{tooltip.content}}'">
-	{{#if isDataModel}}
-		{{text}}
-	{{else}}
-		{{yield}}
-	{{/if}}
-</span>-->
+<span decorator="tooltip:'{{selector}}','{{tooltip.content}}'">
+		This is a test link
+</span>
