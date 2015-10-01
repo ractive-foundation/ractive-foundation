@@ -342,7 +342,7 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 				var failures = reports.audit && _.where(reports.audit, { result: 'FAIL' });
 
 				if (failures && failures.length > 0) {
-					gutil.log(gutil.colors.red('a11y FAIL ' +  url + '\n\n' + reports.report + '\n'));
+					gutil.log(gutil.colors.red('a11y FAIL ' +  url) +'\n\n' + reports.report + '\n');
 					reject('a11y FAIL on one or more urls, see log');
 				} else {
 					gutil.log(gutil.colors.green('a11y PASS ' +  url));
