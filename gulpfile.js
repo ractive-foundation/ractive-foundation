@@ -345,7 +345,7 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
 	var promises = _.map(urls, function (url) {
 
-		gutil.log('Running a11y for url', url);
+		// gutil.log('Running a11y for url', url);
 
 		return Q.Promise(function (resolve, reject) {
 			a11y(url, function (err, reports) {
@@ -354,13 +354,13 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 					reject(err);
 				}
 
-				var failures = _.where(reports.audit, { result: 'FAIL' });
+				var failures = reports.audit && _.where(reports.audit, { result: 'FAIL' });
 
 				if (failures && failures.length > 0) {
-					gutil.log(gutil.colors.red('a11y FAIL for url: ' +  url + '\n' + reports.report + '\n'));
+					gutil.log(gutil.colors.red('a11y FAIL ' +  url + '\n\n' + reports.report + '\n'));
 					reject('a11y FAIL on one or more urls, see log');
 				} else {
-					gutil.log(gutil.colors.green('a11y PASS for url: ' +  url + '\n' + reports.report + '\n'));
+					gutil.log(gutil.colors.green('a11y PASS ' +  url));
 					resolve('a11y PASS ' + url);
 				}
 
@@ -372,11 +372,11 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 	// Only pass gulp task if ALL tests pass.
 	Q.allSettled(promises).then(function (results) {
 		var rejected = _.where(results, { state: 'rejected' });
-		if (rejected) {
+		if (rejected && rejected.length > 0) {
 			callback(new Error('One or more a11y tests failed, see log.'));
 			process.exit(1);
 		}
-		callback();
+		process.exit(0);
 	});
 
 });
