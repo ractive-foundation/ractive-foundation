@@ -4,29 +4,35 @@ Ractive.extend({
 	isolated: true,
 
 	decorators: {
-		tooltip: /*tooltipDecorator */ function(node, content) {
-			// this is supposed to be in tooltipDecorator, eg tooltip.element, tooltip.className, etc.
+		tooltip: /*tooltipDecorator */ function(node, selector, content) {
+			// these should ideally be in tooltipDecorator properties,
+			// eg tooltip.element, tooltip.className, etc.
 			var config_element = 'span',
-				config_className = 'tooltip',
+				config_className = 'tooltip';
+				/*,
 				config_offsetX = 0,
-				config_offsetY = -20;
+				config_offsetY = -20;*/
 
 			var tooltip, handlers, eventName;
 			handlers = {
 				mouseover: function() {
+					console.log('mo', node);
 					tooltip = document.createElement( config_element );
 					tooltip.className = config_className;
-					tooltip.textContent = content;
+					tooltip.id = selector;
+					tooltip.innerHTML = content; // ' + '<span class="nub"></span>';
 
-					node.parentNode.insertBefore( tooltip, node );
+					node.appendChild( tooltip );
+					// node.parentNode.insertBefore(tooltip, node);
 				},
 
-				mousemove: function ( event ) {
+				/* mousemove: function ( event ) {
 					tooltip.style.left = event.clientX + config_offsetX + 'px';
 					tooltip.style.top = ( event.clientY - tooltip.clientHeight + config_offsetY ) + 'px';
-				},
+				},*/
 
 				mouseleave: function () {
+					console.log('ml', node);
 					tooltip.parentNode.removeChild( tooltip );
 				}
 			};
@@ -55,20 +61,14 @@ Ractive.extend({
 		}
 	},
 
-	oninit: function (options) {
-
+	oninit: function () {
 		this.on('tooltipHovered', function (srcItem) {
 			this.toggle('open');
-			/*
-			console.log(this);
-			console.log(srcItem);
-
-			var attrs = srcItem.node.attributes,
-				selector = attrs['data-selector'].value,
-				content = attrs['data-content'].value;
-			var tooltip = this.decorators.tooltip.settings.tip_template(selector, content);
-			*/
 			return false;
 		});
+	},
+
+	oncomplete: function () {
+		console.log(this);
 	}
 });
