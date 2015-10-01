@@ -302,7 +302,7 @@ gulp.task('watch', function () {
 gulp.task('a11y', function (callback) {
 
 	// Create test harness URLs from all use cases in the repo.
-	var urls = _(glob('./src/components/ux-alert/use-cases/*.json'))
+	var urls = _(glob('./src/components/ux-button/use-cases/*.json'))
 		.map(function (useCase) {
 			var parsed = nodePath.parse(useCase);
 			var arr = parsed.dir.split(nodePath.sep);
@@ -317,8 +317,6 @@ gulp.task('a11y', function (callback) {
 
 	var promises = _.map(urls, function (url) {
 
-		gutil.log(gutil.colors.green('Running a11y on ' + url));
-
 		return Q.Promise(function (resolve, reject) {
 			a11y(url, function (err, reports) {
 
@@ -326,18 +324,15 @@ gulp.task('a11y', function (callback) {
 					reject(err);
 				}
 
-				// var failures = _.where(reports.audit, { result: 'FAIL' });
-				// if (failures) {
-				// 	gutil.log(gutil.colors.red('a11y failed, report:\n ' + reports.report));
-				// 	reject('a11y FAILed on url: ' + url);
-				// }
+				var failures = _.where(reports.audit, { result: 'FAIL' });
 
-				if (reports.report) {
-					gutil.log(gutil.colors.red('a11y failed for url: ' +  url + '\n' + reports.report));
+				if (failures && failures.length > 0) {
+					gutil.log(gutil.colors.red('a11y FAIL for url: ' +  url + '\n' + reports.report + '\n'));
 					reject('a11y FAIL on one or more urls, see log');
+				} else {
+					gutil.log(gutil.colors.green('a11y PASS for url: ' +  url + '\n' + reports.report + '\n'));
+					resolve('a11y PASS ' + url);
 				}
-
-				resolve('a11y PASS ' + url);
 
 			});
 		});
@@ -417,7 +412,7 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
 // Build and test the project. Default choice. Used by npm test.
 gulp.task('test', function (callback) {
-	runSequence([ 'version-check', 'build' ], 'test-only', 'a11y', callback);
+	runSequence([ 'version-check', 'build' ], 'a11y', 'test-only', callback);
 });
 
 gulp.task('jshint', function (callback) {
