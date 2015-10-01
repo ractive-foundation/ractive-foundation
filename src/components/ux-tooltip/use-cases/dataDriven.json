@@ -3,12 +3,12 @@
 	"isDataModel": true,
 	"data": {
 		"text": "This is a link that points to the tooltip",
-		"class": "tip-bottom",
-		"radius": "radius",
-		"title": "",
+		"hastip": true,
 		"selector": "tooltipdiv123",
-		"options": {
-		},
-		"content": "This is a HTML tooltip content.<br/><a href='#'>We can add a link here</a>"
+		"tooltip": {
+			"content": "This is a <strong>tooltip content</strong>.",
+			"tip": "tip-bottom"
+		}
+
 	}
 }

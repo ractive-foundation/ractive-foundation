@@ -1,9 +1,10 @@
 {
 	"data": {
-		"text": "The text to display on the ux-tooltip component",
-		"class": "[tip-top tip-bottom tip-left tip-right] the position of the tooltip pointer",
-		"radius": "[radius round]",
-		"title": "The title for the tooltip",
+		"text": "tooltip link text",
+		"title": "tooltip link title",
+		"hastip": "[true false] tooltip link decoration",
+		"radius": "[radius round] (from foundation - to be implemented)",
+		"class": "tooltip link additional classes",
 		"options": {
 			"selector": "[.has-tip]",
 			"additional_inheritable_classes": "[[]]",
@@ -13,10 +14,11 @@
 			"disable_for_touch": "[true] [false] Whether to disable tooltip on touch device",
 			"hover_delay": "50",
 			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
+		},
+		"tooltip": {
+			"content": "tooltip content",
+			"tip": "[tip-top tip-bottom tip-left tip-right] tooltip pointer position"
 		}
-	},
-	"events": {
-		"onclick": "Event to fire when component is clicked"
 	},
 	"category": "Callouts & Prompts"
 }

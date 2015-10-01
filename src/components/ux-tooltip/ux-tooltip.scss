@@ -1,20 +1,59 @@
-/* Approach #1 */
 .ux-tooltip {
+	position: relative;
+
 	.tooltip {
 		width: auto;
-		left: 0.75rem;
+		display: block;
+		left: 0rem;
+		&.tip-top {
+			bottom: 1.7rem;
+			top: auto;
+		}
+		&.tip-left {
+			/* WIP */
+			left: auto;
+			margin-top: -1.5em;
+			right: 100%;
+			top: 0;
+		}
+		&.tip-right {
+			/* WIP */
+			left: 105%;
+			margin-top: -1.5em;
+			right: auto;
+			top: 0;
+		}
 	}
 }
 
-/* Approach #2 */
+/* These classes are refactored from _tooltips.scss */
 /*
 .tooltip {
-	display: block;
-	position: fixed;
-	max-width: 200px;
-	background-color: #f9f9f9;
-	border: 1px solid #eee;
-	box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-	padding: 0.5em;
-	font-size: 0.8em;
-}*/
+	&.tip-bottom, * > .nub {
+		border-color: transparent transparent #333333 transparent;
+		top: -10px;
+	}
+
+	&.tip-top > .nub {
+		border-color: #333333 transparent transparent transparent;
+		bottom: -10px;
+		top: auto;
+	}
+
+	&.tip-left > .nub {
+		border-color: transparent transparent transparent #333333;
+		left: auto;
+		margin-top: -5px;
+		right: -10px;
+		top: 50%;
+	}
+
+	&.tip-right > .nub {
+		border-color: transparent #333333 transparent transparent;
+		left: -10px;
+		margin-top: -5px;
+		right: auto;
+		top: 50%;
+	}
+}
+*/
