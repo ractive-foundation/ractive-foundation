@@ -1,0 +1,1 @@
+> ux-pricingtable Documentation
