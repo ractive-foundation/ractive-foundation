@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ractive-foundation/ractive-foundation",
   "devDependencies": {
+    "a11y": "^0.3.3",
     "del": "~1.1.1",
     "find": "~0.1.7",
     "foundation-sites": "git+https://github.com/zurb/bower-foundation.git#5.5.2",
