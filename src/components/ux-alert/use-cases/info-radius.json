@@ -1,0 +1,8 @@
+{
+	"title": "Info radius class",
+	"isDataModel": true,
+	"data": {
+		"text": "This is an info alert with a radius.",
+		"class": "info radius"
+	}
+}

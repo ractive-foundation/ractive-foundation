@@ -1,5 +1,6 @@
 Ractive.extend({
 	template: Ractive.defaults.templates['ux-tablinks'],
+	isolated: true,
 	oninit: function () {
 
 		// Defensive code for isomorphic execution.

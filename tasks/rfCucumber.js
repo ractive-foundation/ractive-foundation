@@ -1,33 +1,21 @@
-var selenium = require('selenium-standalone');
-var gutil = require('gulp-util');
-var http = require('http');
-var through = require('through2');
-var Cucumber = require('cucumber');
-var glob = require('simple-glob');
-var async = require('async');
-var Q = require('q');
+var _           = require('lodash-compat');
+var through     = require('through2');
+var Cucumber    = require('cucumber');
+var glob        = require('simple-glob');
+var path        = require('path');
 
 /**
- * Combination of gulp-cucumber and gulp-webdriverio
- * Ensures Selenium is running and drivers are installed.
- * Kills server on completion.
- * @see https://github.com/vgamula/gulp-cucumber
- * @see https://github.com/webdriverio/gulp-webdriver
+ * rfCucumber runs each step and feature in isolation to avoid any
+ * contextual issues.
  * @param options
- * @returns {*|exports}
  */
 module.exports = function (options) {
 
-	var seleniumServer;
-	var isSeleniumServerRunning;
-	var seleniumOptions = options.seleniumOptions || {};
-	var seleniumInstallOptions = options.seleniumInstallOptions || {};
 	var argv = ['node', 'cucumber-js'];
 	var format = options.format || 'pretty';
-	var server;
+	var tags = [];
 	var files = [];
-	var features = [];
-	var runOptions = [];
+	var runOptions = ['-f', format];
 
 	if (options.support) {
 		files = files.concat(glob([].concat(options.support)));
@@ -37,163 +25,57 @@ module.exports = function (options) {
 		files = files.concat(glob([].concat(options.steps)));
 	}
 
-	// Add steps and support files for CLI use.
-	files.forEach(function(file) {
-		runOptions.push('-r');
-		runOptions.push(file);
-	});
-
-	/**
-	 * Helper function to see if Selenium server is already running.
-	 * @param callback
-	 */
-	var pingSelenium = function(callback) {
-
-		gutil.log(gutil.colors.gray('Checking if Selenium server is running'));
-
-		var opts = {
-			host: options.host || 'localhost',
-			port: options.port || 4444,
-			path: '/wd/hub/status'
-		};
-
-		http.get(opts, function() {
-			gutil.log(gutil.colors.green('Selenium server is running'));
-			isSeleniumServerRunning = true;
-			callback(null);
-		}).on('error', function() {
-			gutil.log(gutil.colors.gray('Selenium server is not running'));
-			callback(null);
-		});
-
-	};
-
-	/**
-	 * Start the Selenium server
-	 * @param callback
-	 */
-	var startServer = function(callback) {
-
-		if (!server && !isSeleniumServerRunning && !options.nospawn) {
-
-			gutil.log('Starting', gutil.colors.cyan('\'selenium standalone server\''));
-
-			server = selenium.start(seleniumOptions, function(err, child) {
-				if (err) {
-					return callback(err);
-				}
-
-				gutil.log(gutil.colors.green('Selenium server successfully started'));
-				seleniumServer = child;
-				isSeleniumServerRunning = true;
-				callback(null);
-			});
-
-		} else {
-			gutil.log(gutil.colors.gray('Standalone server is running'));
-			callback(null);
-		}
-
-	};
-
-	/**
-	 * Process to kill server on completion
-	 */
-	var killServer = function () {
-		var promise;
-		if (seleniumServer) {
-			promise = Q.promise(function (resolve, reject) {
-				seleniumServer.kill();
-				seleniumServer.on('close', function (code, signal) {
-					gutil.log('Finished', gutil.colors.cyan('\'selenium standalone server\''));
-					return resolve(signal);
-				});
-				seleniumServer.on('error', function (code, signal) {
-					gutil.log(gutil.colors.red('Failed to kill server!'));
-					return reject(signal);
-				});
-			});
-		} else {
-			promise = Q.resolve();
-			gutil.log(gutil.colors.red('Cannot kill standalone server.'));
-		}
-
-		return promise;
-	};
-
-	/**
-	 * Install webdrivers for selenium to use.
-	 * @param callback
-	 */
-	var installDrivers = function (callback) {
-		gutil.log(gutil.colors.gray('Installing driver(s) if needed'));
-		selenium.install(seleniumInstallOptions, function(err) {
-			if (err) {
-				return callback(err);
+	// Support tags in array or string format
+	// @see https://github.com/cucumber/cucumber/wiki/Tags
+	if (options.tags) {
+		tags = ['--tags', options.tags];
+		if (_.isArray(options.tags)) {
+			if (options.requireAllTags) {
+				tags = _(options.tags)
+					.map(function (tag) {
+						return ['--tags', tag]
+					})
+					.flatten()
+					.value();
+			} else {
+				tags = ['--tags', options.tags.join(',')];
 			}
+		}
+	}
 
-			gutil.log(gutil.colors.green('Driver installed!'));
-			callback(null);
+	var parseAndRunTests = function(file, enc, callback) {
+		var feature = path.parse(file.path);
+
+		if (feature.ext !== '.feature') {
+			return callback();
+		}
+
+		var index = _.findIndex(files, function (step) {
+			var parsedStepPath = path.parse(step);
+			// Match step name with feature name, stop searching when we hit - or _
+			// after first part match. In case we are looking for ux-list and we
+			// come across ux-list-item.
+			var regex = new RegExp('^(' + feature.name + ')[^-_]', 'gi');
+			return parsedStepPath.name.match(regex);
 		});
-	};
 
-	// Run all cucumber tests at once.
-	// TODO Run them one by one. Fail early.
-	var runTests = function (callback) {
-		Cucumber.Cli(argv).run(function(succeeded) {
+		var matchingStep = files[index];
+		var args = argv.concat(['-r', matchingStep, file.path], runOptions, tags);
+
+		Cucumber.Cli(args).run(function(succeeded) {
 			if (succeeded) {
-				callback(null);
+				callback();
 			} else {
 				callback(new Error('Cucumber tests failed!'));
 			}
 		});
 	};
 
-	// Set output format
-	runOptions.push('-f');
-	runOptions.push(format);
-
-	var collect = function(file, enc, callback) {
-		var filename = file.path;
-		if (filename.indexOf('.feature') === -1) {
-			return callback();
-		}
-		features.push(filename);
-		callback();
+	var finish = function (callback) {
+		this.emit('end');
+		return callback();
 	};
 
-	var run = function(callback) {
-
-		var stream = this;
-
-		argv.push.apply(argv, runOptions);
-		argv.push.apply(argv, features);
-
-		// Order of events.
-		async.waterfall([
-			pingSelenium.bind(stream),
-			installDrivers.bind(stream),
-			startServer.bind(stream),
-			runTests.bind(stream)
-		], function (err) {
-
-			// Kill server regardless of result.
-			killServer().then(function () {
-				if (!err) {
-					return callback();
-				}
-
-				var error = new gutil.PluginError('rf-cucumber', {
-					message: err,
-					showStack: false
-				});
-
-				callback(error);
-				stream.emit('end');
-			}).catch(console.log.bind(console));
-		});
-	};
-
-	return through.obj(collect, run);
+	return through.obj(parseAndRunTests, finish);
 
 };

@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-top-bar'],
 
+	isolated: true,
+
 	oninit: function () {
 
 		var self = this;

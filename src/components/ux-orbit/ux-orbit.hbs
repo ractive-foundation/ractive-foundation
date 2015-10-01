@@ -1,9 +1,9 @@
-<div class="ux-orbit">
+<div class="ux-orbit {{class}}">
 	<div class="orbit-container {{currentPageCssClass}}">
 		<ul class="pageContainer example-orbit orbit-slides-container">
 			{{#if isDataModel}}
-				{{#items}}
-					<li class="orbit-slides-slide {{#active}} active{{/}}" on-swipeleft="nextPage" on-swiperight="prevPage">
+				{{#items:i}}
+					<li class="orbit-slides-slide {{#if i + 1 === currentPage}} active{{/if}}" on-swipeleft="nextPage" on-swiperight="prevPage">
 						<img src="{{imagesrc}}" alt="{{imagealt}}" />
 						<div class="orbit-caption">{{caption}}</div>
 					</li>
@@ -33,7 +33,7 @@
 	{{#if bullets}}
 		<ol class="orbit-bullets">
 			{{#items:i}}
-				<li data-orbit-slide-number="{{i}}" class="{{#active}}active{{/}}">
+				<li data-orbit-slide-number="{{i}}" class="{{#if i + 1 === currentPage}}active{{/if}}">
 			{{/}}
 		</ol>
 	{{/if}}

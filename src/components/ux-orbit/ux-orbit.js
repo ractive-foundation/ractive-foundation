@@ -2,6 +2,8 @@ Ractive.extend({
 
 	template: Ractive.defaults.templates['ux-orbit'],
 
+	isolated: true,
+
 	data: {
 		currentPage: 1,
 		navigation_arrows: true,
@@ -18,9 +20,10 @@ Ractive.extend({
 	oninit: function () {
 
 		this.on('nextPage', function (e) {
-			var nextPage = this.get('currentPage') + 1;
-			// FIXME Quick hack for bounds.
-			nextPage = nextPage > 5 ? 5 : nextPage;
+			var nextPage = this.get('currentPage') + 1,
+				slideTotal = this.get('slidesTotal');
+
+			nextPage = nextPage > slideTotal ? slideTotal : nextPage;
 			this.set('currentPage', nextPage);
 			return false;
 		});
