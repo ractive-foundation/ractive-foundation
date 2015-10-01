@@ -29,6 +29,7 @@ var pkg = require('./package.json');
 
 const DEV_SERVER_PORT = 9080;
 const TEST_SERVER_PORT = 8088;
+const A11Y_SERVER_PORT = 8089;
 
 gulp.task('connect', function () {
 	plugins.connect.server({
@@ -43,6 +44,14 @@ gulp.task('test-connect', function () {
 		root: 'public',
 		port: TEST_SERVER_PORT
 	});
+});
+
+gulp.task('a11y-connect', function (callback) {
+	plugins.connect.server({
+		root: 'public',
+		port: A11Y_SERVER_PORT
+	});
+	callback();
 });
 
 gulp.task('html', function () {
@@ -299,7 +308,7 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('a11y', function (callback) {
+gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
 	// Create test harness URLs from all use cases in the repo.
 	var urls = _(glob('./src/components/ux-button/use-cases/*.json'))
@@ -307,7 +316,7 @@ gulp.task('a11y', function (callback) {
 			var parsed = nodePath.parse(useCase);
 			var arr = parsed.dir.split(nodePath.sep);
 			return [
-				'http://localhost:' + TEST_SERVER_PORT + '/testRunner.html#!/component',
+				'http://localhost:' + A11Y_SERVER_PORT + '/testRunner.html#!/component',
 				arr[3],
 				'use-case',
 				parsed.name
@@ -340,7 +349,12 @@ gulp.task('a11y', function (callback) {
 	});
 
 	// Only pass gulp task if ALL tests pass.
-	return Q.all(promises);
+	Q.all(promises)
+		.then(callback)
+		.catch(function (error) {
+			gutil.log(gutil.colors.red(error));
+			process.exit(1);
+		});
 
 });
 
@@ -412,7 +426,12 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
 // Build and test the project. Default choice. Used by npm test.
 gulp.task('test', function (callback) {
-	runSequence([ 'version-check', 'build' ], 'a11y', 'test-only', callback);
+	runSequence([ 'version-check', 'build' ], 'test-only', callback);
+});
+
+// Currently a11y not part of standard build/test process.
+gulp.task('a11y', function (callback) {
+	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
 gulp.task('jshint', function (callback) {
