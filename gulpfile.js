@@ -25,21 +25,23 @@ var gulp = require('gulp'),
 	gulpWing = require('./tasks/gulpWing'),
 	jshintFailReporter = require('./tasks/jshintFailReporter');
 
-
 var pkg = require('./package.json');
+
+const DEV_SERVER_PORT = 9080;
+const TEST_SERVER_PORT = 8088;
 
 gulp.task('connect', function () {
 	plugins.connect.server({
 		root: 'public',
 		livereload: true,
-		port: 9080
+		port: DEV_SERVER_PORT
 	});
 });
 
 gulp.task('test-connect', function () {
 	plugins.connect.server({
 		root: 'public',
-		port: 8088
+		port: TEST_SERVER_PORT
 	});
 });
 
@@ -305,7 +307,7 @@ gulp.task('a11y', function (callback) {
 			var parsed = nodePath.parse(useCase);
 			var arr = parsed.dir.split(nodePath.sep);
 			return [
-				'http://localhost:8088/testRunner.html#!/component',
+				'http://localhost:' + TEST_SERVER_PORT + '/testRunner.html#!/component',
 				arr[3],
 				'use-case',
 				parsed.name
