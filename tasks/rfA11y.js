@@ -6,7 +6,7 @@ var args = require('yargs').argv,
 	gutil = require('gulp-util'),
 	a11y = require('a11y');
 
-module.exports = function (options) {
+module.exports.auditComponents = function (options) {
 
 	// Command line overrides
 	var component = args.component || args.c || '*';
