@@ -9,6 +9,8 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	nodePath = require('path'),
 	_ = require('lodash-compat'),
+	a11y = require('a11y'),
+	Q = require('q'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -22,6 +24,7 @@ var gulp = require('gulp'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
 	jshintFailReporter = require('./tasks/jshintFailReporter');
+
 
 var pkg = require('./package.json');
 
@@ -294,20 +297,59 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('a11y', function () {
+gulp.task('a11y', function (callback) {
 
-	return gulp.src('http://localhost:8088/testRunner.html#!/component/ux-sidenav/use-case/1-data-driven')
-		.pipe(plugins.rename(function (path) {
-			console.log('path:', path);
-		}))
-		.pipe(plugins.a11y())
-		.pipe(plugins.a11y.reporter());
+	// Create test harness URLs from all use cases in the repo.
+	var urls = _(glob('./src/components/ux-alert/use-cases/*.json'))
+		.map(function (useCase) {
+			var parsed = nodePath.parse(useCase);
+			var arr = parsed.dir.split(nodePath.sep);
+			return [
+				'http://localhost:8088/testRunner.html#!/component',
+				arr[3],
+				'use-case',
+				parsed.name
+			].join('/');
+		})
+		.value();
+
+	var promises = _.map(urls, function (url) {
+
+		gutil.log(gutil.colors.green('Running a11y on ' + url));
+
+		return Q.Promise(function (resolve, reject) {
+			a11y(url, function (err, reports) {
+
+				if (err) {
+					reject(err);
+				}
+
+				// var failures = _.where(reports.audit, { result: 'FAIL' });
+				// if (failures) {
+				// 	gutil.log(gutil.colors.red('a11y failed, report:\n ' + reports.report));
+				// 	reject('a11y FAILed on url: ' + url);
+				// }
+
+				if (reports.report) {
+					gutil.log(gutil.colors.red('a11y failed for url: ' +  url + '\n' + reports.report));
+					reject('a11y FAIL on one or more urls, see log');
+				}
+
+				resolve('a11y PASS ' + url);
+
+			});
+		});
+
+	});
+
+	// Only pass gulp task if ALL tests pass.
+	return Q.all(promises);
 
 });
 
 // Run the test suite alone, without re-building the project. Useful for rapid test debugging.
 // See 'test' for the full build and test task.
-gulp.task('testonly', [ 'test-connect' ], function (callback) {
+gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
 	var selServer = seleniumServer();
 
@@ -373,7 +415,7 @@ gulp.task('testonly', [ 'test-connect' ], function (callback) {
 
 // Build and test the project. Default choice. Used by npm test.
 gulp.task('test', function (callback) {
-	runSequence([ 'version-check', 'build' ], 'testonly', callback);
+	runSequence([ 'version-check', 'build' ], 'test-only', 'a11y', callback);
 });
 
 gulp.task('jshint', function (callback) {
