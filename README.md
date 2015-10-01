@@ -120,10 +120,12 @@ gulp a11y-only
 
 # Single component with all its use cases
 gulp a11y --component=ux-button
+gulp a11y -c ux-button
 gulp a11y-only --component=ux-button
 
 # Run only a single use case
-gulp a11y --component=ux-button --usecase=ClickMe
+gulp a11y --component ux-button --usecase ClickMe
+gulp a11y -c ux-button -u ClickMe
 gulp a11y-only --component=ux-button --usecase=ClickMe
 ```
 
