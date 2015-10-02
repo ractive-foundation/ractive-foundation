@@ -1,45 +1,43 @@
 /*jshint unused:false */
 /*jshint -W025 */
 
-function(node, selector, content) {
-	// these should ideally be in tooltipDecorator properties,
-	// eg tooltip.element, tooltip.className, etc.
-	var config_element = 'span',
-		config_className = 'tooltip';
-		/*,
-		config_offsetX = 0,
-		config_offsetY = -20;*/
-
-	var tooltip, handlers, eventName, inSection, outSection;
+function(node, options) {
+	var tooltip, handlers, eventName, enterSection, leaveSection,
+		config = {
+			tagElement: options.tagElement || 'span',
+			className: options.className || 'tooltip',
+			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000) + 1),
+			content: options.content || ''
+		};
 	
-	inSection = function() {
-		console.log('mo', node);
-		
-		tooltip = document.createElement( config_element );
-		tooltip.className = config_className;
-		tooltip.id = selector;
-		tooltip.innerHTML = content; // ' + '<span class="nub"></span>';
+	enterSection = function() {
 
-		node.appendChild( tooltip );
-		// node.parentNode.insertBefore(tooltip, node);
+		// cleanSection();
+		var tooltip_exists = document.getElementById(config.selectorName);
+		if (!tooltip_exists) {
+			node.setAttribute('aria-haspopup', 'true');
+			node.setAttribute('aria-describedby', config.selectorName);
+
+			tooltip = document.createElement( config.tagElement );
+			tooltip.id = config.selectorName;
+			tooltip.className = config.className;
+			tooltip.setAttribute('role','tooltip');
+			tooltip.innerHTML = config.content; // ' + '<span class="nub"></span>';
+
+			node.appendChild( tooltip );
+		}
 	};
-	
-	outSection = function () {
-		console.log('ml', node);
+
+	leaveSection = function () {
 		tooltip.parentNode.removeChild( tooltip );
 	};
 	
 	handlers = {
-		mouseover: inSection,
-		focus: inSection,
+		mouseover: enterSection,
+		focus: enterSection,
 
-		/* mousemove: function ( event ) {
-			tooltip.style.left = event.clientX + config_offsetX + 'px';
-			tooltip.style.top = ( event.clientY - tooltip.clientHeight + config_offsetY ) + 'px';
-		},*/
-
-		mouseleave: outSection,
-		blur: outSection
+		mouseleave: leaveSection,
+		blur: leaveSection
 	};
 
 	for ( eventName in handlers ) {

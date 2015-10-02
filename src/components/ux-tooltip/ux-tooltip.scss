@@ -1,41 +1,9 @@
-.ux-tooltip {
+*[id*='uxTooltip'] {
 	position: relative;
 
-	.tooltip {
+	*[role='tooltip'] {
 		width: auto;
 		display: block;
 		left: 0rem;
 	}
 }
-
-/* These classes are refactored from _tooltips.scss */
-/*
-.tooltip {
-	&.tip-bottom, * > .nub {
-		border-color: transparent transparent #333333 transparent;
-		top: -10px;
-	}
-
-	&.tip-top > .nub {
-		border-color: #333333 transparent transparent transparent;
-		bottom: -10px;
-		top: auto;
-	}
-
-	&.tip-left > .nub {
-		border-color: transparent transparent transparent #333333;
-		left: auto;
-		margin-top: -5px;
-		right: -10px;
-		top: 50%;
-	}
-
-	&.tip-right > .nub {
-		border-color: transparent #333333 transparent transparent;
-		left: -10px;
-		margin-top: -5px;
-		right: auto;
-		top: 50%;
-	}
-}
-*/

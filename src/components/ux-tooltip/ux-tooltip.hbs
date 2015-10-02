@@ -1,27 +1,3 @@
-<!-- Approach #1 -->
-<!--<span data-tooltip=""
-	aria-haspopup="true"
-	{{#if open}}aria-describedby="{{selector}}"{{/if}}
-	class="ux-tooltip {{#if hastip}}has-tip{{/if}} {{radius}}"
-	tabindex="0"
-	on-tap-hover-focus-blur="tooltipHovered"
-	>
-	{{#if isDataModel}}
-		{{text}}
-	{{else}}
-		{{yield}}
-	{{/if}}
-	{{#with tooltip}}
-		<span id="{{selector}}"
-			  class="tooltip"
-			  role="tooltip"
-			  style="display: {{#if open}}block{{else}}none{{/if}};">
-			{{{content}}}
-		</span>
-	{{/with}}
-</span>-->
-
-<!-- Approach # 2 -->
-<span decorator="tooltip:'{{selector}}','{{tooltip.content}}'">
-		This is a test link
+<span decorator="tooltip:{{.}}" class="has-tip">
+	This is a tooltip link
 </span>

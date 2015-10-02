@@ -2,11 +2,9 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"text": "This is a link that points to the tooltip",
-		"hastip": true,
-		"selector": "tooltipdiv123",
-		"tooltip": {
-			"content": "This is a <strong>tooltip content</strong>."
-		}
+		"tagElement": "",
+		"className": "tooltip",
+		"selectorName": "tooltip_demo",
+		"content": "This is a <strong>tooltip content</strong>."
 	}
 }
