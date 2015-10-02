@@ -7,12 +7,7 @@
 		"selectorName": "the value of the tooltip id",
 		"content": "the content inside the tooltip",
 
-
-
 		"options": {
-			"append_to": "[body]",
-			"touch_to_close": "[Tap To Close]",
-			"disable_for_touch": "[true] [false] Whether to disable tooltip on touch device",
 			"hover_delay": "50",
 			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
 		}
