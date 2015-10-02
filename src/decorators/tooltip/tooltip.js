@@ -12,7 +12,6 @@ function(node, options) {
 	
 	enterSection = function() {
 
-		// cleanSection();
 		var tooltip_exists = document.getElementById(config.selectorName);
 		if (!tooltip_exists) {
 			node.setAttribute('aria-haspopup', 'true');
