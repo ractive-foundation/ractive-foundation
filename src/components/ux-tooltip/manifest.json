@@ -2,13 +2,12 @@
 	"data": {
 		"class": "[has",
 
-		"tagElement": "[span a] the tag element for the tooltip (Default 'span')",
+		"tagElement": "[span a] the tag element for the tooltip (Default: span)",
 		"className": "class name of the tooltip (Default 'tooltip')",
 		"selectorName": "the value of the tooltip id",
 		"content": "the content inside the tooltip",
-
+		"delay": "the delay between hover/focus and tooltip shown, in ms (Default: 0)",
 		"options": {
-			"hover_delay": "50",
 			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
 		}
 	},
