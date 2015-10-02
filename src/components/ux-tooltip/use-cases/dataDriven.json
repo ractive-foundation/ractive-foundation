@@ -5,6 +5,7 @@
 		"tagElement": "",
 		"className": "tooltip",
 		"selectorName": "tooltip_demo",
-		"content": "This is a <strong>tooltip content</strong>."
+		"content": "This is a <strong>tooltip content</strong>.",
+		"delay": "200"
 	}
 }

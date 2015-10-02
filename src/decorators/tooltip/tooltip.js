@@ -7,13 +7,13 @@ function(node, options) {
 			tagElement: options.tagElement || 'span',
 			className: options.className || 'tooltip',
 			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000) + 1),
-			content: options.content || ''
+			content: options.content || '',
+			delay: options.delay || 0
 		};
 	
 	enterSection = function() {
-
 		var tooltip_exists = document.getElementById(config.selectorName);
-		if (!tooltip_exists) {
+		if (!tooltip_exists && config.content.length) {
 			node.setAttribute('aria-haspopup', 'true');
 			node.setAttribute('aria-describedby', config.selectorName);
 
@@ -21,9 +21,19 @@ function(node, options) {
 			tooltip.id = config.selectorName;
 			tooltip.className = config.className;
 			tooltip.setAttribute('role','tooltip');
-			tooltip.innerHTML = config.content; // ' + '<span class="nub"></span>';
+			tooltip.innerHTML = config.content;
+
+			if (config.delay) {
+				// for screen-reader accessibility purposes
+				tooltip.setAttribute('style', 'left:-100000px;');
+			}
 
 			node.appendChild( tooltip );
+
+			setTimeout (function() {
+				tooltip.setAttribute('style', 'left:inherit;');
+			}, config.delay);
+
 		}
 	};
 
