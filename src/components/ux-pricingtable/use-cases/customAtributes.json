@@ -1,6 +1,22 @@
 {
 	"title": "Use case with custom attributes",
 	"data": {
-		"text": "ux-pricingtable button"
+		"text": "ux-pricingtable",
+		"title": "Standard",
+		"price": "$99.9",
+		"description": "An awesome description",
+		"features": [
+			{
+				"title": "1 Database"
+			},
+			{
+				"title": "5GB Storage"
+			},
+			{
+				"title": "20 Users"
+			}
+		],
+		"button": "Buy Num",
+		"url": "#"
 	}
 }

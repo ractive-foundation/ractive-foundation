@@ -1,3 +1,11 @@
 <div class="ux-pricingtable">
-    TODO component contents here.
+	<ul class="pricing-table">
+		<li class="title">{{title}}</li>
+		<li class="price">{{price}}</li>
+		<li class="description">{{description}}</li>
+		{{#each features}}
+			<li class="bullet-item">{{this.title}}</li>
+		{{/each}}
+		<li class="cta-button"><a class="button" href="{{url}}">{{button}}</a></li>
+	</ul>
 </div>
