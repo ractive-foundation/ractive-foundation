@@ -294,7 +294,7 @@ gulp.task('watch', function () {
 		'src/*.html',
 		'src/pages/*.html',
 		'src/blank-pages/*.html',
-		'src/**.*.json',
+		'src/**/*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',
