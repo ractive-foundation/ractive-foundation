@@ -178,4 +178,21 @@ module.exports = function () {
 		}).catch(callback);
 	});
 
+	this.Then(/^there should be (\d+) of the element "([^"]+)"/, function (numElements, element, callback) {
+		var selector = this.component[element];
+
+		this.client.waitForExist(selector, 500).then(function () {
+			return this.client.elements(selector);
+		}.bind(this)).then(function (elements) {
+			try {
+				this.assert.equal(elements.value.length, numElements);
+				callback();
+			} catch(e) {
+				callback(e);
+			}
+		}.bind(this)).catch(function (e){
+			callback(e);
+		});
+	});
+
 };

@@ -7,6 +7,8 @@ module.exports = function () {
 	this.Before(function (callback) {
 		this.component = {};
 		this.component.container = '#childComponent ';
+		this.component.bullets = this.component.container + '.orbit-bullets ';
+		this.component.slides  = this.component.bullets + 'li';
 
 		callback();
 	});
