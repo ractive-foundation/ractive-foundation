@@ -15,8 +15,8 @@ page('/component/:name/use-case/:useCase', function (ctx) {
 			}
 		};
 
-		if (data.template) {
-			config.template = data.template;
+		if (res.body && res.body.template) {
+			config.template = Ractive.defaults.templates[res.body.template];
 			window.currentComponent = new Ractive(config);
 		}
 		else {
