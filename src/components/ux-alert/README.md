@@ -2,9 +2,3 @@
 
 Read [Foundation's alert](http://foundation.zurb.com/docs/components/alert_boxes.html) docs for more details.
 
-Markup example:
-
-```html
-<ux-alert>
-</ux-alert>
-```

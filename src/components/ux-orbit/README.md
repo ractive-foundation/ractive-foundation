@@ -2,9 +2,3 @@
 
 Read [Foundation's orbit](http://foundation.zurb.com/docs/components/orbit.html) docs for more details.
 
-Markup example:
-
-```html
-<ux-orbit>
-</ux-orbit>
-```
