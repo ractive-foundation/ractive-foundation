@@ -2,9 +2,3 @@
 
 Read [Foundation's label](http://foundation.zurb.com/docs/components/labels.html) docs for more details.
 
-Markup example:
-
-```html
-<ux-label>
-</ux-label>
-```

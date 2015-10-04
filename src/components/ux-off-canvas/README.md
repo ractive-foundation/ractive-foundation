@@ -2,9 +2,3 @@
 
 Read [Foundation's offcanvas.html](http://foundation.zurb.com/docs/components/offcanvas.html) docs for more details.
 
-Markup example:
-
-```html
-<ux-offcanvas>
-</ux-offcanvas>
-```

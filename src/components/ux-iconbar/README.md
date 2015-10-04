@@ -4,9 +4,3 @@ with the labels below the icons or to the right. Have it your way.
 
 Read [Foundation's iconbar](http://foundation.zurb.com/docs/components/iconbar.html) docs for more details.
 
-Markup example:
-
-```html
-<ux-iconbar>
-</ux-iconbar>
-```
