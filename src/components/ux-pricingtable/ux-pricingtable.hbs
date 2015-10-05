@@ -1,11 +1,18 @@
 <div class="ux-pricingtable">
-	<ul class="pricing-table">
+	<ul class="pricing-table {{class}}">
 		<li class="title">{{title}}</li>
 		<li class="price">{{price}}</li>
 		<li class="description">{{description}}</li>
 		{{#each features}}
 			<li class="bullet-item">{{this.title}}</li>
 		{{/each}}
-		<li class="cta-button"><a class="button" href="{{url}}">{{button}}</a></li>
+		<li class="cta-button">
+			{{#if (status == 'comingsoon')}}
+			<a class="button disabled" href="#" on-tap="buyNow">Coming Soon</a>
+			{{/if}}
+			{{#if !status}}
+			<a class="button" href="{{href}}" on-tap="buyNow">Buy Now</a>
+			{{/if}}
+		</li>
 	</ul>
 </div>

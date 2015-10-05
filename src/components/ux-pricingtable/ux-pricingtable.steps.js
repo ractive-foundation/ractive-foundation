@@ -10,6 +10,7 @@ module.exports = function () {
 
 		this.component = {};
 		this.component.container = '#childComponent ';
+		this.component.title     = ' .title';
 
 		callback();
 
