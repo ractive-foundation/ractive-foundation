@@ -6,6 +6,7 @@
 		"className": "tooltip",
 		"selectorName": "tooltip_demo",
 		"content": "This is a <strong>tooltip content</strong>.",
-		"delay": "200"
+		"delay": "200",
+		"show_on": "medium large"
 	}
 }

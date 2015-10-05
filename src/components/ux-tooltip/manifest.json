@@ -7,9 +7,7 @@
 		"selectorName": "the value of the tooltip id",
 		"content": "the content inside the tooltip",
 		"delay": "the delay between hover/focus and tooltip shown, in ms (Default: 0)",
-		"options": {
-			"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
-		}
+		"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
 	},
 	"category": "Callouts & Prompts"
 }

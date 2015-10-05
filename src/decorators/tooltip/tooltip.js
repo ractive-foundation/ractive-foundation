@@ -8,7 +8,8 @@ function(node, options) {
 			className: options.className || 'tooltip',
 			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000) + 1),
 			content: options.content || '',
-			delay: options.delay || 0
+			delay: options.delay || 0,
+			show_on: options.show_on || 'small medium large'
 		};
 	
 	enterSection = function() {
@@ -16,6 +17,7 @@ function(node, options) {
 		if (!tooltip_exists && config.content.length) {
 			node.setAttribute('aria-haspopup', 'true');
 			node.setAttribute('aria-describedby', config.selectorName);
+			node.className = node.className + ' ux-tooltip ' + config.show_on;
 
 			tooltip = document.createElement( config.tagElement );
 			tooltip.id = config.selectorName;
@@ -33,12 +35,14 @@ function(node, options) {
 			setTimeout (function() {
 				tooltip.setAttribute('style', 'left:inherit;');
 			}, config.delay);
-
 		}
 	};
 
 	leaveSection = function () {
-		tooltip.parentNode.removeChild( tooltip );
+		if (tooltip && tooltip.parentNode) {
+			tooltip.parentNode.className = tooltip.parentNode.className.replace(' ux-tooltip ' + config.show_on,'');
+			tooltip.parentNode.removeChild( tooltip );
+		}
 	};
 	
 	handlers = {
