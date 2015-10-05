@@ -21,16 +21,36 @@ var gulp = require('gulp'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
-	jshintFailReporter = require('./tasks/jshintFailReporter');
+	jshintFailReporter = require('./tasks/jshintFailReporter'),
+	rfA11y = require('./tasks/rfA11y');
 
 var pkg = require('./package.json');
+
+const DEV_SERVER_PORT = 9080;
+const TEST_SERVER_PORT = 8088;
+const A11Y_SERVER_PORT = 8089;
 
 gulp.task('connect', function () {
 	plugins.connect.server({
 		root: 'public',
 		livereload: true,
-		port: 9080
+		port: DEV_SERVER_PORT
 	});
+});
+
+gulp.task('test-connect', function () {
+	plugins.connect.server({
+		root: 'public',
+		port: TEST_SERVER_PORT
+	});
+});
+
+gulp.task('a11y-connect', function (callback) {
+	plugins.connect.server({
+		root: 'public',
+		port: A11Y_SERVER_PORT
+	});
+	callback();
 });
 
 gulp.task('html', function () {
@@ -287,14 +307,23 @@ gulp.task('watch', function () {
 
 });
 
+gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
+
+	rfA11y.auditComponents({ port: A11Y_SERVER_PORT })
+		.then(function () {
+			callback();
+			process.exit(0);
+		})
+		.catch(function (error) {
+			callback(new Error(error));
+			process.exit(1);
+		});
+
+});
+
 // Run the test suite alone, without re-building the project. Useful for rapid test debugging.
 // See 'test' for the full build and test task.
-gulp.task('testonly', function (callback) {
-
-	plugins.connect.server({
-		root: 'public',
-		port: 8088
-	});
+gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
 	var selServer = seleniumServer();
 
@@ -360,7 +389,12 @@ gulp.task('testonly', function (callback) {
 
 // Build and test the project. Default choice. Used by npm test.
 gulp.task('test', function (callback) {
-	runSequence([ 'version-check', 'build' ], 'testonly', callback);
+	runSequence([ 'version-check', 'build' ], 'test-only', callback);
+});
+
+// Currently a11y not part of standard build/test process.
+gulp.task('a11y', function (callback) {
+	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
 gulp.task('jshint', function (callback) {
