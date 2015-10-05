@@ -1,9 +1,58 @@
-*[id*='uxTooltip'] {
-	position: relative;
+/*
+Supposed to use this but _functions.scss is currently not imported
+$small-screen: em-calc(768);
+$medium-screen: em-calc(1280);
+$large-screen: em-calc(1440); */
 
-	*[role='tooltip'] {
-		width: auto;
-		display: block;
-		left: 0rem;
+$small-screen: 768px;
+$medium-screen: 1280px;
+$large-screen: 1440px;
+
+$screen: "only screen";
+$small: "only screen and (min-width: #{$small-screen}) and (max-width: #{$medium-screen})";
+$medium: "only screen and (min-width:#{$medium-screen}) and (max-width: #{$large-screen})";
+$large: "only screen and (min-width:#{$large-screen})";
+
+*[id*='uxTooltip'] {
+
+	.ux-tooltip {
+		position: relative;
+		display: inline-block;
+
+		@media #{$small} {
+			&.small {
+				cursor: help;
+
+				*[role='tooltip'] {
+					width: auto;
+					display: block;
+					left: 0rem;
+				}
+			}
+		}
+
+		@media #{$medium} {
+			&.medium {
+				cursor: help;
+
+				*[role='tooltip'] {
+					width: auto;
+					display: block;
+					left: 0rem;
+				}
+			}
+		}
+
+		@media #{$large} {
+			&.large {
+				cursor: help;
+
+				*[role='tooltip'] {
+					width: auto;
+					display: block;
+					left: 0rem;
+				}
+			}
+		}
 	}
 }
