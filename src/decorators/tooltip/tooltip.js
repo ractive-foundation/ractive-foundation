@@ -32,6 +32,8 @@ function(node, options) {
 
 			node.appendChild( tooltip );
 
+			tooltip.addEventListener('click', leaveSection, false);
+
 			setTimeout (function() {
 				tooltip.setAttribute('style', 'left:inherit;');
 			}, config.delay);
