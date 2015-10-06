@@ -13,6 +13,11 @@ $small: "only screen and (min-width: #{$small-screen}) and (max-width: #{$medium
 $medium: "only screen and (min-width:#{$medium-screen}) and (max-width: #{$large-screen})";
 $large: "only screen and (min-width:#{$large-screen})";
 
+@mixin tooltipHover {
+	display: block;
+	width: auto;
+}
+
 *[id*='uxTooltip'] {
 
 	.ux-tooltip {
@@ -24,9 +29,7 @@ $large: "only screen and (min-width:#{$large-screen})";
 				cursor: help;
 
 				*[role='tooltip'] {
-					width: auto;
-					display: block;
-					left: 0rem;
+					@include tooltipHover
 				}
 			}
 		}
@@ -36,9 +39,7 @@ $large: "only screen and (min-width:#{$large-screen})";
 				cursor: help;
 
 				*[role='tooltip'] {
-					width: auto;
-					display: block;
-					left: 0rem;
+					@include tooltipHover
 				}
 			}
 		}
@@ -48,9 +49,7 @@ $large: "only screen and (min-width:#{$large-screen})";
 				cursor: help;
 
 				*[role='tooltip'] {
-					width: auto;
-					display: block;
-					left: 0rem;
+					@include tooltipHover
 				}
 			}
 		}
