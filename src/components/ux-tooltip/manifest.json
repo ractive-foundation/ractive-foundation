@@ -1,7 +1,5 @@
 {
 	"data": {
-		"class": "[has",
-
 		"tagElement": "[span a] the tag element for the tooltip (Default: span)",
 		"className": "class name of the tooltip (Default 'tooltip')",
 		"selectorName": "the value of the tooltip id",
