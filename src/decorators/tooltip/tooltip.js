@@ -19,7 +19,7 @@ function(node, options) {
 			node.setAttribute('aria-describedby', config.selectorName);
 			node.className = node.className + ' ux-tooltip ' + config.show_on;
 
-			tooltip = document.createElement( config.tagElement );
+			tooltip = document.createElement(config.tagElement);
 			tooltip.id = config.selectorName;
 			tooltip.className = config.className;
 			tooltip.setAttribute('role','tooltip');
@@ -30,9 +30,9 @@ function(node, options) {
 				tooltip.setAttribute('style', 'left:-100000px;');
 			}
 
-			node.appendChild( tooltip );
+			node.appendChild(tooltip);
 
-			tooltip.addEventListener('click', leaveSection, false);
+			tooltip.addEventListener('click', leaveSection);
 
 			setTimeout (function() {
 				tooltip.setAttribute('style', 'left:inherit;');
@@ -43,7 +43,7 @@ function(node, options) {
 	leaveSection = function () {
 		if (tooltip && tooltip.parentNode) {
 			tooltip.parentNode.className = tooltip.parentNode.className.replace(' ux-tooltip ' + config.show_on,'');
-			tooltip.parentNode.removeChild( tooltip );
+			tooltip.parentNode.removeChild(tooltip);
 		}
 	};
 	
@@ -55,17 +55,17 @@ function(node, options) {
 		blur: leaveSection
 	};
 
-	for ( eventName in handlers ) {
+	for (eventName in handlers) {
 		if (handlers.hasOwnProperty(eventName)) {
-			node.addEventListener(eventName, handlers[eventName], false);
+			node.addEventListener(eventName, handlers[eventName]);
 		}
 	}
 
 	return {
 		teardown: function () {
-			for ( eventName in handlers ) {
-				if ( handlers.hasOwnProperty( eventName ) ) {
-					node.removeEventListener( eventName, handlers[ eventName ], false );
+			for (eventName in handlers) {
+				if (handlers.hasOwnProperty(eventName)) {
+					node.removeEventListener(eventName, handlers[ eventName ]);
 				}
 			}
 		}
