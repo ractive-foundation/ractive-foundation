@@ -23,39 +23,36 @@ $large: "only screen and (min-width:#{$medium-screen})";
 	}
 }
 
-*[id*='uxTooltip'] {
+.ux-tooltip {
+	position: relative;
+	display: inline-block;
 
-	.ux-tooltip {
-		position: relative;
-		display: inline-block;
+	@media #{$small} {
+		&.small {
+			cursor: help;
 
-		@media #{$small} {
-			&.small {
-				cursor: help;
-
-				*[role='tooltip'] {
-					@include tooltipHover
-				}
+			*[role='tooltip'] {
+				@include tooltipHover
 			}
 		}
+	}
 
-		@media #{$medium} {
-			&.medium {
-				cursor: help;
+	@media #{$medium} {
+		&.medium {
+			cursor: help;
 
-				*[role='tooltip'] {
-					@include tooltipHover
-				}
+			*[role='tooltip'] {
+				@include tooltipHover
 			}
 		}
+	}
 
-		@media #{$large} {
-			&.large {
-				cursor: help;
+	@media #{$large} {
+		&.large {
+			cursor: help;
 
-				*[role='tooltip'] {
-					@include tooltipHover
-				}
+			*[role='tooltip'] {
+				@include tooltipHover
 			}
 		}
 	}
