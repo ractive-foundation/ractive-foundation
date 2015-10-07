@@ -7,5 +7,5 @@
 		"delay": "the delay between hover/focus and tooltip shown, in ms (Default: 0)",
 		"show_on": "[small medium large] To allow tooltip to be visible on a particular sreen size"
 	},
-	"category": "Callouts & Prompts"
+	"category": "callouts & prompts"
 }
