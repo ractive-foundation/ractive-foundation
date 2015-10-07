@@ -27,30 +27,4 @@ module.exports = function () {
 		function (componentName, useCase, callback) {
 			this.client.loadComponentWithUseCase(componentName, useCase, callback);
 	});
-
-	/*
-	this.Then(/^the element "([^"]*)" should contain "([^"]*)" that reads "([^"]*)"$/,
-		function (occurence, selector, text, callback) {
-
-			var tab = this.component.tabs + ' li:nth-child(' + occurence + ')',
-				element = tab + ' ' + selector;
-
-			this.client.waitForExist(element, this.defaultTimeout).then(function () {
-				return this.client.getText(element);
-			}.bind(this))
-			.then(function (elemText) {
-				try {
-					// If elem has nested tags, it will return array.
-					if (_.isArray(elemText)) {
-						this.assert.notEqual(_.indexOf(elemText, text), -1);
-					} else {
-						this.assert.equal(text, elemText);
-					}
-					callback();
-				} catch (e) {
-					callback(e);
-				}
-			}.bind(this));
-	});
-	*/
 };
