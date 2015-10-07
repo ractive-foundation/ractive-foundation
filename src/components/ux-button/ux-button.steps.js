@@ -2,6 +2,7 @@ module.exports = function () {
 
 	// Load standard world object to be 'this' in steps.
 	this.World = require('../../world').World;
+	require('../../support/steps').call(this);
 
 	// Semantic mappings onto css selectors etc.
 	var component = { container: '#childComponent' };
@@ -14,11 +15,6 @@ module.exports = function () {
 			tabindex: 'tabindex'
 		}
 	};
-
-	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
-		function (componentName, useCase, callback) {
-		this.client.loadComponentWithUseCase(componentName, useCase, callback);
-	});
 
 	this.Then(/^the element "([^"]*)" should be displayed$/, function (semanticName, callback) {
 
