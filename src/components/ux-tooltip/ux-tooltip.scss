@@ -1,17 +1,5 @@
-/*
-Supposed to use this but _functions.scss is currently not imported
-$small-screen: em-calc(768);
-$medium-screen: em-calc(1280);
-$large-screen: em-calc(1440); */
-
-$small-screen: 768px;
-$medium-screen: 1280px;
-$large-screen: 1440px;
-
-$screen: "only screen";
-$small: "only screen and (min-width: 0px) and (max-width: #{$small-screen})";
-$medium: "only screen and (min-width:#{$small-screen}) and (max-width: #{$medium-screen})";
-$large: "only screen and (min-width:#{$medium-screen})";
+@import "../../../node_modules/foundation-sites/scss/foundation/functions";
+@import "../../../node_modules/foundation-sites/scss/foundation/components/_global.scss";
 
 @mixin tooltipHover {
 	display: block;
@@ -23,11 +11,36 @@ $large: "only screen and (min-width:#{$medium-screen})";
 	}
 }
 
+@mixin tooltip($className, $size:$small-up) {
+	@media #{$size} {
+		&.#{$className} {
+			cursor: help;
+
+			*[role='tooltip'] {
+				display: block;
+				width: auto;
+				&:after {
+					content: "x";
+					position: absolute;
+					top: 0;
+				}
+			}
+		}
+	}
+}
+
 .ux-tooltip {
 	position: relative;
 	display: inline-block;
 
-	@media #{$small} {
+	@include tooltip('small', $small-only);
+	@include tooltip('medium', $medium-only);
+	@include tooltip('large', $large-only);
+	@include tooltip('xlarge', $xlarge-only);
+	@include tooltip('xxlarge', $xxlarge-only);
+
+	/*
+	@media #{$small-only} {
 		&.small {
 			cursor: help;
 
@@ -37,7 +50,7 @@ $large: "only screen and (min-width:#{$medium-screen})";
 		}
 	}
 
-	@media #{$medium} {
+	@media #{$medium-only} {
 		&.medium {
 			cursor: help;
 
@@ -47,7 +60,7 @@ $large: "only screen and (min-width:#{$medium-screen})";
 		}
 	}
 
-	@media #{$large} {
+	@media #{$large-only} {
 		&.large {
 			cursor: help;
 
@@ -56,4 +69,24 @@ $large: "only screen and (min-width:#{$medium-screen})";
 			}
 		}
 	}
+
+	@media #{$xlarge-only} {
+		&.xlarge {
+			cursor: help;
+
+			*[role='tooltip'] {
+				@include tooltipHover
+			}
+		}
+	}
+
+	@media #{$xxlarge-only} {
+		&.xxlarge {
+			cursor: help;
+
+			*[role='tooltip'] {
+				@include tooltipHover
+			}
+		}
+	}*/
 }

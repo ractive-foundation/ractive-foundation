@@ -7,6 +7,6 @@
 		"selectorName": "tooltip_demo",
 		"content": "This is a <strong>tooltip content</strong>.",
 		"delay": "0",
-		"show_on": "small medium large"
+		"show_on": "medium large"
 	}
 }
