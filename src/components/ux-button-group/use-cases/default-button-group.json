@@ -1,0 +1,22 @@
+{
+	"title": "Default - Button group",
+	"isDataModel": true,
+	"data": {
+		"text": "ux-button-group button",
+		"class":"",
+		"items": [
+			{
+				"href":"www.google.co.in",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"text":"Button 2"
+			},
+			{
+				"href":"#",
+				"text":"Button 3"
+			}
+		]
+	}
+}

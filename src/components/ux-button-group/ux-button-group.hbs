@@ -1,0 +1,9 @@
+<ul id="{{guid}}" class="button-group {{class}}">
+	{{#if isDataModel}}
+		{{#each items}}
+			<ux-button-groupitem datamodel="{{{.}}}" />
+		{{/each}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</ul>
