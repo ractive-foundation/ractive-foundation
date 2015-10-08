@@ -1,3 +1,7 @@
-<div class="ux-reveal">
-    TODO component contents here.
+<div class="ux-reveal {{#show}}show{{/show}}">
+	{{#if isDataModel}}
+		{{{content}}}
+	{{else}}
+    	{{ yield }}
+	{{/if}}
 </div>

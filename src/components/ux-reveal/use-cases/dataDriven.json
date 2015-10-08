@@ -2,6 +2,7 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
+		"url": "//",
 		"text": "ux-reveal button"
 	}
 }
