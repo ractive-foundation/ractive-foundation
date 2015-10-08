@@ -1,53 +1,67 @@
-<table class="ux-table {{.class}}">
-
+<table class="ux-table {{.class}}"
+       {{#if role}}role="{{role}}"{{/if}}
+        >
+    {{#if caption}}
+        <caption>{{{caption}}}</caption>
+    {{/if}}
     {{#if isDataModel}}
-
         {{#if header}}
             {{#with header}}
-                <thead {{#if class}}class="{{class}}"{{/if}}>
-                    <tr>
+                <ux-table-head cell="{{cell}}" class="{{class}}">
+                    <ux-table-row cell="{{cell}}">
                         {{#each cell}}
-                            <th {{#if class}}class="{{.class}}"{{/if}}>
-                                {{.label}}
-                            </th>
+                            <ux-table-cell
+                                    celltype="header"
+                                    scope="{{.scope}}"
+                                    colspan="{{.colspan}}"
+                                    rowspan="{{.rowspan}}"
+                                    class="{{.class}}">
+                                {{{.label}}}
+                                {{#if .sublabel}}
+                                    <span class="sublabel">{{{.sublabel}}}</span>
+                                {{/if .sublabel}}
+                            </ux-table-cell>
                         {{/each}}
-                    </tr>
-                </thead>
+                    </ux-table-row>
+                </ux-table-head>
             {{/with}}
         {{/if}}
-
         {{#if body}}
             {{#with body}}
-                <tbody {{#if class}}class="{{.class}}"{{/if}}>
+                <ux-table-body rows="{{rows}}">
                     {{#each rows}}
-                        <tr {{#if class}}class="{{.class}}"{{/if}}>
+                        <ux-table-row class="{{class}}" cell="{{cell}}">
                             {{#each cell}}
-                                <td {{#if class}}class="{{.class}}"{{/if}}>
-                                    {{.label}}
-                                </td>
+                                <ux-table-cell
+                                        scope="{{.scope}}"
+                                        colspan="{{.colspan}}"
+                                        rowspan="{{.rowspan}}"
+                                        class="{{.class}}">
+                                    {{{.label}}}
+                                </ux-table-cell>
                             {{/each}}
-                        </tr>
+                        </ux-table-row>
                     {{/each}}
-                </tbody>
+                </ux-table-body>
             {{/with}}
         {{/if}}
-
         {{#if footer}}
             {{#with footer}}
-                <tfoot {{#if class}}class="{{.class}}"{{/if}}>
-                    <tr>
+                <ux-table-foot class="{{class}}" cell="{{cell}}">
+                    <ux-table-row cell="{{cell}}">
                         {{#each cell}}
-                            <td {{#if class}}class="{{.class}}"{{/if}}>
-                                {{.label}}
-                            </td>
+                            <ux-table-cell class="{{.class}}">
+                                {{{.label}}}
+                                {{#if .sublabel}}
+                                    <span class="sublabel">{{{.sublabel}}}</span>
+                                {{/if .sublabel}}
+                            </ux-table-cell>
                         {{/each}}
-                    </tr>
-                </tfoot>
+                    </ux-table-row>
+                </ux-table-foot>
             {{/with}}
         {{/if}}
-
     {{else}}
         {{yield}}
     {{/if}}
-
 </table>

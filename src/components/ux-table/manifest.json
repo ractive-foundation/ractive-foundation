@@ -1,8 +1,8 @@
 {
-    "data" : {
-        "header": "The headers for each column",
-        "body": "The main bulk of rows + cells",
-        "footer": "The footers for each column"
-    },
-    "category": "content"
+	"category": "content",
+	"data" : {
+		"header": "Containing cells to display inside of a thead",
+		"body": "Containing rows and cells",
+		"footer": "Containing cells to display inside of a tfoot"
+	}
 }
