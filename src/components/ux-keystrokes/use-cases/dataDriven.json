@@ -2,6 +2,6 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"todo": "TODO wingComponent contents here."
+		"text": "Ctrl"
 	}
 }
