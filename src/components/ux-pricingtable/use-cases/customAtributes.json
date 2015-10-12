@@ -6,15 +6,9 @@
 		"price": "$99.9",
 		"description": "An awesome description",
 		"features": [
-			{
-				"title": "1 Database"
-			},
-			{
-				"title": "5GB Storage"
-			},
-			{
-				"title": "20 Users"
-			}
+			"1 Database",
+			"5GB Storage", 
+			"20 Users"
 		],
 		"status": "",
 		"href": "#"
