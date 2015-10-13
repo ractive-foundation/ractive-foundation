@@ -1,5 +1,5 @@
 {
-	"title": "data-driven example - sticky top bar",
+	"title": "sticky top bar",
 	"isDataModel": true,
 	"data": {
 		"class": "contain-to-grid",
