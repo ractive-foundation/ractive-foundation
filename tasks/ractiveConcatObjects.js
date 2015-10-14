@@ -5,7 +5,7 @@ var through = require('through2'),
 
 var PluginError = gulputil.PluginError;
 
-const PLUGIN_NAME = 'gulp-ractive-concat-components';
+const PLUGIN_NAME = 'gulp-ractive-concat-objects';
 
 function gulpRactive(options) {
     var stream = through.obj(function (file, enc, callback) {
@@ -14,7 +14,7 @@ function gulpRactive(options) {
             return callback();
         }
 
-        var componentName = file.history[0].split(path.sep).slice(-2)[0];
+        var objectName = file.history[0].split(path.sep).slice(-2)[0];
 
         var filecontents = '';
 
@@ -26,7 +26,7 @@ function gulpRactive(options) {
 				prefix = options.prefix + '.';
 			}
 
-			filecontents = options.prefix + '[\'' + componentName + '\'] = ' + filecontents;
+			filecontents = options.prefix + '[\'' + objectName + '\'] = ' + filecontents;
 
             file.contents = new Buffer(filecontents);
             this.push(file);
