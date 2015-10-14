@@ -6,7 +6,7 @@ function(node, options) {
 		config = {
 			tagElement: options.tagElement || 'span',
 			className: options.className || 'tooltip',
-			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000) + 1),
+			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000000000000000) + 1),
 			content: options.content || '',
 			delay: options.delay || 0,
 			show_on: options.show_on || 'small medium large'
