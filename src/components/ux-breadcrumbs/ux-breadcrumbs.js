@@ -1,3 +1,4 @@
 Ractive.extend({
-	template: Ractive.defaults.templates['ux-breadcrumbs']
+	template: Ractive.defaults.templates['ux-breadcrumbs'],
+	isolated: true
 });

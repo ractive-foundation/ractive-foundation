@@ -1,5 +1,6 @@
 {
-	"title": "Data driven use case",
+	"title": "List",
+	"description": "Breadcrumbs with <ul> elements",
 	"isDataModel": true,
 	"data": {
 		"items": [

@@ -1,6 +1,7 @@
 {
 	"data": {
-		"items": "A list of ux-breadcrumb items, each having a href and content with optional bool"
+		"isNav": "true|false turn on nav style breadcrumbs",
+		"items": "A list of ux-breadcrumbr- items, each having a href and content with optional bools available & current"
 	},
 	"events": {
 		"onclick": "Event fired when a breadcrumb is clicked"
