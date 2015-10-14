@@ -14,30 +14,32 @@ function(node, options) {
 
 	enterSection = function() {
 		var tooltip_exists = document.getElementById(config.selectorName);
-		if (!tooltip_exists && config.content.length) {
-			node.setAttribute('aria-haspopup', 'true');
-			node.setAttribute('aria-describedby', config.selectorName);
-			node.className = node.className + ' ux-tooltip ' + config.show_on;
-
-			tooltip = document.createElement(config.tagElement);
-			tooltip.id = config.selectorName;
-			tooltip.className = config.className;
-			tooltip.setAttribute('role','tooltip');
-			tooltip.innerHTML = config.content;
-
-			if (config.delay) {
-				// for screen-reader accessibility purposes
-				tooltip.setAttribute('style', 'left:-100000px;');
-			}
-
-			node.appendChild(tooltip);
-
-			tooltip.addEventListener('click', leaveSection);
-
-			setTimeout (function() {
-				tooltip.setAttribute('style', 'left:inherit;');
-			}, config.delay);
+		if (tooltip_exists || !config.content.length) {
+			return;
 		}
+
+		node.setAttribute('aria-haspopup', 'true');
+		node.setAttribute('aria-describedby', config.selectorName);
+		node.className = node.className + ' ux-tooltip ' + config.show_on;
+
+		tooltip = document.createElement(config.tagElement);
+		tooltip.id = config.selectorName;
+		tooltip.className = config.className;
+		tooltip.setAttribute('role','tooltip');
+		tooltip.innerHTML = config.content;
+
+		if (config.delay) {
+			// for screen-reader accessibility purposes
+			tooltip.setAttribute('style', 'left:-100000px;');
+		}
+
+		node.appendChild(tooltip);
+
+		tooltip.addEventListener('click', leaveSection);
+
+		setTimeout (function() {
+			tooltip.setAttribute('style', 'left:inherit;');
+		}, config.delay);
 	};
 
 	leaveSection = function () {
