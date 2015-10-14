@@ -10,6 +10,8 @@ module.exports = function () {
 
 		this.component = {};
 		this.component.container = '#childComponent ';
+		this.component.link = this.component.container + ' span';
+		this.component.tooltip = this.component.link + ' .tooltip';
 
 		callback();
 
