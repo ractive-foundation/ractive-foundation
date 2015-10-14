@@ -153,6 +153,18 @@ gulp.task('ractive-build-components', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('ractive-build-decorators', function () {
+	return gulp.src([
+			'./src/decorators/**/*.js',
+			'!./src/decorators/**/*.steps.js'
+		])
+		.pipe(ractiveConcatComponents({
+			'prefix': 'Ractive.decorators'
+		}))
+		.pipe(plugins.concat('decorators.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
 gulp.task('build-documentation', function () {
 
 	var headerHtml = fs.readFileSync('./src/header.html');
@@ -196,6 +208,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
+		'./public/js/decorators.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -223,6 +236,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
+		'ractive-build-decorators',
 		'ractive-build-components',
 		'build-documentation'
 	], [

@@ -30,11 +30,9 @@ Ractive.extend({
 					component.set('active', false);
 
 				}
-
 			});
 
 		});
 
 	}
-
 });
