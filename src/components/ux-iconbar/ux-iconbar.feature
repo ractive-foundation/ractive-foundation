@@ -12,4 +12,4 @@ Feature: ux-iconbar test suite
 	Then there will be an element for "iconbar"
 	And there are 5 "item" elements displayed
 	And the element "fourthItem" will have the class "disabled"
-	And there will be NO element for "firstItemLabel"
+	And there will be NO element for "secondItemLabel"

@@ -7,12 +7,12 @@
 			{
 				"href": "/",
 				"src": "images/fi-home.svg",
-				"labels": false,
 				"label": "Home"
 			},
 			{
 				"href": "/path/to/blah",
 				"src": "images/fi-bookmark.svg",
+				"labels": false,
 				"label": "Bookmark"
 			},
 			{
