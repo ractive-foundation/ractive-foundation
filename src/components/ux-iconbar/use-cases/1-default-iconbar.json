@@ -16,6 +16,7 @@
 			},
 			{
 				"src": "images/fi-info.svg",
+				"labels": false,
 				"label": "Info",
 				"class": "disabled"
 			},
