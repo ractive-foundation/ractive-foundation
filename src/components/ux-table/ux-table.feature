@@ -1,8 +1,7 @@
 Feature: ux-table test suite
 
-	Scenario Outline: ux-table with various data
-		Given I have loaded component "ux-table" with use case "ux-table/use-cases/<mock>.json"
-		Then there will be an element for "container"
+    Scenario Outline: Loading ux-table
+		Given I have loaded component "ux-table" with use case "<mock>"
 		And there will be an element for "table"
         And there are "<columns>" "column" elements displayed
         And there are "<rows>" "row" elements displayed
