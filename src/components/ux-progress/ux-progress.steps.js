@@ -11,17 +11,4 @@ module.exports = function () {
 		callback();
 	});
 
-	this.Then(/^the element "([^"]*)" should be displayed$/, function (semanticName, callback) {
-
-		var self = this;
-		this.client.isExisting(this.component[semanticName]).then(function (isExisting) {
-			try {
-				self.assert(isExisting);
-				callback();
-			} catch (e) {
-				callback.fail('Assertion failed, element not found');
-			}
-		}).catch(callback);
-	});
-
 };
