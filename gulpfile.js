@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
+	ractiveConcatObjects = require('./tasks/ractiveConcatObjects'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
@@ -159,10 +159,22 @@ gulp.task('ractive-build-components', function () {
 			'./src/components/**/*.js',
 			'!./src/components/**/*.steps.js'
 		])
-		.pipe(ractiveConcatComponents({
+		.pipe(ractiveConcatObjects({
 			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('ractive-build-decorators', function () {
+	return gulp.src([
+		'./src/decorators/**/*.js',
+		'!./src/decorators/**/*.steps.js'
+	])
+		.pipe(ractiveConcatObjects({
+			'prefix': 'Ractive.decorators'
+		}))
+		.pipe(plugins.concat('decorators.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -213,6 +225,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
+		'./public/js/decorators.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -241,6 +254,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-test-templates',
+		'ractive-build-decorators',
 		'ractive-build-components',
 		'build-documentation'
 	], [

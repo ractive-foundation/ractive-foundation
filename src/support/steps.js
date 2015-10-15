@@ -199,4 +199,14 @@ module.exports = function () {
 		});
 	});
 
+	this.When(/^I hover "([^"]*)"$/, function (element, callback) {
+		var selector = this.component[element];
+
+		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
+			return this.client.moveToObject(selector, 0, 0);
+		}.bind(this)).then(function () {
+			callback();
+		}).catch(callback);
+	});
+
 };
