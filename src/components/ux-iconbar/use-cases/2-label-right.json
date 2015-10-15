@@ -7,6 +7,7 @@
 			{
 				"href": "/",
 				"src": "images/fi-home.svg",
+				"labels": false,
 				"label": "Home"
 			},
 			{
@@ -16,12 +17,12 @@
 			},
 			{
 				"src": "images/fi-info.svg",
-				"label": "Info",
-				"class": "disabled"
+				"label": "Info"
 			},
 			{
 				"src": "images/fi-mail.svg",
-				"label": "Mail"
+				"label": "Mail",
+				"class": "disabled"
 			},
 			{
 				"src": "images/fi-like.svg",
