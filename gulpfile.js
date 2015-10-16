@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
+	ractiveConcatObjects = require('./tasks/ractiveConcatObjects'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
@@ -133,11 +133,24 @@ gulp.task('build-sass', function () {
 });
 
 gulp.task('ractive-build-templates', function () {
-	return gulp.src('./src/components/**/*.hbs')
+	return gulp.src([
+			'./src/components/**/*.hbs',
+			'!./src/components/**/use-cases/*.hbs'
+		])
 		.pipe(ractiveParse({
 			'prefix': 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('ractive-build-test-templates', function () {
+	return gulp.src('./src/components/**/use-cases/*.hbs')
+		.pipe(ractiveParse({
+			'test': true,
+			'prefix': 'Ractive.defaults.templates'
+		}))
+		.pipe(plugins.concat('templates-tests.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -146,10 +159,22 @@ gulp.task('ractive-build-components', function () {
 			'./src/components/**/*.js',
 			'!./src/components/**/*.steps.js'
 		])
-		.pipe(ractiveConcatComponents({
+		.pipe(ractiveConcatObjects({
 			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('ractive-build-decorators', function () {
+	return gulp.src([
+		'./src/decorators/**/*.js',
+		'!./src/decorators/**/*.steps.js'
+	])
+		.pipe(ractiveConcatObjects({
+			'prefix': 'Ractive.decorators'
+		}))
+		.pipe(plugins.concat('decorators.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -168,7 +193,11 @@ gulp.task('build-documentation', function () {
 		.pipe(renderDocumentation({
 			componentsDir: './src/components/',
 			docSrcPath: './src/component-page.html',
-			indexSrcPath: './src/components.html'
+			indexSrcPath: './src/components.html',
+			partials: [
+				'./src/component.html',
+				'./src/component-use-case.html'
+			]
 		}))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
@@ -196,6 +225,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
+		'./public/js/decorators.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -223,6 +253,8 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
+		'ractive-build-test-templates',
+		'ractive-build-decorators',
 		'ractive-build-components',
 		'build-documentation'
 	], [
@@ -294,7 +326,7 @@ gulp.task('watch', function () {
 		'src/*.html',
 		'src/pages/*.html',
 		'src/blank-pages/*.html',
-		'src/**.*.json',
+		'src/**/*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',

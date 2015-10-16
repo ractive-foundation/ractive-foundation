@@ -1,0 +1,16 @@
+<div class="ractivef-use-case" id="{{useCaseUid}}">
+	{{#if template}}
+		{{> template}}
+	{{else}}
+		{{{inline}}}
+	{{/if}}
+</div>
+<br/>
+<pre>
+	<code>{{{display}}}</code>
+</pre>
+{{#if !template}}
+<pre>
+	<code>{{{data}}}</code>
+</pre>
+{{/if}}

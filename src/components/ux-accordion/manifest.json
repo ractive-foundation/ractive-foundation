@@ -3,6 +3,7 @@
 		"items": "Array of items - see ux-accordionitem."
 	},
 	"events": {
+		"changeAccordion": "Event thrown when the accordion state is changed"
 	},
 	"category": "content"
 }
