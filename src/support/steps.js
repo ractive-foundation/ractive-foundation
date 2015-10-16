@@ -174,7 +174,7 @@ module.exports = function () {
 
 	});
 
-	this.When(/^I click "([^"]*)"$/, function (element, callback) {
+	this.When(/^I click the "([^"]*)" element$/, function (element, callback) {
 		this.client.waitForExist(this.component[element], this.defaultTimeout).then(function () {
 			return this.client.click(this.component[element]);
 		}.bind(this)).then(function () {
@@ -199,7 +199,7 @@ module.exports = function () {
 		});
 	});
 
-	this.When(/^I hover "([^"]*)"$/, function (element, callback) {
+	this.When(/^I hover the "([^"]*)" element$/, function (element, callback) {
 		var selector = this.component[element];
 
 		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
