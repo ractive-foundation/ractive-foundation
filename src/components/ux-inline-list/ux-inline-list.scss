@@ -1,0 +1,5 @@
+@import "../../../node_modules/foundation-sites/scss/foundation/components/_inline-lists.scss";
+
+.custom-list {
+	@include inline-list;
+}
