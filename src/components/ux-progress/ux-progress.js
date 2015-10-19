@@ -2,8 +2,8 @@ Ractive.extend({
 	template: Ractive.defaults.templates['ux-progress'],
 	isolated: true,
 	computed: {
-		meterStyle: function () {
-			return 'width: ' + (this.get('value') || '0') + '%';
+		meters: function () {
+			return this.get('items') || { class: '', value: this.get('value')};
 		}
 	}
 });
