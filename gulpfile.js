@@ -166,15 +166,15 @@ gulp.task('ractive-build-components', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('ractive-build-decorators', function () {
+gulp.task('ractive-build-plugins', function () {
 	return gulp.src([
-		'./src/decorators/**/*.js',
-		'!./src/decorators/**/*.steps.js'
+		'./src/plugins/**/*.js',
+		'!./src/plugins/**/*.steps.js'
 	])
 		.pipe(ractiveConcatObjects({
-			'prefix': 'Ractive.decorators'
+			'prefix': 'Ractive'
 		}))
-		.pipe(plugins.concat('decorators.js'))
+		.pipe(plugins.concat('plugins.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -225,7 +225,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
-		'./public/js/decorators.js',
+		'./public/js/plugins.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -254,7 +254,7 @@ gulp.task('build', ['clean', 'jshint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-test-templates',
-		'ractive-build-decorators',
+		'ractive-build-plugins',
 		'ractive-build-components',
 		'build-documentation'
 	], [
