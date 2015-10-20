@@ -46,7 +46,6 @@ function gulpRactive(options) {
 				prefix = options.prefix;
 				if (pluginType) {
 					prefix = prefix + '.' + pluginType;
-					console.log('---------------------prefix=' + prefix);
 				}
 			}
 
