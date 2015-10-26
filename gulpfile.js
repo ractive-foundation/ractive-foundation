@@ -101,7 +101,8 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('copy-use-cases', function () {
 	return gulp.src([
-		'./src/components/**/use-cases/*.json'
+		'./src/components/**/use-cases/*.json',
+		'./src/plugins/**/use-cases/*.json',
 	])
 		.pipe(plugins.rename(function (path) {
 			// Get rid of the extra "use-cases" folder for the destination.
@@ -145,7 +146,10 @@ gulp.task('ractive-build-templates', function () {
 });
 
 gulp.task('ractive-build-test-templates', function () {
-	return gulp.src('./src/components/**/use-cases/*.hbs')
+	return gulp.src([
+			'./src/components/**/use-cases/*.hbs',
+			'./src/plugins/**/use-cases/*.hbs'
+		])
 		.pipe(ractiveParse({
 			'test': true,
 			'prefix': 'Ractive.defaults.templates'
@@ -375,18 +379,34 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
 		}
 	}
+	if (args.plugin) {
+
+		var pluginName = args.plugin || '';
+
+		var paths = [
+			'./src/plugins/%s/*.feature'.replace('%s', pluginName)
+		];
+
+		globFeature = glob(paths);
+
+		if (!globFeature.length) {
+			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
+		}
+	}
 
 	if (!globFeature.length) {
 
 		var paths = [
-			'./src/components/**/*.feature'
+			'./src/components/**/*.feature',
+			'./src/plugins/**/*.feature'
 		];
 
 		globFeature = glob(paths);
 	}
 
 	var globStep = [
-		'./src/components/**/*.steps.js'
+		'./src/components/**/*.steps.js',
+		'./src/plugins/**/*.steps.js'
 	];
 
 	selServer.init().then(function () {
