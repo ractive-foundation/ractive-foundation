@@ -4,5 +4,8 @@
 	"preset": "crockford",
 	"validateIndentation": "\t",
 	"disallowDanglingUnderscores": false,
-	"disallowSpacesInsideArrayBrackets": false
+	"disallowSpacesInsideArrayBrackets": false,
+	"requireVarDeclFirst": false,
+	"requireMultipleVarDecl": false,
+	"excludeFiles": ["./src/ractivef-umd.js"]
 }
