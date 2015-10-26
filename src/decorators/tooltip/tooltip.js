@@ -1,7 +1,7 @@
 /*jshint unused:false */
 /*jshint -W025 */
 
-function(node, options) {
+function tooltip(node, options) {
 	var tooltip, handlers, eventName, enterSection, leaveSection,
 		config = {
 			tagElement: options.tagElement || 'span',
@@ -12,7 +12,7 @@ function(node, options) {
 			show_on: options.show_on || 'small medium large'
 		};
 
-	enterSection = function() {
+	enterSection = function () {
 		var tooltip_exists = document.getElementById(config.selectorName);
 		if (tooltip_exists || !config.content.length) {
 			return;
@@ -25,7 +25,7 @@ function(node, options) {
 		tooltip = document.createElement(config.tagElement);
 		tooltip.id = config.selectorName;
 		tooltip.className = config.className;
-		tooltip.setAttribute('role','tooltip');
+		tooltip.setAttribute('role', 'tooltip');
 		tooltip.innerHTML = config.content;
 
 		if (config.delay) {
@@ -37,14 +37,14 @@ function(node, options) {
 
 		tooltip.addEventListener('click', leaveSection);
 
-		setTimeout (function() {
+		setTimeout (function () {
 			tooltip.setAttribute('style', 'left:inherit;');
 		}, config.delay);
 	};
 
 	leaveSection = function () {
 		if (tooltip && tooltip.parentNode) {
-			tooltip.parentNode.className = tooltip.parentNode.className.replace(' ux-tooltip ' + config.show_on,'');
+			tooltip.parentNode.className = tooltip.parentNode.className.replace(' ux-tooltip ' + config.show_on, '');
 			tooltip.parentNode.removeChild(tooltip);
 		}
 	};
