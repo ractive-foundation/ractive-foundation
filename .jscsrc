@@ -1,0 +1,7 @@
+{
+	// jscs Default Configuration File (as on jscs website)
+	// See http://jscs.info/ for more details
+	"preset": "crockford",
+	"validateIndentation": "\t",
+	"disallowDanglingUnderscores": false
+}
