@@ -12,8 +12,8 @@ Ractive.extend({
 
 	oninit: function () {
 
-		var anchorComponent = this.findComponent('ux-anchor');
-		var contentComponent = this.findComponent('ux-content');
+		var anchorComponent = this.findComponent('ux-anchor'),
+			contentComponent = this.findComponent('ux-content');
 
 		// Link the anchor to the content by the content's id for nice html.
 		anchorComponent.set({
