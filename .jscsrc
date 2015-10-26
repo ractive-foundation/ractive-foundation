@@ -3,5 +3,6 @@
 	// See http://jscs.info/ for more details
 	"preset": "crockford",
 	"validateIndentation": "\t",
-	"disallowDanglingUnderscores": false
+	"disallowDanglingUnderscores": false,
+	"disallowSpacesInsideArrayBrackets": false
 }
