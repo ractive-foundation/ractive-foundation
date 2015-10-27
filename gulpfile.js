@@ -250,7 +250,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean', 'jshint'], function (callback) {
+gulp.task('build', ['clean', 'lint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -430,7 +430,7 @@ gulp.task('a11y', function (callback) {
 	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
-gulp.task('jshint', function (callback) {
+gulp.task('lint', function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
@@ -441,7 +441,7 @@ gulp.task('jshint', function (callback) {
 
 gulp.task('default', function () {
 	var self = this;
-	runSequence('version-check', 'jshint', 'build',  'connect', 'watch', function (err) {
+	runSequence('version-check', 'lint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
 });
