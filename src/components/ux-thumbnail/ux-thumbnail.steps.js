@@ -16,6 +16,6 @@ module.exports = function () {
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
 			this.client.loadComponentWithUseCase(componentName, useCase, callback);
-		});
-
+		}
+	);
 };
