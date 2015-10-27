@@ -1,7 +1,7 @@
 /*jshint unused:false */
 /*jshint -W025 */
 
-function tooltip(node, options) {
+function(node, options) {
 	var tooltip, handlers, eventName, enterSection, leaveSection,
 		config = {
 			tagElement: options.tagElement || 'span',
