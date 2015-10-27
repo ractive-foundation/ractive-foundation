@@ -169,8 +169,8 @@ gulp.task('ractive-build-components', function () {
 
 gulp.task('ractive-build-decorators', function () {
 	return gulp.src([
-		'./src/decorators/**/*.js',
-		'!./src/decorators/**/*.steps.js'
+			'./src/decorators/**/*.js',
+			'!./src/decorators/**/*.steps.js'
 		])
 		.pipe(ractiveConcatObjects({
 			'prefix': 'Ractive.decorators'
