@@ -44,7 +44,7 @@ RactiveF = {
 			this.push(eventName, this.event.name);
 		}
 
-	},
+	}
 
 };
 

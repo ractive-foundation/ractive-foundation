@@ -1,0 +1,11 @@
+{
+	// jscs Default Configuration File (as on jscs website)
+	// See http://jscs.info/ for more details
+	"preset": "crockford",
+	"validateIndentation": "\t",
+	"disallowDanglingUnderscores": false,
+	"disallowSpacesInsideArrayBrackets": false,
+	"requireVarDeclFirst": false,
+	"requireMultipleVarDecl": false,
+	"excludeFiles": ["./src/ractivef-umd.js", "./src/decorators/tooltip/tooltip.js"]
+}

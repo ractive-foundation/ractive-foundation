@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	glob = require('simple-glob'),
 	exec = require('child_process').exec,
 	gutil = require('gulp-util'),
+	jscs = require('gulp-jscs'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
@@ -22,13 +23,13 @@ var gulp = require('gulp'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
 	jshintFailReporter = require('./tasks/jshintFailReporter'),
-	rfA11y = require('./tasks/rfA11y');
+	rfA11y = require('./tasks/rfA11y'),
 
-var pkg = require('./package.json');
+	pkg = require('./package.json');
 
-const DEV_SERVER_PORT = 9080;
-const TEST_SERVER_PORT = 8088;
-const A11Y_SERVER_PORT = 8089;
+const DEV_SERVER_PORT = 9080,
+	TEST_SERVER_PORT = 8088,
+	A11Y_SERVER_PORT = 8089;
 
 gulp.task('connect', function () {
 	plugins.connect.server({
@@ -168,9 +169,9 @@ gulp.task('ractive-build-components', function () {
 
 gulp.task('ractive-build-decorators', function () {
 	return gulp.src([
-		'./src/decorators/**/*.js',
-		'!./src/decorators/**/*.steps.js'
-	])
+			'./src/decorators/**/*.js',
+			'!./src/decorators/**/*.steps.js'
+		])
 		.pipe(ractiveConcatObjects({
 			'prefix': 'Ractive.decorators'
 		}))
@@ -180,8 +181,8 @@ gulp.task('ractive-build-decorators', function () {
 
 gulp.task('build-documentation', function () {
 
-	var headerHtml = fs.readFileSync('./src/header.html');
-	var footerHtml = fs.readFileSync('./src/footer.html');
+	var headerHtml = fs.readFileSync('./src/header.html'),
+		footerHtml = fs.readFileSync('./src/footer.html');
 
 	return mergeStream(
 
@@ -249,7 +250,7 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean', 'jshint'], function (callback) {
+gulp.task('build', ['clean', 'lint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
@@ -306,7 +307,7 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 });
 
 gulp.task('version-check', function (callback) {
-	exec('node ./bin/versionCheck.js', function(err, stdout) {
+	exec('node ./bin/versionCheck.js', function (err, stdout) {
 		if (stdout) {
 			gutil.log(gutil.colors.red(stdout));
 		}
@@ -357,15 +358,15 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 // See 'test' for the full build and test task.
 gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
-	var selServer = seleniumServer();
-
-	var globFeature = [];
+	var selServer = seleniumServer(),
+		globFeature = [],
+		globStep = [],
+		componentName  = args.component || '',
+		paths = [];
 
 	if (args.component) {
 
-		var componentName = args.component || '';
-
-		var paths = [
+		paths = [
 			'./src/components/%s/*.feature'.replace('%s', componentName)
 		];
 
@@ -378,14 +379,14 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 
 	if (!globFeature.length) {
 
-		var paths = [
+		paths = [
 			'./src/components/**/*.feature'
 		];
 
 		globFeature = glob(paths);
 	}
 
-	var globStep = [
+	globStep = [
 		'./src/components/**/*.steps.js'
 	];
 
@@ -429,16 +430,18 @@ gulp.task('a11y', function (callback) {
 	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
-gulp.task('jshint', function (callback) {
+gulp.task('lint', function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
+		.pipe(jscs())
+		.pipe(jscs.reporter())
 		.pipe(jshintFailReporter());
 });
 
 gulp.task('default', function () {
 	var self = this;
-	runSequence('version-check', 'jshint', 'build',  'connect', 'watch', function (err) {
+	runSequence('version-check', 'lint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
 });

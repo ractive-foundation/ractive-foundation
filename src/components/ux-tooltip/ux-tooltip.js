@@ -1,3 +1,3 @@
 Ractive.extend({
-	template: Ractive.defaults.templates['ux-tooltip'],
+	template: Ractive.defaults.templates['ux-tooltip']
 });
