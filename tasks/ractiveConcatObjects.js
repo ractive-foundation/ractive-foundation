@@ -1,8 +1,10 @@
-var through = require('through2'),
-	gulputil = require('gulp-util'),
-	path = require('path');
+/* global require, module, Buffer */
 
-var PluginError = gulputil.PluginError;
+var through  = require('through2'),
+	gulputil = require('gulp-util'),
+	Ractive  = require('ractive'),
+	path     = require('path'),
+	PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-ractive-concat-objects';
 

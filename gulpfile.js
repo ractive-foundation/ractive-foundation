@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
-	_ = require('lodash-compat'),
+	path = require('path'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -17,7 +17,6 @@ var gulp = require('gulp'),
 	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
-	ractiveConcatObjects = require('./tasks/ractiveConcatObjects'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
@@ -138,7 +137,8 @@ gulp.task('ractive-build-templates', function () {
 			'!./src/components/**/use-cases/*.hbs'
 		])
 		.pipe(ractiveParse({
-			'prefix': 'Ractive.defaults.templates'
+			template: true,
+			prefix: 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -147,8 +147,12 @@ gulp.task('ractive-build-templates', function () {
 gulp.task('ractive-build-test-templates', function () {
 	return gulp.src('./src/components/**/use-cases/*.hbs')
 		.pipe(ractiveParse({
-			'test': true,
-			'prefix': 'Ractive.defaults.templates'
+			objectName: function(file) {
+				var parts = file.history[0].split(path.sep).slice(-3);
+				return parts[0] + '-' + parts[2].replace(/[.]hbs$/, '');
+			},
+			template: true,
+			prefix: 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates-tests.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -159,9 +163,7 @@ gulp.task('ractive-build-components', function () {
 			'./src/components/**/*.js',
 			'!./src/components/**/*.steps.js'
 		])
-		.pipe(ractiveConcatObjects({
-			'prefix': 'Ractive.components'
-		}))
+		.pipe(ractiveParse())
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
@@ -171,7 +173,7 @@ gulp.task('ractive-build-decorators', function () {
 		'./src/decorators/**/*.js',
 		'!./src/decorators/**/*.steps.js'
 	])
-		.pipe(ractiveConcatObjects({
+		.pipe(ractiveParse({
 			'prefix': 'Ractive.decorators'
 		}))
 		.pipe(plugins.concat('decorators.js'))
