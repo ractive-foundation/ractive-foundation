@@ -15,10 +15,10 @@ module.exports = function () {
 		callback();
 	});
 
-/*
- * This is here because the similar assertion inside steps.js does not accept the numElements value provided by the
- * 'Example' structure in ux-table.feature.
- */
+	/*
+	 * This is here because the similar assertion inside steps.js does not accept the numElements value provided by the
+	 * 'Example' structure in ux-table.feature.
+	 */
 	this.Given(/^there are "([^"]*)" "([^"]*)" elements displayed$/, function (numElements, semanticName, callback) {
       	this.client.waitForExist(this.component[semanticName], this.defaultTimeout).then(function () {
 			return this.client.elements(this.component[semanticName]);
