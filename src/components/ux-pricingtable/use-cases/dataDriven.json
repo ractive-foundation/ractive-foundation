@@ -2,6 +2,7 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
+		"class": "table",
 		"text": "ux-pricingtable",
 		"title": "Standard",
 		"price": "$99.9",

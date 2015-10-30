@@ -6,6 +6,7 @@
 		{{#features}}
 			<li class="bullet-item">{{this}}</li>
 		{{/features}}
+		{{yield}}
 		<li class="cta-button">
 			{{#if (status == 'comingsoon')}}
 			<a class="button disabled" href="#" on-tap="buyNow">Coming Soon</a>
