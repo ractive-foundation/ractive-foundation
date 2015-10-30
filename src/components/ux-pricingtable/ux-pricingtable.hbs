@@ -1,19 +1,23 @@
 <div class="ux-pricingtable">
+
 	<ul class="pricing-table {{class}}">
+	{{#if isDataModel}}
 		<li class="title">{{title}}</li>
 		<li class="price">{{price}}</li>
 		<li class="description">{{description}}</li>
 		{{#features}}
 			<li class="bullet-item">{{this}}</li>
 		{{/features}}
+	{{else}}
 		{{yield}}
-		<li class="cta-button">
-			{{#if (status == 'comingsoon')}}
-			<a class="button disabled" href="#" on-tap="buyNow">Coming Soon</a>
-			{{/if}}
-			{{#if !status}}
-			<a class="button" href="{{href}}" on-tap="buyNow">Buy Now</a>
-			{{/if}}
-		</li>
+	{{/if}}
+	<li class="cta-button">
+		{{#if (status == 'comingsoon')}}
+		<a class="button disabled" href="#" on-tap="buyNow">Coming Soon</a>
+		{{/if}}
+		{{#if !status}}
+		<a class="button" href="{{href}}" on-tap="buyNow">Buy Now</a>
+		{{/if}}
+	</li>
 	</ul>
 </div>
