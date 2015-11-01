@@ -1,0 +1,12 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"tagElement": "",
+		"className": "tooltip",
+		"selectorName": "tooltip_demo",
+		"content": "This is a <strong>tooltip content</strong>.",
+		"delay": "0",
+		"show_on": "small medium large xlarge xxlarge"
+	}
+}

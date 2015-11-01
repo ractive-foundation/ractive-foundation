@@ -33,6 +33,7 @@ Ractive.extend({
 
 			});
 
+			return false;
 		});
 
 	}
