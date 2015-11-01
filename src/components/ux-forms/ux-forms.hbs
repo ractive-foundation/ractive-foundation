@@ -1,0 +1,22 @@
+<form>
+    {{#if isDataModel}}
+        {{#each items}}
+            {{#if type == "text"}}
+                <ux-row>
+                    <ux-col class="{{class}}">
+                            <ux-text-box datamodel="{{{.}}}"></ux-text-box>
+                    </ux-col>
+                </ux-row>
+           {{/if}}
+           {{#if type == "radio"}}
+                <ux-row>
+                    <ux-col class="{{class}}">
+                        <ux-radio datamodel="{{{.}}}"></ux-radio>
+                    </ux-col>
+                </ux-row>
+            {{/if}}
+        {{/each}}
+   {{else}}
+          {{>content}}
+   {{/if}}
+</form>
