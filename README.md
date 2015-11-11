@@ -162,26 +162,16 @@ See https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rul
 
 ### Prerequisities
 
-You'll need to make sure you have Cordova installed, and the SDKs for each platform you wish to target.
-
-`npm install -g cordova`
+You need the SDK installed for each platform you wish to target.
 
 ### Building the App
 
-To create a Cordova app within your project.
+To create a Cordova app within your project:
+
+`gulp cordova-build --android`
+
 This will also install the Android platform if the Android SDK is installed on your machine.
-
-`gulp cordova-build`
-
 The cordova project will be saved in the `/.cordova` directory.
-
-Within this folder, you can add other platforms, build and then run, for example:
-
-```
-cordova platform add ios
-cordova build ios
-cordova run ios
-```
 
 ### Run the App
 

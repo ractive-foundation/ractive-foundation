@@ -16,6 +16,7 @@ var gulp = require('gulp'),
     cordovaAuthor = require('gulp-cordova-author'),
     cordovaVersion = require('gulp-cordova-version'),
     cordovaAndroid = require('gulp-cordova-build-android'),
+    cordovaIos = require('gulp-cordova-build-ios'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -432,7 +433,7 @@ gulp.task('cordova-clean', function (callback) {
 	], callback);
 });
 
-gulp.task('cordova-build', ['cordova-clean'], function () {
+gulp.task('cordova-create', ['cordova-clean'], function () {
 	var options = {
 		dir: '.cordova',
 		id: 'com.ractiveFoundationDemo.sample',
@@ -443,9 +444,23 @@ gulp.task('cordova-build', ['cordova-clean'], function () {
         .pipe(cordovaCreate(options))
         .pipe(cordovaAuthor('Ractive Foundation Team', ''))
         .pipe(cordovaDescription('Ractive Foundation Demo'))
-        .pipe(cordovaVersion(pkg.version))
-        .pipe(cordovaAndroid())
-        .pipe(gulp.dest('apk'));
+        .pipe(cordovaVersion(pkg.version));
+});
+
+gulp.task('cordova-build', ['cordova-create'], function (callback) {
+	if (args.ios) {
+		return gulp.src('.cordova')
+			.pipe(cordovaIos(true));
+	} else if (args.android) {
+		return gulp.src('.cordova')
+			.pipe(cordovaAndroid(true))
+			.pipe(gulp.dest('apk'));
+	} else {
+		return gulp.src('.cordova')
+			.pipe(cordovaIos(true))
+			.pipe(cordovaAndroid(true))
+			.pipe(gulp.dest('apk'));
+	}
 });
 
 gulp.task('cordova-run', function (callback) {
