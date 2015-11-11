@@ -156,3 +156,36 @@ See https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rul
 
 [17:59:56] 'a11y-only' errored after 1.37 s One or more a11y tests failed, see log.
 ```
+
+
+## Run on Device
+
+### Prerequisities
+
+You'll need to make sure you have Cordova installed, and the SDKs for each platform you wish to target.
+
+`npm install -g cordova`
+
+### Building the App
+
+To create a Cordova app within your project.
+This will also install the Android platform if the Android SDK is installed on your machine.
+
+`gulp cordova-build`
+
+The cordova project will be saved in the `/.cordova` directory.
+
+Within this folder, you can add other platforms, build and then run, for example:
+
+```
+cordova platform add ios
+cordova build ios
+cordova run ios
+```
+
+### Run the App
+
+To then run:
+
+`gulp cordova-run --android`
+

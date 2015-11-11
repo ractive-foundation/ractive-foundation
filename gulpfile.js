@@ -11,6 +11,12 @@ var gulp = require('gulp'),
 	nodePath = require('path'),
 	_ = require('lodash-compat'),
 
+    cordovaCreate = require('gulp-cordova-create'),
+    cordovaDescription = require('gulp-cordova-description'),
+    cordovaAuthor = require('gulp-cordova-author'),
+    cordovaVersion = require('gulp-cordova-version'),
+    cordovaAndroid = require('gulp-cordova-build-android'),
+
 	plugins = require('gulp-load-plugins')(),
 
 	applyVersions = require('./tasks/applyVersions'),
@@ -418,6 +424,45 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 		});
 	}).catch(gutil.log);
 
+});
+
+gulp.task('cordova-clean', function (callback) {
+	del([
+		'.cordova/**/*'
+	], callback);
+});
+
+gulp.task('cordova-build', ['cordova-clean'], function () {
+	var options = {
+		dir: '.cordova',
+		id: 'com.ractiveFoundationDemo.sample',
+		name: 'Ractive Foundation Demo'
+	};
+
+	return gulp.src('public')
+        .pipe(cordovaCreate(options))
+        .pipe(cordovaAuthor('Ractive Foundation Team', ''))
+        .pipe(cordovaDescription('Ractive Foundation Demo'))
+        .pipe(cordovaVersion(pkg.version))
+        .pipe(cordovaAndroid())
+        .pipe(gulp.dest('apk'));
+});
+
+gulp.task('cordova-run', function (callback) {
+	var platform = args.ios ? 'ios' : 'android';
+
+	exec('(cd ./.cordova/ && cordova run ' + platform + ')', function (err, stdout) {
+		if (stdout) {
+			gutil.log(gutil.colors.red(stdout));
+		}
+
+		if (err) {
+			gutil.log(gutil.colors.red('Exiting...'));
+			process.exit(1);
+		}
+
+		callback(err);
+	});
 });
 
 // Build and test the project. Default choice. Used by npm test.
