@@ -1,0 +1,18 @@
+# http://editorconfig.org
+root = true
+
+[*]
+indent_style = tab
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = false
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Matches the exact files either package.json or .travis.yml
+# also note yml MUST use spaces for indentation (size is any number > 0)
+[{*.json,.*.yml}]
+indent_style = space
+indent_size = 2
