@@ -151,7 +151,6 @@ Warning: AX_FOCUS_03 (Avoid positive integer values for tabIndex) failed on the 
 #childComponent > .button
 See https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_03 for more information.
 
-
 *** End accessibility audit results ***
 
 [17:59:56] 'a11y-only' errored after 1.37 s One or more a11y tests failed, see log.
