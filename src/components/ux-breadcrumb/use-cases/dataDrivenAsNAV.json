@@ -1,0 +1,13 @@
+{
+    "title": "Data driven use case as Nav",
+    "isDataModel": true,
+    "data": {
+        "isnav": true,
+		"items": [
+			{"label": "Home", "href": "#"},
+			{"label": "Features", "href": "#"},
+			{"label": "Gene Splicing", "href": "#", "isunavailable": true},
+			{"label": "Cloning", "href": "#", "iscurrent": true}
+		]
+    }
+}

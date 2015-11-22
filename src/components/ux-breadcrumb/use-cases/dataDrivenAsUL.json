@@ -1,0 +1,13 @@
+{
+    "title": "Data driven use case as an Unordered List",
+    "isDataModel": true,
+    "data": {
+		"isnav": false,
+		"items": [
+			{"label": "Home", "href": "#"},
+			{"label": "Features", "href": "#"},
+			{"label": "Gene Splicing", "href": "#", "isunavailable": true},
+			{"label": "Cloning", "href": "#", "iscurrent": true}
+		]
+    }
+}
