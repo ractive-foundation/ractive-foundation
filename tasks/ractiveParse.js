@@ -15,7 +15,10 @@ function gulpRactive(options) {
 		}
 
 		var componentName;
-		if (options.test) {
+		if (options.name) {
+			componentName = options.name(file);
+		}
+		else if (options.test) {
 			var parts = file.history[0].split(path.sep).slice(-3);
 			componentName = parts[0] + '-' + parts[2].replace(/[.]hbs$/, '');
 		}
