@@ -109,7 +109,8 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('copy-use-cases', function () {
 	return gulp.src([
-		'./src/components/**/use-cases/*.json'
+		'./src/components/**/use-cases/*.json',
+		'./src/plugins/**/use-cases/*.json',
 	])
 		.pipe(plugins.rename(function (path) {
 			// Get rid of the extra "use-cases" folder for the destination.
@@ -153,7 +154,10 @@ gulp.task('ractive-build-templates', function () {
 });
 
 gulp.task('ractive-build-test-templates', function () {
-	return gulp.src('./src/components/**/use-cases/*.hbs')
+	return gulp.src([
+			'./src/components/**/use-cases/*.hbs',
+			'./src/plugins/**/use-cases/*.hbs'
+		])
 		.pipe(ractiveParse({
 			'test': true,
 			'prefix': 'Ractive.defaults.templates'
@@ -174,15 +178,15 @@ gulp.task('ractive-build-components', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('ractive-build-decorators', function () {
+gulp.task('ractive-build-plugins', function () {
 	return gulp.src([
-			'./src/decorators/**/*.js',
-			'!./src/decorators/**/*.steps.js'
+			'./src/plugins/**/*.js',
+			'!./src/plugins/**/*.steps.js'
 		])
 		.pipe(ractiveConcatObjects({
-			'prefix': 'Ractive.decorators'
+			'prefix': 'Ractive'
 		}))
-		.pipe(plugins.concat('decorators.js'))
+		.pipe(plugins.concat('plugins.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -233,7 +237,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
-		'./public/js/decorators.js',
+		'./public/js/plugins.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -262,7 +266,7 @@ gulp.task('build', ['clean', 'lint'], function (callback) {
 		'build-sass',
 		'ractive-build-templates',
 		'ractive-build-test-templates',
-		'ractive-build-decorators',
+		'ractive-build-plugins',
 		'ractive-build-components',
 		'build-documentation'
 	], [
@@ -383,18 +387,34 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
 		}
 	}
+	if (args.plugin) {
+
+		var pluginName = args.plugin || '';
+
+		var paths = [
+			'./src/plugins/%s/*.feature'.replace('%s', pluginName)
+		];
+
+		globFeature = glob(paths);
+
+		if (!globFeature.length) {
+			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
+		}
+	}
 
 	if (!globFeature.length) {
 
 		paths = [
-			'./src/components/**/*.feature'
+			'./src/components/**/*.feature',
+			'./src/plugins/**/*.feature'
 		];
 
 		globFeature = glob(paths);
 	}
 
 	globStep = [
-		'./src/components/**/*.steps.js'
+		'./src/components/**/*.steps.js',
+		'./src/plugins/**/*.steps.js'
 	];
 
 	selServer.init().then(function () {
