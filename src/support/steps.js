@@ -44,7 +44,7 @@ module.exports = function () {
 			this.client.loadComponentWithUseCase(componentName, useCase).then(function () {
 				callback();
 			});
-	});
+		});
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
 		var selector = this.component[semanticName];
@@ -105,25 +105,25 @@ module.exports = function () {
 	this.Then(/^the element "([^"]*)" should have attribute "([^"]*)" containing "([^"]*)"$/,
 		function (semanticName, attribute, value, callback) {
 
-		this.client.waitForExist(this.component[semanticName], this.defaultTimeout).then(function () {
+			this.client.waitForExist(this.component[semanticName], this.defaultTimeout).then(function () {
 
-			return this.client.getAttribute(this.component[semanticName], attribute);
+				return this.client.getAttribute(this.component[semanticName], attribute);
 
-		}.bind(this)).then(function (attr) {
+			}.bind(this)).then(function (attr) {
 
-			try {
-				this.assert.notEqual(attr.indexOf(value), -1);
-				callback();
-			} catch (e) {
-				callback.fail('Element "' + semanticName +
-					'" (' + this.component[semanticName] + ') attribute "' + attribute +
-					'" does NOT contain "' + value + '", currently "' + attr + '"');
-			}
+				try {
+					this.assert.notEqual(attr.indexOf(value), -1);
+					callback();
+				} catch (e) {
+					callback.fail('Element "' + semanticName +
+						'" (' + this.component[semanticName] + ') attribute "' + attribute +
+						'" does NOT contain "' + value + '", currently "' + attr + '"');
+				}
 
-		}.bind(this))
-		.catch(callback);
+			}.bind(this))
+			.catch(callback);
 
-	});
+		});
 
 	this.Then(/^"([^"]*)" will be visible$/, function (element, callback) {
 		this.client.isVisible(this.component[element]).then(function (isVisible) {
@@ -169,11 +169,11 @@ module.exports = function () {
 			try {
 				this.assert.equal(elements.value.length, numElements);
 				callback();
-			} catch(e) {
+			} catch (e) {
 				callback(e);
 			}
 
-		}.bind(this)).catch(function (e){
+		}.bind(this)).catch(function (e) {
 
 			callback(e);
 
@@ -181,7 +181,7 @@ module.exports = function () {
 
 	});
 
-	this.When(/^I click "([^"]*)"$/, function (element, callback) {
+	this.When(/^I click the "([^"]*)" element$/, function (element, callback) {
 		this.client.waitForExist(this.component[element], this.defaultTimeout).then(function () {
 			return this.client.click(this.component[element]);
 		}.bind(this)).then(function () {
@@ -198,15 +198,15 @@ module.exports = function () {
 			try {
 				this.assert.equal(elements.value.length, numElements);
 				callback();
-			} catch(e) {
+			} catch (e) {
 				callback(e);
 			}
-		}.bind(this)).catch(function (e){
+		}.bind(this)).catch(function (e) {
 			callback(e);
 		});
 	});
 
-	this.When(/^I hover "([^"]*)"$/, function (element, callback) {
+	this.When(/^I hover the "([^"]*)" element$/, function (element, callback) {
 		var selector = this.component[element];
 
 		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
