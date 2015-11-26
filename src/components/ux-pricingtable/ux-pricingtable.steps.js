@@ -2,6 +2,7 @@ module.exports = function () {
 
 	// Load standard world object to be 'this' in steps.
 	this.World = require('../../world').World;
+	require('../../support/steps').call(this);
 
 	// Load shared library of step definitions. Use these first!
 	require('../../support/steps').call(this);
@@ -9,9 +10,8 @@ module.exports = function () {
 	this.Before(function (callback) {
 
 		this.component = {};
-		this.component.container = '#childComponent ';
-		this.component.link = this.component.container + ' span';
-		this.component.tooltip = this.component.link + ' .tooltip';
+		this.component.container = '.ux-pricingtable ';
+		this.component.pricing_table = this.component.container + ' .pricing-table';
 
 		callback();
 

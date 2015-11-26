@@ -8,7 +8,7 @@ Ractive.extend({
 
 		var self = this;
 
-		this.on('toggleMenu', function(e) {
+		this.on('toggleMenu', function (e) {
 
 			if (self.get('isexpanded')) {
 				self.set('isexpanded', false);
