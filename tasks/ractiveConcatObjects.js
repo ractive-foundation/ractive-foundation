@@ -3,10 +3,20 @@
 var through  = require('through2'),
 	gulputil = require('gulp-util'),
 	Ractive  = require('ractive'),
-	path     = require('path'),
+	fs       = require('fs'),
+	path     = require('path');
 	PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-ractive-concat-objects';
+
+function manifestFound(manifestPath) {
+	try {
+		return fs.statSync(filePath).isFile();
+	}
+	catch (err) {
+		return false;
+	};
+}
 
 function gulpRactive(options) {
 	if (!options) {
@@ -21,7 +31,17 @@ function gulpRactive(options) {
 			return callback();
 		}
 
-		var objectName = file.history[0].split(path.sep).slice(-2)[0];
+		var objectName = file.history[0].split(path.sep).slice(-2)[0],
+			manifestPath = file.history[0].split(path.sep).slice(0, -1).join(path.sep) +
+				path.sep + 'manifest.json',
+			pluginType = '';
+
+		try {
+			if (fs.statSync(manifestPath).isFile()) {
+				pluginType = JSON.parse(fs.readFileSync(manifestPath)).plugin;
+			}
+		}
+		catch (err) {};
 
 		var filecontents = '';
 
@@ -30,10 +50,13 @@ function gulpRactive(options) {
 
 			var prefix = '';
 			if (options && options.prefix) {
-				prefix = options.prefix + '.';
+				prefix = options.prefix;
+				if (pluginType) {
+					prefix = prefix + '.' + pluginType;
+				}
 			}
 
-			filecontents = options.prefix + '[\'' + objectName + '\'] = ' + filecontents;
+			filecontents = prefix + '[\'' + objectName + '\'] = ' + filecontents;
 
 			file.contents = new Buffer(filecontents);
 			this.push(file);
