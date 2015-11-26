@@ -24,21 +24,21 @@ module.exports = function () {
 		var self = this,
 			expectedHeight = -1,
 			promises = [];
-		_.each(selectors, function(selector, index) {
+		_.each(selectors, function (selector, index) {
 			promises.push(
-				self.client.getElementSize(selector, 'height').then(function(height) {
+				self.client.getElementSize(selector, 'height').then(function (height) {
 					if (expectedHeight === -1) {
 						expectedHeight = height;
 					} else {
 						try {
 							self.assert.strictEqual(height, expectedHeight);
-						} catch(e) {
+						} catch (e) {
 							callback(e);
 						}
 					}
 				}));
 		});
-		q.all(promises).done(function() {
+		q.all(promises).done(function () {
 			callback();
 		});
 	});

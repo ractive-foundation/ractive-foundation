@@ -30,13 +30,14 @@ module.exports = function () {
 		});
 
 	});
+
 	// For testing plugins.
 	this.Given(/^I have loaded plugin "([^"]*)" use case "([^"]*)"$/,
 		function (plugin, useCase, callback) {
 			this.client.loadPluginUseCase(plugin, useCase).then(function () {
 				callback();
 			});
-	});
+		});
 
 	// For testing components.
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,

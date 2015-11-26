@@ -50,7 +50,7 @@ var COMPONENT_BASE_PATH = 'http://localhost:8088/testRunner.html#!/component/$1/
 			return this.url(url, callback);
 		});
 
-		client.addCommand('loadPluginUseCase', function(pluginName, useCase, callback) {
+		client.addCommand('loadPluginUseCase', function (pluginName, useCase, callback) {
 			var url = PLUGIN_BASE_PATH.replace('$1', pluginName).replace('$2', useCase);
 			console.log('url:', url);
 			return this.url(url, callback);
