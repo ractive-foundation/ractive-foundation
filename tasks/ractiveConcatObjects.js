@@ -4,19 +4,10 @@ var through  = require('through2'),
 	gulputil = require('gulp-util'),
 	Ractive  = require('ractive'),
 	fs       = require('fs'),
-	path     = require('path');
+	path     = require('path'),
 	PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-ractive-concat-objects';
-
-function manifestFound(manifestPath) {
-	try {
-		return fs.statSync(filePath).isFile();
-	}
-	catch (err) {
-		return false;
-	};
-}
 
 function gulpRactive(options) {
 	if (!options) {
@@ -25,6 +16,7 @@ function gulpRactive(options) {
 	if (!options.prefix) {
 		options.prefix = 'Ractive.component';
 	}
+
 	var stream = through.obj(function (file, enc, callback) {
 		if (file.isStream()) {
 			this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
@@ -34,7 +26,8 @@ function gulpRactive(options) {
 		var objectName = file.history[0].split(path.sep).slice(-2)[0],
 			manifestPath = file.history[0].split(path.sep).slice(0, -1).join(path.sep) +
 				path.sep + 'manifest.json',
-			pluginType = '';
+			pluginType = ''	
+			filecontents = '';
 
 		try {
 			if (fs.statSync(manifestPath).isFile()) {
@@ -42,8 +35,6 @@ function gulpRactive(options) {
 			}
 		}
 		catch (err) {};
-
-		var filecontents = '';
 
 		try {
 			filecontents = String(file.contents);

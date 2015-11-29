@@ -187,7 +187,7 @@ gulp.task('ractive-build-plugins', function () {
 			'./src/plugins/**/*.js',
 			'!./src/plugins/**/*.steps.js'
 		])
-		.pipe(ractiveConcatObjects({
+		.pipe(ractiveParse({
 			'prefix': 'Ractive'
 		}))
 		.pipe(plugins.concat('plugins.js'))

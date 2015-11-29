@@ -3,6 +3,7 @@
 var through  = require('through2'),
 	gulputil = require('gulp-util'),
 	Ractive  = require('ractive'),
+	fs       = require('fs'),
 	path     = require('path'),
 	PluginError = gulputil.PluginError;
 
@@ -28,7 +29,16 @@ function gulpRactive(options) {
 		}
 
 		var objectName   = options.objectName(file),
+			pluginType = '',
 			filecontents = '';
+
+		try {
+			if (fs.statSync(manifestPath).isFile()) {
+				pluginType = JSON.parse(fs.readFileSync(manifestPath)).plugin;
+				options.prefix = 'Ractive.' + pluginType;
+			}
+		}
+		catch (err) {};
 
 		try {
 			filecontents = String(file.contents);
