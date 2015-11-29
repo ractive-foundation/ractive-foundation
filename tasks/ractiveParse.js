@@ -29,13 +29,18 @@ function gulpRactive(options) {
 		}
 
 		var objectName   = options.objectName(file),
+			manifestPath = file.history[0].split(path.sep).slice(0, -1).join(path.sep) +
+				path.sep + 'manifest.json',
 			pluginType = '',
 			filecontents = '';
 
 		try {
 			if (fs.statSync(manifestPath).isFile()) {
 				pluginType = JSON.parse(fs.readFileSync(manifestPath)).plugin;
-				options.prefix = 'Ractive.' + pluginType;
+				if (pluginType) {
+					console.log(manifestPath);
+					options.prefix = 'Ractive.' + pluginType;
+				}
 			}
 		}
 		catch (err) {};
