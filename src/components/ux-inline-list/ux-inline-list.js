@@ -8,5 +8,5 @@ Ractive.extend({
 			return itemData;
 		}
 
-	},
+	}
 });
