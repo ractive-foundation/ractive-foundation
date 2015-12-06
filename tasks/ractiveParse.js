@@ -5,7 +5,8 @@ var through  = require('through2'),
 	Ractive  = require('ractive'),
 	fs       = require('fs'),
 	path     = require('path'),
-	PluginError = gulputil.PluginError;
+	applySourceMap = require('vinyl-sourcemaps-apply'),
+	PluginError    = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-ractive-parse';
 
@@ -26,6 +27,11 @@ function gulpRactive(options) {
 		if (file.isStream()) {
 			this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 			return callback();
+		}
+
+		// generate source maps if plugin source-map present
+		if (file.sourceMap) {
+			options.makeSourceMaps = true;
 		}
 
 		var objectName   = options.objectName(file),
@@ -60,11 +66,23 @@ function gulpRactive(options) {
 			}
 
 			file.contents = new Buffer(filecontents);
+
+			// apply source map to the chain
+			if (file.sourceMap) {
+				applySourceMap(file, result.map);
+			}
+
 			this.push(file);
 		}
 		catch (e) {
 			console.warn('Error caught from Ractive.parse: ' +
 			e.message + ' in ' + file.path + '. Returning uncompiled template');
+
+			// apply source map to the chain
+			if (file.sourceMap) {
+				applySourceMap(file, result.map);
+			}
+
 			this.push(file);
 			return callback();
 		}

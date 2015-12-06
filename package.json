@@ -55,6 +55,7 @@
     "sync": "~0.2.5",
     "through": "~2.3.6",
     "vinyl": "~0.4.6",
+    "vinyl-sourcemaps-apply": "^0.2.0",
     "walk": "~2.3.9",
     "webdriverio": "~3.2.3",
     "yargs": "^3.26.0"
