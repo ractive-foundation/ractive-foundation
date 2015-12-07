@@ -68,8 +68,8 @@ function gulpRactive(options) {
 			file.contents = new Buffer(filecontents);
 
 			// apply source map to the chain
-			if (file.sourceMap) {
-				applySourceMap(file, result.map);
+			if (file.sourceMap && filecontents.map) {
+				applySourceMap(file, filecontents.map);
 			}
 
 			this.push(file);
@@ -79,8 +79,8 @@ function gulpRactive(options) {
 			e.message + ' in ' + file.path + '. Returning uncompiled template');
 
 			// apply source map to the chain
-			if (file.sourceMap) {
-				applySourceMap(file, result.map);
+			if (file.sourceMap && filecontents.map) {
+				applySourceMap(file, filecontents.map);
 			}
 
 			this.push(file);
