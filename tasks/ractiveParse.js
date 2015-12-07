@@ -10,6 +10,17 @@ var through  = require('through2'),
 
 const PLUGIN_NAME = 'gulp-ractive-parse';
 
+var addName = function(prefix, name, contents) {
+	if (name.match(/^[$_a-zA-Z]\w+$/)) {
+		prefix = prefix + '.' + name;
+	}
+	else {
+		prefix = prefix + '["' + name + '"]';
+	}
+
+	return prefix + ' = ' + contents;
+}
+
 function gulpRactive(options) {
 	if (!options) {
 		options = {};
@@ -59,10 +70,10 @@ function gulpRactive(options) {
 				filecontents = Ractive.parse(filecontents, options);
 				filecontents = JSON.stringify(filecontents);
 
-				filecontents = options.prefix + '[\'' + objectName + '\'] = ' + filecontents + ';';
+				filecontents = addName(options.prefix, objectName, filecontents) + ';';
 			}
 			else {
-				filecontents = options.prefix + '[\'' + objectName + '\'] = ' + filecontents;
+				filecontents = addName(options.prefix, objectName, filecontents);
 			}
 
 			file.contents = new Buffer(filecontents);
