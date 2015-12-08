@@ -3,7 +3,7 @@ Ractive.extend({
 
 	isolate: true,
 
-	anchorClicked: function() {
+	anchorClicked: function () {
 		// if a click event is specified propagate the click event
 		if (this.get('onclick')) {
 			console.log('Firing event');
