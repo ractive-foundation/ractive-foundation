@@ -1,7 +1,7 @@
 <li>
 	{{#if isDataModel}}
-		<ux-anchor href="{{.href}}" class="button" on-anchorClicked="yourFunction">{{.text}}</ux-anchor>
+		<ux-button href="{{.href}}">{{.text}}</ux-button>
 	{{else}}
-    	{{yield}}
+		{{>content}}
 	{{/if}}
 </li>
