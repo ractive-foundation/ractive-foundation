@@ -1,0 +1,21 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"class": "inline-list",
+		"items": [
+			{
+				"href": "#",
+				"text": "Link 1"
+			},
+			{
+				"href": "#",
+				"text": "Link 2"
+			},
+			{
+				"href": "#",
+				"text": "Link 3"
+			}
+		]
+	}
+}
