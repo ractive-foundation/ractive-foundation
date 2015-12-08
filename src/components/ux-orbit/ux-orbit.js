@@ -29,7 +29,7 @@ Ractive.extend({
 		});
 
 		this.on('prevPage', function (e) {
-			var prevPage = this.get('currentPage') -1 ;
+			var prevPage = this.get('currentPage') - 1;
 			// FIXME Quick hack for bounds.
 			prevPage = prevPage < 1 ? 1 : prevPage;
 			this.set('currentPage', prevPage);

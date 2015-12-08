@@ -32,22 +32,20 @@ module.exports = function () {
 	this.Then(/^the element "([^"]*)" should have the "([^"]*)" of "([^"]*)"$/,
 		function (semanticName, attribName, attribValue, callback) {
 
-		var self = this;
+			var self = this;
 
-		this.client.getAttribute(
-			component[semanticName].selector,
-			component[semanticName].attribs[attribName],
-			function (err, attr) {
-				try {
-					self.assert.deepEqual(attr, attribValue);
-					callback();
-				} catch (e) {
-					callback.fail(e.name + ' ' + e.message);
+			this.client.getAttribute(
+				component[semanticName].selector,
+				component[semanticName].attribs[attribName],
+				function (err, attr) {
+					try {
+						self.assert.deepEqual(attr, attribValue);
+						callback();
+					} catch (e) {
+						callback.fail(e.name + ' ' + e.message);
+					}
 				}
-
-			}
-		);
-
-	});
-
+			);
+		}
+	);
 };
