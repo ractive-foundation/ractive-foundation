@@ -55,7 +55,6 @@ function gulpRactive(options) {
 			if (fs.statSync(manifestPath).isFile()) {
 				pluginType = JSON.parse(fs.readFileSync(manifestPath)).plugin;
 				if (pluginType) {
-					console.log(manifestPath);
 					options.prefix = 'Ractive.' + pluginType;
 				}
 			}
