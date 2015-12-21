@@ -26,7 +26,7 @@ module.exports = function () {
 			try {
 				this.assert.equal(elements.value.length, count);
 				callback();
-			} catch(e) {
+			} catch (e) {
 				callback(e);
 			}
 		}.bind(this)).catch(function (e) {
@@ -41,10 +41,10 @@ module.exports = function () {
 		}.bind(this))
 			.then(function (attr) {
 				try {
-					if (! (attr instanceof Array)) {
+					if (!(attr instanceof Array)) {
 						attr = attr.split(/\s+/);
 					}
-					var classList = _.find(attr, function(item) {
+					var classList = _.find(attr, function (item) {
 						return item === className;
 					});
 					this.assert.equal(_.indexOf(classList, className), -1);
