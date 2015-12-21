@@ -1,15 +1,15 @@
 {
-	"title": "Default - Three Accordions",
+	"title": "Three Accordions (data driven)",
 	"isDataModel": true,
 	"data": {
 		"items": [
 			{
 				"title": "Accordion item 1",
-				"content": "Accordion 1: Lorem ipsum dolor"
+				"content": "First accordion item"
 			},
 			{
 				"title": "Accordion item 2",
-				"content": "Accordion 2: Lorem ipsum dolor"
+				"content": "Second accordion item"
 			},
 			{
 				"title": "Accordion item 3",

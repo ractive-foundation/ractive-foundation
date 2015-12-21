@@ -36,9 +36,9 @@ Ractive.extend({
 			var components = this.findAllChildComponents('ux-tablink');
 
 			_.each(components, function (component) {
-					var isActive = component._guid === event.context.uid;
-					component.set('active', isActive);
-					component.get('tabPane').set('active', isActive);
+				var isActive = component._guid === event.context.uid;
+				component.set('active', isActive);
+				component.get('tabPane').set('active', isActive);
 			});
 
 			return false;

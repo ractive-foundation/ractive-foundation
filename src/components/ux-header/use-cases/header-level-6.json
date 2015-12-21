@@ -1,0 +1,10 @@
+{
+	"title": "Header - Level 6",
+	"isDataModel": true,
+	"data": {
+		"level": "6",
+		"id": "h6Id",
+		"class": "h6Class",
+		"content": "Header Level 6"
+	}
+}

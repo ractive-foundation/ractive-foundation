@@ -1,0 +1,7 @@
+{
+	"data": {
+		"class": "The class name for the list",
+		"items": "List of items (href & text objects)"
+	},
+	"category": "typography"
+}

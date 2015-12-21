@@ -4,6 +4,10 @@ Ractive.extend({
 
 	isolated: true,
 
+	data: {
+		labels: true
+	},
+
 	computed: {
 		guid: function () {
 			return this._guid;

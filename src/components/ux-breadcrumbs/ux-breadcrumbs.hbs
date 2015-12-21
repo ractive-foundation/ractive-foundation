@@ -1,0 +1,23 @@
+{{#if isNav}}
+<nav class="breadcrumbs"
+	role="menubar"
+	aria-label="breadcrumbs">
+	{{#if items}}
+		{{#items:i}}
+			<ux-breadcrumb-item datamodel="{{{this}}}"/>
+		{{/items}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</nav>
+{{else}}
+<ul class="breadcrumbs">
+	{{#if items}}
+		{{#each items}}
+			<ux-breadcrumb-item datamodel="{{{this}}}"/>
+		{{/each}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</ul>
+{{/if}}

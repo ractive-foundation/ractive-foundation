@@ -1,0 +1,6 @@
+{
+	"title": "Use case with custom attributes",
+	"template": "ux-pricingtable-templateDriven",
+	"file": "src/components/ux-pricingtable/use-cases/templateDriven.hbs",
+	"data": {}
+}
