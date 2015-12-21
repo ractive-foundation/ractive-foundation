@@ -1,0 +1,27 @@
+{
+	"title": "List",
+	"description": "Breadcrumbs with <ul> elements",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"href": "#",
+				"content": "Home"
+			},
+			{
+				"href": "#",
+				"content": "Features"
+			},
+			{
+				"href": "#",
+				"unavailable": true,
+				"content": "Gene Splicing"
+			},
+			{
+				"href": "#",
+				"current": true,
+				"content": "Cloning"
+			}
+		]
+	}
+}
