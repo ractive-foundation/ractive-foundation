@@ -87,8 +87,9 @@ module.exports = function (options) {
 			}
 
 			if (options.seleniumOptions.kill === false) {
+				gutil.log(gutil.colors.green('Configured not to kill selenium.'))
 				gutil.log('Finished', '\'' + gutil.colors.cyan('selenium standalone server') + '\'...');
-				return reject('Configured not to kill selenium.')
+				return resolve();
 			}
 
 			seleniumServer.kill();
