@@ -9,14 +9,14 @@ var gulp = require('gulp'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
-	_ = require('lodash-compat'),
+	path = require('path'),
 
-    cordovaCreate = require('gulp-cordova-create'),
-    cordovaDescription = require('gulp-cordova-description'),
-    cordovaAuthor = require('gulp-cordova-author'),
-    cordovaVersion = require('gulp-cordova-version'),
-    cordovaAndroid = require('gulp-cordova-build-android'),
-    cordovaIos = require('gulp-cordova-build-ios'),
+	cordovaCreate = require('gulp-cordova-create'),
+	cordovaDescription = require('gulp-cordova-description'),
+	cordovaAuthor = require('gulp-cordova-author'),
+	cordovaVersion = require('gulp-cordova-version'),
+	cordovaAndroid = require('gulp-cordova-build-android'),
+	cordovaIos = require('gulp-cordova-build-ios'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -25,7 +25,6 @@ var gulp = require('gulp'),
 	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
-	ractiveConcatObjects = require('./tasks/ractiveConcatObjects'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
@@ -147,7 +146,8 @@ gulp.task('ractive-build-templates', function () {
 			'!./src/components/**/use-cases/*.hbs'
 		])
 		.pipe(ractiveParse({
-			'prefix': 'Ractive.defaults.templates'
+			template: true,
+			prefix: 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -159,8 +159,12 @@ gulp.task('ractive-build-test-templates', function () {
 			'./src/plugins/**/use-cases/*.hbs'
 		])
 		.pipe(ractiveParse({
-			'test': true,
-			'prefix': 'Ractive.defaults.templates'
+			objectName: function(file) {
+				var parts = file.history[0].split(path.sep).slice(-3);
+				return parts[0] + '-' + parts[2].replace(/[.]hbs$/, '');
+			},
+			template: true,
+			prefix: 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates-tests.js'))
 		.pipe(gulp.dest('./public/js/'));
@@ -171,7 +175,7 @@ gulp.task('ractive-build-components', function () {
 			'./src/components/**/*.js',
 			'!./src/components/**/*.steps.js'
 		])
-		.pipe(ractiveConcatObjects({
+		.pipe(ractiveParse({
 			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
@@ -183,7 +187,7 @@ gulp.task('ractive-build-plugins', function () {
 			'./src/plugins/**/*.js',
 			'!./src/plugins/**/*.steps.js'
 		])
-		.pipe(ractiveConcatObjects({
+		.pipe(ractiveParse({
 			'prefix': 'Ractive'
 		}))
 		.pipe(plugins.concat('plugins.js'))
