@@ -1,0 +1,18 @@
+<div class="{{#if iscentered}}pagination-centered{{/if}}">
+    <ul class="pagination">
+        <li class="arrow {{#if previousunavailable}}unavailable{{/if}}"><a href="#" on-tap="setPrevious">&laquo;{{#if previouslabel}} {{previouslabel}}{{/if}}</a></li>
+        {{#if items}}
+            {{#each items}}
+                {{#if blank}}
+                <li class="unavailable"><a href="">&hellip;</a></li>
+                {{else}}
+                <li {{#if current}}class="current"{{/if}}>
+                    <a href="{{href}}" on-tap="setCurrent">{{label}}</a>
+                </li>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+
+        <li class="arrow {{#if nextunavailable}}unavailable{{/if}}"><a href="#" on-tap="setNext">{{#if nextlabel}}{{nextlabel}} {{/if}}&raquo;</a></li>
+    </ul>
+</div>

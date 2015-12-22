@@ -1,0 +1,9 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"itemlimit": 10,
+		"pagecount": 10,
+		"currentpage": 5
+	}
+}
