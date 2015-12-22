@@ -1,21 +1,19 @@
 {
-	"title": "Round",
+	"title": "Stack for Small",
 	"isDataModel": true,
 	"data": {
 		"text": "ux-button-group button",
-		"class":"round",
+		"class":"stack-for-small round",
 		"items": [
 			{
 				"href":"#",
+				"class": "secondary",
 				"text":"Button 1"
 			},
 			{
 				"href":"#",
+				"class": "secondary",
 				"text":"Button 2"
-			},
-			{
-				"href":"#",
-				"text":"Button 3"
 			}
 		]
 	}
