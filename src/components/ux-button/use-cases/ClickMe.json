@@ -1,7 +1,0 @@
-{
-	"title": "Click Me Button",
-	"data": {
-		"text": "ClickMe",
-		"onclick": "WasClicked"
-	}
-}

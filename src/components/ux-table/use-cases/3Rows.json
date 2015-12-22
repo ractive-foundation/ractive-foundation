@@ -1,0 +1,100 @@
+{
+	"title": "Table - 3 rows, 4 columns",
+	"isDataModel": true,
+	"data": {
+		"class": "full-width",
+		"header": {
+			"class": "header-class",
+			"cell": [
+				{
+					"label": "Table Header"
+				},
+				{
+					"label": "Table Header"
+				},
+				{
+				   "label": "Table Header"
+				},
+				{
+				   "label": "Table Header"
+				}
+			]
+		},
+		"body": {
+			"class": "body-class",
+			"rows": [
+				{
+					"class": "row-class",
+					"cell": [
+						{
+							"label": "Content Goes Here"
+						},
+						{
+						   "class": "cell-class",
+						   "label": "This is longer content Donec id elit non mi porta gravida at eget metus."
+						},
+						{
+							"label": "Content Goes Here"
+						},
+						{
+							"label": "Content Goes Here"
+						}
+					]
+				},
+				{
+					"class": "row-class",
+					"cell": [
+						{
+							"label": "Content Goes Here"
+						},
+						{
+						   "class": "cell-class",
+						   "label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
+						},
+						{
+							"label": "Content Goes Here"
+						},
+						{
+							"label": "Content Goes Here"
+						}
+					]
+				},
+				{
+					"class": "row-class",
+					"cell": [
+						{
+							"label": "Content Goes Here"
+						},
+						{
+						   "class": "cell-class",
+						   "label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
+						},
+						{
+							"label": "Content Goes Here"
+						},
+						{
+							"label": "Content Goes Here"
+						}
+					]
+				}
+			]
+		},
+		"footer": {
+			"class": "footer-class",
+			"cell": [
+				{
+					"label": "Table Footer"
+				},
+				{
+					"label": "Table Footer"
+				},
+				{
+					"label": "Table Footer"
+				},
+				{
+					"label": "Table Footer"
+				}
+			]
+		}
+	}
+}

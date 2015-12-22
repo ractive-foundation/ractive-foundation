@@ -1,0 +1,20 @@
+{
+	"title": "Stackable",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"class": "",
+				"value": 30
+			},
+			{
+				"class": "success",
+				"value": 15
+			},
+			{
+				"class": "alert",
+				"value": 20
+			}
+		]
+	}
+}

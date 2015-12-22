@@ -20,15 +20,16 @@ Ractive.extend({
 	oninit: function () {
 
 		this.on('nextPage', function (e) {
-			var nextPage = this.get('currentPage') + 1;
-			// FIXME Quick hack for bounds.
-			nextPage = nextPage > 5 ? 5 : nextPage;
+			var nextPage = this.get('currentPage') + 1,
+				slideTotal = this.get('slidesTotal');
+
+			nextPage = nextPage > slideTotal ? slideTotal : nextPage;
 			this.set('currentPage', nextPage);
 			return false;
 		});
 
 		this.on('prevPage', function (e) {
-			var prevPage = this.get('currentPage') -1 ;
+			var prevPage = this.get('currentPage') - 1;
 			// FIXME Quick hack for bounds.
 			prevPage = prevPage < 1 ? 1 : prevPage;
 			this.set('currentPage', prevPage);

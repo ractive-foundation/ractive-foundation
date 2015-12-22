@@ -1,3 +1,5 @@
 <div class="progress {{class}}">
-	<span class="meter" style="{{meterStyle}}"></span>
+	{{#meters}}
+		<span class="meter {{class}}" style="width:{{value}}%"></span>
+	{{/meters}}
 </div>

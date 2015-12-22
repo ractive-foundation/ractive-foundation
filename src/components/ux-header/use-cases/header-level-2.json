@@ -1,0 +1,10 @@
+{
+	"title": "Header - Level 2",
+	"isDataModel": true,
+	"data": {
+		"level": "2",
+		"id": "h2Id",
+		"class": "h2Class",
+		"content": "Header Level 2"
+	}
+}

@@ -1,9 +1,9 @@
 {
-	"title": "Buy Now Button",
+	"title": "Attributes",
 	"data": {
-		"text": "Buy Now",
+		"text": "Attributes!",
 		"role": "button",
-		"ariaLabel": "somelabel",
+		"arialabel": "somelabel",
 		"tabindex": 10,
 		"onclick": "BuyBuyBuy"
 	}
