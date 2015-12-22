@@ -5,6 +5,7 @@ Feature: ux-pagination test suite
 		Then the current page is "<current>"
 		And there are "<total>" elements displayed
 		And pages visible are "<visible>"
+		Examples:
 			| total | display | current | visible              | hidden |
 			| 1     | 10      | 1       | 1                    |        |
 			| 2     | 10      | 1       | 1,2                  |        |
