@@ -1,20 +1,21 @@
 {
-	"title": "Round",
+	"title": "Even Three",
 	"isDataModel": true,
 	"data": {
-		"text": "ux-button-group button",
-		"class":"round",
+		"class":"even-3",
 		"items": [
 			{
-				"href":"#",
+				"class": "secondary",
 				"text":"Button 1"
 			},
 			{
 				"href":"#",
+				"class": "secondary",
 				"text":"Button 2"
 			},
 			{
 				"href":"#",
+				"class": "secondary",
 				"text":"Button 3"
 			}
 		]

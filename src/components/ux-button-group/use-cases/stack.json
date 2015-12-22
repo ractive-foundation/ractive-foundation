@@ -1,9 +1,9 @@
 {
-	"title": "Round",
+	"title": "Stack",
 	"isDataModel": true,
 	"data": {
 		"text": "ux-button-group button",
-		"class":"round",
+		"class":"stack",
 		"items": [
 			{
 				"href":"#",
@@ -12,10 +12,6 @@
 			{
 				"href":"#",
 				"text":"Button 2"
-			},
-			{
-				"href":"#",
-				"text":"Button 3"
 			}
 		]
 	}

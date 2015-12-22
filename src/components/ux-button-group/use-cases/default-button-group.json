@@ -1,8 +1,7 @@
 {
-	"title": "Default - Button group",
+	"title": "Default",
 	"isDataModel": true,
 	"data": {
-		"text": "ux-button-group button",
 		"class":"",
 		"items": [
 			{
