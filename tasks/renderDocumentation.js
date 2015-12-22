@@ -11,6 +11,8 @@ var through   = require('through2'),
 var PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-concat-documentation';
+const DEFAULT_DELIMITERS = ['{{', '}}'];
+const DEFAULT_TRIPLE_DELIMITERS = ['{{{', '}}}'];
 
 Ractive.DEBUG = false;
 
@@ -137,7 +139,7 @@ function getSideNavDataModel(manifests) {
 /**
  * All these components need an index page to get started.
  */
-function getIndexFile (indexFile, sideNavDataModel, file) {
+function getIndexFile (indexFile, sideNavDataModel, file, options) {
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
@@ -146,7 +148,9 @@ function getIndexFile (indexFile, sideNavDataModel, file) {
 		template: indexFile,
 		data: {
 			sideNavDataModel: sideNavDataModel
-		}
+		},
+		delimiters: options.delimiters || DEFAULT_DELIMITERS,
+		tripleDelimiters: options.tripleDelimiters || DEFAULT_TRIPLE_DELIMITERS
 	});
 
 	var html = ractive.toHTML();
@@ -171,7 +175,7 @@ function getIndexFile (indexFile, sideNavDataModel, file) {
 /**
  * Create a single component documentation file.
  */
-function getComponentFile (manifest, docFile, sideNavDataModel, file, partials) {
+function getComponentFile (manifest, docFile, sideNavDataModel, file, partials, options) {
 
 	var component = {
 		readmeMd:      marked(manifest.readme),
@@ -200,7 +204,9 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file, partials) 
 		data: {
 			sideNavDataModel: sideNavDataModel,
 			component: component
-		}
+		},
+		delimiters: options.delimiters || DEFAULT_DELIMITERS,
+		tripleDelimiters: options.tripleDelimiters || DEFAULT_TRIPLE_DELIMITERS
 	});
 
 	var toHTML = ractive.toHTML();
@@ -252,11 +258,11 @@ function renderDocumentation(options) {
 			var sideNavDataModel = getSideNavDataModel(manifests);
 
 			// Create the component index page, using the sidenav.
-			this.push(getIndexFile(indexFile, sideNavDataModel, file));
+			this.push(getIndexFile(indexFile, sideNavDataModel, file, options));
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
-				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file, partials));
+				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file, partials, options));
 			}.bind(this));
 
 		}

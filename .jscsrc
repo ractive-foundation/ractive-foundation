@@ -7,5 +7,5 @@
 	"disallowSpacesInsideArrayBrackets": false,
 	"requireVarDeclFirst": false,
 	"requireMultipleVarDecl": false,
-	"excludeFiles": ["./src/ractivef-umd.js", "./src/decorators/tooltip/tooltip.js"]
+	"excludeFiles": ["./src/ractivef-umd.js", "./src/plugins/*/*.js"]
 }

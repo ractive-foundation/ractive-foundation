@@ -1,0 +1,10 @@
+{
+	"title": "Header - Level 3",
+	"isDataModel": true,
+	"data": {
+		"level": "3",
+		"id": "h3Id",
+		"class": "h3Class",
+		"content": "Header Level 3"
+	}
+}

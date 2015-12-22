@@ -1,13 +1,30 @@
-<a class="button {{class}}"
-	{{#href}}href="{{href}}"{{/href}}
-	{{#role}} role="{{role}}" {{/role}}
-	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
-	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
-	on-tap="clickHandler()"
+{{#if href}}
+	<a class="button {{class}}"
+		{{#if href}}href="{{href}}"{{/if}}
+		{{#if role}} role="{{role}}"{{/if}}
+		{{#if arialabel}} aria-label="{{arialabel}}"{{/if}}
+		{{#if tabindex}} tabindex="{{tabindex}}"{{/if}}
+		on-tap="clickHandler()"
 	>
-	{{#if text}}
-		{{text}}
-	{{else}}
-		{{>content}}
-	{{/if}}
-</a>
+		{{#if text}}
+			{{{text}}}
+		{{else}}
+			{{>content}}
+		{{/if}}
+	</a>
+{{else}}
+	<button class="button {{class}}"
+		type="{{type}}"
+		{{#if role}} role="{{role}}"{{/if}}
+		{{#if arialabel}} aria-label="{{arialabel}}"{{/if}}
+		{{#if tabindex}} tabindex="{{tabindex}}"{{/if}}
+		on-tap="clickHandler()"
+	>
+		{{#if text}}
+			{{text}}
+		{{else}}
+			{{>content}}
+		{{/if}}
+	</button>
+{{/if}}
+

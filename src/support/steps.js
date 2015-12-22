@@ -31,6 +31,14 @@ module.exports = function () {
 
 	});
 
+	// For testing plugins.
+	this.Given(/^I have loaded plugin "([^"]*)" use case "([^"]*)"$/,
+		function (plugin, useCase, callback) {
+			this.client.loadPluginUseCase(plugin, useCase).then(function () {
+				callback();
+			});
+		});
+
 	// For testing components.
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
@@ -41,13 +49,13 @@ module.exports = function () {
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
 		var selector = this.component[semanticName];
-		this.client.waitForExist(selector, this.defaultTimeout, function (whatIsThisArg, success) {
+		this.client.waitForExist(selector, this.defaultTimeout).then(function (success) {
 			if (!success) {
 				callback.fail('Failed to wait for element "' + semanticName +
 					'" (' + selector + ')');
 			}
 			callback();
-		});
+		}).catch(callback);
 	});
 
 	this.Then(/^there will be NO element for "([^"]*)"$/, function (semanticName, callback) {
@@ -56,7 +64,7 @@ module.exports = function () {
 				callback.fail('Element "' + semanticName + '" exists, Selector:', this.component[semanticName]);
 			}
 			callback();
-		}.bind(this));
+		}.bind(this)).catch(callback);
 	});
 
 	this.Then(/^the element "([^"]*)" will have the class "([^"]*)"$/, function (semanticName, className, callback) {
@@ -148,7 +156,7 @@ module.exports = function () {
 			} catch (e) {
 				callback(e);
 			}
-		}.bind(this));
+		}.bind(this)).catch(callback);
 	});
 
 	this.Then(/^there are (\d+) "([^"]*)" elements displayed$/, function (numElements, semanticName, callback) {
@@ -166,11 +174,7 @@ module.exports = function () {
 				callback(e);
 			}
 
-		}.bind(this)).catch(function (e) {
-
-			callback(e);
-
-		});
+		}.bind(this)).catch(callback);
 
 	});
 
@@ -194,9 +198,7 @@ module.exports = function () {
 			} catch (e) {
 				callback(e);
 			}
-		}.bind(this)).catch(function (e) {
-			callback(e);
-		});
+		}.bind(this)).catch(callback);
 	});
 
 	this.When(/^I hover the "([^"]*)" element$/, function (element, callback) {
