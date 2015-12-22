@@ -5,6 +5,9 @@ module.exports = function () {
 
 	var _ = require('lodash-compat');
 
+	// Load shared library of step definitions. Use these first!
+	require('../../support/steps').call(this);
+
 	this.Before(function (callback) {
 		this.component = {};
 		this.component.container = '.ux-sub-nav ';
@@ -12,11 +15,6 @@ module.exports = function () {
 		this.component.active    = this.component.container + 'dd.active';
 
 		callback();
-	});
-
-	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
-		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase, callback);
 	});
 
 	this.Then(/^I should see (\d+) options$/, function (numElements, callback) {
@@ -28,7 +26,7 @@ module.exports = function () {
 			try {
 				this.assert.equal(elements.value.length, numElements);
 				callback();
-			} catch(e) {
+			} catch (e) {
 				callback(e);
 			}
 		}.bind(this)).catch(function (e) {
