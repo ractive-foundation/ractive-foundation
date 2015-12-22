@@ -1,0 +1,22 @@
+{
+	"title": "Round",
+	"isDataModel": true,
+	"data": {
+		"text": "ux-button-group button",
+		"class":"round",
+		"items": [
+			{
+				"href":"#",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"text":"Button 2"
+			},
+			{
+				"href":"#",
+				"text":"Button 3"
+			}
+		]
+	}
+}

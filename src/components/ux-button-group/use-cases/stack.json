@@ -1,0 +1,18 @@
+{
+	"title": "Stack",
+	"isDataModel": true,
+	"data": {
+		"text": "ux-button-group button",
+		"class":"stack",
+		"items": [
+			{
+				"href":"#",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"text":"Button 2"
+			}
+		]
+	}
+}

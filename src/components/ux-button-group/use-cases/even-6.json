@@ -1,0 +1,33 @@
+{
+	"title": "Even Six",
+	"isDataModel": true,
+	"data": {
+		"class":"even-6 round",
+		"items": [
+			{
+				"href":"#",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"text":"Button 2"
+			},
+			{
+				"href":"#",
+				"text":"Button 3"
+			},
+			{
+				"href":"#",
+				"text":"Button 4"
+			},
+			{
+				"href":"#",
+				"text":"Button 5"
+			},
+			{
+				"href":"#",
+				"text":"Button 6"
+			}
+		]
+	}
+}

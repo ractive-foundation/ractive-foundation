@@ -1,0 +1,21 @@
+{
+	"title": "Default",
+	"isDataModel": true,
+	"data": {
+		"class":"",
+		"items": [
+			{
+				"href":"#",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"text":"Button 2"
+			},
+			{
+				"href":"#",
+				"text":"Button 3"
+			}
+		]
+	}
+}

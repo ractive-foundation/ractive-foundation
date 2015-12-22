@@ -4,10 +4,11 @@
 	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
 	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
 	on-tap="clickHandler()"
+	on-click="clickHandler"
 	>
 	{{#if text}}
 		{{text}}
 	{{else}}
-		{{>content}}
+		{{yield}}
 	{{/if}}
 </a>

@@ -1,0 +1,23 @@
+{
+	"title": "Even Three",
+	"isDataModel": true,
+	"data": {
+		"class":"even-3",
+		"items": [
+			{
+				"class": "secondary",
+				"text":"Button 1"
+			},
+			{
+				"href":"#",
+				"class": "secondary",
+				"text":"Button 2"
+			},
+			{
+				"href":"#",
+				"class": "secondary",
+				"text":"Button 3"
+			}
+		]
+	}
+}
