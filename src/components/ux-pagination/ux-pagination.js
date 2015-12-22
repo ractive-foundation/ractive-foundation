@@ -6,7 +6,7 @@ Ractive.extend({
 		nextText: '&raquo;',
 		prevText: '&laquo;',
 		skipText: '&hellip;',
-		isCollapsed: function(current, page, total, visible) {
+		isCollapsed: function (current, page, total, visible) {
 			// page is always shown if it is at the ends or is the current page
 			if (page === 1 || page === current || page === total) {
 				return false;
@@ -16,19 +16,17 @@ Ractive.extend({
 			if (current < visible / 2) {
 				// 1 collapsed section
 				return page > visible - 2;
-			}
-			else if (total - current <= visible / 2) {
+			} else if (total - current <= visible / 2) {
 				// 1 collapsed section
 				return page < total - visible + 3;
-			}
-			else {
+			} else {
 				// 2 collapsed sections
 				return Math.abs(current - page) > (visible - 4) / 2;
 			}
 		}
 	},
 	computed: {
-		pages: function() {
+		pages: function () {
 			var pages        = [],
 				currentPage  = this.get('currentPage'),
 				totalPages   = this.get('totalPages'),
@@ -54,15 +52,15 @@ Ractive.extend({
 							class: 'skip'
 						});
 					}
-					continue;
+				} else {
+					splitStart = false;
+					pages.push({
+						current: currentPage === i,
+						content: i,
+						page: i,
+						class: 'page-' + i
+					});
 				}
-				splitStart = false;
-				pages.push({
-					current: currentPage === i,
-					content: i,
-					page: i,
-					class: 'page-' + i
-				});
 			}
 
 			pages.push({
