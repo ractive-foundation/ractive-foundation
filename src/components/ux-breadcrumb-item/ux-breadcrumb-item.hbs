@@ -1,0 +1,9 @@
+<li role="menuitem"
+	class="{{class}} {{#unavailable}}unavailable{{/unavailable}} {{#current}}current{{/current}}">
+	{{#if .isDataModel}}
+		<ux-anchor isDataModel="false"
+			href="{{href}}">{{content}}</ux-anchor>
+	{{else}}
+		{{yield}}
+	{{/if}}
+</li>
