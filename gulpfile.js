@@ -1,11 +1,22 @@
 var gulp = require('gulp'),
+	args = require('yargs').argv,
 	del = require('del'),
+	glob = require('simple-glob'),
 	exec = require('child_process').exec,
 	gutil = require('gulp-util'),
+	jscs = require('gulp-jscs'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
 	fs = require('fs'),
 	nodePath = require('path'),
+	path = require('path'),
+
+	cordovaCreate = require('gulp-cordova-create'),
+	cordovaDescription = require('gulp-cordova-description'),
+	cordovaAuthor = require('gulp-cordova-author'),
+	cordovaVersion = require('gulp-cordova-version'),
+	cordovaAndroid = require('gulp-cordova-build-android'),
+	cordovaIos = require('gulp-cordova-build-ios'),
 
 	plugins = require('gulp-load-plugins')(),
 
@@ -14,20 +25,39 @@ var gulp = require('gulp'),
 	seleniumServer = require('./tasks/seleniumServer'),
 	rfCucumber = require('./tasks/rfCucumber'),
 	ractiveParse = require('./tasks/ractiveParse'),
-	ractiveConcatComponents = require('./tasks/ractiveConcatComponents'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
 	concatManifests = require('./tasks/concatManifests'),
 	gulpWing = require('./tasks/gulpWing'),
-	jshintFailReporter = require('./tasks/jshintFailReporter');
+	jshintFailReporter = require('./tasks/jshintFailReporter'),
+	rfA11y = require('./tasks/rfA11y'),
 
-var pkg = require('./package.json');
+	pkg = require('./package.json');
+
+const DEV_SERVER_PORT = 9080,
+	TEST_SERVER_PORT = 8088,
+	A11Y_SERVER_PORT = 8089;
 
 gulp.task('connect', function () {
 	plugins.connect.server({
 		root: 'public',
 		livereload: true,
-		port: 9080
+		port: DEV_SERVER_PORT
 	});
+});
+
+gulp.task('test-connect', function () {
+	plugins.connect.server({
+		root: 'public',
+		port: TEST_SERVER_PORT
+	});
+});
+
+gulp.task('a11y-connect', function (callback) {
+	plugins.connect.server({
+		root: 'public',
+		port: A11Y_SERVER_PORT
+	});
+	callback();
 });
 
 gulp.task('html', function () {
@@ -52,9 +82,15 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/superagent/superagent.js',
 			'./node_modules/page/page.js',
 			'./node_modules/foundation-sites/js/vendor/modernizr.js',
-			'./node_modules/lodash-compat/index.js'
+			'./node_modules/lodash-compat/index.js',
+			'./node_modules/hljs-cdn-release/build/highlight.min.js'
 		])
 		.pipe(plugins.copy('./public/js', { prefix: 1 })),
+
+		gulp.src([
+			'./node_modules/hljs-cdn-release/build/styles/github.min.css'
+		])
+		.pipe(plugins.copy('./public/css', { prefix: 1 })),
 
 		// Our own project files.
 		gulp.src('./src/route.js')
@@ -72,7 +108,8 @@ gulp.task('copy-vendors', function () {
 
 gulp.task('copy-use-cases', function () {
 	return gulp.src([
-		'./src/components/**/use-cases/*.json'
+		'./src/components/**/use-cases/*.json',
+		'./src/plugins/**/use-cases/*.json',
 	])
 		.pipe(plugins.rename(function (path) {
 			// Get rid of the extra "use-cases" folder for the destination.
@@ -104,11 +141,32 @@ gulp.task('build-sass', function () {
 });
 
 gulp.task('ractive-build-templates', function () {
-	return gulp.src('./src/components/**/*.hbs')
+	return gulp.src([
+			'./src/components/**/*.hbs',
+			'!./src/components/**/use-cases/*.hbs'
+		])
 		.pipe(ractiveParse({
-			'prefix': 'Ractive.defaults.templates'
+			template: true,
+			prefix: 'Ractive.defaults.templates'
 		}))
 		.pipe(plugins.concat('templates.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('ractive-build-test-templates', function () {
+	return gulp.src([
+			'./src/components/**/use-cases/*.hbs',
+			'./src/plugins/**/use-cases/*.hbs'
+		])
+		.pipe(ractiveParse({
+			objectName: function(file) {
+				var parts = file.history[0].split(path.sep).slice(-3);
+				return parts[0] + '-' + parts[2].replace(/[.]hbs$/, '');
+			},
+			template: true,
+			prefix: 'Ractive.defaults.templates'
+		}))
+		.pipe(plugins.concat('templates-tests.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
@@ -117,17 +175,29 @@ gulp.task('ractive-build-components', function () {
 			'./src/components/**/*.js',
 			'!./src/components/**/*.steps.js'
 		])
-		.pipe(ractiveConcatComponents({
+		.pipe(ractiveParse({
 			'prefix': 'Ractive.components'
 		}))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('ractive-build-plugins', function () {
+	return gulp.src([
+			'./src/plugins/**/*.js',
+			'!./src/plugins/**/*.steps.js'
+		])
+		.pipe(ractiveParse({
+			'prefix': 'Ractive'
+		}))
+		.pipe(plugins.concat('plugins.js'))
+		.pipe(gulp.dest('./public/js/'));
+});
+
 gulp.task('build-documentation', function () {
 
-	var headerHtml = fs.readFileSync('./src/header.html');
-	var footerHtml = fs.readFileSync('./src/footer.html');
+	var headerHtml = fs.readFileSync('./src/header.html'),
+		footerHtml = fs.readFileSync('./src/footer.html');
 
 	return mergeStream(
 
@@ -139,7 +209,11 @@ gulp.task('build-documentation', function () {
 		.pipe(renderDocumentation({
 			componentsDir: './src/components/',
 			docSrcPath: './src/component-page.html',
-			indexSrcPath: './src/components.html'
+			indexSrcPath: './src/components.html',
+			partials: [
+				'./src/component.html',
+				'./src/component-use-case.html'
+			]
 		}))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
@@ -167,6 +241,7 @@ gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
 		'./public/js/templates.js',
+		'./public/js/plugins.js',
 		'./public/js/components.js'
 	];
 	return gulp.src(files)
@@ -190,10 +265,12 @@ gulp.task('wing', function (callback) {
 	callback();
 });
 
-gulp.task('build', ['clean', 'jshint'], function (callback) {
+gulp.task('build', ['clean', 'lint'], function (callback) {
 	runSequence([
 		'build-sass',
 		'ractive-build-templates',
+		'ractive-build-test-templates',
+		'ractive-build-plugins',
 		'ractive-build-components',
 		'build-documentation'
 	], [
@@ -245,7 +322,7 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 });
 
 gulp.task('version-check', function (callback) {
-	exec('node ./bin/versionCheck.js', function(err, stdout) {
+	exec('node ./bin/versionCheck.js', function (err, stdout) {
 		if (stdout) {
 			gutil.log(gutil.colors.red(stdout));
 		}
@@ -265,7 +342,7 @@ gulp.task('watch', function () {
 		'src/*.html',
 		'src/pages/*.html',
 		'src/blank-pages/*.html',
-		'src/**.*.json',
+		'src/**/*.json',
 		'src/**/*.hbs',
 		'src/**/*.md',
 		'src/**/*.js',
@@ -278,19 +355,76 @@ gulp.task('watch', function () {
 
 });
 
-gulp.task('test', ['version-check', 'build'], function (callback) {
+gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
-	plugins.connect.server({
-		root: 'public',
-		port: 8088
-	});
+	rfA11y.auditComponents({ port: A11Y_SERVER_PORT })
+		.then(function () {
+			callback();
+			process.exit(0);
+		})
+		.catch(function (error) {
+			callback(new Error(error));
+			process.exit(1);
+		});
 
-	var selServer = seleniumServer();
+});
+
+// Run the test suite alone, without re-building the project. Useful for rapid test debugging.
+// See 'test' for the full build and test task.
+gulp.task('test-only', [ 'test-connect' ], function (callback) {
+
+	var selServer = seleniumServer(),
+		globFeature = [],
+		globStep = [],
+		componentName  = args.component || '',
+		paths = [];
+
+	if (args.component) {
+
+		paths = [
+			'./src/components/%s/*.feature'.replace('%s', componentName)
+		];
+
+		globFeature = glob(paths);
+
+		if (!globFeature.length) {
+			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
+		}
+	}
+	if (args.plugin) {
+
+		var pluginName = args.plugin || '';
+
+		var paths = [
+			'./src/plugins/%s/*.feature'.replace('%s', pluginName)
+		];
+
+		globFeature = glob(paths);
+
+		if (!globFeature.length) {
+			gutil.log(gutil.colors.red.bold('Couldn\'t find requested component/widget, running whole suite'));
+		}
+	}
+
+	if (!globFeature.length) {
+
+		paths = [
+			'./src/components/**/*.feature',
+			'./src/plugins/**/*.feature'
+		];
+
+		globFeature = glob(paths);
+	}
+
+	globStep = [
+		'./src/components/**/*.steps.js',
+		'./src/plugins/**/*.steps.js'
+	];
 
 	selServer.init().then(function () {
-		var stream = gulp.src('./src/components/**/*.feature')
+		var stream = gulp.src(globFeature)
 			.pipe(rfCucumber(
-				{ steps: './src/components/**/*.steps.js' }
+				{ steps: globStep }
 			));
 
 		stream.on('end', function () {
@@ -314,18 +448,84 @@ gulp.task('test', ['version-check', 'build'], function (callback) {
 			});
 		});
 	}).catch(gutil.log);
+
 });
 
-gulp.task('jshint', function (callback) {
+gulp.task('cordova-clean', function (callback) {
+	del([
+		'.cordova/**/*'
+	], callback);
+});
+
+gulp.task('cordova-create', ['cordova-clean'], function () {
+	var options = {
+		dir: '.cordova',
+		id: 'com.ractiveFoundationDemo.sample',
+		name: 'Ractive Foundation Demo'
+	};
+
+	return gulp.src('public')
+        .pipe(cordovaCreate(options))
+        .pipe(cordovaAuthor('Ractive Foundation Team', ''))
+        .pipe(cordovaDescription('Ractive Foundation Demo'))
+        .pipe(cordovaVersion(pkg.version));
+});
+
+gulp.task('cordova-build', ['cordova-create'], function (callback) {
+	if (args.ios) {
+		return gulp.src('.cordova')
+			.pipe(cordovaIos(true));
+	} else if (args.android) {
+		return gulp.src('.cordova')
+			.pipe(cordovaAndroid(true))
+			.pipe(gulp.dest('apk'));
+	} else {
+		return gulp.src('.cordova')
+			.pipe(cordovaIos(true))
+			.pipe(cordovaAndroid(true))
+			.pipe(gulp.dest('apk'));
+	}
+});
+
+gulp.task('cordova-run', function (callback) {
+	var platform = args.ios ? 'ios' : 'android';
+
+	exec('(cd ./.cordova/ && cordova run ' + platform + ')', function (err, stdout) {
+		if (stdout) {
+			gutil.log(gutil.colors.red(stdout));
+		}
+
+		if (err) {
+			gutil.log(gutil.colors.red('Exiting...'));
+			process.exit(1);
+		}
+
+		callback(err);
+	});
+});
+
+// Build and test the project. Default choice. Used by npm test.
+gulp.task('test', function (callback) {
+	runSequence([ 'version-check', 'build' ], 'test-only', callback);
+});
+
+// Currently a11y not part of standard build/test process.
+gulp.task('a11y', function (callback) {
+	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
+});
+
+gulp.task('lint', function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
+		.pipe(jscs())
+		.pipe(jscs.reporter())
 		.pipe(jshintFailReporter());
 });
 
 gulp.task('default', function () {
 	var self = this;
-	runSequence('version-check', 'jshint', 'build',  'connect', 'watch', function (err) {
+	runSequence('version-check', 'lint', 'build',  'connect', 'watch', function (err) {
 		self.emit('end');
 	});
 });

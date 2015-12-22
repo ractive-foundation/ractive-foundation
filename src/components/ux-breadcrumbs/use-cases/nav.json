@@ -1,0 +1,28 @@
+{
+	"title": "Nav",
+	"description": "Breadcrumbs with <nav> elements",
+	"isDataModel": true,
+	"data": {
+		"isNav": true,
+		"items": [
+			{
+				"href": "#",
+				"content": "Home"
+			},
+			{
+				"href": "#",
+				"content": "Features"
+			},
+			{
+				"href": "#",
+				"unavailable": true,
+				"content": "Gene Splicing"
+			},
+			{
+				"href": "#",
+				"current": true,
+				"content": "Cloning"
+			}
+		]
+	}
+}

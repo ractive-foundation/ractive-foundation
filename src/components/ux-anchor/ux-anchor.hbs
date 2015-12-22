@@ -1,11 +1,16 @@
-<a id="{{guid}}" href="{{href}}"
-   {{#if target}}target="{{target}}"{{/if}}
-	{{#if class}}class="{{class}}"{{/if}} on-tap="anchorClicked">
-    {{#if .isDataModel}}
-        {{{content}}}
-    {{else}}
-        {{yield}}
-    {{/if}}
+<a id="{{guid}}"
+	{{#if href}}href="{{href}}"{{/if}}
+	{{#if role}}role="{{role}}"{{/if}}
+	{{#if ariaLabel}}aria-label="{{ariaLabel}}"{{/if}}
+	{{#if target}}target="{{target}}"{{/if}}
+	{{#if class}}class="{{class}}"{{/if}}
+	on-tap="anchorClicked"
+	>
+	{{#if .isDataModel}}
+		{{{content}}}
+	{{else}}
+		{{yield}}
+	{{/if}}
 </a>
 
 

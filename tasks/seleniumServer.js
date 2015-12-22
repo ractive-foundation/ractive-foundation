@@ -24,6 +24,11 @@ module.exports = function (options) {
 	var pingSelenium = function(options) {
 		options = options || {};
 		return Q.Promise(function (resolve, reject) {
+
+			if (options.seleniumOptions && options.seleniumOptions.alwaysSpawn) {
+				return resolve(false);
+			}
+
 			gutil.log(gutil.colors.gray('Checking if Selenium server is running'));
 
 			var opts = {
@@ -79,6 +84,12 @@ module.exports = function (options) {
 			if (!seleniumServer) {
 				gutil.log(gutil.colors.red('Cannot kill standalone server.'));
 				return reject('Cannot kill standalone server.');
+			}
+
+			if (options.seleniumOptions.kill === false) {
+				gutil.log(gutil.colors.green('Configured not to kill selenium.'))
+				gutil.log('Finished', '\'' + gutil.colors.cyan('selenium standalone server') + '\'...');
+				return resolve();
 			}
 
 			seleniumServer.kill();
