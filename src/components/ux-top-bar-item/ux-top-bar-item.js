@@ -7,7 +7,6 @@ Ractive.extend({
 				active  = this.get('active'),
 				hasForm = this.get('hasForm'),
 				items   = this.get('items');
-			console.log(this.get());
 			if (active) {
 				classes.push('active');
 			}
