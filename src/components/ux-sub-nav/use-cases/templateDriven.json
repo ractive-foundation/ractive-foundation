@@ -1,0 +1,6 @@
+{
+	"title": "Template example",
+	"template": "ux-sub-nav-templateDriven",
+	"file": "src/components/ux-sub-nav/use-cases/templateDriven.hbs",
+	"data": {}
+}

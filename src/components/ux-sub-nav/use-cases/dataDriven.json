@@ -1,0 +1,26 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"title": "Filter",
+		"items": [
+			{
+				"active": true,
+				"href": "#",
+				"content": "All"
+			},
+			{
+				"href": "#",
+				"content": "Active"
+			},
+			{
+				"href": "#",
+				"content": "Pending"
+			},
+			{
+				"href": "#",
+				"content": "Suspended"
+			}
+		]
+	}
+}

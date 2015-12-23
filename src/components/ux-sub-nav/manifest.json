@@ -1,0 +1,11 @@
+{
+	"data": {
+		"title": "The name for the sub-nav",
+		"items": "A list of ux-anchor items"
+	},
+	"events": {
+		"anchorClicked": "Event fired when sub nav item clicked",
+		"onclick": "Event to fire when component is clicked"
+	},
+	"category": "navigation"
+}
