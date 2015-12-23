@@ -1,0 +1,15 @@
+{
+	"data": {
+		"currentPage": "The currently selected page (Default 1)",
+		"totalPages": "The total number of pages accessible",
+		"displayPages": "The number of pages to display (Default 10)",
+		"nextText": "The text for the next page (Default &raquo;)",
+		"prevText": "The text for the previous page (Default &laquo;)",
+		"skipText": "The text for the skipped pages (Default &hellip;)",
+		"isCollapsed": "A function that can determine if a particulular page should be part of a skipped group of pages"
+	},
+	"events": {
+		"onclick": "Event to fire when component is clicked"
+	},
+	"category": "navigation"
+}
