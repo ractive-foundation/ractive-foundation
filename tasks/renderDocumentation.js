@@ -79,8 +79,7 @@ function useCases(useCase, componentName) {
 			partial: partial,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
-	}
-	else {
+	} else {
 		return {
 			title: useCase.title,
 			useCaseUid: useCaseUid,
@@ -187,13 +186,17 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file, partials, 
 	};
 
 	// Render all use cases into html.
-	component.useCases = _.map(manifest.useCases, function (useCase) {
+	component.useCases = _(manifest.useCases).map(function (useCase) {
+		if (useCase.template && options.templateUseCases === false) {
+			return;
+		}
+
 		var data = useCases(useCase, manifest.componentName);
 		if (data.partial) {
 			partials[data.template] = data.partial;
 		}
 		return data;
-	});
+	}).filter().value();
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
