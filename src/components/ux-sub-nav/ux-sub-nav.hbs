@@ -1,0 +1,19 @@
+<dl class="sub-nav ux-sub-nav {{class}}"
+	role="menu"
+	title="{{title}}Menu List">
+	<dt>{{#title}}{{title}}:{{/title}}</dt>
+	{{#if items.length}}
+		{{#items:i}}
+			<dd role="menuitem"
+				class="{{#active}}active{{/active}}"
+				>
+				<ux-anchor
+					href="{{href}}"
+					class="{{class}}"
+				>{{{content}}}</ux-anchor>
+			</dd>
+		{{/items}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</dl>

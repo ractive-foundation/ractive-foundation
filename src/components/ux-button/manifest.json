@@ -1,7 +1,10 @@
 {
 	"data": {
 		"text": "The text to display on the button",
-		"url": "The link to follow when the button is clicked"
+		"href": "The link to follow when the button is clicked",
+		"role": "The role of the button",
+		"arialabel": "Accessibility label",
+		"tabindex": "Tabable index of the element"
 	},
 	"events": {
 		"onclick": "Event to fire when button is clicked"

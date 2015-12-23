@@ -4,48 +4,15 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	// Semantic mappings onto css selectors etc.
-	var component = { container: '#childComponent' };
-	component.button = {
-		selector: component.container + ' .button',
-		attribs: {
-			role: 'role',
-			className: 'class',
-			ariaLabel: 'aria-label',
-			tabindex: 'tabindex'
-		}
-	};
+	this.Before(function (callback) {
 
-	this.Then(/^the element "([^"]*)" should be displayed$/, function (semanticName, callback) {
+		this.component = {};
+		this.component.container = '#childComponent ';
+		this.component.button = this.component.container + ' button.button';
+		this.component.anchor = this.component.container + ' a.button';
 
-		var self = this;
-		this.client.isExisting(component[semanticName].selector, function (err, isExisting) {
-			try {
-				self.assert(isExisting);
-				callback();
-			} catch (e) {
-				callback.fail('Assertion failed, element not found');
-			}
-		});
+		callback();
+
 	});
 
-	this.Then(/^the element "([^"]*)" should have the "([^"]*)" of "([^"]*)"$/,
-		function (semanticName, attribName, attribValue, callback) {
-
-			var self = this;
-
-			this.client.getAttribute(
-				component[semanticName].selector,
-				component[semanticName].attribs[attribName],
-				function (err, attr) {
-					try {
-						self.assert.deepEqual(attr, attribValue);
-						callback();
-					} catch (e) {
-						callback.fail(e.name + ' ' + e.message);
-					}
-				}
-			);
-		}
-	);
 };

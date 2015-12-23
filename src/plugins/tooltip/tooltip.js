@@ -12,7 +12,7 @@ function(node, options) {
 			show_on: options.show_on || 'small medium large'
 		};
 
-	enterSection = function () {
+	enterSection = function() {
 		var tooltip_exists = document.getElementById(config.selectorName);
 		if (tooltip_exists || !config.content.length) {
 			return;
@@ -37,7 +37,7 @@ function(node, options) {
 
 		tooltip.addEventListener('click', leaveSection);
 
-		setTimeout (function () {
+		setTimeout(function () {
 			tooltip.setAttribute('style', 'left:inherit;');
 		}, config.delay);
 	};

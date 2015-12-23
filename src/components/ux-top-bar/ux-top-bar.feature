@@ -1,4 +1,4 @@
-Feature: ux-topbar test suite
+Feature: ux-top-bar test suite
 
-  Scenario: Loading ux-topbar
-    Given I have loaded component "ux-topbar" with use case "UseCase"
+  Scenario: Loading ux-top-bar
+    Given I have loaded component "ux-top-bar" with use case "UseCase"
