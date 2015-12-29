@@ -1,3 +1,3 @@
 > Mark sections of content
 
-`<ux-content>` is an internal helper component created for ractive-foundation.
+`&lt;ux-content&gt;` is an internal helper component created for ractive-foundation.

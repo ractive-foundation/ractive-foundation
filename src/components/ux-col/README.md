@@ -1,3 +1,3 @@
 > create columns of content
 
-`<ux-col>` is an internal helper component created for ractive-foundation.
+`&lt;ux-col&gt;` is an internal helper component created for ractive-foundation.

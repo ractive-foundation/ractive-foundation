@@ -1,3 +1,3 @@
 > Create rows of content
 
-`<ux-row>` is an internal helper component created for ractive-foundation.
+`&lt;ux-row&gt;` is an internal helper component created for ractive-foundation.
