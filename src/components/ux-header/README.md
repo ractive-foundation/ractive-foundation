@@ -1,3 +1,3 @@
 > Make headers
 
-`<ux-header>` is an internal helper component created for ractive-foundation.
+`&lt;ux-header&gt;` is an internal helper component created for ractive-foundation.
