@@ -95,13 +95,15 @@ function useCases(useCase, componentName) {
  */
 function getSideNavDataModel(manifests) {
 
-	var sideNavData = {};
+	var sideNavData = {},
+		helpers = {};
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
 		var cat = manifest.manifest.category || 'uncategorised';
 		sideNavData[cat] = sideNavData[cat] || [];
 		sideNavData[cat].push(manifest.componentName);
+		helpers[manifest.componentName] = manifest.manifest.helper;
 	});
 
 	var sideNavDataModel = {
@@ -116,7 +118,7 @@ function getSideNavDataModel(manifests) {
 
 		sideNavDataModel.items.push({
 			isHeading: true,
-			label: categoryName
+			label: categoryName,
 		});
 
 		_.each(sideNavData[categoryName], function (componentName) {
@@ -124,7 +126,8 @@ function getSideNavDataModel(manifests) {
 			sideNavDataModel.items.push({
 				label: componentName,
 				// Link to individual component pages.
-				href: componentName + '.html'
+				href: componentName + '.html',
+				class: helpers[componentName] ? 'hide' : ''
 			});
 
 		});
