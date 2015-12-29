@@ -1,0 +1,11 @@
+{
+	"data":{
+		"class": "Extra classes to apply to content",
+		"active": "Boolean - true sets active class"
+	},
+	"content": "Content of ux-content is yielded to",
+	"events": {
+	},
+	"category": "content",
+	"helper": true
+}
