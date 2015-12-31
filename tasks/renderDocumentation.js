@@ -93,10 +93,16 @@ function useCases(useCase, componentName) {
 /**
  * Transform intermediate data into final data model for sidenav.
  */
-function getSideNavDataModel(manifests) {
+function getSideNavDataModel(manifests, options) {
 
 	var sideNavData = {},
 		helpers = {};
+
+	if (! (options.setClass instanceof Function)) {
+		options.setClass = function(helpers, componentName, manifests) {
+			return helpers[componentName] ? 'hide' : '';
+		};
+	}
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
@@ -127,7 +133,7 @@ function getSideNavDataModel(manifests) {
 				label: componentName,
 				// Link to individual component pages.
 				href: componentName + '.html',
-				class: helpers[componentName] ? 'hide' : ''
+				class: options.setClass(helpers, componentName, manifests)
 			});
 
 		});
@@ -261,7 +267,7 @@ function renderDocumentation(options) {
 			});
 
 			// Build up sideNavDataModel first.
-			var sideNavDataModel = getSideNavDataModel(manifests);
+			var sideNavDataModel = getSideNavDataModel(manifests, options);
 
 			// Create the component index page, using the sidenav.
 			this.push(getIndexFile(indexFile, sideNavDataModel, file, options));
