@@ -77,6 +77,7 @@ function useCases(useCase, componentName) {
 			template: useCase.template,
 			display: _.escape(partial),
 			partial: partial,
+			name: useCase.name,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
 	} else {
@@ -85,6 +86,7 @@ function useCases(useCase, componentName) {
 			useCaseUid: useCaseUid,
 			inline: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
 			display: _.escape(makeHTML([componentObj])),
+			name: useCase.name,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
 	}
