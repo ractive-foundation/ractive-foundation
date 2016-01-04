@@ -46,9 +46,12 @@ function renderDocumentation(fileName) {
 		};
 
 		try {
-			out.useCases = find.fileSync(/.*\.json$/, paths.useCasesDir)
+			out.useCases = find.fileSync(/.*[.]json$/, paths.useCasesDir)
 				.map(function (useCase) {
-					return JSON.parse(fs.readFileSync(useCase, 'UTF-8'));
+					var json = JSON.parse(fs.readFileSync(useCase, 'UTF-8')),
+						regex = new RegExp('^.*' + path.sep);
+					json.name = useCase.replace(regex, '').replace(/[.]json$/, '');
+					return json;
 				});
 		} catch (e) {
 			console.log('No use cases for ' + paths.useCasesDir);
