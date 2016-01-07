@@ -11,19 +11,3 @@ For example toggle reflow
 this.ractive.set('reflow', false).then(function() {
 	this.ractive.set('reflow', true);
 }.bind(this));
-
-<div data-equalizer="foo">
-	{{#reflow}}
-		<div data-equalizer-watcher="foo" class="padded" intro="equalizer">
-			<p>line 1<p>
-			<p>line 2<p>
-			<p>line 3<p>
-		 </div>
-	{{/}}
-	...
-	{{#reflow}}
-		 <div data-equalizer-watcher="foo" intro="equalizer">
-			<p>line 1<p>
-		 </div>
-	{{/}}
-</div>

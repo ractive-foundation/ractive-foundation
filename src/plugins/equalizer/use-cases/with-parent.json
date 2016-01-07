@@ -1,0 +1,9 @@
+{
+	"title": "Equalizer: template with equalized div inside parent",
+	"isDataModel": false,
+	"template": "equalizer-with-parent",
+	"file": "src/plugins/equalizer/use-cases/with-parent.hbs",
+	"data": {
+		"reflow": true
+	}
+}
