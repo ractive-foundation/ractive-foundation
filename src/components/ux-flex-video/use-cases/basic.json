@@ -1,0 +1,12 @@
+{
+  "title": "Basic Flex Video", 
+  "isDataModel": true, 
+  "data": {
+    "allowfullscreen": "allowfullscreen",
+    "class": "",
+    "frameborder": "0",
+    "height": "315",
+    "src": "//www.youtube.com/embed/aiBt44rrslw",
+    "width": "420"
+	}
+}
