@@ -5,6 +5,7 @@
 
 if [ "$TRAVIS_TAG" = "" ]
 then
+	echo "Nothing to deploy. Exiting"
 	exit 0
 else
 	echo "Deploying tag $TRAVIS_TAG to gh-pages"
