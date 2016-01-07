@@ -354,7 +354,7 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 });
 
 gulp.task('version-check', function (callback) {
-	exec('node ./bin/versionCheck.js', function (err, stdout) {
+	exec('node ./scripts/versionCheck.js', function (err, stdout) {
 		if (stdout) {
 			gutil.log(gutil.colors.red(stdout));
 		}
