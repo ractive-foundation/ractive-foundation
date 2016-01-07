@@ -1,3 +1,15 @@
 <div class="ux-flex-video">
-	<h2>{{todo}}</h2>
+	{{#if .isDataModel}}
+	<div class="flex-video {{#class}}{{class}}{{/}}">
+		<iframe 
+			src="{{src}}"
+			height="{{height}}"
+			width="{{width}}"
+			frameborder="{{frameborder}}"
+			{{#allowfullscreen}} {{allowfullscreen}}{{/}}>
+		</iframe>
+	</div>
+	{{else}}
+		{{yield}}
+	{{/if}}
 </div>
