@@ -1,0 +1,12 @@
+{
+  "title": "Advanced Flex Video", 
+  "isDataModel": true, 
+  "data": {
+    "allowfullscreen": "webkitAllowFullScreen mozallowfullscreen allowFullScreen",
+    "class": "widescreen vimeo",
+    "frameborder": "0",
+    "height": "225",
+    "src": "http://player.vimeo.com/video/60122989",
+    "width": "400"
+	}
+}
