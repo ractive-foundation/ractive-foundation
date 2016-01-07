@@ -138,7 +138,7 @@ function getSideNavDataModel(manifests) {
 /**
  * All these components need an index page to get started.
  */
-function getIndexFile (type, indexFile, sideNavDataModel, file, options) {
+function getIndexFile (indexFile, sideNavDataModel, file, options) {
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
@@ -156,8 +156,8 @@ function getIndexFile (type, indexFile, sideNavDataModel, file, options) {
 
 	// Modify manifest-rf.json file data to create individual component html files for output.
 	var parsed = path.parse(file.path);
-	parsed.name = type;
-	parsed.base = type + '.html';
+	parsed.name = options.type;
+	parsed.base = options.type + '.html';
 	parsed.ext = '.html';
 
 	var componentFile = new VinylFile({
@@ -261,7 +261,7 @@ function renderDocumentation(options) {
 			var sideNavDataModel = getSideNavDataModel(manifests);
 
 			// Create the component index page, using the sidenav.
-			this.push(getIndexFile(options.type, indexFile, sideNavDataModel, file, options));
+			this.push(getIndexFile(indexFile, sideNavDataModel, file, options));
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
