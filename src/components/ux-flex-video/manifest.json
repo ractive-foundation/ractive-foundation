@@ -1,11 +1,11 @@
 {
-	"data": {
-		"text": "The text to display on the ux-flex-video component",
-		"src": "Is the source URL for the video. e.g. //www.youtube.com/embed/aiBt44rrslw",
+  "data": {
+    "text": "The text to display on the ux-flex-video component",
+    "src": "Is the source URL for the video. e.g. //www.youtube.com/embed/aiBt44rrslw",
     "height": "Is the height of the iframe",
     "width": "Is the width of the iframe",
     "frameborder": "Is the frameborder of the iframe",
     "allowfullscreen": "Allow full screen options.  e.g. allowfullscreen webkitAllowFullScreen mozallowfullscreen"
-	},
-	"category": "media"
+  },
+  "category": "media"
 }
