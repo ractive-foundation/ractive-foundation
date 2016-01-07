@@ -257,8 +257,8 @@ gulp.task('build-documentation-plugins', function () {
 			docSrcPath: './src/plugin-page.html',
 			indexSrcPath: './src/plugins.html',
 			partials: [
-				'./src/component.html',
-				'./src/component-use-case.html'
+				'./src/plugin.html',
+				'./src/plugin-use-case.html'
 			]
 		}))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
