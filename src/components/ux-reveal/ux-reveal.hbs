@@ -1,0 +1,9 @@
+<div id="{{id}}"
+	class="ux-reveal reveal-modal {{#show}}open{{/show}}"
+	style="visibility: {{visibility}}; top: {{top}}px">
+	{{#if isDataModel}}
+		{{{content}}}
+	{{else}}
+    	{{ yield }}
+	{{/if}}
+</div>
