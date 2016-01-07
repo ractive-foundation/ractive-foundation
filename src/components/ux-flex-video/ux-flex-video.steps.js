@@ -12,6 +12,7 @@ module.exports = function () {
 		this.component = {};
 		this.component.container = '.ux-flex-video ';
 		this.component.iframe = this.component.container + 'iframe';
+		this.component.flexvideo = this.component.container + '.flex-video';
 
 		callback();
 
