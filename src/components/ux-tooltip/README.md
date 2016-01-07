@@ -9,5 +9,5 @@ Read [Foundation's ux-tooltip](http://foundation.zurb.com/docs/components/ux-too
 __Example of use__
 
 ```HTML
-Example with a <span decorator="tooltip:\{{content:'Hello World!'\}}" tabindex="0">tooltip</span>
+Example with a <span decorator="tooltip:{content:'Hello World!'}" tabindex="0">tooltip</span>
 ```

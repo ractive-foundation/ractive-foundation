@@ -1,0 +1,7 @@
+{
+	"title": "Tooltip: example",
+	"isDataModel": false,
+	"template": "tooltip-example",
+	"file": "src/plugins/tooltip/use-cases/example.hbs",
+	"data": {}
+}
