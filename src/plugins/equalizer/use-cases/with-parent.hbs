@@ -1,0 +1,33 @@
+<style>
+.container div {
+	padding: 20px 0;
+	margin-bottom: 10px;
+}
+.container .bordered {
+	border: 2px solid red;
+}
+</style>
+<div class="container">
+	<div data-equalizer="foo">
+		<div data-equalizer-watcher="foo" class="bordered test1" intro="equalizer">
+			<p>line 1</p>
+			<p>line 2</p>
+			<p>line 3</p>
+		</div>
+		<div data-equalizer-watcher="foo" class="bordered test2" intro="equalizer">
+			<p>line 1</p>
+		</div>
+	</div>
+	<div>
+		Then using the same equalizer foo value but different divs:
+	</div>
+	<div data-equalizer="foo">
+		<div data-equalizer-watcher="foo" class="bordered test3" intro="equalizer">
+			<p>line 1</p>
+			<p>line 2</p>
+		</div>
+		<div data-equalizer-watcher="foo" class="bordered test4" intro="equalizer">
+			<p>line 1</p>
+		</div>
+	</div>
+</div>

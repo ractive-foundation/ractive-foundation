@@ -99,7 +99,7 @@ function getSideNavDataModel(manifests) {
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
-		var cat = manifest.manifest.category || 'uncategorised';
+		var cat = manifest.manifest.category || manifest.manifest.plugin || 'uncategorised';
 		sideNavData[cat] = sideNavData[cat] || [];
 		sideNavData[cat].push(manifest.componentName);
 	});
@@ -156,8 +156,8 @@ function getIndexFile (indexFile, sideNavDataModel, file, options) {
 
 	// Modify manifest-rf.json file data to create individual component html files for output.
 	var parsed = path.parse(file.path);
-	parsed.name = 'components';
-	parsed.base = 'components.html';
+	parsed.name = options.type;
+	parsed.base = options.type + '.html';
 	parsed.ext = '.html';
 
 	var componentFile = new VinylFile({

@@ -1,9 +1,0 @@
-{
-	"title": "Equalizer: template with no parent equalizer",
-	"isDataModel": false,
-	"template": "equalizer-no-parent",
-	"file": "src/plugins/equalizer/use-cases/no-parent.hbs",
-	"data": {
-		"reflow": true
-	}
-}
