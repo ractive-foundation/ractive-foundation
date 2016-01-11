@@ -1,0 +1,21 @@
+<ux-row>
+
+	<ux-col class="medium-9 medium-push-3">
+
+			<ux-header id="{{componentName}}" level="1">{{component.componentName}}</ux-header>
+
+			{{{component.readmeMd}}}
+
+			<ux-header level="2">Use cases</ux-header>
+
+			{{> plugin}}
+
+			<hr/>
+
+	</ux-col>
+
+	<ux-col class="medium-3 medium-pull-9 columns">
+		<ux-sidenav datamodel="{{{JSON.stringify(sideNavDataModel)}}}"></ux-sidenav>
+	</ux-col>
+
+</ux-row>

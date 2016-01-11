@@ -143,7 +143,8 @@ gulp.task('build-sass', function () {
 gulp.task('ractive-build-templates', function () {
 	return gulp.src([
 			'./src/components/**/*.hbs',
-			'!./src/components/**/use-cases/*.hbs'
+			'!./src/components/**/use-cases/*.hbs',
+			'!./src/plugins/**/use-cases/*.hbs'
 		])
 		.pipe(ractiveParse({
 			template: true,
@@ -194,7 +195,7 @@ gulp.task('ractive-build-plugins', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('build-documentation', function () {
+gulp.task('build-documentation-components', function () {
 
 	var headerHtml = fs.readFileSync('./src/header.html'),
 		footerHtml = fs.readFileSync('./src/footer.html');
@@ -207,6 +208,7 @@ gulp.task('build-documentation', function () {
 		.pipe(gulp.dest('./public/'))
 		// Create one doc file per component, using single manifest-rf.json file data.
 		.pipe(renderDocumentation({
+			type: 'components',
 			componentsDir: './src/components/',
 			docSrcPath: './src/component-page.html',
 			indexSrcPath: './src/components.html',
@@ -237,6 +239,35 @@ gulp.task('build-documentation', function () {
 
 });
 
+gulp.task('build-documentation-plugins', function () {
+
+	var headerHtml = fs.readFileSync('./src/header.html'),
+		footerHtml = fs.readFileSync('./src/footer.html');
+
+	return mergeStream(
+
+		// Plugins docs page.
+		gulp.src('./src/plugins/**/manifest.json')
+		.pipe(concatManifests('manifest-rf.json'))
+		.pipe(gulp.dest('./public/'))
+		// Create one doc file per plugin, using single manifest-rf.json file data.
+		.pipe(renderDocumentation({
+			type: 'plugins',
+			componentsDir: './src/plugins/',
+			docSrcPath: './src/plugin-page.html',
+			indexSrcPath: './src/plugins.html',
+			partials: [
+				'./src/plugin.html',
+				'./src/plugin-use-case.html'
+			]
+		}))
+		.pipe(plugins.header(headerHtml, { pkg: pkg }))
+		.pipe(plugins.footer(footerHtml))
+		.pipe(gulp.dest('./public/'))
+
+	);
+
+});
 gulp.task('concat-app', function () {
 	var files = [
 		'./src/ractivef.base.js',
@@ -272,7 +303,8 @@ gulp.task('build', ['clean', 'lint'], function (callback) {
 		'ractive-build-test-templates',
 		'ractive-build-plugins',
 		'ractive-build-components',
-		'build-documentation'
+		'build-documentation-plugins',
+		'build-documentation-components'
 	], [
 		'copy-vendors',
 		'copy-use-cases',
@@ -322,7 +354,7 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 });
 
 gulp.task('version-check', function (callback) {
-	exec('node ./bin/versionCheck.js', function (err, stdout) {
+	exec('node ./scripts/versionCheck.js', function (err, stdout) {
 		if (stdout) {
 			gutil.log(gutil.colors.red(stdout));
 		}

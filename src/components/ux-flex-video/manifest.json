@@ -1,0 +1,11 @@
+{
+  "data": {
+    "allowfullscreen": "Allow full screen options.  e.g. allowfullscreen webkitAllowFullScreen mozallowfullscreen",
+    "class": "CSS class customisations",
+    "frameborder": "Frameborder of the iframe",
+    "height": "Height of the iframe",
+    "src": "Source URL for the video. e.g. //www.youtube.com/embed/aiBt44rrslw",
+    "width": "Width of the iframe"
+  },
+  "category": "media"
+}

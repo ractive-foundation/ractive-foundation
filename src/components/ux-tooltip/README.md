@@ -8,7 +8,6 @@ Read [Foundation's ux-tooltip](http://foundation.zurb.com/docs/components/ux-too
 
 __Example of use__
 
-<strong>Note:</strong> Should be double { { but this cannot be shown here.
 ```HTML
 Example with a <span decorator="tooltip:{content:'Hello World!'}" tabindex="0">tooltip</span>
 ```

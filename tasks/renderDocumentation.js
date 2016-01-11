@@ -79,8 +79,7 @@ function useCases(useCase, componentName) {
 			partial: partial,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
-	}
-	else {
+	} else {
 		return {
 			title: useCase.title,
 			useCaseUid: useCaseUid,
@@ -100,7 +99,7 @@ function getSideNavDataModel(manifests) {
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
-		var cat = manifest.manifest.category || 'uncategorised';
+		var cat = manifest.manifest.category || manifest.manifest.plugin || 'uncategorised';
 		sideNavData[cat] = sideNavData[cat] || [];
 		sideNavData[cat].push(manifest.componentName);
 	});
@@ -157,8 +156,8 @@ function getIndexFile (indexFile, sideNavDataModel, file, options) {
 
 	// Modify manifest-rf.json file data to create individual component html files for output.
 	var parsed = path.parse(file.path);
-	parsed.name = 'components';
-	parsed.base = 'components.html';
+	parsed.name = options.type;
+	parsed.base = options.type + '.html';
 	parsed.ext = '.html';
 
 	var componentFile = new VinylFile({
@@ -187,13 +186,17 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file, partials, 
 	};
 
 	// Render all use cases into html.
-	component.useCases = _.map(manifest.useCases, function (useCase) {
+	component.useCases = _(manifest.useCases).map(function (useCase) {
+		if (useCase.template && options.templateUseCases === false) {
+			return;
+		}
+
 		var data = useCases(useCase, manifest.componentName);
 		if (data.partial) {
 			partials[data.template] = data.partial;
 		}
 		return data;
-	});
+	}).filter().value();
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
