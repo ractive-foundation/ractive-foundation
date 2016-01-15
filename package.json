@@ -5,7 +5,10 @@
   "main": "dist/ractivef.js",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
-    "start": "npm prune && npm install && gulp"
+    "start": "npm prune && npm install && gulp",
+    "dist": "gulp build && gulp dist",
+    "version": "npm run dist && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
