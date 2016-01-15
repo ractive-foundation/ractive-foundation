@@ -1,0 +1,17 @@
+<div class="switch {{class}}"
+	{{#if role}} role="{{role}}"{{/if}}
+	{{#if arialabel}} aria-label="{{arialabel}}"{{/if}}
+	{{#if tabindex}} tabindex="{{tabindex}}"{{/if}}
+	on-tap="clickHandler()">
+
+	<input
+		{{#if group}}
+			type="radio"
+			group="{{group}}"
+		{{else}}
+			type="checkbox"
+		{{/if}}
+		{{#if name}} name="{{name}}"{{/if}}
+		checked="{{checked}}">
+	<label></label>
+</div>
