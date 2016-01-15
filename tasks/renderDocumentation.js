@@ -126,7 +126,7 @@ function getSideNavDataModel(manifests, options) {
 
 		sideNavDataModel.items.push({
 			isHeading: true,
-			label: categoryName,
+			label: categoryName
 		});
 
 		_.each(sideNavData[categoryName], function (componentName) {
