@@ -1,0 +1,8 @@
+{
+	"title": "Default use case",
+	"isDataModel": true,
+	"data": {
+		"name": "exampleswitch",
+		"checked": true
+	}
+}
