@@ -77,6 +77,7 @@ function useCases(useCase, componentName) {
 			template: useCase.template,
 			display: _.escape(partial),
 			partial: partial,
+			name: useCase.name,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
 	} else {
@@ -85,6 +86,7 @@ function useCases(useCase, componentName) {
 			useCaseUid: useCaseUid,
 			inline: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
 			display: _.escape(makeHTML([componentObj])),
+			name: useCase.name,
 			data: JSON.stringify(useCase.data, null, 4)
 		};
 	}
@@ -93,15 +95,23 @@ function useCases(useCase, componentName) {
 /**
  * Transform intermediate data into final data model for sidenav.
  */
-function getSideNavDataModel(manifests) {
+function getSideNavDataModel(manifests, options) {
 
-	var sideNavData = {};
+	var sideNavData = {},
+		helpers = {};
+
+	if (! (options.setClass instanceof Function)) {
+		options.setClass = function(helpers, componentName, manifests) {
+			return helpers[componentName] ? 'hide' : '';
+		};
+	}
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
 		var cat = manifest.manifest.category || manifest.manifest.plugin || 'uncategorised';
 		sideNavData[cat] = sideNavData[cat] || [];
 		sideNavData[cat].push(manifest.componentName);
+		helpers[manifest.componentName] = manifest.manifest.helper;
 	});
 
 	var sideNavDataModel = {
@@ -124,7 +134,8 @@ function getSideNavDataModel(manifests) {
 			sideNavDataModel.items.push({
 				label: componentName,
 				// Link to individual component pages.
-				href: componentName + '.html'
+				href: componentName + '.html',
+				class: options.setClass(helpers, componentName, manifests)
 			});
 
 		});
@@ -258,7 +269,7 @@ function renderDocumentation(options) {
 			});
 
 			// Build up sideNavDataModel first.
-			var sideNavDataModel = getSideNavDataModel(manifests);
+			var sideNavDataModel = getSideNavDataModel(manifests, options);
 
 			// Create the component index page, using the sidenav.
 			this.push(getIndexFile(indexFile, sideNavDataModel, file, options));

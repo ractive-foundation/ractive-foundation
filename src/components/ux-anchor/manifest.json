@@ -1,0 +1,17 @@
+{
+	"data":{
+		"class": "Extra classes to apply to anchor",
+		"href": "The link fot the anchor tag (this or name is required)",
+		"role": "Set the role of the anchor",
+		"ariaLabel": "Set the aria lavel",
+		"target": "Set the target of the link",
+		"title": "Add a title to the link",
+		"content": "The content of the link if isDataModel is used",
+		"tabindex": "Set the tab index"
+	},
+	"content": "Content of ux-anchor is yielded to if not in isDataModel mode when content is used",
+	"events": {
+	},
+	"category": "content",
+	"helper": true
+}

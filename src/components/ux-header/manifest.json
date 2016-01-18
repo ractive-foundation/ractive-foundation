@@ -1,0 +1,13 @@
+{
+	"data":{
+		"class": "Extra classes to apply to header",
+		"id": "The id for the header",
+		"content": "The content of the link if isDataModel is used",
+		"level": "The heading level for the header"
+	},
+	"content": "Content of ux-header is yielded to if not in isDataModel mode when content is used",
+	"events": {
+	},
+	"category": "content",
+	"helper": true
+}
