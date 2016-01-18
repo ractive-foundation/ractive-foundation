@@ -11,7 +11,7 @@ module.exports = function () {
 
 		this.component = {};
 		this.component.container = '.ux-switch ';
-		this.component.checkbox = this.component.container + ' input';
+		this.component.checkbox = this.component.container + ' .switch-input';
 
 		callback();
 
