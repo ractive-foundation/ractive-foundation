@@ -7,7 +7,7 @@ Ractive.extend({
 		};
 	},
 
-	oninit: function() {},
+	oninit: function () {},
 
 	clickHandler: function () {
 		this.toggle('checked');
