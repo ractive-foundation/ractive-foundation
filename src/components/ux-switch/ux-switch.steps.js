@@ -10,8 +10,8 @@ module.exports = function () {
 	this.Before(function (callback) {
 
 		this.component = {};
-		this.component.container = '.ux-switch ';
-		this.component.checkbox = this.component.container + ' .switch-input';
+		this.component.container = '.switch ';
+		this.component.checkbox = this.component.container + ' input';
 
 		callback();
 
