@@ -45,10 +45,17 @@ function renderDocumentation(fileName) {
 			manifest:      JSON.parse(file.contents.toString())
 		};
 
-		out.useCases = find.fileSync(/.*\.json$/, paths.useCasesDir)
-			.map(function (useCase) {
-				return JSON.parse(fs.readFileSync(useCase, 'UTF-8'));
-			});
+		try {
+			out.useCases = find.fileSync(/.*[.]json$/, paths.useCasesDir)
+				.map(function (useCase) {
+					var json = JSON.parse(fs.readFileSync(useCase, 'UTF-8')),
+						regex = new RegExp('^.*' + path.sep);
+					json.name = useCase.replace(regex, '').replace(/[.]json$/, '');
+					return json;
+				});
+		} catch (e) {
+			console.log('No use cases for ' + paths.useCasesDir);
+		}
 
 		data.push(out);
 	}

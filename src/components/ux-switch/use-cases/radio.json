@@ -1,0 +1,9 @@
+{
+	"title": "Radio switch example",
+	"isDataModel": true,
+	"data": {
+		"name": "exampleswitch",
+		"checked": true,
+		"group": "exampleGroup"
+	}
+}

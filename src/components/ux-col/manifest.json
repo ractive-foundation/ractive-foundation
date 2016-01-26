@@ -1,0 +1,10 @@
+{
+	"data":{
+		"class": "Extra classes to apply to col"
+	},
+	"content": "Content of ux-col is yielded to",
+	"events": {
+	},
+	"category": "content",
+	"helper": true
+}
