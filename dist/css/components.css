@@ -208,6 +208,12 @@ select {
 
 
 
+.ux-reveal .modal-visible {
+  display: block;
+  visibility: visible; }
+.ux-reveal .close-reveal-modal {
+  text-decoration: none; }
+
 .side-nav .divider {
   border-top-color: inherit !important; }
 
