@@ -2,7 +2,9 @@
 	{{#each this.items}}
 		<li>
 			{{#if this.href}}
-				<a href="{{this.href}}" {{#if this.target}}target="{{this.target}}"{{/if}}>
+				<a href="{{this.href}}"
+					on-tap="menuSelect"
+					{{#if this.target}}target="{{this.target}}"{{/if}}>
 					{{{this.label}}}
 				</a>
 			{{else}}
