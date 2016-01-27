@@ -4,6 +4,6 @@
 	"data": {
 		"text": "Click Me",
 		"class": "text-link",
-		"payload" : "This is an example paragraph."
+		"content" : "This is an example paragraph."
 	}
 }

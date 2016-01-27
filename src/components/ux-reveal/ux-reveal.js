@@ -13,7 +13,7 @@ Ractive.extend({
 			this.set('modalVisible', !visible);
 
 			this.fire('toggleReveal', {
-				visible: this.get('modalVisible')
+				visible: visible
 			});
 		});
 
