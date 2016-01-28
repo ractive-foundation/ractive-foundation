@@ -3,22 +3,17 @@ Ractive.extend({
 	isolated: true,
 	data: function () {
 		return {
-			type: 'switch'
+			type: 'switch',
+			checked: false
 		};
 	},
 
-	oninit: function () {},
-
-	clickHandler: function () {
-		this.toggle('checked');
-
-		// if a click event is specified propagate the click event
-		if (this.get('onclick')) {
-			console.log('Firing event');
-			this.fire(this.get('onclick'), this);
-		}
-
-		// prevent bubbling
-		return true;
+	oninit: function () {
+		this.on('clickHandler', function (event) {
+			this.toggle('checked');
+			this.fire(this.get('onclick'), event);
+			return false;
+		});
 	}
+
 });
