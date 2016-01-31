@@ -520,7 +520,7 @@ gulp.task('cordova-build', ['cordova-create'], function (callback) {
 gulp.task('cordova-run', function (callback) {
 	var platform = args.ios ? 'ios' : 'android';
 
-	process.exec('(cd ./.cordova/ && cordova run ' + platform + ')', function (err, stdout) {
+	exec('(cd ./.cordova/ && cordova run ' + platform + ')', function (err, stdout) {
 		if (stdout) {
 			gutil.log(gutil.colors.red(stdout));
 		}
