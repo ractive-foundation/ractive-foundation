@@ -1,6 +1,6 @@
 /**
  * ractive-foundation - Ractive components for Foundation 5
- * @version 0.10.0
+ * @version 0.11.0
  * @link https://github.com/ractive-foundation/ractive-foundation
  * @license MIT
  */
@@ -132,7 +132,7 @@ Ractive.defaults.templates["ux-keystrokes"] = {"v":3,"t":[{"t":7,"e":"kbd","f":[
 Ractive.defaults.templates["ux-label"] = {"v":3,"t":[{"t":7,"e":"span","a":{"class":[{"t":2,"r":"class"}," label"]},"f":[{"t":4,"f":[{"t":2,"r":"text"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-li"] = {"v":3,"t":[{"t":7,"e":"li","m":[{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"n":50,"r":"class"},{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"}],"f":[{"t":16}]}]};
 Ractive.defaults.templates["ux-off-canvas"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["off-canvas-wrap ",{"t":2,"r":"getExpandedClass"}," ",{"t":2,"r":"class"}],"data-offcanvas":0},"f":[{"t":7,"e":"div","a":{"class":"inner-wrap"},"f":[{"t":7,"e":"nav","a":{"class":"tab-bar"},"f":[{"t":4,"f":[{"t":7,"e":"section","a":{"class":"left-small"},"f":[{"t":7,"e":"a","a":{"class":"left-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"left\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"left"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"leftItems"}," ",{"t":7,"e":"section","a":{"class":"middle tab-bar-section"},"f":[{"t":7,"e":"h1","a":{"class":"title"},"f":[{"t":2,"r":"title"}]}]}," ",{"t":4,"f":[{"t":7,"e":"section","a":{"class":"right-small"},"f":[{"t":7,"e":"a","a":{"class":"right-off-canvas-toggle menu-icon","aria-expanded":[{"t":2,"x":{"r":["expandedState"],"s":"_0==\"right\"?\"true\":\"false\""}}]},"v":{"tap":{"n":"updateMenu","a":"right"}},"f":[{"t":7,"e":"span"}]}]}],"n":50,"r":"rightItems"}]}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"left-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"leftItems"}]}}]}],"n":50,"r":"leftItems"}," ",{"t":4,"f":[{"t":7,"e":"aside","a":{"class":"right-off-canvas-menu"},"f":[{"t":7,"e":"ux-off-canvas-list","a":{"items":[{"t":2,"r":"rightItems"}]}}]}],"n":50,"r":"rightItems"}," ",{"t":7,"e":"section","a":{"class":"main-section"},"f":[{"t":4,"f":[{"t":3,"r":"mainContent"}],"n":50,"r":"mainContent"},{"t":4,"n":51,"f":[{"t":16}],"r":"mainContent"}]}," ",{"t":7,"e":"a","a":{"class":"exit-off-canvas"},"v":{"tap":"updateMenu"}}]}]}]};
-Ractive.defaults.templates["ux-off-canvas-list"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["off-canvas-list ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"li","f":[{"t":4,"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"m":[{"t":4,"f":["target=\"",{"t":2,"r":"./target"},"\""],"n":50,"r":"./target"}],"f":[{"t":3,"r":"./label"}]}],"n":50,"r":"./href"},{"t":4,"n":51,"f":[{"t":7,"e":"label","f":[{"t":3,"r":"./label"}]}],"r":"./href"}]}],"n":52,"r":"./items"}]}]};
+Ractive.defaults.templates["ux-off-canvas-list"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["off-canvas-list ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"li","f":[{"t":4,"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"./href"}]},"v":{"tap":"menuSelect"},"m":[{"t":4,"f":["target=\"",{"t":2,"r":"./target"},"\""],"n":50,"r":"./target"}],"f":[{"t":3,"r":"./label"}]}],"n":50,"r":"./href"},{"t":4,"n":51,"f":[{"t":7,"e":"label","f":[{"t":3,"r":"./label"}]}],"r":"./href"}]}],"n":52,"r":"./items"}]}]};
 Ractive.defaults.templates["ux-orbit"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-orbit ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"div","a":{"class":["orbit-container ",{"t":2,"r":"currentPageCssClass"}]},"f":[{"t":7,"e":"ul","a":{"class":"pageContainer example-orbit orbit-slides-container"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"li","a":{"class":["orbit-slides-slide ",{"t":4,"f":["active"],"n":50,"x":{"r":["i","currentPage"],"s":"_0+1===_1"}}]},"v":{"swipeleft":"nextPage","swiperight":"prevPage"},"f":[{"t":7,"e":"img","a":{"src":[{"t":2,"r":"imagesrc"}],"alt":[{"t":2,"r":"imagealt"}]}}," ",{"t":7,"e":"div","a":{"class":"orbit-caption"},"f":[{"t":2,"r":"caption"}]}]}],"i":"i","r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}," ",{"t":4,"f":[{"t":7,"e":"li","a":{"class":"orbit-slides-slide"},"f":[{"t":7,"e":"h2","f":["No slides found"]}]}],"x":{"r":["slidesTotal"],"s":"_0==0"}}]}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"orbit-prev"},"v":{"tap":"prevPage"},"f":["Prev ",{"t":7,"e":"span"}]}," ",{"t":7,"e":"a","a":{"class":"orbit-next"},"v":{"tap":"nextPage"},"f":["Next ",{"t":7,"e":"span"}]}],"n":50,"r":"navigation_arrows"}," ",{"t":4,"f":[{"t":7,"e":"div","a":{"class":"orbit-slide-number"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"currentPage"}]}," of ",{"t":7,"e":"span","f":[{"t":2,"r":"slidesTotal"}]}]}],"n":50,"r":"slide_number"}]}," ",{"t":4,"f":[{"t":7,"e":"ol","a":{"class":"orbit-bullets"},"f":[{"t":4,"f":[{"t":7,"e":"li","a":{"data-orbit-slide-number":[{"t":2,"r":"i"}],"class":[{"t":4,"f":["active"],"n":50,"x":{"r":["i","currentPage"],"s":"_0+1===_1"}}]},"f":[]}],"i":"i","r":"items"}]}],"n":50,"r":"bullets"}]}]};
 Ractive.defaults.templates["ux-page-swipe"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-page-swipe ",{"t":2,"r":"isOnPage"}," ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"div","a":{"class":"pageContainer "},"f":[{"t":8,"r":"content"}]}]}]};
 Ractive.defaults.templates["ux-pagination"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":"pagination","role":"menubar","aria-label":"Pagination"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-pagination-page","a":{"isDataModel":"true","tabindex":"0","href":[{"t":2,"r":"href"}],"content":[{"t":2,"r":"content"}]}}],"i":"i","r":"pages"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
@@ -144,7 +144,7 @@ Ractive.defaults.templates["ux-reveal"] = {"v":3,"t":[{"t":7,"e":"div","a":{"cla
 Ractive.defaults.templates["ux-row"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["row ",{"t":2,"r":"class"}]},"f":[{"t":16}]}]};
 Ractive.defaults.templates["ux-sidenav"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["side-nav ",{"t":2,"r":"class"}],"role":"menu"},"m":[{"t":4,"f":["title=\"",{"t":2,"r":"title"},"\""],"r":"title"}],"f":[{"t":4,"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["heading ",{"t":2,"r":"class"}]},"f":[{"t":2,"r":".label"}]}],"r":"isHeading"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["divider ",{"t":2,"r":"class"}]}}],"r":"isDivider"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":[{"t":4,"f":["active"],"r":"active"}," ",{"t":2,"r":"class"}],"role":"menuitem"},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":".href"}]},"f":[{"t":2,"r":".label"}]}]}],"r":"href"}],"n":52,"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-sub-nav"] = {"v":3,"t":[{"t":7,"e":"dl","a":{"class":["sub-nav ux-sub-nav ",{"t":2,"r":"class"}],"role":"menu","title":[{"t":2,"r":"title"},"Menu List"]},"f":[{"t":7,"e":"dt","f":[{"t":4,"f":[{"t":2,"r":"title"},":"],"r":"title"}]}," ",{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"dd","a":{"role":"menuitem","class":[{"t":4,"f":["active"],"r":"active"}]},"f":[{"t":7,"e":"ux-anchor","a":{"href":[{"t":2,"r":"href"}],"class":[{"t":2,"r":"class"}]},"f":[{"t":3,"r":"content"}]}]}],"i":"i","r":"items"}],"n":50,"r":"items.length"},{"t":4,"n":51,"f":[{"t":16}],"r":"items.length"}]}]};
-Ractive.defaults.templates["ux-switch"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["switch ",{"t":2,"r":"class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"},{"t":4,"f":[" aria-label=\"",{"t":2,"r":"arialabel"},"\""],"n":50,"r":"arialabel"},{"t":4,"f":[" tabindex=\"",{"t":2,"r":"tabindex"},"\""],"n":50,"r":"tabindex"}],"v":{"tap":{"m":"clickHandler","a":{"r":[],"s":"[]"}}},"f":[{"t":7,"e":"input","m":[{"t":4,"f":["type=\"radio\" group=\"",{"t":2,"r":"group"},"\""],"n":50,"r":"group"},{"t":4,"n":51,"f":["type=\"checkbox\""],"r":"group"},{"t":4,"f":[" name=\"",{"t":2,"r":"name"},"\""],"n":50,"r":"name"}],"a":{"checked":[{"t":2,"r":"checked"}]}}," ",{"t":7,"e":"label"}]}]};
+Ractive.defaults.templates["ux-switch"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["switch ",{"t":2,"r":"class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"},{"t":4,"f":[" aria-label=\"",{"t":2,"r":"arialabel"},"\""],"n":50,"r":"arialabel"},{"t":4,"f":[" tabindex=\"",{"t":2,"r":"tabindex"},"\""],"n":50,"r":"tabindex"}],"v":{"tap":"clickHandler"},"f":[{"t":7,"e":"input","m":[{"t":4,"f":["type=\"radio\" group=\"",{"t":2,"r":"group"},"\""],"n":50,"r":"group"},{"t":4,"n":51,"f":["type=\"checkbox\""],"r":"group"},{"t":4,"f":[" name=\"",{"t":2,"r":"name"},"\""],"n":50,"r":"name"}],"a":{"checked":[{"t":2,"r":"checked"}]}}," ",{"t":7,"e":"label"}]}]};
 Ractive.defaults.templates["ux-tabarea"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["tabs-area ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tablinks","a":{"items":[{"t":2,"r":"items"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tablink","a":{"id":[{"t":2,"r":".id"}],"active":[{"t":2,"r":".active"}]},"f":[{"t":2,"r":".title"}]}],"n":52,"r":"items"}]}," ",{"t":7,"e":"ux-tabpanes","a":{"items":[{"t":2,"r":"items"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tabpane","f":[{"t":3,"r":".content"}]}],"n":52,"r":"items"}]}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-table"] = {"v":3,"t":[{"t":7,"e":"table","a":{"class":["ux-table ",{"t":2,"r":".class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"}],"f":[{"t":4,"f":[{"t":7,"e":"caption","f":[{"t":3,"r":".caption"}]}],"n":50,"r":".caption"}," ",{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"thead","m":[{"t":4,"f":["class=\"",{"t":2,"r":".header.class"},"\""],"n":50,"r":".header.class"}],"f":[{"t":7,"e":"tr","f":[{"t":4,"f":[{"t":7,"e":"th","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".header.cell"}]}]}],"n":50,"r":".header"}," ",{"t":4,"f":[{"t":7,"e":"tbody","m":[{"t":4,"f":["class=\"",{"t":2,"r":".body.class"},"\""],"n":50,"r":".body.class"}],"f":[{"t":4,"f":[{"t":7,"e":"tr","m":[{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":4,"f":[{"t":7,"e":"td","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".cell"}]}],"n":52,"r":".body.rows"}]}],"n":50,"r":".body"}," ",{"t":4,"f":[{"t":7,"e":"tfoot","m":[{"t":4,"f":["class=\"",{"t":2,"r":".footer.class"},"\""],"n":50,"r":".footer.class"}],"f":[{"t":7,"e":"tr","f":[{"t":4,"f":[{"t":7,"e":"td","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".footer.cell"}]}]}],"n":50,"r":".footer"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-tablink"] = {"v":3,"t":[{"t":7,"e":"li","a":{"class":["tab-title ",{"t":2,"r":".class"}," ",{"t":4,"f":["active"],"n":50,"r":".active"}],"role":"presentational"},"f":[{"t":7,"e":"a","a":{"href":["#",{"t":2,"r":".id"}]},"v":{"tap":"changeTab"},"f":[{"t":16}]}]}]};
@@ -597,6 +597,10 @@ Ractive.components["ux-off-canvas"] = Ractive.extend({
 			this.set('expandedState', direction);
 		});
 
+		this.on('*.menuSelect', function (event) {
+			this.set('expandedState', '');
+		});
+
 	}
 
 });
@@ -816,24 +820,19 @@ Ractive.components["ux-switch"] = Ractive.extend({
 	isolated: true,
 	data: function () {
 		return {
-			type: 'switch'
+			type: 'switch',
+			checked: false
 		};
 	},
 
-	oninit: function () {},
-
-	clickHandler: function () {
-		this.toggle('checked');
-
-		// if a click event is specified propagate the click event
-		if (this.get('onclick')) {
-			console.log('Firing event');
-			this.fire(this.get('onclick'), this);
-		}
-
-		// prevent bubbling
-		return true;
+	oninit: function () {
+		this.on('clickHandler', function (event) {
+			this.toggle('checked');
+			this.fire(this.get('onclick'), event);
+			return false;
+		});
 	}
+
 });
 
 Ractive.components["ux-tabarea"] = Ractive.extend({
