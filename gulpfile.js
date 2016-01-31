@@ -119,7 +119,7 @@ gulp.task('copy-use-cases', function () {
 });
 
 gulp.task('clean', function (callback) {
-	del([
+	return del([
 		'public/**/*'
 	], callback);
 });
@@ -316,7 +316,7 @@ gulp.task('build', ['clean', 'lint'], function (callback) {
 
 
 gulp.task('clean-dist', function (callback) {
-	del([
+	return del([
 		'dist/**/*'
 	], callback);
 });
@@ -384,7 +384,6 @@ gulp.task('watch', function () {
 			self.emit('end');
 		});
 	});
-
 });
 
 gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
@@ -480,11 +479,10 @@ gulp.task('test-only', [ 'test-connect' ], function (callback) {
 			});
 		});
 	}).catch(gutil.log);
-
 });
 
 gulp.task('cordova-clean', function (callback) {
-	del([
+	return del([
 		'.cordova/**/*'
 	], callback);
 });
@@ -497,10 +495,10 @@ gulp.task('cordova-create', ['cordova-clean'], function () {
 	};
 
 	return gulp.src('public')
-        .pipe(cordovaCreate(options))
-        .pipe(cordovaAuthor('Ractive Foundation Team', ''))
-        .pipe(cordovaDescription('Ractive Foundation Demo'))
-        .pipe(cordovaVersion(pkg.version));
+		.pipe(cordovaCreate(options))
+		.pipe(cordovaAuthor('Ractive Foundation Team', ''))
+		.pipe(cordovaDescription('Ractive Foundation Demo'))
+		.pipe(cordovaVersion(pkg.version));
 });
 
 gulp.task('cordova-build', ['cordova-create'], function (callback) {
