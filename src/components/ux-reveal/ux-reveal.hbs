@@ -1,17 +1,17 @@
-<div class="ux-reveal">
+<div class="ux-reveal {{class}}">
 
-    <a target="_blank" on-click="toggleModal" class="open-reveal-modal {{class}}">{{text}}</a>
+	<a target="_blank" on-click="toggleModal" class="open-reveal-modal">{{text}}</a>
 
-    <div class="reveal-modal-bg {{#if modalVisible}}modal-visible{{/if}}">
-        <div class="reveal-modal {{#if modalVisible}}modal-visible{{/if}}">
-            {{#if isDataModel}}
-                {{{content}}}
-            {{else}}
-                {{yield}}
-            {{/if}}
+	<div class="reveal-modal-bg {{#if modalVisible}}modal-visible{{/if}}">
+		<div class="reveal-modal {{#if modalVisible}}modal-visible{{/if}}">
+			{{#if isDataModel}}
+				{{{content}}}
+			{{else}}
+				{{yield}}
+			{{/if}}
 
-            <a class="close-reveal-modal" target="_blank" on-click="toggleModal">&times;</a>
-        </div>
-    </div>
+			<a class="close-reveal-modal" target="_blank" on-click="toggleModal">&times;</a>
+		</div>
+	</div>
 
 </div>
