@@ -3,7 +3,7 @@
 		"role": "The role of the switch",
 		"arialabel": "Accessibility label",
 		"tabindex": "Tabable index of the element",
-		"name": "The name of the switch element, for reference in forms"
+		"name": "The name of the switch element, for referencing in forms"
 	},
 	"events": {
 		"onclick": "Event to fire when switch is clicked"
