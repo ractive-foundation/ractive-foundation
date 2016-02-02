@@ -5,7 +5,7 @@ Feature: ux-reveal test suite
 		Then there will be an element for "container"
 		And there will be an element for "openModal"
 		And "modalBox" will NOT be visible
-		When I click "openModal"
+		When I click the "openModal" element
 		And "modalBox" will be visible
-		When I click "closeModal"
+		When I click the "closeModal" element
 		And "modalBox" will NOT be visible
