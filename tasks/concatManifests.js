@@ -49,7 +49,7 @@ function renderDocumentation(fileName) {
 			out.useCases = find.fileSync(/.*[.]json$/, paths.useCasesDir)
 				.map(function (useCase) {
 					var json = JSON.parse(fs.readFileSync(useCase, 'UTF-8')),
-						regex = new RegExp('^.*' + path.sep);
+						regex = new RegExp('^.*' + (path.sep === '\\' ? '\\\\' : path.sep) );
 					json.name = useCase.replace(regex, '').replace(/[.]json$/, '');
 					return json;
 				});
