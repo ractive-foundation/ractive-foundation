@@ -6,7 +6,7 @@ var component     = require('./tasks/component'),
 	manifest      = require('./tasks/manifest'),
 	documentation = require('./tasks/documentation'),
 	bdd           = require('./tasks/bdd'),
-	_             = require('lodash'),
+	_             = require('lodash-compat'),
 	fs            = require('fs'),
 	path          = require('path');
 

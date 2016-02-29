@@ -3,7 +3,7 @@
 var through     = require('through2'),
 	gulputil    = require('gulp-util'),
 	util        = require('./utils.js'),
-	_           = require('lodash'),
+	_           = require('lodash-compat'),
 	fs          = require('fs'),
 	Ractive     = require('ractive'),
 	PluginError = gulputil.PluginError;

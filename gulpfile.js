@@ -1,35 +1,36 @@
-var gulp = require('gulp'),
-	args = require('yargs').argv,
-	del = require('del'),
-	glob = require('simple-glob'),
-	exec = require('child_process').exec,
+var gulp  = require('gulp'),
+	grf   = require('./index')(),
+	args  = require('yargs').argv,
+	del   = require('del'),
+	glob  = require('simple-glob'),
+	exec  = require('child_process').exec,
 	gutil = require('gulp-util'),
-	jscs = require('gulp-jscs'),
+	jscs  = require('gulp-jscs'),
 	runSequence = require('run-sequence'),
 	mergeStream = require('merge-stream'),
-	fs = require('fs'),
-	nodePath = require('path'),
-	path = require('path'),
+	fs          = require('fs'),
+	nodePath    = require('path'),
+	path        = require('path'),
 
-	cordovaCreate = require('gulp-cordova-create'),
+	cordovaCreate      = require('gulp-cordova-create'),
 	cordovaDescription = require('gulp-cordova-description'),
-	cordovaAuthor = require('gulp-cordova-author'),
-	cordovaVersion = require('gulp-cordova-version'),
-	cordovaAndroid = require('gulp-cordova-build-android'),
-	cordovaIos = require('gulp-cordova-build-ios'),
+	cordovaAuthor      = require('gulp-cordova-author'),
+	cordovaVersion     = require('gulp-cordova-version'),
+	cordovaAndroid     = require('gulp-cordova-build-android'),
+	cordovaIos         = require('gulp-cordova-build-ios'),
 
 	plugins = require('gulp-load-plugins')(),
 
-	applyVersions = require('./tasks/applyVersions'),
-	rebaseDist = require('./tasks/rebaseDist'),
-	seleniumServer = require('./tasks/seleniumServer'),
-	rfCucumber = require('./tasks/rfCucumber'),
-	ractiveParse = require('./tasks/ractiveParse'),
+	applyVersions       = require('./tasks/applyVersions'),
+	rebaseDist          = require('./tasks/rebaseDist'),
+	seleniumServer      = require('./tasks/seleniumServer'),
+	rfCucumber          = require('./tasks/rfCucumber'),
+	ractiveParse        = require('./tasks/ractiveParse'),
 	renderDocumentation = require('./tasks/renderDocumentation'),
-	concatManifests = require('./tasks/concatManifests'),
-	gulpWing = require('./tasks/gulpWing'),
-	jshintFailReporter = require('./tasks/jshintFailReporter'),
-	rfA11y = require('./tasks/rfA11y'),
+	concatManifests     = require('./tasks/concatManifests'),
+	gulpWing            = require('./tasks/gulpWing'),
+	jshintFailReporter  = require('./tasks/jshintFailReporter'),
+	rfA11y              = require('./tasks/rfA11y'),
 
 	pkg = require('./package.json');
 
@@ -173,14 +174,13 @@ gulp.task('ractive-build-test-templates', function () {
 
 gulp.task('ractive-build-components', function () {
 	return gulp.src([
-			'./src/components/**/*.js',
-			'!./src/components/**/*.steps.js'
+			'src/components/*/manifest.json',
 		])
-		.pipe(ractiveParse({
-			'prefix': 'Ractive.components'
-		}))
+		//.pipe(plugins.sourcemaps.init())
+		.pipe(grf.component())
 		.pipe(plugins.concat('components.js'))
-		.pipe(gulp.dest('./public/js/'));
+		//.pipe(plugins.sourcemaps.write())
+		.pipe(gulp.dest('public/compiled/'));
 });
 
 gulp.task('ractive-build-plugins', function () {
