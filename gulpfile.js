@@ -180,7 +180,7 @@ gulp.task('ractive-build-components', function () {
 		.pipe(grf.component())
 		.pipe(plugins.concat('components.js'))
 		//.pipe(plugins.sourcemaps.write())
-		.pipe(gulp.dest('public/compiled/'));
+		.pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('ractive-build-plugins', function () {
