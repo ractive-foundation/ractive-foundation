@@ -3,9 +3,9 @@
 	{{#if role}}role="{{role}}"{{/if}}
 	{{#if ariaLabel}}aria-label="{{ariaLabel}}"{{/if}}
 	{{#if target}}target="{{target}}"{{/if}}
-	{{#if class}}class="{{class}}"{{/if}}
 	{{#if title}}title="{{title}}"{{/if}}
 	{{#if tabindex !== null}}tabindex="{{tabindex || 0}}"{{/if}}
+	class="ux-anchor {{class}}"
 	on-tap="anchorClicked"
 	>
 	{{#if .isDataModel}}
