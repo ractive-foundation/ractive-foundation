@@ -2,7 +2,8 @@
 	"data": {
 		"text": "The text to display on the link that opens the modal box.",
 		"class": "The class for the aforementioned link.",
-		"content": "The HTML content that is to be displayed in the modal box."
+		"content": "The HTML content that is to be displayed in the modal box.",
+		"closetext": "The text that will be rendered as raw HTML within the modal's 'close button' element"
 	},
 	"events": {
 		"toggleModal": "Opens or closes the modal box, depending on the box's current visible state."

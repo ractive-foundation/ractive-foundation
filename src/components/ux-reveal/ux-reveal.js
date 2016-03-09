@@ -3,7 +3,8 @@ Ractive.extend({
 	isolated: true,
 
 	data: {
-		modalVisible: false
+		modalVisible: false,
+		closetext: '&times;'
 	},
 
 	oninit: function () {
