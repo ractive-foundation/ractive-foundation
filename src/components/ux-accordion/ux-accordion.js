@@ -32,8 +32,6 @@ Ractive.extend({
 				}
 
 			});
-
-			return false;
 		});
 
 	}
