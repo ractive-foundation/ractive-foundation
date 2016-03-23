@@ -42,15 +42,24 @@ function renderDocumentation(fileName) {
 		var out = {
 			componentName: file.history[0].split(path.sep).reverse()[1],
 			readme:        fs.readFileSync(paths.readme, 'UTF-8'),
-			manifest:      JSON.parse(file.contents.toString())
+			manifest:      JSON.parse(file.contents.toString()),
+			useCasePaths: []
 		};
 
 		try {
 			out.useCases = find.fileSync(/.*[.]json$/, paths.useCasesDir)
 				.map(function (useCase) {
 					var json = JSON.parse(fs.readFileSync(useCase, 'UTF-8')),
-						regex = new RegExp('^.*' + (path.sep === '\\' ? '\\\\' : path.sep) );
-					json.name = useCase.replace(regex, '').replace(/[.]json$/, '');
+						regex = new RegExp('^.*' + (path.sep === '\\' ? '\\\\' : path.sep) ),
+						name = useCase.replace(regex, '').replace(/[.]json$/, '');
+
+					var componentName = /ux-[A-Za-z-]*/.exec(useCase)[0],
+						useCasePath = useCase.substring(useCase.indexOf(componentName));
+
+					out.useCasePaths.push(useCasePath);
+
+					json.name = name;
+					
 					return json;
 				});
 		} catch (e) {
