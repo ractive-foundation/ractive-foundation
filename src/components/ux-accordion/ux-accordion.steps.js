@@ -17,6 +17,8 @@ module.exports = function () {
 		this.component.content2 = this.component.item2 + '.content';
 		this.component.content3 = this.component.item3 + '.content';
 
+		console.log(arguments);
+		console.log(callback);
 		callback();
 
 	});
