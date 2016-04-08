@@ -40,7 +40,7 @@ Ractive.extend({
 				component.set('active', isActive);
 				component.get('tabPane').set('active', isActive);
 			});
-			
+
 			this.fire.apply(this, [event.name].concat(arguments));
 
 			return false;
