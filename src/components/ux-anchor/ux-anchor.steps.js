@@ -1,8 +1,7 @@
 module.exports = function () {
 
 	// Load standard world object to be 'this' in steps.
-	this.World = require('../../support/world').World;
-
+	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
 	this.Before(function (callback) {
@@ -11,5 +10,4 @@ module.exports = function () {
 
 		callback();
 	});
-
 };
