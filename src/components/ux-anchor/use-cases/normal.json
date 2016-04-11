@@ -1,9 +1,8 @@
 {
 	"title": "Normal",
 	"isDataModel": true,
-  	"ref_id":"UI10A",
 	"data": {
-	  "content": "anchor link",
-	  "onclick": "dosomething"
+		"content": "anchor link",
+		"href": "#somelink"
 	}
 }
