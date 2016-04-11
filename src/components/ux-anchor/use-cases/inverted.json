@@ -1,0 +1,9 @@
+{
+	"title": "Inverted",
+	"isDataModel": true,
+  	"ref_id":"UI10B",
+	"data": {
+	  "content": "ux-anchor button",
+	  "inverted": "true"
+	}
+}

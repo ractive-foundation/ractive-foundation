@@ -1,0 +1,10 @@
+{
+	"title": "Anchor Button - primary",
+	"isDataModel": true,
+  	"ref_id":"",
+	"data": {
+		"content": "anchor button",
+		"class": "button primary",
+		"onclick": "dosomething"
+	}
+}

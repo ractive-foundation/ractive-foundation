@@ -1,5 +1,5 @@
 {
-	"data":{
+	"data": {
 		"class": "Extra classes to apply to anchor",
 		"href": "The link fot the anchor tag (this or name is required)",
 		"role": "Set the role of the anchor",
@@ -11,6 +11,7 @@
 	},
 	"content": "Content of ux-anchor is yielded to if not in isDataModel mode when content is used",
 	"events": {
+		"anchorClicked": "Event to fire when component is clicked"
 	},
 	"category": "content",
 	"helper": true
