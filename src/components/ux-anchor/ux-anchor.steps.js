@@ -6,7 +6,7 @@ module.exports = function () {
 
 	this.Before(function (callback) {
 		this.component = {};
-		this.component.container = '#component ';
+		this.component.anchor = '.ux-anchor ';
 
 		callback();
 	});
