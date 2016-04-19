@@ -21,8 +21,6 @@ Ractive.extend({
 					this.fire(customEvent, this);
 				}
 				return false;
-			} else {
-				console.log('default event fired');
 			}
 		});
 	}
