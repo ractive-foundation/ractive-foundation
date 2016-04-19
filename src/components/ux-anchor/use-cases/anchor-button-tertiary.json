@@ -1,0 +1,9 @@
+{
+	"title": "Anchor Button - primary",
+	"isDataModel": true,
+	"data": {
+		"content": "Tertiary",
+		"class": "button tertiary",
+		"customEvent": "dosomething"
+	}
+}
