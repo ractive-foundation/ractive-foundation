@@ -16,7 +16,7 @@ Ractive.extend({
 				var customEventName = customParams[0];
 				if (customParams.length > 1) {
 					var params = customParams[1].split(',');
-					this.fire(customEventName, this, params);
+					this.fire.apply(this, [customEventName, this].concat(params));
 				} else {
 					this.fire(customEvent, this);
 				}
