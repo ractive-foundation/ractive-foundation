@@ -8,16 +8,12 @@ Ractive.extend({
 	},
 
 	oninit: function () {
-
 		this.on('toggleModal', function (e) {
-			var visible = this.get('modalVisible');
-			this.set('modalVisible', !visible);
-
-			this.fire('toggleReveal', {
-				visible: !visible
-			});
+			this.set('modalVisible', !this.get('modalVisible'));
+			document.body.style.overflow = (this.get('modalVisible')) ? 'hidden' : 'auto';
+			this.fire('toggleReveal', e);
+			return false;
 		});
-
 	}
 
 });

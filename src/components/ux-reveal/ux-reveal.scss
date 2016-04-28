@@ -1,5 +1,11 @@
 .ux-reveal {
 
+	.reveal-modal {
+		position: fixed;
+		max-height: 80%;
+		overflow-y: auto;
+	}
+
 	.modal-visible {
 		display: block;
 		visibility: visible;
