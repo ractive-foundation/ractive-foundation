@@ -50,15 +50,12 @@ meta.foundation-data-attribute-namespace {
 html, body {
   height: 100%; }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-html,
-body {
+html, body {
   font-size: 100%; }
 
 body {
@@ -83,15 +80,7 @@ img {
 img {
   -ms-interpolation-mode: bicubic; }
 
-#map_canvas img,
-#map_canvas embed,
-#map_canvas object,
-.map_canvas img,
-.map_canvas embed,
-.map_canvas object,
-.mqa-display img,
-.mqa-display embed,
-.mqa-display object {
+#map_canvas img, #map_canvas embed, #map_canvas object, .map_canvas img, .map_canvas embed, .map_canvas object, .mqa-display img, .mqa-display embed, .mqa-display object {
   max-width: none !important; }
 
 .left {
@@ -103,7 +92,6 @@ img {
 .clearfix:before, .clearfix:after {
   content: " ";
   display: table; }
-
 .clearfix:after {
   clear: both; }
 
@@ -220,16 +208,18 @@ select {
 
 
 
+.ux-reveal .reveal-modal {
+  position: fixed;
+  max-height: 80%;
+  overflow-y: auto; }
 .ux-reveal .modal-visible {
   display: block;
   visibility: visible; }
-
 .ux-reveal .close-reveal-modal {
   text-decoration: none; }
 
 .side-nav .divider {
   border-top-color: inherit !important; }
-
 
 
 
@@ -284,15 +274,12 @@ meta.foundation-data-attribute-namespace {
 html, body {
   height: 100%; }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-html,
-body {
+html, body {
   font-size: 100%; }
 
 body {
@@ -317,15 +304,7 @@ img {
 img {
   -ms-interpolation-mode: bicubic; }
 
-#map_canvas img,
-#map_canvas embed,
-#map_canvas object,
-.map_canvas img,
-.map_canvas embed,
-.map_canvas object,
-.mqa-display img,
-.mqa-display embed,
-.mqa-display object {
+#map_canvas img, #map_canvas embed, #map_canvas object, .map_canvas img, .map_canvas embed, .map_canvas object, .mqa-display img, .mqa-display embed, .mqa-display object {
   max-width: none !important; }
 
 .left {
@@ -337,7 +316,6 @@ img {
 .clearfix:before, .clearfix:after {
   content: " ";
   display: table; }
-
 .clearfix:after {
   clear: both; }
 
@@ -375,7 +353,7 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
-  @media only screen and (min-width: 40.0625em) and (max-width: 64em) {
+  @media only screen and (min-width:40.0625em) and (max-width:64em) {
     .ux-tooltip.medium {
       cursor: help; }
       .ux-tooltip.medium *[role='tooltip'] {
@@ -385,7 +363,7 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
-  @media only screen and (min-width: 64.0625em) and (max-width: 90em) {
+  @media only screen and (min-width:64.0625em) and (max-width:90em) {
     .ux-tooltip.large {
       cursor: help; }
       .ux-tooltip.large *[role='tooltip'] {
@@ -395,7 +373,7 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
-  @media only screen and (min-width: 90.0625em) and (max-width: 120em) {
+  @media only screen and (min-width:90.0625em) and (max-width:120em) {
     .ux-tooltip.xlarge {
       cursor: help; }
       .ux-tooltip.xlarge *[role='tooltip'] {
@@ -405,7 +383,7 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
-  @media only screen and (min-width: 120.0625em) and (max-width: 6249999.9375em) {
+  @media only screen and (min-width:120.0625em) and (max-width:6249999.9375em) {
     .ux-tooltip.xxlarge {
       cursor: help; }
       .ux-tooltip.xxlarge *[role='tooltip'] {
@@ -415,5 +393,6 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
+
 
 
