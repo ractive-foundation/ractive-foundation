@@ -10,8 +10,12 @@ Ractive.extend({
 	oninit: function () {
 		this.on('toggleModal', function (e) {
 			this.set('modalVisible', !this.get('modalVisible'));
-			document.body.style.overflow = (this.get('modalVisible')) ? 'hidden' : 'auto';
 			this.fire('toggleReveal', e);
+			return false;
+		});
+
+		this.observe('modalVisible', function (newValue, oldValue, keypath) {
+			document.body.style.overflow = (newValue === true) ? 'hidden' : 'auto';
 			return false;
 		});
 	}

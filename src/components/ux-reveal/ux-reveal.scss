@@ -2,8 +2,18 @@
 
 	.reveal-modal {
 		position: fixed;
-		max-height: 80%;
 		overflow-y: auto;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+
+		@media only screen and (min-width: 40.0625em) {
+			top: 10%;
+			left: 20%;
+			bottom: 10%;
+			right: 20%;
+		}
 	}
 
 	.modal-visible {
