@@ -4,7 +4,6 @@
 
 
 
-
 meta.foundation-version {
   font-family: "/5.5.3/"; }
 
@@ -165,6 +164,7 @@ select {
 
 
 
+
 .ux-orbit .orbit-container {
   height: 100%;
   position: relative;
@@ -220,6 +220,20 @@ select {
 
 
 
+.ux-reveal .reveal-modal {
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+  @media only screen and (min-width: 40.0625em) {
+    .ux-reveal .reveal-modal {
+      top: 10%;
+      left: 20%;
+      bottom: 10%;
+      right: 20%; } }
+
 .ux-reveal .modal-visible {
   display: block;
   visibility: visible; }
@@ -229,7 +243,6 @@ select {
 
 .side-nav .divider {
   border-top-color: inherit !important; }
-
 
 
 
@@ -415,5 +428,6 @@ select {
           content: "x";
           position: absolute;
           top: 0; } }
+
 
 

@@ -550,6 +550,7 @@ gulp.task('lint', function (callback) {
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
 		.pipe(jscs())
 		.pipe(jscs.reporter())
+		.pipe(jscs.reporter('fail'))
 		.pipe(jshintFailReporter());
 });
 
