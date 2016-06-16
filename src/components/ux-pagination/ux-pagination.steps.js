@@ -18,17 +18,17 @@ module.exports = function () {
 
 	this.Then(/^the current page is "([^"]*)"$/, function (page, callback) {
 		// Write code here that turns the phrase above into concrete actions
-		callback.pending();
+		callback(null, 'pending');
 	});
 
 	this.Given(/^there are "([^"]*)" elements displayed$/, function (number, callback) {
 		// Write code here that turns the phrase above into concrete actions
-		callback.pending();
+		callback(null, 'pending');
 	});
 
 	this.Given(/^pages visible are "([^"]*)"$/, function (visible, callback) {
 		// Write code here that turns the phrase above into concrete actions
-		callback.pending();
+		callback(null, 'pending');
 	});
 
 };
