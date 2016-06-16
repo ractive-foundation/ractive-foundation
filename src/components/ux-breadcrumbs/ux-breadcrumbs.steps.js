@@ -1,9 +1,8 @@
+/*global browser*/
 module.exports = function () {
 
 	var _ = require('lodash-compat');
 
-	// Load standard world object to be 'this' in steps.
-	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
 	this.Before(function (callback) {
@@ -20,8 +19,8 @@ module.exports = function () {
 	this.Then(/^I should see (\d+) breadcrumbs$/, function (count, callback) {
 		var selector = this.component.breadcrumbs;
 
-		this.client.waitForExist(selector, 1000).then(function () {
-			return this.client.elements(selector);
+		browser.waitForExist(selector, 1000).then(function () {
+			return browser.elements(selector);
 		}.bind(this)).then(function (elements) {
 			try {
 				this.assert.equal(elements.value.length, count);
@@ -36,8 +35,8 @@ module.exports = function () {
 
 	this.Then(/^the "([^"]*)" breadcrumb should be "([^"]*)"$/, function (element, className, callback) {
 		var selector = this.component[element];
-		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
-			return this.client.getAttribute(selector, 'class');
+		browser.waitForExist(selector, this.defaultTimeout).then(function () {
+			return browser.getAttribute(selector, 'class');
 		}.bind(this))
 			.then(function (attr) {
 				try {

@@ -400,6 +400,27 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
 });
 
+gulp.task('test:e2e', [ 'build', 'test-connect' ], function () {
+	//console.log(glob('./src/components/**/*.feature'), glob('./src/components/**/*.steps.js'));
+	return gulp.src('wdio.conf.js').pipe(plugins.webdriver({
+				//specs: glob('./src/components/**/*.feature'),
+				// specs: [
+				// 	'./src/components/ux-table/ux-table.feature',
+				// 	'./src/components/ux-alert/ux-alert.feature'
+				// ],
+				baseUrl: 'http://localhost:' + DEV_SERVER_PORT,
+      //  logLevel: 'verbose',
+
+				//cucumberOpts: {
+					//require: glob('./src/components/**/*.steps.js')
+					// require: [
+					// 	'./src/components/ux-table/ux-table.steps.js',
+					// 	'./src/components/ux-alert/ux-alert.steps.js'
+					// ]
+				//}
+    }));
+});
+
 // Run the test suite alone, without re-building the project. Useful for rapid test debugging.
 // See 'test' for the full build and test task.
 gulp.task('test-only', [ 'test-connect' ], function (callback) {

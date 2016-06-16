@@ -1,7 +1,7 @@
+/*global browser */
 module.exports = function () {
 
 	// Load standard world object to be 'this' in steps.
-	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
 	this.Before(function (callback) {
@@ -19,8 +19,8 @@ module.exports = function () {
 	 * 'Example' structure in ux-table.feature.
 	 */
 	this.Given(/^there are "([^"]*)" "([^"]*)" elements displayed$/, function (numElements, semanticName, callback) {
-		this.client.waitForExist(this.component[semanticName], this.defaultTimeout).then(function () {
-			return this.client.elements(this.component[semanticName]);
+		browser.waitForExist(this.component[semanticName], 5000).then(function () {
+			return browser.elements(this.component[semanticName]);
 		}.bind(this)).then(function (elements) {
 			try {
 				this.assert.equal(elements.value.length, numElements);
@@ -28,9 +28,7 @@ module.exports = function () {
 			} catch (e) {
 				callback(e);
 			}
-		}.bind(this)).catch(function (e) {
-			callback(e);
-		});
+		}.bind(this)).catch(callback);
 	});
 
 

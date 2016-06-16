@@ -1,7 +1,5 @@
+/*global browser*/
 module.exports = function () {
-
-	// Load standard world object to be 'this' in steps.
-	this.World = require('../../world').World;
 
 	var _ = require('lodash-compat');
 
@@ -20,8 +18,8 @@ module.exports = function () {
 	this.Then(/^I should see (\d+) options$/, function (numElements, callback) {
 		var selector = this.component.items;
 
-		this.client.waitForExist(selector, 1000).then(function () {
-			return this.client.elements(selector);
+		browser.waitForExist(selector, 1000).then(function () {
+			return browser.elements(selector);
 		}.bind(this)).then(function (elements) {
 			try {
 				this.assert.equal(elements.value.length, numElements);
@@ -29,16 +27,14 @@ module.exports = function () {
 			} catch (e) {
 				callback(e);
 			}
-		}.bind(this)).catch(function (e) {
-			callback(e);
-		});
+		}.bind(this)).catch(callback);
 
 	});
 
 	this.Then(/^the active item should contain the text "([^"]*)"$/, function (text, callback) {
 		var selector = this.component.active;
-		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
-			return this.client.getText(selector);
+		browser.waitForExist(selector, this.defaultTimeout).then(function () {
+			return browser.getText(selector);
 		}.bind(this))
 		.then(function (elemText) {
 			try {
@@ -52,6 +48,6 @@ module.exports = function () {
 			} catch (e) {
 				callback(e);
 			}
-		}.bind(this));
+		}.bind(this)).catch(callback);
 	});
 };
