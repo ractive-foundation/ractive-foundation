@@ -53,13 +53,14 @@
     "superagent": "0.21.0",
     "sync": "~0.2.5",
     "walk": "~2.3.9",
-    "webdriverio": "~3.2.3"
+    "webdriverio": "^4.0.0",
+    "zombie": "^4.2.1"
   },
   "dependencies": {
     "a11y": "^0.3.3",
     "async": "1.0.0",
     "find": "~0.1.7",
-    "cucumber": "~0.4.8",
+    "cucumber": "~0.9.0",
     "gulp-util": "~3.0.4",
     "hammerjs": "~2.0.4",
     "json2htmljson2css": "0.0.1",

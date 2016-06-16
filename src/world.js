@@ -12,7 +12,7 @@ var webdriverio = require('webdriverio'),
 	assert = require('assert');
 
 // WebdriverIO Browser choices.
-const BROWSER_PHANTOMJS = 'phantomjs',
+const BROWSER_PHANTOMJS = 'chrome',
 // const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
 
 	WEBDRIVER_TIMEOUT = 5000;
@@ -37,7 +37,7 @@ var client = webdriverio.remote(options).init();
 client.addCommand('loadComponentWithUseCase', function (componentName, useCase, callback) {
 	var url = COMPONENT_BASE_PATH.replace('$1', componentName).replace('$2', useCase);
 	console.log('url:', url);
-	return this.url(url, callback);
+	return this.url(url).then(callback);
 });
 
 client.addCommand('loadPluginUseCase', function (pluginName, useCase, callback) {
@@ -46,18 +46,33 @@ client.addCommand('loadPluginUseCase', function (pluginName, useCase, callback) 
 	return this.url(url, callback);
 });
 
-var WorldConstructor = function WorldConstructor(callback) {
+// var WorldConstructor = function WorldConstructor(callback) {
+//
+// 	var world = {
+// 		assert: assert,
+// 		client: client,
+// 		defaultTimeout: WEBDRIVER_TIMEOUT
+// 	};
+// 	console.log('world args', client);
+//
+// 	return client.then(function () {
+// 		console.log('world', world);
+// 		callback(world);
+// 	});
+//
+// };
 
-	var world = {
-		assert: assert,
-		client: client,
-		defaultTimeout: WEBDRIVER_TIMEOUT
-	};
+//var zombie = require('zombie');
+function World() {
+	this.client = client;
+	this.assert = assert;
+	this.defaultTimeout = WEBDRIVER_TIMEOUT;
+	this.options = options;
+}
 
-	client.then(function () {
-		callback(world);
-	});
+// module.exports = function () {
+// 	this.World = World;
+// };
 
-};
 
-exports.World = WorldConstructor;
+exports.World = World;

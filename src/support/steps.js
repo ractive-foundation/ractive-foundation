@@ -9,27 +9,27 @@ var helper = require('./testHelpers');
 
 module.exports = function () {
 
-	this.Before('@desktop', function (callback) {
-
-		this.client.setViewportSize({
-			width: 1280,
-			height: 1024
-		}).then(function () {
-			callback();
-		});
-
-	});
-
-	this.Before('@mobile', function (callback) {
-
-		this.client.setViewportSize({
-			width: 320,
-			height: 480
-		}).then(function () {
-			callback();
-		});
-
-	});
+	// this.Before('@desktop', function (_, callback) {
+	// 	console.log('args', arguments);
+	// 	this.client.setViewportSize({
+	// 		width: 1280,
+	// 		height: 1024
+	// 	}).then(function () {
+	// 		callback();
+	// 	});
+	//
+	// });
+	//
+	// this.Before('@mobile', function (_, callback) {
+	//
+	// 	this.client.setViewportSize({
+	// 		width: 320,
+	// 		height: 480
+	// 	}).then(function () {
+	// 		callback();
+	// 	});
+	//
+	// });
 
 	// For testing plugins.
 	this.Given(/^I have loaded plugin "([^"]*)" use case "([^"]*)"$/,
@@ -42,9 +42,7 @@ module.exports = function () {
 	// For testing components.
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase).then(function () {
-				callback();
-			});
+			this.client.loadComponentWithUseCase(componentName, useCase).then(callback).catch(callback);
 		});
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
