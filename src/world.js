@@ -12,7 +12,7 @@ var webdriverio = require('webdriverio'),
 	assert = require('assert');
 
 // WebdriverIO Browser choices.
-const BROWSER_PHANTOMJS = 'chrome',
+const BROWSER_PHANTOMJS = 'phantomjs',
 // const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
 
 	WEBDRIVER_TIMEOUT = 5000;
@@ -28,7 +28,13 @@ var options = {
 		// 'phantomjs.binary.path': BROWSER_PHANTOMJS_PATH
 	}
 };
-var client = webdriverio.remote(options).init();
+console.log('options', options);
+
+var client = webdriverio.remote(options).init().then(function () {
+	// Ensure the promise resolves empty. Cucumber tries to read the resolution ouput
+	// It expects a string, `init()` returns a promise state object.
+	return Promise.resolve();
+});
 
 /**
  * Common functions that will be used in the suite.
@@ -37,42 +43,24 @@ var client = webdriverio.remote(options).init();
 client.addCommand('loadComponentWithUseCase', function (componentName, useCase, callback) {
 	var url = COMPONENT_BASE_PATH.replace('$1', componentName).replace('$2', useCase);
 	console.log('url:', url);
-	return this.url(url).then(callback);
+	this.url(url).then(function () {
+		callback();
+	});
 });
 
 client.addCommand('loadPluginUseCase', function (pluginName, useCase, callback) {
 	var url = PLUGIN_BASE_PATH.replace('$1', pluginName).replace('$2', useCase);
 	console.log('url:', url);
-	return this.url(url, callback);
+	this.url(url).then(function () {
+		callback();
+	});
 });
 
-// var WorldConstructor = function WorldConstructor(callback) {
-//
-// 	var world = {
-// 		assert: assert,
-// 		client: client,
-// 		defaultTimeout: WEBDRIVER_TIMEOUT
-// 	};
-// 	console.log('world args', client);
-//
-// 	return client.then(function () {
-// 		console.log('world', world);
-// 		callback(world);
-// 	});
-//
-// };
-
-//var zombie = require('zombie');
 function World() {
 	this.client = client;
 	this.assert = assert;
 	this.defaultTimeout = WEBDRIVER_TIMEOUT;
 	this.options = options;
 }
-
-// module.exports = function () {
-// 	this.World = World;
-// };
-
 
 exports.World = World;
