@@ -6,7 +6,7 @@ module.exports = function () {
 	// Load shared library of step definitions. Use these first!
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = '#childComponent .pagination ';
 		this.component.current_1 = this.component.container + '.page-1.current';

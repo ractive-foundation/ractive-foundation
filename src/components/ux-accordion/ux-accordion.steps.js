@@ -6,7 +6,7 @@ module.exports = function () {
 	// Load shared library of step definitions. Use these first!
 	require('../../support/steps').call(this);
 
-	this.Before(function (_, callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = 'ul.accordion';
 		this.component.item1 = this.component.container + ':nth-child(1) ';
