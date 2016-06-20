@@ -1,6 +1,11 @@
 Ractive.extend({
 	template: Ractive.defaults.templates['ux-button'],
 	isolated: true,
+	computed: {
+		isDisabled: function () {
+			return typeof this.get('disabled') !== 'undefined';
+		}
+	},
 	data: function () {
 		return {
 			type: 'button'
