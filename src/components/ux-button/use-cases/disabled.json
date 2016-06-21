@@ -3,6 +3,6 @@
   "data": {
     "text": "Disabled Button",
     "class": "disabled",
-    "disabled": ""
+    "disabled": "true"
   }
 }
