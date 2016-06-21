@@ -3,7 +3,8 @@ Ractive.extend({
 	isolated: true,
 	computed: {
 		isDisabled: function () {
-			return typeof this.get('disabled') !== 'undefined';
+			var disabled = this.get('disabled');
+			return typeof disabled !== 'undefined' || disabled !== '';
 		}
 	},
 	data: function () {
