@@ -219,6 +219,7 @@ select {
 
 
 
+
 .ux-reveal .reveal-modal {
   position: fixed;
   overflow-y: auto;
@@ -247,7 +248,6 @@ select {
 
 .ux-reveal .close-reveal-modal {
   text-decoration: none; }
-
 
 .side-nav .divider {
   border-top-color: inherit !important; }
