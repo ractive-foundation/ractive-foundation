@@ -4,7 +4,10 @@ Ractive.extend({
 	computed: {
 		isDisabled: function () {
 			var disabled = this.get('disabled');
-			return typeof disabled !== 'undefined' || disabled !== '';
+			if (typeof disabled === 'undefined') {
+				return false;
+			}
+			return disabled !== '';
 		}
 	},
 	data: function () {
