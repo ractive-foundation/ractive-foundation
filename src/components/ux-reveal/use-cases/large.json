@@ -1,0 +1,9 @@
+{
+	"title": "Data driven use case: Large style",
+	"isDataModel": true,
+	"data": {
+		"text": "Click Me",
+		"class": "text-link large",
+		"content" : "This is an example paragraph."
+	}
+}

@@ -9,7 +9,8 @@ Ractive.extend({
 
 	oninit: function () {
 		this.on('toggleModal', function (e) {
-			this.set('modalVisible', !this.get('modalVisible'));
+			e.original.stopPropagation();
+			this.toggle('modalVisible');
 			this.fire('toggleReveal', e);
 			return false;
 		});

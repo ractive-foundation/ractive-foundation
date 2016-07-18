@@ -1,0 +1,9 @@
+{
+	"title": "Data driven use case: Fullscreen style",
+	"isDataModel": true,
+	"data": {
+		"text": "Click Me",
+		"class": "text-link full",
+		"content" : "This is an example paragraph."
+	}
+}
