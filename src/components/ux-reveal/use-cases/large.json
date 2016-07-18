@@ -3,7 +3,8 @@
 	"isDataModel": true,
 	"data": {
 		"text": "Click Me",
-		"class": "text-link large",
+		"class": "text-link",
+		"size": "large",
 		"content" : "This is an example paragraph."
 	}
 }

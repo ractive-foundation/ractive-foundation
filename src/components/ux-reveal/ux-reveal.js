@@ -9,9 +9,13 @@ Ractive.extend({
 
 	oninit: function () {
 		this.on('toggleModal', function (e) {
-			e.original.stopPropagation();
 			this.toggle('modalVisible');
 			this.fire('toggleReveal', e);
+			return false;
+		});
+
+		this.on('innerClick', function (e) {
+			// captures clicks inside the modal, to prevent event propagation from closing the modal.
 			return false;
 		});
 
