@@ -4,6 +4,9 @@
 	"data": {
 		"text": "Click Me",
 		"class": "text-link",
-		"content" : "This is an example paragraph."
+		"content" : "This is an example paragraph.",
+		"closeOnEsc" : true,
+		"lockBackground": true,
+		"hideCloseButton": true
 	}
 }
