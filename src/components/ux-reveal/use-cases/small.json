@@ -1,0 +1,10 @@
+{
+	"title": "Data driven use case: Small style",
+	"isDataModel": true,
+	"data": {
+		"text": "Click Me",
+		"class": "text-link",
+		"size": "small",
+		"content" : "This is an example paragraph."
+	}
+}
