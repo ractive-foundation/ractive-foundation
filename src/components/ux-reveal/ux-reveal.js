@@ -5,7 +5,7 @@ Ractive.extend({
 	data: {
 		modalVisible: false,
 		closetext: '&times;',
-		closeOnEsc: false,
+		closeOnEsc: true,
 		lockBackground: false,
 		hideClose: false
 	},

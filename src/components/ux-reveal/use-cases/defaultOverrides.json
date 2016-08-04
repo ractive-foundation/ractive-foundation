@@ -5,7 +5,7 @@
 		"text": "Click Me",
 		"class": "text-link",
 		"content" : "This is an example paragraph.",
-		"closeOnEsc" : true,
+		"closeOnEsc" : false,
 		"lockBackground": true,
 		"hideCloseButton": true
 	}
