@@ -1,6 +1,6 @@
 {
   "name": "ractive-foundation",
-  "version": "0.20.2",
+  "version": "0.21.0",
   "description": "Ractive components for Foundation 5",
   "main": "dist/ractivef.js",
   "scripts": {
