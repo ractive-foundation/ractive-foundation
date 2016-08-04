@@ -12,13 +12,27 @@ Ractive.extend({
 
 	oninit: function () {
 		this.on('toggleModal', function (e) {
-			this.set('modalVisible', !this.get('modalVisible'));
+			this.toggle('modalVisible');
 			this.fire('toggleReveal', e);
+			return false;
+		});
+
+		this.on('innerClick', function (e) {
+			// captures clicks inside the modal, to prevent event propagation from closing the modal.
 			return false;
 		});
 
 		this.observe('modalVisible', function (newValue, oldValue, keypath) {
 			document.body.style.overflow = (newValue === true) ? 'hidden' : 'auto';
+
+			if (this.get('closeOnEsc')) {
+				if (newValue === true) {
+					this.registerCloseOnEsc();
+				} else {
+					this.unregisterCloseOnEsc();
+				}
+			}
+
 			return false;
 		});
 
@@ -27,29 +41,33 @@ Ractive.extend({
 				this.fire('toggleModal', e);
 			}
 		});
+	},
 
-		if (this.get('closeOnEsc')) {
-			this.registerCloseOnEsc();
+	// close the modal when ESC key is pressed
+	closeOnEsc: function (evt) {
+		evt = evt || window.event;
+		var isEscape = false;
+		// evt.keyCode is about to be deprecated, hence checking 'key' first
+		if (evt.key) {
+			isEscape = evt.key === 'Escape';
+		} else {
+			isEscape = evt.keyCode === 27;
+		}
+		if (isEscape) {
+			this.set('modalVisible', false);
 		}
 	},
 
 	registerCloseOnEsc: function () {
-		// close the modal when ESC key is pressed
-		document.onkeydown = function (evt) {
-			if (this.get('modalVisible')) {
-				evt = evt || window.event;
-				var isEscape = false;
-				// evt.keyCode is about to be deprecated, hence checking 'key' first
-				if (evt.key) {
-					isEscape = evt.key === 'Escape';
-				} else {
-					isEscape = evt.keyCode === 27;
-				}
-				if (isEscape) {
-					this.set('modalVisible', false);
-				}
-			}
-		}.bind(this);
+		document.addEventListener('keydown', this.closeOnEsc.bind(this), false);
+	},
+
+	unregisterCloseOnEsc: function () {
+		document.removeEventListener('keydown', this.closeOnEsc.bind(this), false);
+	},
+
+	onteardown: function () {
+		this.unregisterCloseOnEsc();
 	}
 
 });
