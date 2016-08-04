@@ -12,6 +12,8 @@ module.exports = function () {
 		this.component.openModal = this.component.container  + '.open-reveal-modal ';
 		this.component.modalBox = this.component.container  + '.reveal-modal ';
 		this.component.closeModal = this.component.container  + '.close-reveal-modal ';
+		this.component.modalBg = this.component.container  + '.reveal-modal-bg ';
+
 
 		callback();
 
