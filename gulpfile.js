@@ -19,6 +19,7 @@ var gulp = require('gulp'),
 	cordovaIos = require('gulp-cordova-build-ios'),
 
 	plugins = require('gulp-load-plugins')(),
+	grf = require('gulp-ractive-foundation')(),
 
 	applyVersions = require('./tasks/applyVersions'),
 	rebaseDist = require('./tasks/rebaseDist'),
@@ -173,12 +174,11 @@ gulp.task('ractive-build-test-templates', function () {
 
 gulp.task('ractive-build-components', function () {
 	return gulp.src([
-			'./src/components/**/*.js',
-			'!./src/components/**/*.steps.js'
+			'src/components/**/*',
 		])
-		.pipe(ractiveParse({
-			'prefix': 'Ractive.components'
-		}))
+		.pipe(grf.filter(/src\/components\/([^\/]+)/))
+		.pipe(grf.component())
+		.pipe(gulp.dest('public/components/'))
 		.pipe(plugins.concat('components.js'))
 		.pipe(gulp.dest('./public/js/'));
 });
