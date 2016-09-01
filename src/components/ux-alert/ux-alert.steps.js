@@ -4,7 +4,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (obj, callback) {
 		this.component = {};
 		this.component.container	= '#childComponent';
 		this.component.cross		= this.component.container + ' .close';
