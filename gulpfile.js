@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-	args = require('yargs').argv,
 	del = require('del'),
 	glob = require('simple-glob'),
 	exec = require('child_process').exec,
@@ -32,6 +31,34 @@ var gulp = require('gulp'),
 	rfA11y = require('./tasks/rfA11y'),
 
 	pkg = require('./package.json');
+
+var lowerCaseOnly = new RegExp('^[a-z-]+$', 'g');
+var args = require('node-getopt-long').options([
+	['name|n=s', {
+		description: 'The name of the component to create',
+		paramName: 'ux-...',
+		test: function (value) {
+			// Check for ux-*, including nothing at all to error out on.
+			if (value.length < 4) {
+				throw new gutil.PluginError('gulp-wing', 'wing needs --name param to work');
+			}
+
+			// Names of components MUST be lowercase, and start with 'ux-'.
+			if (!lowerCaseOnly.test(value) || 'ux-' !== value.substr(0, 3)) {
+				throw new gutil.PluginError('gulp-wing', 'Component name must be all lowercase alphanumeric, ' +
+					'and begin with "ux-". Example: ux-' + value.toLowerCase());
+			}
+
+			return value;
+		}
+	}],
+	['component|c=s', 'Specify a component to run tests for'],
+	['plugin|p=s', 'Specify a plugin to run tests for'],
+	['android|a', 'Build android cordover components'],
+	['ios|i', 'Build iOS cordover components'],
+], {
+	name: 'gulp wing'
+});
 
 const DEV_SERVER_PORT = 9080,
 	TEST_SERVER_PORT = 8088,
@@ -292,7 +319,7 @@ gulp.task('concat-app-umd', function () {
 });
 
 gulp.task('wing', function (callback) {
-	gulpWing();
+	gulpWing(args);
 	callback();
 });
 
@@ -388,7 +415,7 @@ gulp.task('watch', function () {
 
 gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 
-	rfA11y.auditComponents({ port: A11Y_SERVER_PORT })
+	rfA11y.auditComponents({ port: A11Y_SERVER_PORT }, args)
 		.then(function () {
 			callback();
 			process.exit(0);
