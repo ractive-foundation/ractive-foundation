@@ -9,7 +9,7 @@ var helper = require('./testHelpers');
 
 module.exports = function () {
 
-	this.Before('@desktop', function (callback) {
+	this.Before('@desktop', function (obj, callback) {
 
 		this.client.setViewportSize({
 			width: 1280,
@@ -20,7 +20,7 @@ module.exports = function () {
 
 	});
 
-	this.Before('@mobile', function (callback) {
+	this.Before('@mobile', function (obj, callback) {
 
 		this.client.setViewportSize({
 			width: 320,
