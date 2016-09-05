@@ -75,7 +75,6 @@
     "through": "~2.3.8",
     "through2": "~2.0.1",
     "vinyl": "~1.2.0",
-    "vinyl-sourcemaps-apply": "^0.2.1",
-    "yargs": "^5.0.0"
+    "vinyl-sourcemaps-apply": "^0.2.1"
   }
 }
