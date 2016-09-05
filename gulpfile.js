@@ -57,7 +57,45 @@ var args = require('node-getopt-long').options([
 	['android|a', 'Build android cordover components'],
 	['ios|i', 'Build iOS cordover components'],
 ], {
-	name: 'gulp wing'
+	name: 'gulp (task) [option]',
+	helpSuffix: '  Gulp tasks:\n' +
+		'    a11y            Run a11y tests\n' +
+		'    a11y-connect    Connect to a11y server\n' +
+		'    a11y-only       \n' +
+		'    build           Build components, plugins and documentation\n' +
+		'    build-documentation-components\n' +
+		'                    Build component documentation\n' +
+		'    build-documentation-plugins\n' +
+		'                    Build plugin documentation\n' +
+		'    build-sass      Compile SASS to CSS\n' +
+		'    clean           Clean the public directory\n' +
+		'    clean-dist      Clean the dist directory\n' +
+		'    concat-app      ??\n' +
+		'    concat-app-umd  ??\n' +
+		'    connect         ??\n' +
+		'    copy-use-cases  ??\n' +
+		'    copy-vendors    Copy vendor files\n' +
+		'    cordova-build   Run a cordover build\n' +
+		'    cordova-clean   Clean cordover build files\n' +
+		'    cordova-create  Create a new cordover build\n' +
+		'    cordova-run     Run RF as a cordover app\n' +
+		'    dist            Build dist files\n' +
+		'    html            Generate html\n' +
+		'    lint            Run lint task on files\n' +
+		'    ractive-build-components\n' +
+		'                    Build components\n' +
+		'    ractive-build-plugins\n' +
+		'                    Build plugins\n' +
+		'    ractive-build-templates\n' +
+		'                    Build templates\n' +
+		'    ractive-build-test-templates\n' +
+		'                    Build test templates\n' +
+		'    test            Run tests\n' +
+		'    test-connect    ??\n' +
+		'    test-only       ??\n' +
+		'    version-check   Check minimum node version\n' +
+		'    watch           Run watch task\n' +
+		'    wing            Create a new component or plugin\n'
 });
 
 const DEV_SERVER_PORT = 9080,
