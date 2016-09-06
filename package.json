@@ -44,6 +44,7 @@
     "gulp-watch": "~4.3.9",
     "gulp-wrap": "~0.13.0",
     "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4",
+    "jshint": "^2.9.3",
     "jshint-stylish": "~2.2.1",
     "merge-stream": "~1.0.0",
     "node-getopt-long": "~0.3.2",
