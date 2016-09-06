@@ -3,6 +3,7 @@ Ractive.extend({
 	isolated: true,
 	data: function () {
 		return {
+			className: 'ux-tooltip',
 			tabindex: 0
 		};
 	}
