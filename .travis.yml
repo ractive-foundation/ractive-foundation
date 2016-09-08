@@ -1,7 +1,9 @@
 language: node_js
 sudo: false
 node_js:
-- '0.12'
+  - '0.12'
+  - '4.2'
+  - '6.5'
 env:
   global:
     - secure: n3fKXV916uQSS5PscJ/8OWVIWPbwSDYdhPmzMNBRSHUXVKva6/K3aUDqAnKEYTjbR9vKxIDv6DAeXhhvTSnSK9ozzDVcay9WXBbE7Ji9WfN+6f9SbGGfVIZGR9/QahBVT2C3NpfsxSXVQMUuMuLD2AtpnyREBb2wxwx22K3O0Vc=
