@@ -619,6 +619,20 @@ gulp.task('lint', function (callback) {
 		.pipe(jshintFailReporter());
 });
 
+gulp.task('lint-indentation', function (callback) {
+	return gulp.src([
+			'src/**',
+			'tasks/**',
+			'scripts/**',
+			'gulpfile.js'
+		])
+		.pipe(plugins.indentChecker({
+			warn: false,
+			throwAtEnd: true,
+			type: 'tab'
+		}));
+});
+
 gulp.task('default', function () {
 	var self = this;
 	runSequence('version-check', 'lint', 'build',  'connect', 'watch', function (err) {
