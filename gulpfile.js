@@ -629,6 +629,7 @@ gulp.task('lint-indentation', function (callback) {
 		.pipe(plugins.indentChecker({
 			warn: false,
 			throwAtEnd: true,
+			jsdoc: true,
 			type: 'tab'
 		}));
 });
