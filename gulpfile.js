@@ -609,7 +609,7 @@ gulp.task('a11y', function (callback) {
 	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
-gulp.task('lint', function (callback) {
+gulp.task('lint', ['lint-indentation'], function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
