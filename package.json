@@ -35,6 +35,7 @@
     "gulp-cordova-version": "^0.3.0",
     "gulp-footer": "~1.0.5",
     "gulp-header": "~1.8.8",
+    "gulp-indent-checker": "^0.2.1",
     "gulp-jscs": "~4.0.0",
     "gulp-jshint": "~2.0.1",
     "gulp-load-plugins": "~1.2.4",

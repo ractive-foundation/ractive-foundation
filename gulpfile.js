@@ -609,7 +609,7 @@ gulp.task('a11y', function (callback) {
 	runSequence([ 'version-check', 'build' ], 'a11y-only', callback);
 });
 
-gulp.task('lint', function (callback) {
+gulp.task('lint', ['lint-indentation'], function (callback) {
 	return gulp.src('./src/**/*.js')
 		.pipe(plugins.jshint('./.jshintrc'))
 		.pipe(plugins.jshint.reporter('jshint-stylish'))
@@ -617,6 +617,21 @@ gulp.task('lint', function (callback) {
 		.pipe(jscs.reporter())
 		.pipe(jscs.reporter('fail'))
 		.pipe(jshintFailReporter());
+});
+
+gulp.task('lint-indentation', function (callback) {
+	return gulp.src([
+			'src/**',
+			'tasks/**',
+			'scripts/**',
+			'gulpfile.js'
+		])
+		.pipe(plugins.indentChecker({
+			warn: false,
+			throwAtEnd: true,
+			jsdoc: true,
+			type: 'tab'
+		}));
 });
 
 gulp.task('default', function () {
