@@ -129,12 +129,12 @@ module.exports = function (options) {
 
 	var init = function () {
 
-		var promise = options.install ? installDrivers(seleniumInstallOptions) : Q.resolve();
+		var promise = options.install ? installDrivers(seleniumInstallOptions) : Q;
 
 		return promise.then(function () {
 			return pingSelenium(options);
 		}).then(function (isServerRunning) {
-			return isServerRunning ? Q.resolve() : startServer(seleniumOptions);
+			return isServerRunning ? Q : startServer(seleniumOptions);
 		});
 
 	};
