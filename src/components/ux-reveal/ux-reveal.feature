@@ -18,3 +18,11 @@ Feature: ux-reveal test suite
 		And the element "closeModal" should have the text "[close]"
 		When I click the "closeModal" element
 		And "modalBox" will NOT be visible
+
+	Scenario: Hiding the close button, locking the background
+		Given I have loaded component "ux-reveal" with use case "hideCloseButton"
+		When I click the "openModal" element
+		And there will be NO element for "closeModal"
+		When I click the "modalBg" element
+		Then "modalBox" will be visible
+

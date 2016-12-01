@@ -12,6 +12,10 @@ Feature: ux-button
 		Given I have loaded component "ux-button" with use case "href"
 		Then there will be an element for "anchor"
 
+	Scenario: Disabled Button
+		Given I have loaded component "ux-button" with use case "disabled"
+		Then the element "button" should have attribute "disabled" containing ""
+
 	Scenario Outline: Different States
 		Given I have loaded component "ux-button" with use case "<type>"
 		Then the element "button" will have the class "<type>"
