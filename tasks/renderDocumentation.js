@@ -38,13 +38,8 @@ function renderAttributes(options) {
 }
 
 function useCases(useCase, componentName) {
-	var useCaseUid = _.uniqueId(
-		[
-			_.camelCase(componentName),
-			_.camelCase(path.basename(useCase).replace('.useCase', '')),
-			''
-		].join('_')
-	);
+
+	var useCaseUid =  _.uniqueId(_.camelCase(componentName) + '_');
 
 	var attr;
 
