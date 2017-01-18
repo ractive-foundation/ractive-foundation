@@ -179,7 +179,7 @@ module.exports = function () {
 	this.Then(/^there should be (\d+) of the element "([^"]+)"/, function (numElements, element, callback) {
 		var selector = this.component[element];
 
-		this.client.waitForExist(selector, 500).then(function () {
+		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
 			return this.client.elements(selector);
 		}.bind(this)).then(function (elements) {
 			try {
