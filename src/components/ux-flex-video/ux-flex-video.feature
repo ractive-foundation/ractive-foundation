@@ -15,3 +15,8 @@ Feature: ux-flex-video test suite
 		And the element "iframe" should have attribute "frameborder" containing "0"
 		And the element "flexvideo" will have the class "widescreen"
 		And the element "flexvideo" will have the class "vimeo"
+
+	Scenario: Loading ux-flex-video accessibility
+		Given I have loaded component "ux-flex-video" with use case "accessibility"
+		Then there will be an element for "iframe"
+		And the element "iframe" should have attribute "name" containing "Big Buck Bunny"
