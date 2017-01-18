@@ -2,7 +2,8 @@ Feature: ux-header test suite
 
 	Scenario Outline: Loading ux-header
 		Given I have loaded component "ux-header" with use case "<usecase>"
-		Then "<element>" will be visible
+		Then there will be an element for "<element>"
+		And "<element>" will be visible
 		And the element "<element>" will have the class "<class>"
 		And the element "<element>" should have attribute "id" containing "<idvalue>"
 		And the element "<element>" should have the text "<text>"

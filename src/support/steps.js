@@ -9,26 +9,18 @@ var helper = require('./testHelpers');
 
 module.exports = function () {
 
-	this.Before('@desktop', function (obj, callback) {
-
-		this.client.setViewportSize({
+	this.Before({tags: ['@desktop']}, function (scenario, callback) {
+		return this.client.setViewportSize({
 			width: 1280,
 			height: 1024
-		}).then(function () {
-			callback();
 		});
-
 	});
 
-	this.Before('@mobile', function (obj, callback) {
-
-		this.client.setViewportSize({
+	this.Before({tags: ['@mobile']}, function (scenario, callback) {
+		return this.client.setViewportSize({
 			width: 320,
 			height: 480
-		}).then(function () {
-			callback();
 		});
-
 	});
 
 	// For testing plugins.
@@ -42,9 +34,7 @@ module.exports = function () {
 	// For testing components.
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase).then(function () {
-				callback();
-			});
+			this.client.loadComponentWithUseCase(componentName, useCase).then(callback).catch(callback);
 		});
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
@@ -130,7 +120,7 @@ module.exports = function () {
 		this.client.isVisible(this.component[element]).then(function (isVisible) {
 			var e = (isVisible) ? void 0 : new Error('Element not visible! Selector: ' + this.component[element]);
 			callback(e);
-		}).catch(callback);
+		}.bind(this)).catch(callback);
 	});
 
 	this.Then(/^"([^"]*)" will NOT be visible$/, function (element, callback) {
@@ -189,7 +179,7 @@ module.exports = function () {
 	this.Then(/^there should be (\d+) of the element "([^"]+)"/, function (numElements, element, callback) {
 		var selector = this.component[element];
 
-		this.client.waitForExist(selector, 500).then(function () {
+		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
 			return this.client.elements(selector);
 		}.bind(this)).then(function (elements) {
 			try {

@@ -6,7 +6,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	this.Before(function (obj, callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container   = '#childComponent ';
 		this.component.breadcrumbs = this.component.container + 'li';
