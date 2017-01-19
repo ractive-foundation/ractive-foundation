@@ -1,0 +1,10 @@
+{
+	"data": {
+		"items": "Array of items",
+		"title": "Title for the sub nav, eg. 'Filter:'"
+	},
+	"events": {
+
+	},
+	"category": "navigation"
+}
