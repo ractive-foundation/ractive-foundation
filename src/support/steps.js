@@ -41,8 +41,9 @@ module.exports = function () {
 		var selector = this.component[semanticName];
 		this.client.waitForExist(selector, this.defaultTimeout).then(function (success) {
 			if (!success) {
-				callback.fail('Failed to wait for element "' + semanticName +
-					'" (' + selector + ')');
+				var error = new Error('Failed to wait for element "' + semanticName +
+				'" (' + selector + ')');
+				callback(error);
 			}
 			callback();
 		}).catch(callback);
@@ -51,7 +52,9 @@ module.exports = function () {
 	this.Then(/^there will be NO element for "([^"]*)"$/, function (semanticName, callback) {
 		this.client.isExisting(this.component[semanticName]).then(function (isExisting) {
 			if (isExisting) {
-				callback.fail('Element "' + semanticName + '" exists, Selector:', this.component[semanticName]);
+				var error = new Error('Element "' + semanticName + '" exists, Selector: ' +
+					this.component[semanticName]);
+				callback(error);
 			}
 			callback();
 		}.bind(this)).catch(callback);
@@ -106,9 +109,10 @@ module.exports = function () {
 					this.assert.notEqual(attr.indexOf(value), -1);
 					callback();
 				} catch (e) {
-					callback.fail('Element "' + semanticName +
-						'" (' + this.component[semanticName] + ') attribute "' + attribute +
-						'" does NOT contain "' + value + '", currently "' + attr + '"');
+					var error = new Error('Element "' + semanticName +
+					'" (' + this.component[semanticName] + ') attribute "' + attribute +
+					'" does NOT contain "' + value + '", currently "' + attr + '"');
+					callback(error);
 				}
 
 			}.bind(this))

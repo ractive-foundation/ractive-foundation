@@ -13,22 +13,10 @@ module.exports = function () {
 		this.component.current_2 = this.component.container + '.page-2.current';
 		this.component.current_5 = this.component.container + '.page-5.current';
 
+		this.component.activePage = this.component.container + ' li.current a';
+		this.component.paginationItems = this.component.container + ' li';
+
 		callback();
-	});
-
-	this.Then(/^the current page is "([^"]*)"$/, function (page, callback) {
-		// Write code here that turns the phrase above into concrete actions
-		callback(null, 'pending');
-	});
-
-	this.Given(/^there are "([^"]*)" elements displayed$/, function (number, callback) {
-		// Write code here that turns the phrase above into concrete actions
-		callback(null, 'pending');
-	});
-
-	this.Given(/^pages visible are "([^"]*)"$/, function (visible, callback) {
-		// Write code here that turns the phrase above into concrete actions
-		callback(null, 'pending');
 	});
 
 };
