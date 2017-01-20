@@ -2,17 +2,21 @@ module.exports = function () {
 
 	// Load standard world object to be 'this' in steps.
 	this.World = require('../../world').World;
+	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = '#childComponent ';
 
-		callback();
-	});
+		this.component.offCanvas = this.component.container + ' .off-canvas-wrap';
+		this.component.leftMenu = this.component.offCanvas + ' .left-off-canvas-menu';
+		this.component.rightMenu = this.component.offCanvas + ' .right-off-canvas-menu';
 
-	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
-		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase, callback);
+		this.component.leftMenuButton = this.component.offCanvas + ' .left-off-canvas-toggle';
+		this.component.rightMenuButton = this.component.offCanvas + ' .right-off-canvas-toggle';
+		this.component.exitButton = this.component.offCanvas + ' .exit-off-canvas';
+
+		callback();
 	});
 
 };

@@ -1,49 +1,49 @@
 <div class="off-canvas-wrap {{getExpandedClass}} {{class}}" data-offcanvas>
-    <div class="inner-wrap">
+	<div class="inner-wrap">
 
-        <nav class="tab-bar">
+		<nav class="tab-bar">
 
-            {{#if leftItems}}
-                <section class="left-small">
-                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'left' ? 'true' : 'false' }}" on-tap="updateMenu:left"><span></span></a>
-                </section>
-            {{/if}}
+			{{#if leftItems}}
+				<section class="left-small">
+					<a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'left' ? 'true' : 'false' }}" on-tap="updateMenu:left"><span></span></a>
+				</section>
+			{{/if}}
 
-            <section class="middle tab-bar-section">
-                <h1 class="title">{{title}}</h1>
-            </section>
+			<section class="middle tab-bar-section">
+				<h1 class="title">{{title}}</h1>
+			</section>
 
-            {{#if rightItems}}
-                <section class="right-small">
-                    <a class="left-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'right' ? 'true' : 'false' }}" on-tap="updateMenu:right"><span></span></a>
-                </section>
-            {{/if}}
+			{{#if rightItems}}
+				<section class="right-small">
+					<a class="right-off-canvas-toggle menu-icon" aria-expanded="{{ expandedState == 'right' ? 'true' : 'false' }}" on-tap="updateMenu:right"><span></span></a>
+				</section>
+			{{/if}}
 
-        </nav>
+		</nav>
 
-        {{#if leftItems}}
-            <aside class="left-off-canvas-menu">
-                <ux-off-canvas-list items="{{leftItems}}"></ux-off-canvas-list>
-            </aside>
-        {{/if}}
+		{{#if leftItems}}
+			<aside class="left-off-canvas-menu">
+				<ux-off-canvas-list items="{{leftItems}}"></ux-off-canvas-list>
+			</aside>
+		{{/if}}
 
-        {{#if rightItems}}
-            <aside class="right-off-canvas-menu">
+		{{#if rightItems}}
+			<aside class="right-off-canvas-menu">
 				<ux-off-canvas-list items="{{rightItems}}"></ux-off-canvas-list>
-            </aside>
-        {{/if}}
+			</aside>
+		{{/if}}
 
-        <section class="main-section">
+		<section class="main-section">
 
-            {{#if mainContent}}
-                {{{mainContent}}}
-            {{else}}
-                {{yield}}
-            {{/if}}
+			{{#if mainContent}}
+				{{{mainContent}}}
+			{{else}}
+				{{yield}}
+			{{/if}}
 
-        </section>
+		</section>
 
-        <a class="exit-off-canvas" on-tap="updateMenu"></a>
+		<a class="exit-off-canvas" on-tap="updateMenu"></a>
 
-    </div>
+	</div>
 </div>

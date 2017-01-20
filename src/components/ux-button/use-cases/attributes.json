@@ -1,0 +1,10 @@
+{
+	"title": "Attributes",
+	"data": {
+		"text": "Attributes!",
+		"role": "button",
+		"arialabel": "somelabel",
+		"tabindex": 10,
+		"onclick": "BuyBuyBuy"
+	}
+}

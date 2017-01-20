@@ -1,0 +1,23 @@
+.ux-reveal {
+
+	.modal-visible {
+		display: block;
+		visibility: visible;
+	}
+
+	.reveal-modal {
+
+		.close-reveal-modal {
+			text-decoration: none;
+		}
+
+		max-height: 80%;
+		overflow-y: auto;
+
+		&.full {
+			max-height: 100%;
+		}
+
+	}
+}
+

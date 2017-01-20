@@ -32,7 +32,6 @@ Ractive.extend({
 				}
 
 			});
-
 		});
 
 	}

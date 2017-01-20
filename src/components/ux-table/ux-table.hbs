@@ -1,0 +1,70 @@
+<table class="ux-table {{.class}}"
+		{{#if role}}role="{{role}}"{{/if}}
+	>
+	{{#if .caption}}
+		<caption>{{{.caption}}}</caption>
+	{{/if}}
+	{{#if isDataModel}}
+		{{#if .header}}
+			<thead {{#if .header.class}}class="{{.header.class}}"{{/if}}>
+				<tr>
+				{{#each .header.cell}}
+					<th
+						{{#if .id}}id="{{.id}}"{{/if}}
+						{{#if .scope}}scope="{{.scope}}"{{/if}}
+						{{#if .width}}width="{{.width}}"{{/if}}
+						{{#if .height}}height="{{.height}}"{{/if}}
+						{{#if .colspan}}colspan="{{.colspan}}"{{/if}}
+						{{#if .rowspan}}rowspan="{{.rowspan}}"{{/if}}
+						{{#if .headers}}headers="{{.headers}}"{{/if}}
+						{{#if .class}}class="{{.class}}"{{/if}}>
+						{{{.label}}}
+					</th>
+				{{/each}}
+				</tr>
+			</thead>
+		{{/if}}
+		{{#if .body}}
+			<tbody {{#if .body.class}}class="{{.body.class}}"{{/if}}>
+		{{#each .body.rows}}
+		<tr {{#if .class}}class="{{.class}}"{{/if}}>
+			{{#each .cell}}
+			<td
+				{{#if .id}}id="{{.id}}"{{/if}}
+				{{#if .scope}}scope="{{.scope}}"{{/if}}
+				{{#if .width}}width="{{.width}}"{{/if}}
+				{{#if .height}}height="{{.height}}"{{/if}}
+				{{#if .colspan}}colspan="{{.colspan}}"{{/if}}
+				{{#if .rowspan}}rowspan="{{.rowspan}}"{{/if}}
+				{{#if .headers}}headers="{{.headers}}"{{/if}}
+				{{#if .class}}class="{{.class}}"{{/if}}>
+				{{{.label}}}
+			</td>
+			{{/each}}
+		</tr>
+		{{/each}}
+	</tbody>
+		{{/if}}
+		{{#if .footer}}
+	<tfoot {{#if .footer.class}}class="{{.footer.class}}"{{/if}}>
+		<tr>
+		{{#each .footer.cell}}
+			<td
+				{{#if .id}}id="{{.id}}"{{/if}}
+				{{#if .scope}}scope="{{.scope}}"{{/if}}
+				{{#if .width}}width="{{.width}}"{{/if}}
+				{{#if .height}}height="{{.height}}"{{/if}}
+				{{#if .colspan}}colspan="{{.colspan}}"{{/if}}
+				{{#if .rowspan}}rowspan="{{.rowspan}}"{{/if}}
+				{{#if .headers}}headers="{{.headers}}"{{/if}}
+				{{#if .class}}class="{{.class}}"{{/if}}>
+				{{{.label}}}
+			</td>
+		{{/each}}
+		</tr>
+	</tfoot>
+		{{/if}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</table>

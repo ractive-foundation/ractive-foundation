@@ -1,8 +1,9 @@
 <div class="ux-top-bar {{#if isfixed}}fixed{{/if}} {{class}}">
 
 	<nav class="top-bar {{#if isexpanded}}expanded{{/if}}"
-		 data-top-bar role="navigation" data-options="{{dataoptions}}">
+		data-top-bar role="navigation" data-options="{{dataoptions}}">
 
+		{{#if menulabel}}
 		<ul class="title-area">
 			<li class="name">
 				<h1><a href="{{href}}">{{title}}</a></h1>
@@ -13,6 +14,7 @@
 				</a>
 			</li>
 		</ul>
+		{{/if}}
 
 		<section class="top-bar-section">
 

@@ -11,6 +11,8 @@ var through   = require('through2'),
 var PluginError = gulputil.PluginError;
 
 const PLUGIN_NAME = 'gulp-concat-documentation';
+const DEFAULT_DELIMITERS = ['{{', '}}'];
+const DEFAULT_TRIPLE_DELIMITERS = ['{{{', '}}}'];
 
 Ractive.DEBUG = false;
 
@@ -35,15 +37,9 @@ function renderAttributes(options) {
 	return html.join('');
 }
 
-function renderUseCases(useCase, componentName) {
+function useCases(useCase, componentName) {
 
-	var useCaseUid = _.uniqueId(
-		[
-			_.camelCase(componentName),
-			_.camelCase(path.basename(useCase).replace('.useCase', '')),
-			''
-		].join('_')
-	);
+	var useCaseUid =  _.uniqueId(_.camelCase(componentName) + '_');
 
 	var attr;
 
@@ -68,52 +64,49 @@ function renderUseCases(useCase, componentName) {
 		componentObj.attr.datamodel = '{{dataModel}}';
 	}
 
-	// render use case doco
-	var component = makeHTML([
-		{
-			tag: 'h5',
-			content: 'Use case: ' + useCase.title
-		},
-		{
-			tag: 'div',
-			content: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
-			attr: {
-				class: 'ractivef-use-case',
-				id: useCaseUid
-			}
-		},
-		{
-			tag: 'pre',
-			content: [{
-				tag: 'code',
-				content: _.escape(makeHTML([componentObj]))
-			}]
-		},
-		{
-        	tag: 'pre',
-        	content: [{
-        		tag: 'code',
-        		content: JSON.stringify(useCase.data, null, 4)
-        	}]
-       	}
-	]).replace(/(\r\n|\r)/gm, '');
-
-	return component;
-
+	if (useCase.template) {
+		var partial = fs.readFileSync(useCase.file, 'utf8');
+		return {
+			title: useCase.title,
+			useCaseUid: useCaseUid,
+			template: useCase.template,
+			display: _.escape(partial),
+			partial: partial,
+			name: useCase.name,
+			data: JSON.stringify(useCase.data, null, 4)
+		};
+	} else {
+		return {
+			title: useCase.title,
+			useCaseUid: useCaseUid,
+			inline: makeHTML([componentUseCase]) + '<ul>{{#events.' + useCaseUid + '}}<li>{{this}}</li>{{/}}</ul>',
+			display: _.escape(makeHTML([componentObj])),
+			name: useCase.name,
+			data: JSON.stringify(useCase.data, null, 4)
+		};
+	}
 }
 
 /**
  * Transform intermediate data into final data model for sidenav.
  */
-function getSideNavDataModel(manifests) {
+function getSideNavDataModel(manifests, options) {
 
-	var sideNavData = {};
+	var sideNavData = {},
+		helpers = {};
+
+	if (! (options.setClass instanceof Function)) {
+		options.setClass = function(helpers, componentName, manifests) {
+			return helpers[componentName] ? 'hide' : '';
+		};
+	}
 
 	// Build up sideNavDataModel first.
 	_.each(manifests, function (manifest) {
-		var cat = manifest.manifest.category || 'uncategorised';
+		var cat = manifest.manifest.category || manifest.manifest.plugin || 'uncategorised';
 		sideNavData[cat] = sideNavData[cat] || [];
 		sideNavData[cat].push(manifest.componentName);
+		helpers[manifest.componentName] = manifest.manifest.helper;
 	});
 
 	var sideNavDataModel = {
@@ -136,7 +129,8 @@ function getSideNavDataModel(manifests) {
 			sideNavDataModel.items.push({
 				label: componentName,
 				// Link to individual component pages.
-				href: componentName + '.html'
+				href: componentName + '.html',
+				class: options.setClass(helpers, componentName, manifests)
 			});
 
 		});
@@ -150,7 +144,7 @@ function getSideNavDataModel(manifests) {
 /**
  * All these components need an index page to get started.
  */
-function getIndexFile (indexFile, sideNavDataModel, file) {
+function getIndexFile (indexFile, sideNavDataModel, file, options) {
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
@@ -159,15 +153,17 @@ function getIndexFile (indexFile, sideNavDataModel, file) {
 		template: indexFile,
 		data: {
 			sideNavDataModel: sideNavDataModel
-		}
+		},
+		delimiters: options.delimiters || DEFAULT_DELIMITERS,
+		tripleDelimiters: options.tripleDelimiters || DEFAULT_TRIPLE_DELIMITERS
 	});
 
 	var html = ractive.toHTML();
 
 	// Modify manifest-rf.json file data to create individual component html files for output.
 	var parsed = path.parse(file.path);
-	parsed.name = 'components';
-	parsed.base = 'components.html';
+	parsed.name = options.type;
+	parsed.base = options.type + '.html';
 	parsed.ext = '.html';
 
 	var componentFile = new VinylFile({
@@ -184,7 +180,7 @@ function getIndexFile (indexFile, sideNavDataModel, file) {
 /**
  * Create a single component documentation file.
  */
-function getComponentFile (manifest, docFile, sideNavDataModel, file) {
+function getComponentFile (manifest, docFile, sideNavDataModel, file, partials, options) {
 
 	var component = {
 		readmeMd:      marked(manifest.readme),
@@ -196,19 +192,30 @@ function getComponentFile (manifest, docFile, sideNavDataModel, file) {
 	};
 
 	// Render all use cases into html.
-	component.useCasesHTML = _.map(manifest.useCases, function (useCase) {
-		return renderUseCases(useCase, manifest.componentName);
-	}).join('');
+	component.useCases = _(manifest.useCases).map(function (useCase) {
+		if (useCase.template && options.templateUseCases === false) {
+			return;
+		}
+
+		var data = useCases(useCase, manifest.componentName);
+		if (data.partial) {
+			partials[data.template] = data.partial;
+		}
+		return data;
+	}).filter().value();
 
 	// empty out any default set components.
 	// We do not want Ractive to parse and resolve any components written in the template.
 	Ractive.components = {};
 	var ractive = new Ractive({
 		template: docFile,
+		partials: partials,
 		data: {
 			sideNavDataModel: sideNavDataModel,
 			component: component
-		}
+		},
+		delimiters: options.delimiters || DEFAULT_DELIMITERS,
+		tripleDelimiters: options.tripleDelimiters || DEFAULT_TRIPLE_DELIMITERS
 	});
 
 	var toHTML = ractive.toHTML();
@@ -250,15 +257,21 @@ function renderDocumentation(options) {
 			var docFile = fs.readFileSync(options.docSrcPath, 'UTF-8');
 			var indexFile = fs.readFileSync(options.indexSrcPath, 'UTF-8');
 
+			var partials = {};
+			_.each(options.partials, function(file) {
+				var name = file.replace(/^.*\/|[.]html$/g, '');
+				partials[name] = fs.readFileSync(file, 'UTF-8');
+			});
+
 			// Build up sideNavDataModel first.
-			var sideNavDataModel = getSideNavDataModel(manifests);
+			var sideNavDataModel = getSideNavDataModel(manifests, options);
 
 			// Create the component index page, using the sidenav.
-			this.push(getIndexFile(indexFile, sideNavDataModel, file));
+			this.push(getIndexFile(indexFile, sideNavDataModel, file, options));
 
 			// Now create separate component docs pages.
 			_.each(manifests, function (manifest) {
-				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file));
+				this.push(getComponentFile (manifest, docFile, sideNavDataModel, file, partials, options));
 			}.bind(this));
 
 		}

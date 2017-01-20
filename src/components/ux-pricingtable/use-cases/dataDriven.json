@@ -1,0 +1,18 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"class": "table",
+		"text": "ux-pricingtable",
+		"title": "Standard",
+		"price": "$99.9",
+		"description": "An awesome description",
+		"features": [
+			"1 Database",
+			"5GB Storage", 
+			"20 Users"
+		],
+		"status": "comingsoon",
+		"href": "#"
+	}
+}

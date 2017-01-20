@@ -1,0 +1,9 @@
+<div class="ux-inline-list {{class}}">
+	{{#if isDataModel}}
+		{{#items}}
+			<ux-inline-list-item datamodel="{{getItemData(this)}}"></ux-inline-list-item>
+		{{/items}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</div>

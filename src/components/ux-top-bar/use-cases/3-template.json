@@ -1,0 +1,7 @@
+{
+	"title": "template example",
+	"isDataModel": false,
+	"template": "ux-top-bar-3-template",
+	"file": "src/components/ux-top-bar/use-cases/3-template.hbs",
+	"data": {}
+}

@@ -1,0 +1,12 @@
+<li class="{{topBarItemCssClass}}">
+	{{#if isDataModel}}
+		{{! TODO Use ux-li and ux-anchor, resolve nested scopes. }}
+		<ux-anchor href="{{href}}">{{{label}}}</ux-anchor>
+		{{#if items}}
+			{{! Recursively reference the same component, to create the hierarchy of items. }}
+			<ux-top-bar-items class="dropdown" items="{{items}}"></ux-top-bar-items>
+		{{/if}}
+	{{else}}
+		{{yield}}
+	{{/if}}
+</li>

@@ -1,0 +1,18 @@
+<li class="
+	{{class}}
+	{{#arrow}}arrow{{/arrow}}
+	{{#current}}current{{/current}}
+	{{#unavailable}}unavailable{{/unavailable}}
+	"
+	{{#unavailable}}aria-disabled="true"{{/unavailable}}
+	>
+	{{#if .isDataModel}}
+		<ux-anchor
+			href="{{href}}"
+			target="{{target}}"
+			title="{{title}}"
+			>{{{content}}}</ux-anchor>
+	{{else}}
+		{{yield}}
+	{{/if}}
+</li>

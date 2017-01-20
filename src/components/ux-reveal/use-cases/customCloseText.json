@@ -1,0 +1,10 @@
+{
+	"title": "Custom close text use case",
+	"isDataModel": true,
+	"data": {
+		"text": "Click Me",
+		"class": "text-link",
+		"content": "This is an example paragraph.",
+		"closetext": "[close]"
+	}
+}

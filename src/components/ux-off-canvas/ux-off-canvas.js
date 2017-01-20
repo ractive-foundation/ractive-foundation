@@ -39,6 +39,10 @@ Ractive.extend({
 			this.set('expandedState', direction);
 		});
 
+		this.on('*.menuSelect', function (event) {
+			this.set('expandedState', '');
+		});
+
 	}
 
 });

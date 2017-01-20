@@ -1,0 +1,11 @@
+{
+	"data": {
+		"tagElement"  : "html elemnet to use for the tooltip (default span)",
+		"className"   : "Class to use for styling tooltop (default tootip)",
+		"selectorName": "Tooltip id (default tooltipNNN where NNN is a random number)",
+		"content"     : "HTML content of tooltip",
+		"delay"       : "Delay in hiding tooltip (default 0ms)",
+		"show_on"     : "Screen sizes to show tooltip on (default 'small mendium large')"
+	},
+	"plugin": "decorators"
+}

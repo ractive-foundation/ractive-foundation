@@ -1,0 +1,23 @@
+<ux-top-bar title="Test Title" class="contain-to-grid mode">
+	<ux-top-bar-items class="right">
+		<li class="active"><a href="#">Right Button Active</a></li>
+		<li class="has-dropdown not-click">
+			<a href="#">Right nesting</a>
+			<ux-top-bar-items class="dropdown">
+				<li><a href="#">First link in dropdown</a></li>
+				<li class="has-dropdown not-click">
+					<a href="#">Second link with items</a>
+					<ux-top-bar-items class="dropdown">
+						<li><a href="#">nested item 1</a></li>
+						<li><a href="#">nested item 2</a></li>
+						<li><a href="#">nested item 3</a></li>
+					</ux-top-bar-items>
+				</li>
+				<li class="active"><a href="#">Active link in dropdown</a></li>
+			</ux-top-bar-items>
+		</li>
+	</ux-top-bar-items>
+	<ux-top-bar-items class="left">
+		<li href="#"><a href="#">Left Button</a></li>
+	</ux-top-bar-items>
+</ux-top-bar>

@@ -24,6 +24,11 @@ module.exports = function (options) {
 	var pingSelenium = function(options) {
 		options = options || {};
 		return Q.Promise(function (resolve, reject) {
+
+			if (options.seleniumOptions && options.seleniumOptions.alwaysSpawn) {
+				return resolve(false);
+			}
+
 			gutil.log(gutil.colors.gray('Checking if Selenium server is running'));
 
 			var opts = {
@@ -81,6 +86,12 @@ module.exports = function (options) {
 				return reject('Cannot kill standalone server.');
 			}
 
+			if (options.seleniumOptions &&  options.seleniumOptions.kill === false) {
+				gutil.log(gutil.colors.green('Configured not to kill selenium.'))
+				gutil.log('Finished', '\'' + gutil.colors.cyan('selenium standalone server') + '\'...');
+				return resolve();
+			}
+
 			seleniumServer.kill();
 			seleniumServer.on('close', function (code, signal) {
 				gutil.log('Finished', '\'' + gutil.colors.cyan('selenium standalone server') + '\'...');
@@ -118,12 +129,12 @@ module.exports = function (options) {
 
 	var init = function () {
 
-		var promise = options.install ? installDrivers(seleniumInstallOptions) : Q.resolve();
+		var promise = options.install ? installDrivers(seleniumInstallOptions) : Q;
 
 		return promise.then(function () {
 			return pingSelenium(options);
 		}).then(function (isServerRunning) {
-			return isServerRunning ? Q.resolve() : startServer(seleniumOptions);
+			return isServerRunning ? Q : startServer(seleniumOptions);
 		});
 
 	};
