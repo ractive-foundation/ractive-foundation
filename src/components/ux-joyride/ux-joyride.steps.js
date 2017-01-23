@@ -6,10 +6,15 @@ module.exports = function () {
 	// Load shared library of step definitions. Use these first!
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 
 		this.component = {};
 		this.component.container = '#childComponent ';
+		this.component.startLink = '.point1';
+		this.component.joyrideContainer = '.joyride-content-wrapper';
+		this.component.closeElement = '.joyride-close-tip';
+		this.component.prevButton = '.prev';
+		this.component.nextButton = '.next';
 
 		callback();
 
