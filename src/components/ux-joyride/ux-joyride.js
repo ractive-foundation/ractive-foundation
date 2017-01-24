@@ -3,18 +3,20 @@ Ractive.extend({
 	isolated: true,
 
 	// any default data
-	data: {
-		component: 'ux-joyride',
-		isHidden: true,
-		defaultNubTop: 28,
-		maxMobileWidth: 500,
-		styles: {
-			top: '0px',
-			left: '0px',
-			width: 'auto'
-		},
-		closeText: '&times;',
-		joyrideTarget: ''
+	data: function () {
+		return {
+			component: 'ux-joyride',
+			isHidden: true,
+			defaultNubTop: 28,
+			maxMobileWidth: 500,
+			styles: {
+				top: '0px',
+				left: '0px',
+				width: 'auto'
+			},
+			closeText: '&times;',
+			joyrideTarget: ''
+		};
 	},
 
 	oninit: function () {
@@ -45,7 +47,7 @@ Ractive.extend({
 		if (this.get('isHidden')) {
 			this.setStepDetails();
 		} else {
-			this.close();
+			this.onClose();
 		}
 	},
 
@@ -54,9 +56,8 @@ Ractive.extend({
 			event.original.preventDefault();
 		}
 		var joyrideTarget = this.get('contents.' + this.get('currentStep') + '.selector');
-		var hasJoyride  = this.find(joyrideTarget) || this.find('*[aria-haspopup]');
 
-		hasJoyride.focus();
+		this.focusJoyride(joyrideTarget);
 		this.set('isHidden', true);
 	},
 
@@ -98,10 +99,16 @@ Ractive.extend({
 			this.set('styles', stylesObject);
 
 			this.set('isHidden', false);
-			_.defer(function () {
-				hasJoyride.focus();
-			});
+			_.defer(this.focusJoyride.bind(this, joyrideTarget));
 		}
+	},
+
+	focusJoyride: function (joyrideTarget) {
+		//TODO: smooth scolling?
+		var joyride = document.querySelector(joyrideTarget).getBoundingClientRect();
+		var absoluteElementTop = joyride.top + window.pageYOffset;
+		var middle = absoluteElementTop - (window.innerHeight / 2);
+		window.scrollTo(0, middle);
 	}
 });
 
