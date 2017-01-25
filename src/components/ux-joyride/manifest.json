@@ -1,0 +1,7 @@
+{
+	"data": {
+		"text": "The text to display on the ux-joyride component",
+		"url": "The link to follow when the component is clicked"
+	},
+	"category": "navigation"
+}

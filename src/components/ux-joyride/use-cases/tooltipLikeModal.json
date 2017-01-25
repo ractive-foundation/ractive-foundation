@@ -1,0 +1,16 @@
+{
+	"title": "Tool tip like modal use case",
+	"isDataModel": true,
+	"data": {
+		"linkText": "see breakdown",
+		"id": "tooltipId",
+		"title": "tooltip title",
+		"contents":[
+			{
+				"selector": ".point1",
+				"text": "<p>journey started :point 1</p>"
+			}
+		],
+		"hasYield": false
+	}
+}
