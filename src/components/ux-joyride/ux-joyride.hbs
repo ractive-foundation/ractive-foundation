@@ -1,19 +1,57 @@
 <div class="ux-joyride">
-	<ol class="joyride-list" data-joyride>
-		<li data-id="firstStop" data-text="Next" data-options="tip_location: top; prev_button: false">
-			<p>Hello and welcome to the Joyride <br>documentation page.</p>
-		</li>
-		<li data-id="numero1" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
-			<h4>Stop #1</h4>
-			<p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
-		</li>
-		<li data-id="numero2" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-			<h4>Stop #2</h4>
-			<p>Get the details right by styling Joyride with a custom stylesheet!</p>
-		</li>
-		<li data-button="End" data-prev-text="Prev">
-			<h4>Stop #3</h4>
-			<p>It works as a modal too!</p>
-		</li>
-	</ol>
+	<a on-tap-enter="toggle"
+		tabindex="0"
+		aria-hasPopup="yes"
+		aria-owns="{{id}}"
+		class="joyride-start-point"
+	>
+		{{{linkText}}}
+	</a>
+	{{#if !isHidden}}
+		<div class="joyride-tip-guide"
+			id="{{id}}"
+			tabindex="0" 
+			style="width: {{styles.width}};
+				left: {{styles.left}};
+				top: {{styles.top}}"
+		>
+			<span class="joyride-nub {{styles.nubPosition}}"></span>
+			<div class="joyride-content-wrapper">
+				<h4>{{title}}</h4>
+				{{#if hasYield}}
+					{{yield}}
+				{{else}}
+					{{#with contents[currentStep]}}
+						{{#if text}}
+							{{{text}}}
+						{{else}}
+							{{>content}}
+						{{/if}}
+					{{/with}}
+				{{/if}}
+
+				<!--prev button-->
+				{{#if currentStep !==0}}
+					<a class="small button prev"
+						on-tap="prev">
+						prev
+					</a>
+				{{/if}}
+				{{#if currentStep < (contents.length - 1)}}
+					<a class="button small next"
+						on-tap="next">
+						next
+					</a>
+				{{/if}}
+				<!--close button-->
+				<a class="joyride-close-tip ico ico-cross"
+					on-tap-enter="close"
+					aria-label="close"
+					tabindex="0"
+				>
+					{{{closeText}}}
+				</a>
+			</div>
+		</div>
+	{{/if}}
 </div>

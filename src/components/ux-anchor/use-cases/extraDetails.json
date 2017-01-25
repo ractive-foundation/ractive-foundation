@@ -2,6 +2,6 @@
 	"title": "Extra details",
 	"isDataModel": false,
 	"template": "ux-anchor-extraDetails",
-	"file": "src/components/ux-anchor/use-cases/extraDetails.json",
+	"file": "src/components/ux-anchor/use-cases/extraDetails.hbs",
 	"data": {}
 }

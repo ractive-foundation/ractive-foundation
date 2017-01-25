@@ -1,0 +1,28 @@
+{
+	"title": "Static example",
+	"isDataModel": true,
+	"template": "ux-joyride-static",
+	"file": "src/components/ux-joyride/use-cases/static.hbs",
+	"data": {
+		"title": "Riding with joy",
+		"contents": [
+
+			{
+				"selector": "li.joy1",
+				"description": "What to do first",
+				"step": "1"
+			},
+			{
+				"selector": "li.joy2",
+				"description": "Next is this",
+				"step": "1"
+			},
+			{
+				"selector": "li.joy3",
+				"description": "Finally this",
+				"step": "1"
+			}
+		],
+		"isOpenOnInit": "true"
+	}
+}

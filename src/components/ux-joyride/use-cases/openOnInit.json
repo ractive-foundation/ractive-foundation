@@ -1,5 +1,5 @@
 {
-	"title": "Data driven use case",
+	"title": "joyride start on init",
 	"isDataModel": true,
 	"data": {
 		"linkText": "<a class='point1'>point 1</a><br/><a class='point2'>point 2</a><br/><a class='point3'>point 3</a>",
@@ -19,6 +19,7 @@
 				"text": "<p>end journey :point 3</p>"
 			}
 		],
-		"hasYield": false
+		"hasYield": false,
+		"isOpenOnInit": "true"
 	}
 }
