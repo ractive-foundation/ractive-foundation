@@ -31,9 +31,9 @@
 
 <script>
 	// Listen for the event
-	document.addEventListener('component-init', function (e) {
-		var ractive = RactiveF.widgets[0].findAllComponents('ux-joyride')[2];
-		ractive.fire('toggle')
+	document.addEventListener('widget-init', function (event) {
+		var component = event.instance.findAllComponents('ux-joyride')[2];
+		component.fire('toggle');
 	}, false);
 	
 </script>
