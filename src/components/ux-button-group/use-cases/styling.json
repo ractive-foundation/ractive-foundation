@@ -1,0 +1,7 @@
+{
+  "title": "Styling",
+  "isDataModel": false,
+  "template": "ux-button-group-styling",
+  "file": "src/components/ux-button-group/use-cases/styling.hbs",
+  "data": {}
+}
