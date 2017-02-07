@@ -1,6 +1,6 @@
 {
   "name": "ractive-foundation",
-  "version": "0.21.0",
+  "version": "0.24.0",
   "description": "Ractive components for Foundation 5",
   "main": "dist/ractivef.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ractive-foundation/ractive-foundation",
   "devDependencies": {
+    "cucumber": "1.3.1",
     "del": "~2.2.2",
     "foundation-sites": "git+https://github.com/zurb/bower-foundation.git#5.5.3",
     "gulp": "~3.9.1",
@@ -55,13 +56,12 @@
     "superagent": "0.21.0",
     "sync": "~0.2.5",
     "walk": "~2.3.9",
-    "webdriverio": "~3.4.0"
+    "webdriverio": "4.6.1"
   },
   "dependencies": {
     "a11y": "^0.4.1",
     "async": "2.0.1",
     "find": "~0.2.7",
-    "cucumber": "~0.7.0",
     "gulp-util": "~3.0.7",
     "hammerjs": "~2.0.8",
     "json2htmljson2css": "0.0.1",

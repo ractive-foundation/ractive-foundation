@@ -1,0 +1,13 @@
+{
+	"title": "Basic Flex Video",
+	"isDataModel": true,
+	"data": {
+		"allowfullscreen": "allowfullscreen",
+		"class": "",
+		"frameborder": "0",
+		"height": "315",
+		"src": "//www.youtube.com/embed/YE7VzlLtp-4",
+		"width": "420",
+		"name": "Big Buck Bunny"
+	}
+}

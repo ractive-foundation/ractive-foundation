@@ -9,26 +9,18 @@ var helper = require('./testHelpers');
 
 module.exports = function () {
 
-	this.Before('@desktop', function (obj, callback) {
-
-		this.client.setViewportSize({
+	this.Before({tags: ['@desktop']}, function (scenario, callback) {
+		return this.client.setViewportSize({
 			width: 1280,
 			height: 1024
-		}).then(function () {
-			callback();
 		});
-
 	});
 
-	this.Before('@mobile', function (obj, callback) {
-
-		this.client.setViewportSize({
+	this.Before({tags: ['@mobile']}, function (scenario, callback) {
+		return this.client.setViewportSize({
 			width: 320,
 			height: 480
-		}).then(function () {
-			callback();
 		});
-
 	});
 
 	// For testing plugins.
@@ -42,17 +34,16 @@ module.exports = function () {
 	// For testing components.
 	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
 		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase).then(function () {
-				callback();
-			});
+			this.client.loadComponentWithUseCase(componentName, useCase).then(callback).catch(callback);
 		});
 
 	this.Then(/^there will be an element for "([^"]*)"$/, function (semanticName, callback) {
 		var selector = this.component[semanticName];
 		this.client.waitForExist(selector, this.defaultTimeout).then(function (success) {
 			if (!success) {
-				callback.fail('Failed to wait for element "' + semanticName +
-					'" (' + selector + ')');
+				var error = new Error('Failed to wait for element "' + semanticName +
+				'" (' + selector + ')');
+				callback(error);
 			}
 			callback();
 		}).catch(callback);
@@ -61,7 +52,9 @@ module.exports = function () {
 	this.Then(/^there will be NO element for "([^"]*)"$/, function (semanticName, callback) {
 		this.client.isExisting(this.component[semanticName]).then(function (isExisting) {
 			if (isExisting) {
-				callback.fail('Element "' + semanticName + '" exists, Selector:', this.component[semanticName]);
+				var error = new Error('Element "' + semanticName + '" exists, Selector: ' +
+					this.component[semanticName]);
+				callback(error);
 			}
 			callback();
 		}.bind(this)).catch(callback);
@@ -116,9 +109,10 @@ module.exports = function () {
 					this.assert.notEqual(attr.indexOf(value), -1);
 					callback();
 				} catch (e) {
-					callback.fail('Element "' + semanticName +
-						'" (' + this.component[semanticName] + ') attribute "' + attribute +
-						'" does NOT contain "' + value + '", currently "' + attr + '"');
+					var error = new Error('Element "' + semanticName +
+					'" (' + this.component[semanticName] + ') attribute "' + attribute +
+					'" does NOT contain "' + value + '", currently "' + attr + '"');
+					callback(error);
 				}
 
 			}.bind(this))
@@ -130,7 +124,7 @@ module.exports = function () {
 		this.client.isVisible(this.component[element]).then(function (isVisible) {
 			var e = (isVisible) ? void 0 : new Error('Element not visible! Selector: ' + this.component[element]);
 			callback(e);
-		}).catch(callback);
+		}.bind(this)).catch(callback);
 	});
 
 	this.Then(/^"([^"]*)" will NOT be visible$/, function (element, callback) {
@@ -189,7 +183,7 @@ module.exports = function () {
 	this.Then(/^there should be (\d+) of the element "([^"]+)"/, function (numElements, element, callback) {
 		var selector = this.component[element];
 
-		this.client.waitForExist(selector, 500).then(function () {
+		this.client.waitForExist(selector, this.defaultTimeout).then(function () {
 			return this.client.elements(selector);
 		}.bind(this)).then(function (elements) {
 			try {

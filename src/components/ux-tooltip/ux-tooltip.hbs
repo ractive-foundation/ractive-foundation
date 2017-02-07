@@ -1,5 +1,7 @@
-This is just a normal text but
-<span decorator="tooltip:{{.}}" tabindex="0">
-	<strong>here</strong>
+<span decorator="tooltip:{{.}}" tabindex="{{tabindex}}">
+	{{#if text}}
+		{{{text}}}
+	{{else}}
+		{{yield}}
+	{{/if}}
 </span>
-is a tooltip.
