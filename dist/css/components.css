@@ -4,6 +4,7 @@
 
 
 
+
 meta.foundation-version {
   font-family: "/5.5.3/"; }
 
@@ -159,6 +160,19 @@ select {
     .custom-list > li > * {
       display: block; }
 
+
+.ux-joyride {
+  display: inline-block;
+  position: relative; }
+  .ux-joyride .joyride-tip-guide {
+    display: block; }
+    .ux-joyride .joyride-tip-guide .joyride-content-wrapper {
+      padding-right: 32px; }
+      .ux-joyride .joyride-tip-guide .joyride-content-wrapper .ico-cross {
+        font-size: 20px;
+        right: 5px; }
+      .ux-joyride .joyride-tip-guide .joyride-content-wrapper h4 {
+        margin-bottom: 16px; }
 
 
 
