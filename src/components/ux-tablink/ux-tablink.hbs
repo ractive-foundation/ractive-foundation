@@ -1,3 +1,3 @@
-<li class="tab-title {{.class}} {{#if .active}}active{{/if}}" role="presentational">
-	<a href="#{{.id}}"  on-tap="changeTab" on-enter="changeTab">{{yield}}</a>
+<li class="tab-title {{.class}}{{#if .active}} active{{/if}}" role="presentational">
+	<a href="{{.id ? '#' + .id : ''}}" on-tap="changeTab" on-enter="changeTab">{{yield}}</a>
 </li>
