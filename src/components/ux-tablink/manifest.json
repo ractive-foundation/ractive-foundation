@@ -1,0 +1,12 @@
+{
+	"data": {
+		"role": "The role of the tablink",
+		"arialabel": "Accessibility label",
+		"tabindex": "Tabable index of the element",
+		"name": "The name of the tablink element"
+	},
+	"events": {
+		"onclick": "Event to fire when tablink is clicked"
+	},
+	"category": "navigation"
+}
