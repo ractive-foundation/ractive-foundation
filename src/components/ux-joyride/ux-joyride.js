@@ -57,7 +57,9 @@ Ractive.extend({
 		}
 		var joyrideTarget = this.get('contents.' + this.get('currentStep') + '.selector');
 
-		this.focusJoyride(joyrideTarget);
+		if (joyrideTarget) {
+			this.focusJoyride(joyrideTarget);
+		}
 		this.set('isHidden', true);
 	},
 
