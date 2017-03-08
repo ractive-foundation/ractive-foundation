@@ -84,7 +84,6 @@ Ractive.extend({
 			});
 			var positioner = 'positionStep' + position;
 
-			console.log(positioner);
 			this.set('styles', this[positioner](hasJoyride));
 
 			this.set('isHidden', false);
