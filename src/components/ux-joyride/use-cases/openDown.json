@@ -1,10 +1,10 @@
 {
-	"title": "Start on init",
+	"title": "Below",
 	"isDataModel": true,
 	"data": {
 		"linkText": "<a class='point1'>point 1</a><br/><a class='point2'>point 2</a><br/><a class='point3'>point 3</a>",
 		"id": "tooltipId",
-		"title": "tooltip title",
+		"open": "down",
 		"contents":[
 			{
 				"selector": ".point1",
@@ -19,7 +19,6 @@
 				"text": "<p>end journey :point 3</p>"
 			}
 		],
-		"hasYield": false,
-		"isOpenOnInit": "true"
+		"hasYield": false
 	}
 }

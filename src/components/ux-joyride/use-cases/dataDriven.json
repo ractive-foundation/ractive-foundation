@@ -1,5 +1,5 @@
 {
-	"title": "Data driven use case",
+	"title": "Default",
 	"isDataModel": true,
 	"data": {
 		"linkText": "<a class='point1'>point 1</a><br/><a class='point2'>point 2</a><br/><a class='point3'>point 3</a>",
