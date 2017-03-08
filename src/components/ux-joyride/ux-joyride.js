@@ -5,7 +5,6 @@ Ractive.extend({
 	// any default data
 	data: function () {
 		return {
-			component: 'ux-joyride',
 			isHidden: true,
 			defaultNubTop: 28,
 			maxMobileWidth: 500,
@@ -14,8 +13,7 @@ Ractive.extend({
 				left: '0px',
 				width: 'auto'
 			},
-			closeText: '&times;',
-			joyrideTarget: ''
+			closeText: '&times;'
 		};
 	},
 
