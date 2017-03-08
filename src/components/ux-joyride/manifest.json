@@ -1,7 +1,15 @@
 {
 	"data": {
-		"text": "The text to display on the ux-joyride component",
-		"url": "The link to follow when the component is clicked"
+		"linkText": "Initial display text",
+		"id": "A default ID for the widget",
+		"title": "The title text for the popup (Optional)",
+		"open": "Open position for popup ((Default) right, down or left)",
+		"contents": "List of contents for each step (required only if hasYield is false)",
+		"hasYield": "Bool, determins if content is used or not",
+		"isOpenOnInit": "Bool, flags to open first step imediatly",
+		"defaultNubTop": "Allow positioning of top nub",
+		"maxMobileWidth": "Set a maximum width for the joyride (Default is 500)",
+		"closeText": "The text for the close button (Default '&times;')"
 	},
 	"category": "navigation"
 }
