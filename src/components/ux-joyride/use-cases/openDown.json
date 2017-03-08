@@ -2,20 +2,20 @@
 	"title": "Below",
 	"isDataModel": true,
 	"data": {
-		"linkText": "<a class='point1'>point 1</a><br/><a class='point2'>point 2</a><br/><a class='point3'>point 3</a>",
-		"id": "tooltipId",
+		"linkText": "<a class='down-point1'>point 1</a><br/><a class='down-point2'>point 2</a><br/><a class='down-point3'>point 3</a>",
+		"id": "tipDown",
 		"open": "down",
 		"contents":[
 			{
-				"selector": ".point1",
+				"selector": ".down-point1",
 				"text": "<p>journey started :point 1</p>"
 			},
 			{
-				"selector": ".point2",
+				"selector": ".down-point2",
 				"text": "<p>continue journey :point 2</p>"
 			},
 			{
-				"selector": ".point3",
+				"selector": ".down-point3",
 				"text": "<p>end journey :point 3</p>"
 			}
 		],
