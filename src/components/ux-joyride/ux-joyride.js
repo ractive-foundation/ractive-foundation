@@ -110,7 +110,6 @@ Ractive.extend({
 			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
 		}
 
-		console.info(JSON.stringify(stylesObject));
 		return stylesObject;
 	},
 
