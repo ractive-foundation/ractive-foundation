@@ -10,7 +10,7 @@ module.exports = function () {
 
 		this.component = {};
 		this.component.container = '#childComponent ';
-		this.component.startLink = '.point1';
+		this.component.startLink = '.right-point1';
 		this.component.joyrideContainer = '.joyride-content-wrapper';
 		this.component.closeElement = '.joyride-close-tip';
 		this.component.prevButton = '.prev';
