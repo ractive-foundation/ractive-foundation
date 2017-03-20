@@ -10,7 +10,7 @@ module.exports = function () {
 	// Load shared library of step definitions. Use these first!
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = '#template .container';
 		this.component.testDivs = this.component.container + '.test';

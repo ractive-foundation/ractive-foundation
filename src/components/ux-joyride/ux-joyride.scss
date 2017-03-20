@@ -1,0 +1,17 @@
+.ux-joyride {
+	display: inline-block;
+	position: relative;
+	.joyride-tip-guide {
+		display: block;
+		.joyride-content-wrapper {
+			padding-right: 32px;
+			.ico-cross {
+				font-size: 20px;
+				right: 5px;
+			}
+			h4 {
+				margin-bottom:16px;
+			}
+		}
+	}
+}

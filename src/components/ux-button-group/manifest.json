@@ -1,0 +1,10 @@
+{
+  "data": {
+    "styling": "radius|round",
+    "even": "Number of buttons to be evenly expanded",
+    "stack": "stack|stack-for-small"
+  },
+  "events": {
+  },
+  "category": "buttons"
+}

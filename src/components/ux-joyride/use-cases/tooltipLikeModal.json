@@ -1,0 +1,15 @@
+{
+	"title": "Tool tip",
+	"isDataModel": true,
+	"data": {
+		"linkText": "see breakdown",
+		"id": "tipModal",
+		"title": "tooltip title",
+		"contents":[
+			{
+				"text": "<p>journey started :point 1</p>"
+			}
+		],
+		"hasYield": false
+	}
+}

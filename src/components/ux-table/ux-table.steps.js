@@ -4,7 +4,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = '#childComponent';
 		this.component.table = this.component.container + ' .ux-table';

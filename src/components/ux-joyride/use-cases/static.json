@@ -1,0 +1,10 @@
+{
+	"title": "hasYield",
+	"isDataModel": true,
+	"template": "ux-joyride-static",
+	"file": "src/components/ux-joyride/use-cases/static.hbs",
+	"data": {
+		"title": "Riding with joy",
+		"isOpenOnInit": "true"
+	}
+}

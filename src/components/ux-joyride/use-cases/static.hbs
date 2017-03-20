@@ -1,0 +1,38 @@
+<div>
+	<ul>
+		<li class="joy1"><a on-tap="">First step</a></li>
+		<li class="joy2">Second step</li>
+		<li class="joy3">Third step</li>
+	</ul>
+	<ux-joyride
+		title= "Riding with joy"
+		contents="[
+			{
+				'selector': 'li.joy1',
+				'description': 'What to do first',
+				'step': '1'
+			},
+			{
+				'selector': 'li.joy2',
+				'description': 'What to do first2',
+				'step': '2'
+			},
+			{
+				'selector': 'li.joy3',
+				'description': 'Last',
+				'step': '3'
+			}
+		]"
+	>
+		This is {{step}}<br/>
+		{{description}}
+	</ux-joyride>
+</div>
+
+<script>
+	// Listen for the event
+	document.addEventListener('widget-init', function (event) {
+		var component = event.instance.findAllComponents('ux-joyride')[2];
+		component.fire('toggle');
+	}, false);
+</script>

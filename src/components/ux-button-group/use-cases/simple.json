@@ -1,0 +1,7 @@
+{
+  "title": "Simple",
+  "isDataModel": false,
+  "template": "ux-button-group-simple",
+  "file": "src/components/ux-button-group/use-cases/simple.hbs",
+  "data": {}
+}

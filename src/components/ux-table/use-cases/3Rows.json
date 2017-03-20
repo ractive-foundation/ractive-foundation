@@ -13,10 +13,10 @@
 					"label": "Table Header"
 				},
 				{
-				   "label": "Table Header"
+					"label": "Table Header"
 				},
 				{
-				   "label": "Table Header"
+					"label": "Table Header"
 				}
 			]
 		},
@@ -30,8 +30,8 @@
 							"label": "Content Goes Here"
 						},
 						{
-						   "class": "cell-class",
-						   "label": "This is longer content Donec id elit non mi porta gravida at eget metus."
+							"class": "cell-class",
+							"label": "This is longer content Donec id elit non mi porta gravida at eget metus."
 						},
 						{
 							"label": "Content Goes Here"
@@ -48,8 +48,8 @@
 							"label": "Content Goes Here"
 						},
 						{
-						   "class": "cell-class",
-						   "label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
+							"class": "cell-class",
+							"label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
 						},
 						{
 							"label": "Content Goes Here"
@@ -66,8 +66,8 @@
 							"label": "Content Goes Here"
 						},
 						{
-						   "class": "cell-class",
-						   "label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
+							"class": "cell-class",
+							"label": "This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus."
 						},
 						{
 							"label": "Content Goes Here"

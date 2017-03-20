@@ -8,6 +8,12 @@ Read [Foundation's tooltip](http://foundation.zurb.com/docs/components/tooltips.
 
 __Example of use__
 
+As Decorator
 ```HTML
 Example with a <span decorator="tooltip:{content:'Hello World!'}" tabindex="0">tooltip</span>
+```
+
+As Component
+```HTML
+Example with a <ux-tooltip content="Hello World!" tabindex="0">tooltip</span>
 ```

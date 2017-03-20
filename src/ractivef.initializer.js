@@ -71,6 +71,14 @@ if (typeof document !== 'undefined') {
 			var instance = RactiveF.initInstance(containers[i]);
 
 			RactiveF.widgets.push(instance);
+			// trigger notification
+			var event = document.createEvent('Event');
+			// passing the instance
+			event.instance = instance;
+			// Define that the event name is 'component-init'
+			event.initEvent('widget-init', true, true);
+			// target can be any Element or other EventTarget
+			document.dispatchEvent(event);
 		}
 
 	});
