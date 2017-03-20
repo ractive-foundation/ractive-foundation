@@ -239,6 +239,8 @@ select {
   visibility: visible; }
 
 .ux-reveal .reveal-modal {
+  position: absolute;
+  z-index: 1005;
   max-height: 80%;
   overflow-y: auto; }
   .ux-reveal .reveal-modal .close-reveal-modal {
