@@ -6,6 +6,8 @@
 	}
 
 	.reveal-modal {
+		position: absolute;
+		z-index: 1005;
 
 		.close-reveal-modal {
 			text-decoration: none;

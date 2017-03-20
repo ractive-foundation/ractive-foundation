@@ -2,9 +2,10 @@
 	<a target="_blank"
 		on-tap="toggleModal"
 		class="open-reveal-modal">{{text}}</a>
+
 	<div class="reveal-modal-bg {{#if modalVisible}}modal-visible{{/if}}"
-		aria-hidden="{{modalVisible}}"
-		on-tap="closeOnBgClick">
+		on-tap="closeOnBgClick"></div>
+
 		<div class="reveal-modal {{size}} {{#if modalVisible}}modal-visible{{/if}}"
 			aria-hidden="{{modalVisible}}"
 			on-tap="innerClick">
@@ -20,5 +21,4 @@
 					on-tap="toggleModal">{{{closetext}}}</a>
 			{{/if}}
 		</div>
-	</div>
 </div>
