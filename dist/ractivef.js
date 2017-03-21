@@ -1,6 +1,6 @@
 /**
  * ractive-foundation - Ractive components for Foundation 5
- * @version 0.24.4
+ * @version 0.24.5
  * @link https://github.com/ractive-foundation/ractive-foundation
  * @license MIT
  */
