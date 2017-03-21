@@ -17,11 +17,6 @@ Ractive.extend({
 			return false;
 		});
 
-		this.on('innerClick', function (e) {
-			// captures clicks inside the modal, to prevent event propagation from closing the modal.
-			return false;
-		});
-
 		this.observe('modalVisible', function (newValue, oldValue, keypath) {
 			document.body.style.overflow = (newValue === true) ? 'hidden' : 'auto';
 
