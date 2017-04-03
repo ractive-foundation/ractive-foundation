@@ -1,0 +1,14 @@
+{
+	"title": "tooltip with large text",
+	"isDataModel": true,
+	"data": {
+		"tagElement": "",
+		"className": "tooltip",
+		"selectorName": "tooltip_demo",
+		"content": "This is a large <b>tooltip content</b>, so the text in this is larger the usual, this should be responsive too",
+		"delay": "0",
+		"show_on": "small medium large xlarge xxlarge",
+		"text": "<b>I'm a tooltip!</b>",
+		"position": "right"
+	}
+}
