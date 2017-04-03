@@ -1,15 +1,5 @@
 @import "../../../node_modules/foundation-sites/scss/foundation/components/_global.scss";
 
-@mixin tooltipHover {
-	display: block;
-	width: auto;
-	&:after {
-		content: "x";
-		position: absolute;
-		top: 0;
-	}
-}
-
 @mixin tooltip($className, $size:$small-up) {
 	@media #{$size} {
 		&.#{$className} {
@@ -30,11 +20,15 @@
 
 .ux-tooltip {
 	position: relative;
-	display: inline-block;
 
 	@include tooltip('small', $small-only);
 	@include tooltip('medium', $medium-only);
 	@include tooltip('large', $large-only);
 	@include tooltip('xlarge', $xlarge-only);
 	@include tooltip('xxlarge', $xxlarge-only);
+}
+
+//overridding foundation styles
+.tooltip {
+	width: auto;
 }
