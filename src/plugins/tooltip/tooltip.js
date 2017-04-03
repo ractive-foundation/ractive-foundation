@@ -22,29 +22,51 @@ function(node, options) {
 		node.setAttribute('aria-describedby', config.selectorName);
 		node.className = node.className + ' ux-tooltip ' + config.show_on;
 
-		tooltip = document.createElement(config.tagElement);
-		tooltip.id = config.selectorName;
-		tooltip.className = config.className;
-		tooltip.setAttribute('role', 'tooltip');
-		tooltip.innerHTML = config.content;
+		if (!tooltip) {
+			tooltip = document.createElement(config.tagElement);
+			tooltip.id = config.selectorName;
+			tooltip.className = config.className;
+			tooltip.setAttribute('role', 'tooltip');
+			tooltip.setAttribute('style', 'display: block');
+			tooltip.innerHTML = config.content;
+			//to pick foundation nub styles
+			var nub = document.createElement('span');
+			nub.className = 'nub';
+
+			tooltip.appendChild(nub);
+		}
 
 		if (config.delay) {
 			// for screen-reader accessibility purposes
-			tooltip.setAttribute('style', 'left:-100000px;');
+			tooltip.setAttribute('style', 'left:-100000px;display: block;');
 		}
-
-		node.appendChild(tooltip);
+		//node.nextSibling will return 'null' if node is last element
+		//insertBefore appends given child as last child if second param is null
+		node.parentNode.insertBefore(tooltip, node.nextSibling);
 
 		tooltip.addEventListener('click', leaveSection);
 
+		var nodeLeftVal = node.offsetLeft;
+		var tooltipLeftValue;
+
+		if (nodeLeftVal) {
+			if (node.offsetWidth < 10 ) {
+				tooltipLeftValue = nodeLeftVal - 5;
+			} else {
+				tooltipLeftValue = nodeLeftVal;
+			}
+		}
+
 		setTimeout(function () {
-			tooltip.setAttribute('style', 'left:inherit;');
+			tooltip.setAttribute('style', 'left:'+ tooltipLeftValue +'px;display: block;');
 		}, config.delay);
 	};
 
 	leaveSection = function () {
-		if (tooltip && tooltip.parentNode) {
-			tooltip.parentNode.className = tooltip.parentNode.className.replace(' ux-tooltip ' + config.show_on, '');
+		var tooltipConfigElement = tooltip.parentNode ? tooltip.parentNode.querySelector('.ux-tooltip') : '';
+		if (tooltip && tooltipConfigElement) {
+			tooltipConfigElement.className = tooltipConfigElement.className.replace(' ux-tooltip ' +
+				config.show_on, '');
 			tooltip.parentNode.removeChild(tooltip);
 		}
 	};
