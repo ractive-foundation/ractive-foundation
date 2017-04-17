@@ -1,0 +1,46 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+	  "items": [
+		{
+			"class":"large-12",
+			"label": "Input Label",
+			"type": "text",
+			"placeholder": "large-12.columns"
+		},
+		{
+		  "class":"large-4",
+		  "label": "Input Label",
+		  "type": "text",
+		  "placeholder": "large-4.columns"
+		},
+		{
+		  "class":"large-4",
+		  "label": "Input Label",
+		  "type": "text",
+		  "placeholder": "large-4.columns"
+		},
+		{
+		  "class":"large-4",
+		  "label": "Choose your favourite",
+		  "type": "radio",
+		  "items":[
+			{
+			  "type": "radio",
+			  "name": "pokemon",
+			  "value": "Red",
+			  "id": "pokemonRed"
+			},
+			{
+			  "type": "radio",
+			  "name": "pokemon",
+			  "value": "Blue",
+			  "id": "pokemonBlue"
+			}
+		  ]
+
+		}
+	  ]
+	}
+}
