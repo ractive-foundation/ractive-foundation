@@ -1,0 +1,13 @@
+<a class="button {{class}}"
+   {{#href}}href="{{href}}"{{/href}}
+	{{#role}} role="{{role}}" {{/role}}
+	{{#ariaLabel}} aria-label="{{ariaLabel}}" {{/ariaLabel}}
+	{{#tabindex}} tabindex="{{tabindex}}" {{/tabindex}}
+   on-tap="clickHandler()"
+		>
+	{{#if text}}
+		{{text}}
+	{{else}}
+		{{>content}}
+	{{/if}}
+</a>
