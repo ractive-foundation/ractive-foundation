@@ -54,7 +54,6 @@
     "phantomjs-prebuilt": "~2.1.12",
     "run-sequence": "~1.2.2",
     "superagent": "0.21.0",
-    "sync": "~0.2.5",
     "walk": "~2.3.9",
     "webdriverio": "4.6.1"
   },
