@@ -10,7 +10,7 @@ Ractive.extend({
 		hideClose: false
 	},
 
-	oninit: function () {
+	oncomplete: function () {
 		this.on('toggleModal', function (e) {
 			this.toggle('modalVisible');
 			this.fire('toggleReveal', e);
