@@ -5,6 +5,7 @@ node_js:
   - '4.6'
   - '6.6'
 env:
+  - CXX=g++-4.8
   global:
     - secure: n3fKXV916uQSS5PscJ/8OWVIWPbwSDYdhPmzMNBRSHUXVKva6/K3aUDqAnKEYTjbR9vKxIDv6DAeXhhvTSnSK9ozzDVcay9WXBbE7Ji9WfN+6f9SbGGfVIZGR9/QahBVT2C3NpfsxSXVQMUuMuLD2AtpnyREBb2wxwx22K3O0Vc=
 notifications:
@@ -19,3 +20,9 @@ deploy:
     tags: true
     repo: ractive-foundation/ractive-foundation
 after_success: "chmod u+x scripts/deploy-gh-pages.sh; ./scripts/deploy-gh-pages.sh"
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
