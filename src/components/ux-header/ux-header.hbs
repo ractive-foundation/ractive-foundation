@@ -1,5 +1,5 @@
 {{#if (level == 1)}}
-	<h1 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h1 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
@@ -9,7 +9,7 @@
 {{/if}}
 
 {{#if (level == 2)}}
-	<h2 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h2 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
@@ -19,7 +19,7 @@
 {{/if}}
 
 {{#if (level == 3)}}
-	<h3 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h3 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
@@ -29,7 +29,7 @@
 {{/if}}
 
 {{#if (level == 4)}}
-	<h4 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h4 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
@@ -39,7 +39,7 @@
 {{/if}}
 
 {{#if (level == 5)}}
-	<h5 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h5 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
@@ -49,7 +49,7 @@
 {{/if}}
 
 {{#if (level == 6)}}
-	<h6 {{#id}}id="{{id}}"{{/}} {{#class}}class="{{class}}"{{/}}>
+	<h6 {{#id}}id="{{id}}"{{/}} {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/}} {{#class}}class="{{class}}"{{/}}>
 		{{#if .isDataModel}}
 			{{{content}}}
 		{{else}}
