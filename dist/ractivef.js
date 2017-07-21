@@ -1,6 +1,6 @@
 /**
  * ractive-foundation - Ractive components for Foundation 5
- * @version 0.26.0
+ * @version 0.27.0
  * @link https://github.com/ractive-foundation/ractive-foundation
  * @license MIT
  */
@@ -122,10 +122,10 @@ Ractive.defaults.templates["ux-breadcrumbs"] = {"v":3,"t":[{"t":4,"f":[{"t":7,"e
 Ractive.defaults.templates["ux-button"] = {"v":3,"t":[{"t":4,"f":[{"t":7,"e":"a","a":{"class":["ux-button button ",{"t":2,"r":"class"}]},"m":[{"t":4,"f":["href=\"",{"t":2,"r":"href"},"\""],"n":50,"r":"href"},{"t":4,"f":["target=\"",{"t":2,"r":"target"},"\""],"n":50,"r":"target"},{"t":4,"f":[" role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"},{"t":4,"f":[" aria-label=\"",{"t":2,"r":"arialabel"},"\""],"n":50,"r":"arialabel"},{"t":4,"f":[" tabindex=\"",{"t":2,"r":"tabindex"},"\""],"n":50,"r":"tabindex"},{"t":4,"f":[" disabled"],"n":50,"r":"isDisabled"}],"v":{"tap":{"m":"clickHandler","a":{"r":[],"s":"[]"}}},"f":[{"t":4,"f":[{"t":3,"r":"text"}],"n":50,"r":"text"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"text"}]}],"n":50,"r":"href"},{"t":4,"n":51,"f":[{"t":7,"e":"button","a":{"class":["ux-button button ",{"t":2,"r":"class"}],"type":[{"t":2,"r":"type"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"},{"t":4,"f":[" aria-label=\"",{"t":2,"r":"arialabel"},"\""],"n":50,"r":"arialabel"},{"t":4,"f":[" tabindex=\"",{"t":2,"r":"tabindex"},"\""],"n":50,"r":"tabindex"},{"t":4,"f":[" disabled"],"n":50,"r":"isDisabled"}],"v":{"tap":{"m":"clickHandler","a":{"r":[],"s":"[]"}}},"f":[{"t":4,"f":[{"t":2,"r":"text"}],"n":50,"r":"text"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"text"}]}],"r":"href"}]};
 Ractive.defaults.templates["ux-button-group"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-button-group"},"f":[{"t":7,"e":"ul","a":{"class":["button-group ",{"t":2,"r":"stack"}," ",{"t":2,"r":"styling"}," ",{"t":4,"f":["even-",{"t":2,"r":"even"}],"n":50,"r":"even"}]},"f":[{"t":16}]}]}]};
 Ractive.defaults.templates["ux-button-group-item"] = {"v":3,"t":[{"t":7,"e":"li","f":[{"t":16}]}]};
-Ractive.defaults.templates["ux-col"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":[{"t":2,"r":"class"}," columns"]},"f":[{"t":16}]}]};
 Ractive.defaults.templates["ux-content"] = {"v":3,"t":[{"t":7,"e":"div","a":{"id":[{"t":2,"r":"guid"}],"class":["content ",{"t":4,"f":["active"],"n":50,"r":"active"}," ",{"t":2,"r":"class"}]},"f":[{"t":16}]}]};
+Ractive.defaults.templates["ux-col"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":[{"t":2,"r":"class"}," columns"]},"f":[{"t":16}]}]};
 Ractive.defaults.templates["ux-flex-video"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-flex-video"},"f":[{"t":4,"f":[{"t":7,"e":"div","a":{"class":["flex-video ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"iframe","a":{"src":[{"t":2,"r":"src"}],"height":[{"t":2,"r":"height"}],"width":[{"t":2,"r":"width"}],"frameborder":[{"t":2,"r":"frameborder"}],"name":[{"t":2,"r":"name"}]},"m":[{"t":4,"f":[{"t":2,"r":"allowfullscreen"}],"r":"allowfullscreen"}],"f":[]}]}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}]};
-Ractive.defaults.templates["ux-header"] = {"v":3,"t":[{"t":4,"f":[{"t":7,"e":"h1","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==1"}},{"t":4,"f":[{"t":7,"e":"h2","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==2"}},{"t":4,"f":[{"t":7,"e":"h3","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==3"}},{"t":4,"f":[{"t":7,"e":"h4","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==4"}},{"t":4,"f":[{"t":7,"e":"h5","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==5"}},{"t":4,"f":[{"t":7,"e":"h6","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==6"}}]};
+Ractive.defaults.templates["ux-header"] = {"v":3,"t":[{"t":4,"f":[{"t":7,"e":"h1","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==1"}},{"t":4,"f":[{"t":7,"e":"h2","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==2"}},{"t":4,"f":[{"t":7,"e":"h3","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==3"}},{"t":4,"f":[{"t":7,"e":"h4","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==4"}},{"t":4,"f":[{"t":7,"e":"h5","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==5"}},{"t":4,"f":[{"t":7,"e":"h6","m":[{"t":4,"f":["id=\"",{"t":2,"r":"id"},"\""],"r":"id"},{"t":4,"f":["aria-label=\"",{"t":2,"r":"ariaLabel"},"\""],"r":"ariaLabel"},{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"r":"class"}],"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":".isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":".isDataModel"}]}],"n":50,"x":{"r":["level"],"s":"_0==6"}}]};
 Ractive.defaults.templates["ux-iconbar"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["icon-bar ",{"t":2,"r":"upNumClass"}," ",{"t":2,"r":"class"}],"role":"navigation"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-iconbaritem","a":{"datamodel":[{"t":2,"x":{"r":["getItemData","."],"s":"_0(_1)"}}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-iconbaritem"] = {"v":3,"t":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}],"class":["item ",{"t":2,"r":"class"}],"tabindex":"0","role":"button"},"m":[{"t":4,"f":["aria-labelledby=\"",{"t":2,"r":"guid"},"\""],"n":50,"r":"labels"},{"t":4,"f":["aria-label=",{"t":2,"r":"arialabel"}],"n":50,"r":"arialabel"}],"f":[{"t":4,"f":[{"t":7,"e":"img","a":{"src":[{"t":2,"r":"src"}]}}],"n":50,"r":"src"}," ",{"t":4,"f":[{"t":7,"e":"label","a":{"id":[{"t":2,"r":"guid"}]},"f":[{"t":4,"f":[{"t":3,"r":"label"}],"n":50,"r":"label"},{"t":4,"n":51,"f":[{"t":16}],"r":"label"}]}],"n":50,"r":"labels"}]}]};
 Ractive.defaults.templates["ux-inline-list"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-inline-list ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-inline-list-item","a":{"datamodel":[{"t":2,"x":{"r":["getItemData","."],"s":"_0(_1)"}}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
@@ -143,7 +143,10 @@ Ractive.defaults.templates["ux-pagination-page"] = {"v":3,"t":[{"t":7,"e":"li","
 Ractive.defaults.templates["ux-panel"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["panel ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":2,"r":"text"}],"n":50,"r":"text"},{"t":4,"n":51,"f":[{"t":16}],"r":"text"}]}]};
 Ractive.defaults.templates["ux-pricingtable"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-pricingtable"},"f":[{"t":7,"e":"ul","a":{"class":["pricing-table ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"li","a":{"class":"title"},"f":[{"t":2,"r":"title"}]}," ",{"t":7,"e":"li","a":{"class":"price"},"f":[{"t":2,"r":"price"}]}," ",{"t":7,"e":"li","a":{"class":"description"},"f":[{"t":2,"r":"description"}]}," ",{"t":4,"f":[{"t":7,"e":"li","a":{"class":"bullet-item"},"f":[{"t":2,"r":"."}]}],"r":"features"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}," ",{"t":7,"e":"li","a":{"class":"cta-button"},"f":[{"t":4,"f":[{"t":7,"e":"a","a":{"class":"button disabled","href":"#"},"v":{"tap":"buyNow"},"f":["Coming Soon"]}],"n":50,"x":{"r":["status"],"s":"_0==\"comingsoon\""}}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"button","href":[{"t":2,"r":"href"}]},"v":{"tap":"buyNow"},"f":["Buy Now"]}],"n":50,"x":{"r":["status"],"s":"!_0"}}]}]}]}]};
 Ractive.defaults.templates["ux-progress"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["progress ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"span","a":{"class":["meter ",{"t":2,"r":"class"}],"style":["width:",{"t":2,"r":"value"},"%"]}}],"r":"meters"}]}]};
+Ractive.defaults.templates["ux-reveal"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-reveal reveal ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"a","a":{"target":"_blank","class":"open-reveal-modal"},"v":{"tap":"toggleModal"},"f":[{"t":2,"r":"text"}]}," ",{"t":7,"e":"div","a":{"class":"ux-reveal-wrapper"},"f":[{"t":7,"e":"div","a":{"class":["reveal-modal-bg ",{"t":4,"f":["modal-visible"],"n":50,"r":"modalVisible"}]},"v":{"tap":"closeOnBgClick"}}," ",{"t":7,"e":"div","a":{"class":["reveal-modal ",{"t":2,"r":"size"}," ",{"t":4,"f":["modal-visible"],"n":50,"r":"modalVisible"}],"aria-hidden":[{"t":2,"r":"modalVisible"}]},"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"close-reveal-modal","target":"_blank"},"v":{"tap":"toggleModal"},"f":[{"t":3,"r":"closetext"}]}],"n":50,"x":{"r":["hideCloseButton"],"s":"!_0"}}]}]}]}]};
 Ractive.defaults.templates["ux-row"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["row ",{"t":2,"r":"class"}]},"f":[{"t":16}]}]};
+Ractive.defaults.templates["ux-sidenav"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["side-nav ",{"t":2,"r":"class"}],"role":"menu"},"m":[{"t":4,"f":["title=\"",{"t":2,"r":"title"},"\""],"r":"title"}],"f":[{"t":4,"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["heading ",{"t":2,"r":"class"}]},"f":[{"t":2,"r":".label"}]}],"r":"isHeading"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["divider ",{"t":2,"r":"class"}]}}],"r":"isDivider"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":[{"t":4,"f":["active"],"r":"active"}," ",{"t":2,"r":"class"}],"role":"menuitem"},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":".href"}]},"f":[{"t":2,"r":".label"}]}]}],"r":"href"}],"n":52,"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
+Ractive.defaults.templates["ux-sub-nav"] = {"v":3,"t":[{"t":7,"e":"dl","a":{"class":["sub-nav ux-sub-nav ",{"t":2,"r":"class"}],"role":"menu","title":[{"t":2,"r":"title"},"Menu List"]},"f":[{"t":7,"e":"dt","f":[{"t":4,"f":[{"t":2,"r":"title"},":"],"r":"title"}]}," ",{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"dd","a":{"role":"menuitem","class":[{"t":4,"f":["active"],"r":"active"}]},"f":[{"t":7,"e":"ux-anchor","a":{"href":[{"t":2,"r":"href"}],"class":[{"t":2,"r":"class"}]},"f":[{"t":3,"r":"content"}]}]}],"i":"i","r":"items"}],"n":50,"r":"items.length"},{"t":4,"n":51,"f":[{"t":16}],"r":"items.length"}]}]};
 Ractive.defaults.templates["ux-switch"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["switch ",{"t":2,"r":"class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"},{"t":4,"f":[" aria-label=\"",{"t":2,"r":"arialabel"},"\""],"n":50,"r":"arialabel"},{"t":4,"f":[" tabindex=\"",{"t":2,"r":"tabindex"},"\""],"n":50,"r":"tabindex"}],"v":{"tap":"clickHandler"},"f":[{"t":7,"e":"input","m":[{"t":4,"f":["type=\"radio\" group=\"",{"t":2,"r":"group"},"\""],"n":50,"r":"group"},{"t":4,"n":51,"f":["type=\"checkbox\""],"r":"group"},{"t":4,"f":[" name=\"",{"t":2,"r":"name"},"\""],"n":50,"r":"name"}],"a":{"checked":[{"t":2,"r":"checked"}]}}," ",{"t":7,"e":"label"}]}]};
 Ractive.defaults.templates["ux-tabarea"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["tabs-area ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tablinks","a":{"items":[{"t":2,"r":"items"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tablink","a":{"id":[{"t":2,"r":".id"}],"active":[{"t":2,"r":".active"}]},"f":[{"t":2,"r":".title"}]}],"n":52,"r":"items"}]}," ",{"t":7,"e":"ux-tabpanes","a":{"items":[{"t":2,"r":"items"}]},"f":[{"t":4,"f":[{"t":7,"e":"ux-tabpane","f":[{"t":3,"r":".content"}]}],"n":52,"r":"items"}]}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-table"] = {"v":3,"t":[{"t":7,"e":"table","a":{"class":["ux-table ",{"t":2,"r":".class"}]},"m":[{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"}],"f":[{"t":4,"f":[{"t":7,"e":"caption","f":[{"t":3,"r":".caption"}]}],"n":50,"r":".caption"}," ",{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"thead","m":[{"t":4,"f":["class=\"",{"t":2,"r":".header.class"},"\""],"n":50,"r":".header.class"}],"f":[{"t":7,"e":"tr","f":[{"t":4,"f":[{"t":7,"e":"th","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".header.cell"}]}]}],"n":50,"r":".header"}," ",{"t":4,"f":[{"t":7,"e":"tbody","m":[{"t":4,"f":["class=\"",{"t":2,"r":".body.class"},"\""],"n":50,"r":".body.class"}],"f":[{"t":4,"f":[{"t":7,"e":"tr","m":[{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":4,"f":[{"t":7,"e":"td","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".cell"}]}],"n":52,"r":".body.rows"}]}],"n":50,"r":".body"}," ",{"t":4,"f":[{"t":7,"e":"tfoot","m":[{"t":4,"f":["class=\"",{"t":2,"r":".footer.class"},"\""],"n":50,"r":".footer.class"}],"f":[{"t":7,"e":"tr","f":[{"t":4,"f":[{"t":7,"e":"td","m":[{"t":4,"f":["id=\"",{"t":2,"r":".id"},"\""],"n":50,"r":".id"},{"t":4,"f":["scope=\"",{"t":2,"r":".scope"},"\""],"n":50,"r":".scope"},{"t":4,"f":["width=\"",{"t":2,"r":".width"},"\""],"n":50,"r":".width"},{"t":4,"f":["height=\"",{"t":2,"r":".height"},"\""],"n":50,"r":".height"},{"t":4,"f":["colspan=\"",{"t":2,"r":".colspan"},"\""],"n":50,"r":".colspan"},{"t":4,"f":["rowspan=\"",{"t":2,"r":".rowspan"},"\""],"n":50,"r":".rowspan"},{"t":4,"f":["headers=\"",{"t":2,"r":".headers"},"\""],"n":50,"r":".headers"},{"t":4,"f":["class=\"",{"t":2,"r":".class"},"\""],"n":50,"r":".class"}],"f":[{"t":3,"r":".label"}]}],"n":52,"r":".footer.cell"}]}]}],"n":50,"r":".footer"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
@@ -156,9 +159,6 @@ Ractive.defaults.templates["ux-tooltip"] = {"v":3,"t":[{"t":7,"e":"span","o":{"n
 Ractive.defaults.templates["ux-top-bar"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-top-bar ",{"t":4,"f":["fixed"],"n":50,"r":"isfixed"}," ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"nav","a":{"class":["top-bar ",{"t":4,"f":["expanded"],"n":50,"r":"isexpanded"}],"data-top-bar":0,"role":"navigation","data-options":[{"t":2,"r":"dataoptions"}]},"f":[{"t":4,"f":[{"t":7,"e":"ul","a":{"class":"title-area"},"f":[{"t":7,"e":"li","a":{"class":"name"},"f":[{"t":7,"e":"h1","f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":2,"r":"title"}]}]}]}," ",{"t":7,"e":"li","a":{"class":"toggle-topbar menu-icon"},"f":[{"t":7,"e":"a","a":{"href":"#"},"v":{"tap":"toggleMenu"},"f":[{"t":7,"e":"span","f":[{"t":2,"r":"menulabel"}]}]}]}]}],"n":50,"r":"menulabel"}," ",{"t":7,"e":"section","a":{"class":"top-bar-section"},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"right","items":[{"t":2,"r":"rightitems"}]}}],"n":50,"r":"rightitems"}," ",{"t":4,"f":[{"t":7,"e":"ux-top-bar-items","a":{"class":"left","items":[{"t":2,"r":"leftitems"}]}}],"n":50,"r":"leftitems"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]}]}]};
 Ractive.defaults.templates["ux-top-bar-item"] = {"v":3,"t":[{"t":7,"e":"li","a":{"class":[{"t":2,"r":"topBarItemCssClass"}]},"f":[{"t":4,"f":[" ",{"t":7,"e":"ux-anchor","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":3,"r":"label"}]}," ",{"t":4,"f":[" ",{"t":7,"e":"ux-top-bar-items","a":{"class":"dropdown","items":[{"t":2,"r":"items"}]}}],"n":50,"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-top-bar-items"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["ux-top-bar-items ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-top-bar-item","a":{"datamodel":[{"t":3,"r":"."}]}}],"n":52,"r":"items"}],"n":50,"r":"items"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"items"}]}]};
-Ractive.defaults.templates["ux-sub-nav"] = {"v":3,"t":[{"t":7,"e":"dl","a":{"class":["sub-nav ux-sub-nav ",{"t":2,"r":"class"}],"role":"menu","title":[{"t":2,"r":"title"},"Menu List"]},"f":[{"t":7,"e":"dt","f":[{"t":4,"f":[{"t":2,"r":"title"},":"],"r":"title"}]}," ",{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"dd","a":{"role":"menuitem","class":[{"t":4,"f":["active"],"r":"active"}]},"f":[{"t":7,"e":"ux-anchor","a":{"href":[{"t":2,"r":"href"}],"class":[{"t":2,"r":"class"}]},"f":[{"t":3,"r":"content"}]}]}],"i":"i","r":"items"}],"n":50,"r":"items.length"},{"t":4,"n":51,"f":[{"t":16}],"r":"items.length"}]}]};
-Ractive.defaults.templates["ux-sidenav"] = {"v":3,"t":[{"t":7,"e":"ul","a":{"class":["side-nav ",{"t":2,"r":"class"}],"role":"menu"},"m":[{"t":4,"f":["title=\"",{"t":2,"r":"title"},"\""],"r":"title"}],"f":[{"t":4,"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["heading ",{"t":2,"r":"class"}]},"f":[{"t":2,"r":".label"}]}],"r":"isHeading"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":["divider ",{"t":2,"r":"class"}]}}],"r":"isDivider"}," ",{"t":4,"f":[{"t":7,"e":"ux-li","a":{"class":[{"t":4,"f":["active"],"r":"active"}," ",{"t":2,"r":"class"}],"role":"menuitem"},"f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":".href"}]},"f":[{"t":2,"r":".label"}]}]}],"r":"href"}],"n":52,"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
-Ractive.defaults.templates["ux-reveal"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-reveal reveal ",{"t":2,"r":"class"}]},"f":[{"t":7,"e":"a","a":{"target":"_blank","class":"open-reveal-modal"},"v":{"tap":"toggleModal"},"f":[{"t":2,"r":"text"}]}," ",{"t":7,"e":"div","a":{"class":"ux-reveal-wrapper"},"f":[{"t":7,"e":"div","a":{"class":["reveal-modal-bg ",{"t":4,"f":["modal-visible"],"n":50,"r":"modalVisible"}]},"v":{"tap":"closeOnBgClick"}}," ",{"t":7,"e":"div","a":{"class":["reveal-modal ",{"t":2,"r":"size"}," ",{"t":4,"f":["modal-visible"],"n":50,"r":"modalVisible"}],"aria-hidden":[{"t":2,"r":"modalVisible"}]},"f":[{"t":4,"f":[{"t":3,"r":"content"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"close-reveal-modal","target":"_blank"},"v":{"tap":"toggleModal"},"f":[{"t":3,"r":"closetext"}]}],"n":50,"x":{"r":["hideCloseButton"],"s":"!_0"}}]}]}]}]};
 Ractive.transitions.equalizer = /*jshint unused:false */
 /*jshint -W025 */
 
@@ -451,11 +451,6 @@ Ractive.components["ux-button-group-item"] = Ractive.extend({
 	isolated: true
 });
 
-Ractive.components["ux-col"] = Ractive.extend({
-	template: Ractive.defaults.templates['ux-col'],
-	isolated: true
-});
-
 Ractive.components["ux-content"] = Ractive.extend({
 	template: Ractive.defaults.templates['ux-content'],
 	isolated: true,
@@ -464,6 +459,11 @@ Ractive.components["ux-content"] = Ractive.extend({
 			return this._guid;
 		}
 	}
+});
+
+Ractive.components["ux-col"] = Ractive.extend({
+	template: Ractive.defaults.templates['ux-col'],
+	isolated: true
 });
 
 Ractive.components["ux-flex-video"] = Ractive.extend({
@@ -959,9 +959,87 @@ Ractive.components["ux-progress"] = Ractive.extend({
 	}
 });
 
+Ractive.components["ux-reveal"] = Ractive.extend({
+	template: Ractive.defaults.templates['ux-reveal'],
+	isolated: true,
+
+	data: {
+		modalVisible: false,
+		closetext: '&times;',
+		closeOnEsc: true,
+		lockBackground: false,
+		hideClose: false
+	},
+
+	oncomplete: function () {
+		this.on('toggleModal', function (e) {
+			this.toggle('modalVisible');
+			this.fire('toggleReveal', e);
+			return false;
+		});
+
+		this.observe('modalVisible', function (newValue, oldValue, keypath) {
+			document.body.style.overflow = (newValue === true) ? 'hidden' : 'auto';
+
+			if (this.get('closeOnEsc')) {
+				if (newValue === true) {
+					this.registerCloseOnEsc();
+				} else {
+					this.unregisterCloseOnEsc();
+				}
+			}
+
+			return false;
+		});
+
+		this.on('closeOnBgClick', function (e) {
+			if (!this.get('lockBackground')) {
+				this.fire('toggleModal', e);
+			}
+		});
+	},
+
+	// close the modal when ESC key is pressed
+	closeOnEsc: function (evt) {
+		evt = evt || window.event;
+		var isEscape = false;
+		// evt.keyCode is about to be deprecated, hence checking 'key' first
+		if (evt.key) {
+			isEscape = evt.key === 'Escape';
+		} else {
+			isEscape = evt.keyCode === 27;
+		}
+		if (isEscape) {
+			this.set('modalVisible', false);
+		}
+	},
+
+	registerCloseOnEsc: function () {
+		document.addEventListener('keydown', this.closeOnEsc.bind(this), false);
+	},
+
+	unregisterCloseOnEsc: function () {
+		document.removeEventListener('keydown', this.closeOnEsc.bind(this), false);
+	},
+
+	onteardown: function () {
+		this.unregisterCloseOnEsc();
+	}
+
+});
+
 Ractive.components["ux-row"] = Ractive.extend({
 	template: Ractive.defaults.templates['ux-row'],
 	isolated: true
+});
+
+Ractive.components["ux-sidenav"] = Ractive.extend({
+	template: Ractive.defaults.templates['ux-sidenav'],
+	isolated: true
+});
+
+Ractive.components["ux-sub-nav"] = Ractive.extend({
+	template: Ractive.defaults.templates['ux-sub-nav']
 });
 
 Ractive.components["ux-switch"] = Ractive.extend({
@@ -1188,84 +1266,6 @@ Ractive.components["ux-top-bar-item"] = Ractive.extend({
 Ractive.components["ux-top-bar-items"] = Ractive.extend({
 	template: Ractive.defaults.templates['ux-top-bar-items'],
 	isolated: true
-});
-
-Ractive.components["ux-sub-nav"] = Ractive.extend({
-	template: Ractive.defaults.templates['ux-sub-nav']
-});
-
-Ractive.components["ux-sidenav"] = Ractive.extend({
-	template: Ractive.defaults.templates['ux-sidenav'],
-	isolated: true
-});
-
-Ractive.components["ux-reveal"] = Ractive.extend({
-	template: Ractive.defaults.templates['ux-reveal'],
-	isolated: true,
-
-	data: {
-		modalVisible: false,
-		closetext: '&times;',
-		closeOnEsc: true,
-		lockBackground: false,
-		hideClose: false
-	},
-
-	oncomplete: function () {
-		this.on('toggleModal', function (e) {
-			this.toggle('modalVisible');
-			this.fire('toggleReveal', e);
-			return false;
-		});
-
-		this.observe('modalVisible', function (newValue, oldValue, keypath) {
-			document.body.style.overflow = (newValue === true) ? 'hidden' : 'auto';
-
-			if (this.get('closeOnEsc')) {
-				if (newValue === true) {
-					this.registerCloseOnEsc();
-				} else {
-					this.unregisterCloseOnEsc();
-				}
-			}
-
-			return false;
-		});
-
-		this.on('closeOnBgClick', function (e) {
-			if (!this.get('lockBackground')) {
-				this.fire('toggleModal', e);
-			}
-		});
-	},
-
-	// close the modal when ESC key is pressed
-	closeOnEsc: function (evt) {
-		evt = evt || window.event;
-		var isEscape = false;
-		// evt.keyCode is about to be deprecated, hence checking 'key' first
-		if (evt.key) {
-			isEscape = evt.key === 'Escape';
-		} else {
-			isEscape = evt.keyCode === 27;
-		}
-		if (isEscape) {
-			this.set('modalVisible', false);
-		}
-	},
-
-	registerCloseOnEsc: function () {
-		document.addEventListener('keydown', this.closeOnEsc.bind(this), false);
-	},
-
-	unregisterCloseOnEsc: function () {
-		document.removeEventListener('keydown', this.closeOnEsc.bind(this), false);
-	},
-
-	onteardown: function () {
-		this.unregisterCloseOnEsc();
-	}
-
 });
 
 /* jshint ignore:end */
