@@ -133,7 +133,7 @@ Ractive.extend({
 
 	focusJoyride: function (joyrideTarget) {
 		//TODO: smooth scolling?
-		var joyride = document.querySelector(joyrideTarget).getBoundingClientRect();
+		var joyride = this.find(joyrideTarget).getBoundingClientRect();
 		var absoluteElementTop = joyride.top + window.pageYOffset;
 		var middle = absoluteElementTop - (window.innerHeight / 2);
 		window.scrollTo(0, middle);
