@@ -1,16 +1,18 @@
 {
-	"data":{
+	"data": {
+		"ariaLabel": "Set the aria lavel",
 		"class": "Extra classes to apply to anchor",
+		"content": "The content of the link if isDataModel is used",
+		"ontap": "Throw this event rather than anchorClick (event parameters can be passed comma seperated after a colon at the end of the event name",
 		"href": "The link fot the anchor tag (this or name is required)",
 		"role": "Set the role of the anchor",
-		"ariaLabel": "Set the aria lavel",
+		"tabindex": "Set the tab index",
 		"target": "Set the target of the link",
-		"title": "Add a title to the link",
-		"content": "The content of the link if isDataModel is used",
-		"tabindex": "Set the tab index"
+		"title": "Add a title to the link"
 	},
 	"content": "Content of ux-anchor is yielded to if not in isDataModel mode when content is used",
 	"events": {
+		"anchorClicked": "Event to fire when component is clicked"
 	},
 	"category": "content",
 	"helper": true

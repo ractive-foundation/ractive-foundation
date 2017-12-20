@@ -1,16 +1,15 @@
-var args = require('yargs').argv,
-	_ = require('lodash-compat'),
+var _ = require('lodash-compat'),
 	glob = require('simple-glob'),
 	nodePath = require('path'),
 	Q = require('q'),
 	gutil = require('gulp-util'),
 	a11y = require('a11y');
 
-module.exports.auditComponents = function (options) {
+module.exports.auditComponents = function (options, args) {
 
 	// Command line overrides
 	var component = args.component || args.c || '*';
-	var usecase = args.usecase || args.u || '*'
+	var usecase = args.usecase || args.u || '*';
 
 	// Pass port in, else default.
 	var port = options && options.port || '8089';

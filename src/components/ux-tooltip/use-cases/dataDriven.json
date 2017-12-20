@@ -5,8 +5,9 @@
 		"tagElement": "",
 		"className": "tooltip",
 		"selectorName": "tooltip_demo",
-		"content": "This is a <strong>tooltip content</strong>.",
+		"content": "This is a <b>tooltip content</b>.",
 		"delay": "0",
-		"show_on": "small medium large xlarge xxlarge"
+		"show_on": "small medium large xlarge xxlarge",
+		"text": "<b>I'm a tooltip!</b>"
 	}
 }

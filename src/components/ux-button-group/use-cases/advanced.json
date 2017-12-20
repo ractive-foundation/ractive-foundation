@@ -1,0 +1,7 @@
+{
+  "title": "Advanced",
+  "isDataModel": false,
+  "template": "ux-button-group-advanced",
+  "file": "src/components/ux-button-group/use-cases/advanced.hbs",
+  "data": {}
+}

@@ -2,6 +2,7 @@
   "title": "Disabled Button",
   "data": {
     "text": "Disabled Button",
-    "class": "disabled"
+    "class": "disabled",
+    "disabled": "true"
   }
 }

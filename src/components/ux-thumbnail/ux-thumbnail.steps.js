@@ -4,7 +4,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 		this.component = {};
 		this.component.container = '#childComponent ';
 		this.component.img = this.component.container + 'img';
@@ -13,9 +13,4 @@ module.exports = function () {
 		callback();
 	});
 
-	this.Given(/^I have loaded component "([^"]*)" with use case "([^"]*)"$/,
-		function (componentName, useCase, callback) {
-			this.client.loadComponentWithUseCase(componentName, useCase, callback);
-		}
-	);
 };

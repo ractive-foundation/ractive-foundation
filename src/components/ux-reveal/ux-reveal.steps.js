@@ -4,7 +4,7 @@ module.exports = function () {
 	this.World = require('../../world').World;
 	require('../../support/steps').call(this);
 
-	this.Before(function (callback) {
+	this.Before(function (scenario, callback) {
 
 		this.component = {};
 		this.component.container = '.ux-reveal ';
@@ -12,6 +12,7 @@ module.exports = function () {
 		this.component.openModal = this.component.container  + '.open-reveal-modal ';
 		this.component.modalBox = this.component.container  + '.reveal-modal ';
 		this.component.closeModal = this.component.container  + '.close-reveal-modal ';
+		this.component.modalBg = this.component.container  + '.reveal-modal-bg ';
 
 		callback();
 

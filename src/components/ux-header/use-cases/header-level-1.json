@@ -5,6 +5,7 @@
 		"level": "1",
 		"id": "h1Id",
 		"class": "h1Class",
+		"ariaLabel": "Header Level 1",
 		"content": "Header Level 1"
 	}
 }

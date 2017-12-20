@@ -1,0 +1,7 @@
+{
+  "title": "Stacking",
+  "isDataModel": false,
+  "template": "ux-button-group-stacking",
+  "file": "src/components/ux-button-group/use-cases/stacking.hbs",
+  "data": {}
+}

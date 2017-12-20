@@ -1,0 +1,11 @@
+{
+	"title": "Hide close button, Lock background",
+	"isDataModel": true,
+	"data": {
+		"text": "Click Me",
+		"class": "text-link",
+		"content" : "This is an example paragraph.",
+		"lockBackground": true,
+		"hideCloseButton": true
+	}
+}

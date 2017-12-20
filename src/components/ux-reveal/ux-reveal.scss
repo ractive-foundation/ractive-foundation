@@ -1,12 +1,34 @@
 .ux-reveal {
+	position: relative;
+
+	.ux-reveal-wrapper {
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 1002;
+	}
 
 	.modal-visible {
 		display: block;
 		visibility: visible;
 	}
 
-	.close-reveal-modal {
-		text-decoration: none;
-	}
+	.reveal-modal {
+		position: fixed;
+		z-index: 1005;
 
+		.close-reveal-modal {
+			text-decoration: none;
+		}
+
+		max-height: 80%;
+		overflow-y: auto;
+
+		&.full {
+			max-height: 100%;
+		}
+
+	}
 }
+

@@ -1,0 +1,24 @@
+{
+	"title": "Default",
+	"isDataModel": true,
+	"data": {
+		"linkText": "<a class='right-point1'>point 1</a><br/><a class='right-point2'>point 2</a><br/><a class='right-point3'>point 3</a>",
+		"id": "tipRight",
+		"title": "tooltip title",
+		"contents":[
+			{
+				"selector": ".right-point1",
+				"text": "<p>journey started :point 1</p>"
+			},
+			{
+				"selector": ".right-point2",
+				"text": "<p>continue journey :point 2</p>"
+			},
+			{
+				"selector": ".right-point3",
+				"text": "<p>end journey :point 3</p>"
+			}
+		],
+		"hasYield": false
+	}
+}

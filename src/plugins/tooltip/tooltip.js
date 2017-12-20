@@ -4,12 +4,12 @@
 function(node, options) {
 	var tooltip, handlers, eventName, enterSection, leaveSection,
 		config = {
-			tagElement: options.tagElement || 'span',
-			className: options.className || 'tooltip',
+			tagElement  : options.tagElement || 'span',
+			className   : options.className  || 'tooltip',
 			selectorName: options.selectorName || 'tooltip' + Math.floor((Math.random() * 1000000000000000) + 1),
-			content: options.content || '',
-			delay: options.delay || 0,
-			show_on: options.show_on || 'small medium large'
+			content     : options.content || '',
+			delay       : options.delay   || 0,
+			show_on     : options.show_on || 'small medium large'
 		};
 
 	enterSection = function() {
