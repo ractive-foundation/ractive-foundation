@@ -39,7 +39,7 @@
     "gulp-indent-checker": "^0.3.0",
     "gulp-jscs": "~4.1.0",
     "gulp-jshint": "~2.1.0",
-    "gulp-load-plugins": "~1.2.4",
+    "gulp-load-plugins": "~1.5.0",
     "gulp-rename": "~1.2.2",
     "gulp-run": "~1.7.1",
     "gulp-sass": "~2.3.2",
