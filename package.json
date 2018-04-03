@@ -37,7 +37,7 @@
     "gulp-footer": "~2.0.1",
     "gulp-header": "~2.0.5",
     "gulp-indent-checker": "^0.3.0",
-    "gulp-jscs": "~4.0.0",
+    "gulp-jscs": "~4.1.0",
     "gulp-jshint": "~2.0.1",
     "gulp-load-plugins": "~1.2.4",
     "gulp-rename": "~1.2.2",
