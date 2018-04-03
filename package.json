@@ -43,7 +43,7 @@
     "gulp-rename": "~1.2.2",
     "gulp-run": "~1.7.1",
     "gulp-sass": "~2.3.2",
-    "gulp-watch": "~4.3.9",
+    "gulp-watch": "~5.0.0",
     "gulp-wrap": "~0.13.0",
     "hljs-cdn-release": "git+https://github.com/themacclesoft/hljs-cdn-release.git#release-8.4",
     "jshint": "^2.9.3",
