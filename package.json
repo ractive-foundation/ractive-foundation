@@ -55,7 +55,7 @@
     "run-sequence": "~1.2.2",
     "superagent": "0.21.0",
     "walk": "~2.3.9",
-    "webdriverio": "4.6.1"
+    "webdriverio": "4.12.0"
   },
   "dependencies": {
     "a11y": "^0.4.1",
