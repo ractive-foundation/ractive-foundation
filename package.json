@@ -75,7 +75,7 @@
     "simple-glob": "~0.1.1",
     "through": "~2.3.8",
     "through2": "~2.0.1",
-    "vinyl": "~1.2.0",
+    "vinyl": "~2.1.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
 }
