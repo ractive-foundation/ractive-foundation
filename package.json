@@ -69,6 +69,7 @@
     "marked": "~0.3.6",
     "q": "~2.0.3",
     "ractive": "~0.7.3",
+    "ractive-events-keys": "^0.2.1",
     "ractive-events-tap": "git+https://github.com/ractive-foundation/ractive-events-tap.git#jaws_ie_click",
     "ractive-touch": "~0.4.0",
     "selenium-standalone": "~4.9.1",
