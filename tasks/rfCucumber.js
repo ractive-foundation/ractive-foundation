@@ -12,7 +12,7 @@ var path        = require('path');
 module.exports = function (options) {
 
 	var argv = ['node', 'cucumber-js'];
-	var format = options.format || 'pretty';
+	var format = options.format || 'pretty';
 	var tags = [];
 	var files = [];
 	var runOptions = ['-f', format];
@@ -35,7 +35,7 @@ module.exports = function (options) {
 			if (options.requireAllTags) {
 				tags = _(options.tags)
 					.map(function (tag) {
-						return ['--tags', tag]
+						return ['--tags', tag];
 					})
 					.flatten()
 					.value();
@@ -45,7 +45,7 @@ module.exports = function (options) {
 		}
 	}
 
-	var parseAndRunTests = function(file, enc, callback) {
+	var parseAndRunTests = function (file, enc, callback) {
 		var feature = path.parse(file.path);
 
 		if (feature.ext !== '.feature') {
@@ -64,7 +64,7 @@ module.exports = function (options) {
 		var matchingStep = files[index];
 		var args = argv.concat(['-r', matchingStep, file.path], runOptions, tags);
 
-		Cucumber.Cli(args).run(function(succeeded) {
+		Cucumber.Cli(args).run(function (succeeded) {
 			if (succeeded) {
 				callback();
 			} else {

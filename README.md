@@ -37,7 +37,6 @@ Or download and add the dependencies. (again all dependencies will be in the `di
 <script src='hammer.min.js'></script>
 <script src='lodash-compat.js'></script>
 <script src='ractive-touch.js'></script>
-<script src='ractive-events-tap.umd.js'></script>
 <script src='ractivef.js'></script>
 ```
 

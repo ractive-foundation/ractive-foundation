@@ -140,7 +140,6 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/hammerjs/hammer.min.js',
 			'./node_modules/ractive-touch/index.js',
-			'./node_modules/ractive-events-tap/dist/ractive-events-tap.umd.js',
 			'./node_modules/ractive-events-keys/dist/ractive-events-keys.min.js',
 			'./node_modules/jquery/dist/jquery.min.js',
 			'./node_modules/jquery/dist/jquery.min.map',
@@ -407,7 +406,6 @@ gulp.task('dist', ['clean-dist', 'build'], function () {
 			'./public/js/hammerjs/hammer.min.js',
 			'./public/js/ractive-touch/*',
 			'./public/js/ractive-events-keys/dist/*',
-			'./public/js/ractive-events-tap/dist/*'
 		], { base: process.cwd() })
 			.pipe(rebaseDist())
 
