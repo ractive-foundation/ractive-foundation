@@ -139,6 +139,7 @@ gulp.task('copy-vendors', function () {
 			'./node_modules/ractive/ractive.min.js',
 			'./node_modules/ractive/ractive.min.js.map',
 			'./node_modules/hammerjs/hammer.min.js',
+			'./node_modules/hammerjs/hammer.min.js.map',
 			'./node_modules/ractive-touch/index.js',
 			'./node_modules/ractive-events-keys/dist/ractive-events-keys.min.js',
 			'./node_modules/jquery/dist/jquery.min.js',
