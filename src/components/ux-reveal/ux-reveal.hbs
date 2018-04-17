@@ -1,11 +1,11 @@
 <div class="ux-reveal reveal {{class}}">
 	<a target="_blank"
-		on-tap-enter-space="toggleModal"
+		on-tap="toggleModal"
 		class="open-reveal-modal">{{text}}</a>
 
 	<div class="ux-reveal-wrapper">
 		<div class="reveal-modal-bg {{#if modalVisible}}modal-visible{{/if}}"
-			on-tap-enter-space="closeOnBgClick"></div>
+			on-tap="closeOnBgClick"></div>
 		<div class="reveal-modal {{size}} {{#if modalVisible}}modal-visible{{/if}}"
 			aria-hidden="{{modalVisible}}">
 			{{#if isDataModel}}
@@ -17,7 +17,7 @@
 			{{#if !hideCloseButton}}
 				<a class="close-reveal-modal"
 					target="_blank"
-					on-tap-enter-space="toggleModal">{{{closetext}}}</a>
+					on-tap="toggleModal">{{{closetext}}}</a>
 			{{/if}}
 		</div>
 	</div>
