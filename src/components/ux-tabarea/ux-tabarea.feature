@@ -8,8 +8,8 @@ Feature: ux-tabarea test suite
 		And the element "firstTab" will have the class "active"
 		And the element "firstTabContent" will have the class "active"
 		And the element "secondTabContent" will have the class "hide"
-		#When I click the "secondTabLink" element
-		#Then the element "firstTab" will NOT have the class "active"
-		#And the element "secondTab" will have the class "active"
-		#And the element "firstTabContent" will have the class "hide"
-		#And the element "secondTabContent" will have the class "active"
+		When I click the "secondTabLink" element
+		Then the element "firstTab" will NOT have the class "active"
+		And the element "secondTab" will have the class "active"
+		And the element "firstTabContent" will have the class "hide"
+		And the element "secondTabContent" will have the class "active"
