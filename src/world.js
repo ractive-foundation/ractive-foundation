@@ -15,7 +15,7 @@ var webdriverio = require('webdriverio'),
 const BROWSER_PHANTOMJS = 'phantomjs',
 // const BROWSER_PHANTOMJS_PATH = path.join('node_modules', 'phantomjs', 'bin', 'phantomjs');
 
-	WEBDRIVER_TIMEOUT = 5000;
+	WEBDRIVER_TIMEOUT = 3000;
 /* jscs: disable */
 // TODO The port will inevitably need to be dynamic.
 var COMPONENT_BASE_PATH = 'http://localhost:8088/testRunner.html#!/component/$1/use-case/$2',
