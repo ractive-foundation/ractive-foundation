@@ -37,6 +37,10 @@ Ractive.extend({
 			this.fire('toggle');
 		}
 
+		window.addEventListener('resize', function () {
+			_.debounce(this.setStepDetails(this.get('isHidden')), 500);
+		}.bind(this));
+
 		this.set('nubLeft', this.get('defaultNubLeft') + 'px');
 	},
 
@@ -85,7 +89,7 @@ Ractive.extend({
 			.then(this.setStepDetails.bind(this));
 	},
 
-	setStepDetails: function () {
+	setStepDetails: function (isHidden) {
 		var joyrideTarget = this.get('contents.' + this.get('currentStep') + '.selector');
 		var hasJoyride  = this.find(joyrideTarget) || this.find('*[aria-haspopup]');
 
@@ -98,7 +102,7 @@ Ractive.extend({
 
 			this.set('styles', this[positioner](hasJoyride));
 
-			this.set('isHidden', false);
+			this.set('isHidden', isHidden);
 			_.defer(this.focusJoyride.bind(this, joyrideTarget));
 		}
 	},
