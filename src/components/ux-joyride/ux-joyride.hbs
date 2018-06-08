@@ -17,7 +17,8 @@
 				top: {{styles.top}}"
 		>
 			<span class="joyride-nub {{styles.nubPosition}}"
-				style="left: {{nubLeft}};"></span>
+				{{#if styles.nubPosition === 'top'}}style="left: {{nubLeft}};"{{/if}}
+			></span>
 			<div class="joyride-content-wrapper">
 				{{#if title}}
 					<h4>{{title}}</h4>

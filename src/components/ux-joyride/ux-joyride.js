@@ -22,15 +22,13 @@ Ractive.extend({
 		//default current step to '0'
 		this.set('currentStep', 0);
 		//event handlers
-		this.on('toggle', this.onToggle.bind(this));
-
-		this.on('hover', this.onHover.bind(this));
-
-		this.on('close', this.onClose.bind(this));
-
-		this.on('prev', this.onPrev.bind(this));
-
-		this.on('next', this.onNext.bind(this));
+		this.on({
+			'toggle': this.onToggle.bind(this),
+			'hover': this.onHover.bind(this),
+			'close': this.onClose.bind(this),
+			'prev': this.onPrev.bind(this),
+			'next': this.onNext.bind(this)
+		});
 	},
 
 	oncomplete: function () {
@@ -39,7 +37,7 @@ Ractive.extend({
 			this.fire('toggle');
 		}
 
-		this.set('nubLeft', this.get('defaultNubLeft'));
+		this.set('nubLeft', this.get('defaultNubLeft') + 'px');
 	},
 
 	onHover: function (event) {
@@ -136,20 +134,27 @@ Ractive.extend({
 		var joyride  = this.find('.ux-joyride'),
 			containerWidth = this.el.parentElement.offsetWidth,
 			defaultNubTop = this.get('defaultNubTop'),
-			stylesObject = {};
-
-		stylesObject.nubPosition = 'top';
-		stylesObject.top = defaultNubTop + 'px';
-		stylesObject.left = '0px';
-		stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
+			stylesObject = {
+				nubPosition : 'top',
+				top : defaultNubTop + 'px',
+				left : '0px',
+				joyrideNubTop : (-defaultNubTop) + 'px'
+			};
 
 		if (window.screen.width > this.get('maxMobileWidth')) {
-			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+			_.extend (stylesObject, {
+				width : (containerWidth - joyride.offsetLeft - 2) + 'px'
+			});
+
+			this.set('nubLeft', this.get('defaultNubLeft') + 'px');
 		} else {
+			/* Full width when it's in mobile */
 			var joyridePositionLeft = joyride.offsetLeft - this.el.parentElement.offsetLeft;
 
-			stylesObject.width = (containerWidth - 2) + 'px';
-			stylesObject.left = '-' + joyridePositionLeft  + 'px';
+			_.extend (stylesObject, {
+				width : (containerWidth - 2) + 'px',
+				left : (-joyridePositionLeft)  + 'px'
+			});
 
 			this.set('nubLeft', _.add(joyridePositionLeft, this.get('defaultNubLeft')) + 'px');
 		}
