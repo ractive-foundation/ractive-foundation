@@ -1,0 +1,16 @@
+{
+    "title": "Show on hover",
+    "isDataModel": true,
+    "data": {
+        "linkText": "<a class='right-point1'>point 1</a>",
+        "id": "showOnHover",
+        "title": "Read more",
+        "contents":[
+            {
+                "selector": ".right-point1",
+                "text": "<p>journey started :point 1</p>"
+            }
+        ],
+        "showOnHover": true
+    }
+}
