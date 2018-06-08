@@ -24,6 +24,6 @@ Feature: ux-joyride test suite
 
 	Scenario: Loading ux-joyride with show on hover
 		Given I have loaded component "ux-joyride" with use case "showOnHover"
-		Then there will be an element for "joyrideContainer"
+		Then there will be an element for "startLink"
 		When I hover the "startLink" element
 		Then there will be an element for "joyrideContainer"

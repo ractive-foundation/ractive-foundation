@@ -728,10 +728,10 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
 		} else {
 			var joyridePositionLeft = joyride.offsetLeft - this.el.parentElement.offsetLeft;
+
 			stylesObject.width = (containerWidth - 2) + 'px';
 			stylesObject.left = '-' + joyridePositionLeft  + 'px';
 
-			//this.set('nubLeft', _.add(joyride.offsetWidth / 2, joyride.offsetLeft) + 'px');
 			this.set('nubLeft', _.add(joyridePositionLeft, this.get('defaultNubLeft')) + 'px');
 		}
 
