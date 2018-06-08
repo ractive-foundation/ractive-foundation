@@ -1,9 +1,10 @@
 <div class="ux-joyride">
 	<a on-tap-enter="toggle"
+		on-mouseover-mouseout="{{#if showOnHover}}hover{{/if}}"
 		tabindex="0"
 		aria-hasPopup="yes"
 		aria-owns="{{id}}"
-		class="joyride-start-point"
+		class="joyride-start-point {{#if !isHidden}}joyride-open{{/if}}"
 	>
 		{{{linkText}}}
 	</a>
@@ -15,7 +16,8 @@
 				left: {{styles.left}};
 				top: {{styles.top}}"
 		>
-			<span class="joyride-nub {{styles.nubPosition}}"></span>
+			<span class="joyride-nub {{styles.nubPosition}}"
+				style="left: {{nubLeft}};"></span>
 			<div class="joyride-content-wrapper">
 				{{#if title}}
 					<h4>{{title}}</h4>

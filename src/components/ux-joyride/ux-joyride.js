@@ -7,6 +7,7 @@ Ractive.extend({
 		return {
 			isHidden: true,
 			defaultNubTop: 28,
+			defaultNubLeft: 22,
 			maxMobileWidth: 500,
 			styles: {
 				top: '0px',
@@ -23,6 +24,8 @@ Ractive.extend({
 		//event handlers
 		this.on('toggle', this.onToggle.bind(this));
 
+		this.on('hover', this.onHover.bind(this));
+
 		this.on('close', this.onClose.bind(this));
 
 		this.on('prev', this.onPrev.bind(this));
@@ -34,6 +37,19 @@ Ractive.extend({
 		//isOpenOnInit is true start joyride
 		if (this.get('isOpenOnInit')) {
 			this.fire('toggle');
+		}
+
+		this.set('nubLeft', this.get('defaultNubLeft'));
+	},
+
+	onHover: function (event) {
+		if (event) {
+			event.original.preventDefault();
+			if (_.get(event, 'original.type') === 'mouseover') {
+				this.setStepDetails();
+			} else {
+				this.onClose();
+			}
 		}
 	},
 
@@ -126,7 +142,17 @@ Ractive.extend({
 		stylesObject.top = defaultNubTop + 'px';
 		stylesObject.left = '0px';
 		stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
-		stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+
+		if (window.screen.width > this.get('maxMobileWidth')) {
+			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+		} else {
+			var joyridePositionLeft = joyride.offsetLeft - this.el.parentElement.offsetLeft;
+
+			stylesObject.width = (containerWidth - 2) + 'px';
+			stylesObject.left = '-' + joyridePositionLeft  + 'px';
+
+			this.set('nubLeft', _.add(joyridePositionLeft, this.get('defaultNubLeft')) + 'px');
+		}
 
 		return stylesObject;
 	},
