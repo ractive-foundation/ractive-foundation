@@ -16,7 +16,6 @@ function TapHandler ( node, callback ) {
 	this.callback = callback;
 
 	this.preventMousedownEvents = false;
-	this.preventClickEvents = false;
 
 	this.bind( node );
 }
@@ -24,16 +23,19 @@ function TapHandler ( node, callback ) {
 TapHandler.prototype = {
 	bind: function bind ( node ) {
 		// listen for mouse/pointer events...
-		if (window.navigator.pointerEnabled) {
+		if ( window.navigator.pointerEnabled ) {
 			node.addEventListener( 'pointerdown', handleMousedown, false );
-		} else if (window.navigator.msPointerEnabled) {
+		} else if ( window.navigator.msPointerEnabled ) {
 			node.addEventListener( 'MSPointerDown', handleMousedown, false );
 		} else {
 			node.addEventListener( 'mousedown', handleMousedown, false );
-
-			// ...and touch events
-			node.addEventListener( 'touchstart', handleTouchstart, false );
 		}
+
+		// ...and touch events
+		node.addEventListener( 'touchstart', handleTouchstart, false );
+
+		// ...and random click events
+		node.addEventListener( 'click', handleRealClick, false );
 
 		// native buttons, and <input type='button'> elements, should fire a tap event
 		// when the space key is pressed
@@ -64,7 +66,9 @@ TapHandler.prototype = {
 			return;
 		}
 
-		this.preventClickEvents = true;
+		// Remove click handler while normal mouse events in progress
+		this.node.removeEventListener( 'click', handleRealClick, false );
+
 		var x = event.clientX;
 		var y = event.clientY;
 
@@ -90,6 +94,12 @@ TapHandler.prototype = {
 			}
 		};
 
+		var cancelFakeClick = function () {
+			// remove this event and add back original event
+			this$1.node.removeEventListener( 'click', cancelFakeClick, false );
+			this$1.node.addEventListener( 'click', handleRealClick, false );
+		}
+
 		var cancel = function () {
 			this$1.node.removeEventListener( 'MSPointerUp', handleMouseup, false );
 			document.removeEventListener( 'MSPointerMove', handleMousemove, false );
@@ -99,6 +109,11 @@ TapHandler.prototype = {
 			document.removeEventListener( 'pointercancel', cancel, false );
 			this$1.node.removeEventListener( 'click', handleMouseup, false );
 			document.removeEventListener( 'mousemove', handleMousemove, false );
+
+			// prepare to add back real click handler when done
+			this$1.node.addEventListener( 'click', cancelFakeClick, false );
+			// if no click event fired then restore the real click event any way
+			setTimeout( cancelFakeClick, TIME_THRESHOLD );
 		};
 
 		if ( window.navigator.pointerEnabled ) {
@@ -114,7 +129,6 @@ TapHandler.prototype = {
 			document.addEventListener( 'mousemove', handleMousemove, false );
 		}
 
-		this.node.removeEventListener( 'click', handleFocusClick, false );
 		setTimeout( cancel, TIME_THRESHOLD );
 	},
 
@@ -193,28 +207,22 @@ function handleTouchstart ( event ) {
 	this.__tap_handler__.touchdown( event );
 }
 
-function handleFocusClick ( event ) {
-	if (! this.__tap_handler__.preventClickEvents) {
-		this.__tap_handler__.fire( event );
-	}
+function handleRealClick ( event ) {
+	this.__tap_handler__.fire( event );
 }
 
 function handleFocus () {
 	this.addEventListener( 'keydown', handleKeydown, false );
 	this.addEventListener( 'blur', handleBlur, false );
-	this.addEventListener( 'click', handleFocusClick, false );
 }
 
 function handleBlur () {
 	this.removeEventListener( 'keydown', handleKeydown, false );
 	this.removeEventListener( 'blur', handleBlur, false );
-	this.removeEventListener( 'click', handleFocusClick, false );
-	this.__tap_handler__.preventClickEvents = false;
 }
 
 function handleKeydown ( event ) {
 	if ( event.which === 32 || event.which === 13 ) { // space key
-		this.removeEventListener( 'click', handleFocusClick, false );
 		this.__tap_handler__.fire();
 	}
 }
