@@ -130,7 +130,7 @@ Ractive.defaults.templates["ux-iconbar"] = {"v":3,"t":[{"t":7,"e":"div","a":{"cl
 Ractive.defaults.templates["ux-iconbaritem"] = {"v":3,"t":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}],"class":["item ",{"t":2,"r":"class"}],"tabindex":"0","role":"button"},"m":[{"t":4,"f":["aria-labelledby=\"",{"t":2,"r":"guid"},"\""],"n":50,"r":"labels"},{"t":4,"f":["aria-label=",{"t":2,"r":"arialabel"}],"n":50,"r":"arialabel"}],"f":[{"t":4,"f":[{"t":7,"e":"img","a":{"src":[{"t":2,"r":"src"}]}}],"n":50,"r":"src"}," ",{"t":4,"f":[{"t":7,"e":"label","a":{"id":[{"t":2,"r":"guid"}]},"f":[{"t":4,"f":[{"t":3,"r":"label"}],"n":50,"r":"label"},{"t":4,"n":51,"f":[{"t":16}],"r":"label"}]}],"n":50,"r":"labels"}]}]};
 Ractive.defaults.templates["ux-inline-list"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":["ux-inline-list ",{"t":2,"r":"class"}]},"f":[{"t":4,"f":[{"t":4,"f":[{"t":7,"e":"ux-inline-list-item","a":{"datamodel":[{"t":2,"x":{"r":["getItemData","."],"s":"_0(_1)"}}]}}],"r":"items"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-inline-list-item"] = {"v":3,"t":[{"t":7,"e":"li","f":[{"t":7,"e":"a","a":{"href":[{"t":2,"r":"href"}]},"f":[{"t":2,"r":"text"}]}]}]};
-Ractive.defaults.templates["ux-joyride"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-joyride"},"f":[{"t":7,"e":"a","v":{"tap-enter":"toggle"},"a":{"tabindex":"0","aria-hasPopup":"yes","aria-owns":[{"t":2,"r":"id"}],"class":"joyride-start-point"},"f":[{"t":3,"r":"linkText"}]}," ",{"t":4,"f":[{"t":7,"e":"div","a":{"class":"joyride-tip-guide","id":[{"t":2,"r":"id"}],"tabindex":"0","style":["width: ",{"t":2,"r":"styles.width"},"; left: ",{"t":2,"r":"styles.left"},"; top: ",{"t":2,"r":"styles.top"}]},"f":[{"t":7,"e":"span","a":{"class":["joyride-nub ",{"t":2,"r":"styles.nubPosition"}]}}," ",{"t":7,"e":"div","a":{"class":"joyride-content-wrapper"},"f":[{"t":4,"f":[{"t":7,"e":"h4","f":[{"t":2,"r":"title"}]}],"n":50,"r":"title"}," ",{"t":4,"f":[{"t":16}],"n":50,"r":"hasYield"},{"t":4,"n":51,"f":[{"t":4,"f":[{"t":4,"f":[{"t":3,"r":"text"}],"n":50,"r":"text"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"text"}],"n":53,"rx":{"r":"contents","m":[{"t":30,"n":"currentStep"}]}}],"r":"hasYield"}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"small button prev"},"v":{"tap":"prev"},"f":["prev"]}],"n":50,"x":{"r":["currentStep"],"s":"_0!==0"}}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"button small next"},"v":{"tap":"next"},"f":["next"]}],"n":50,"x":{"r":["currentStep","contents.length"],"s":"_0<(_1-1)"}}," ",{"t":7,"e":"a","a":{"class":"joyride-close-tip ico ico-cross","aria-label":"close","tabindex":"0"},"v":{"tap-enter":"close"},"f":[{"t":3,"r":"closeText"}]}]}]}],"n":50,"x":{"r":["isHidden"],"s":"!_0"}}]}]};
+Ractive.defaults.templates["ux-joyride"] = {"v":3,"t":[{"t":7,"e":"div","a":{"class":"ux-joyride"},"f":[{"t":7,"e":"a","v":{"tap-enter":"toggle","mouseover-mouseout":{"n":[{"t":4,"f":["hover"],"n":50,"r":"showOnHover"}],"d":[]}},"a":{"tabindex":"0","aria-hasPopup":"yes","aria-owns":[{"t":2,"r":"id"}],"class":["joyride-start-point ",{"t":4,"f":["joyride-open"],"n":50,"x":{"r":["isHidden"],"s":"!_0"}}]},"f":[{"t":3,"r":"linkText"}]}," ",{"t":4,"f":[{"t":7,"e":"div","a":{"class":"joyride-tip-guide","id":[{"t":2,"r":"id"}],"tabindex":"0","style":["width: ",{"t":2,"r":"styles.width"},"; left: ",{"t":2,"r":"styles.left"},"; top: ",{"t":2,"r":"styles.top"}]},"f":[{"t":7,"e":"span","a":{"class":["joyride-nub ",{"t":2,"r":"styles.nubPosition"}]},"m":[{"t":4,"f":["style=\"left: ",{"t":2,"r":"nubLeft"},";\""],"n":50,"x":{"r":["styles.nubPosition"],"s":"_0===\"top\""}}]}," ",{"t":7,"e":"div","a":{"class":"joyride-content-wrapper"},"f":[{"t":4,"f":[{"t":7,"e":"h4","f":[{"t":2,"r":"title"}]}],"n":50,"r":"title"}," ",{"t":4,"f":[{"t":16}],"n":50,"r":"hasYield"},{"t":4,"n":51,"f":[{"t":4,"f":[{"t":4,"f":[{"t":3,"r":"text"}],"n":50,"r":"text"},{"t":4,"n":51,"f":[{"t":8,"r":"content"}],"r":"text"}],"n":53,"rx":{"r":"contents","m":[{"t":30,"n":"currentStep"}]}}],"r":"hasYield"}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"small button prev"},"v":{"tap":"prev"},"f":["prev"]}],"n":50,"x":{"r":["currentStep"],"s":"_0!==0"}}," ",{"t":4,"f":[{"t":7,"e":"a","a":{"class":"button small next"},"v":{"tap":"next"},"f":["next"]}],"n":50,"x":{"r":["currentStep","contents.length"],"s":"_0<(_1-1)"}}," ",{"t":7,"e":"a","a":{"class":"joyride-close-tip ico ico-cross","aria-label":"close","tabindex":"0"},"v":{"tap-enter":"close"},"f":[{"t":3,"r":"closeText"}]}]}]}],"n":50,"x":{"r":["isHidden"],"s":"!_0"}}]}]};
 Ractive.defaults.templates["ux-keystrokes"] = {"v":3,"t":[{"t":7,"e":"kbd","f":[{"t":4,"f":[{"t":2,"r":"text"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-label"] = {"v":3,"t":[{"t":7,"e":"span","a":{"class":[{"t":2,"r":"class"}," label"]},"f":[{"t":4,"f":[{"t":2,"r":"text"}],"n":50,"r":"isDataModel"},{"t":4,"n":51,"f":[{"t":16}],"r":"isDataModel"}]}]};
 Ractive.defaults.templates["ux-li"] = {"v":3,"t":[{"t":7,"e":"li","m":[{"t":4,"f":["class=\"",{"t":2,"r":"class"},"\""],"n":50,"r":"class"},{"t":4,"f":["role=\"",{"t":2,"r":"role"},"\""],"n":50,"r":"role"}],"f":[{"t":16}]}]};
@@ -588,6 +588,7 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 		return {
 			isHidden: true,
 			defaultNubTop: 28,
+			defaultNubLeft: 22,
 			maxMobileWidth: 500,
 			styles: {
 				top: '0px',
@@ -602,19 +603,36 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 		//default current step to '0'
 		this.set('currentStep', 0);
 		//event handlers
-		this.on('toggle', this.onToggle.bind(this));
-
-		this.on('close', this.onClose.bind(this));
-
-		this.on('prev', this.onPrev.bind(this));
-
-		this.on('next', this.onNext.bind(this));
+		this.on({
+			'toggle': this.onToggle.bind(this),
+			'hover': this.onHover.bind(this),
+			'close': this.onClose.bind(this),
+			'prev': this.onPrev.bind(this),
+			'next': this.onNext.bind(this)
+		});
 	},
 
 	oncomplete: function () {
 		//isOpenOnInit is true start joyride
 		if (this.get('isOpenOnInit')) {
 			this.fire('toggle');
+		}
+
+		window.addEventListener('resize', function () {
+			_.debounce(this.setStepDetails(this.get('isHidden')), 500);
+		}.bind(this));
+
+		this.set('nubLeft', this.get('defaultNubLeft') + 'px');
+	},
+
+	onHover: function (event) {
+		if (event) {
+			event.original.preventDefault();
+			if (_.get(event, 'original.type') === 'mouseover') {
+				this.setStepDetails();
+			} else {
+				this.onClose();
+			}
 		}
 	},
 
@@ -652,7 +670,7 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 			.then(this.setStepDetails.bind(this));
 	},
 
-	setStepDetails: function () {
+	setStepDetails: function (isHidden) {
 		var joyrideTarget = this.get('contents.' + this.get('currentStep') + '.selector');
 		var hasJoyride  = this.find(joyrideTarget) || this.find('*[aria-haspopup]');
 
@@ -665,7 +683,7 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 
 			this.set('styles', this[positioner](hasJoyride));
 
-			this.set('isHidden', false);
+			this.set('isHidden', isHidden);
 			_.defer(this.focusJoyride.bind(this, joyrideTarget));
 		}
 	},
@@ -678,17 +696,21 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 			stylesObject = {};
 
 		if (documentWidth > this.get('maxMobileWidth')) {
-			stylesObject.nubPosition = 'left';
-			stylesObject.top = (hasJoyride.offsetTop - defaultNubTop) + 'px';
-			stylesObject.left = (hasJoyride.offsetWidth + hasJoyride.offsetLeft + defaultNubTop) + 'px';
-			stylesObject.joyrideNubTop = defaultNubTop + 'px';
-			stylesObject.width = (containerWidth - joyride.offsetWidth - joyride.offsetLeft - defaultNubTop) + 'px';
+			_.extend (stylesObject, {
+				nubPosition: 'left',
+				top: (hasJoyride.offsetTop - defaultNubTop) + 'px',
+				left: (hasJoyride.offsetWidth + hasJoyride.offsetLeft + defaultNubTop) + 'px',
+				joyrideNubTop: defaultNubTop + 'px',
+				width: (containerWidth - joyride.offsetWidth - joyride.offsetLeft - defaultNubTop) + 'px'
+			});
 		} else {
-			stylesObject.nubPosition = 'top';
-			stylesObject.top = defaultNubTop + 'px';
-			stylesObject.left = '0px';
-			stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
-			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+			_.extend (stylesObject, {
+				nubPosition: 'top',
+				top: defaultNubTop + 'px',
+				left: '0px',
+				joyrideNubTop: (-defaultNubTop) + 'px',
+				width: (containerWidth - joyride.offsetLeft - 2) + 'px'
+			});
 		}
 
 		return stylesObject;
@@ -701,13 +723,30 @@ Ractive.components["ux-joyride"] = Ractive.extend({
 		var joyride  = this.find('.ux-joyride'),
 			containerWidth = this.el.parentElement.offsetWidth,
 			defaultNubTop = this.get('defaultNubTop'),
-			stylesObject = {};
+			stylesObject = {
+				nubPosition: 'top',
+				top: defaultNubTop + 'px',
+				left: '0px',
+				joyrideNubTop: (-defaultNubTop) + 'px'
+			};
 
-		stylesObject.nubPosition = 'top';
-		stylesObject.top = defaultNubTop + 'px';
-		stylesObject.left = '0px';
-		stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
-		stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+		if (window.screen.width > this.get('maxMobileWidth')) {
+			_.extend (stylesObject, {
+				width: (containerWidth - joyride.offsetLeft - 2) + 'px'
+			});
+
+			this.set('nubLeft', this.get('defaultNubLeft') + 'px');
+		} else {
+			/* Full width when it's in mobile */
+			var joyridePositionLeft = joyride.offsetLeft - this.el.parentElement.offsetLeft;
+
+			_.extend (stylesObject, {
+				width: (containerWidth - 2) + 'px',
+				left: (-joyridePositionLeft)  + 'px'
+			});
+
+			this.set('nubLeft', _.add(joyridePositionLeft, this.get('defaultNubLeft')) + 'px');
+		}
 
 		return stylesObject;
 	},

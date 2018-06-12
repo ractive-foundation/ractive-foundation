@@ -7,6 +7,7 @@ Ractive.extend({
 		return {
 			isHidden: true,
 			defaultNubTop: 28,
+			defaultNubLeft: 22,
 			maxMobileWidth: 500,
 			styles: {
 				top: '0px',
@@ -21,19 +22,36 @@ Ractive.extend({
 		//default current step to '0'
 		this.set('currentStep', 0);
 		//event handlers
-		this.on('toggle', this.onToggle.bind(this));
-
-		this.on('close', this.onClose.bind(this));
-
-		this.on('prev', this.onPrev.bind(this));
-
-		this.on('next', this.onNext.bind(this));
+		this.on({
+			'toggle': this.onToggle.bind(this),
+			'hover': this.onHover.bind(this),
+			'close': this.onClose.bind(this),
+			'prev': this.onPrev.bind(this),
+			'next': this.onNext.bind(this)
+		});
 	},
 
 	oncomplete: function () {
 		//isOpenOnInit is true start joyride
 		if (this.get('isOpenOnInit')) {
 			this.fire('toggle');
+		}
+
+		window.addEventListener('resize', function () {
+			_.debounce(this.setStepDetails(this.get('isHidden')), 500);
+		}.bind(this));
+
+		this.set('nubLeft', this.get('defaultNubLeft') + 'px');
+	},
+
+	onHover: function (event) {
+		if (event) {
+			event.original.preventDefault();
+			if (_.get(event, 'original.type') === 'mouseover') {
+				this.setStepDetails();
+			} else {
+				this.onClose();
+			}
 		}
 	},
 
@@ -71,7 +89,7 @@ Ractive.extend({
 			.then(this.setStepDetails.bind(this));
 	},
 
-	setStepDetails: function () {
+	setStepDetails: function (isHidden) {
 		var joyrideTarget = this.get('contents.' + this.get('currentStep') + '.selector');
 		var hasJoyride  = this.find(joyrideTarget) || this.find('*[aria-haspopup]');
 
@@ -84,7 +102,7 @@ Ractive.extend({
 
 			this.set('styles', this[positioner](hasJoyride));
 
-			this.set('isHidden', false);
+			this.set('isHidden', isHidden);
 			_.defer(this.focusJoyride.bind(this, joyrideTarget));
 		}
 	},
@@ -97,17 +115,21 @@ Ractive.extend({
 			stylesObject = {};
 
 		if (documentWidth > this.get('maxMobileWidth')) {
-			stylesObject.nubPosition = 'left';
-			stylesObject.top = (hasJoyride.offsetTop - defaultNubTop) + 'px';
-			stylesObject.left = (hasJoyride.offsetWidth + hasJoyride.offsetLeft + defaultNubTop) + 'px';
-			stylesObject.joyrideNubTop = defaultNubTop + 'px';
-			stylesObject.width = (containerWidth - joyride.offsetWidth - joyride.offsetLeft - defaultNubTop) + 'px';
+			_.extend (stylesObject, {
+				nubPosition: 'left',
+				top: (hasJoyride.offsetTop - defaultNubTop) + 'px',
+				left: (hasJoyride.offsetWidth + hasJoyride.offsetLeft + defaultNubTop) + 'px',
+				joyrideNubTop: defaultNubTop + 'px',
+				width: (containerWidth - joyride.offsetWidth - joyride.offsetLeft - defaultNubTop) + 'px'
+			});
 		} else {
-			stylesObject.nubPosition = 'top';
-			stylesObject.top = defaultNubTop + 'px';
-			stylesObject.left = '0px';
-			stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
-			stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+			_.extend (stylesObject, {
+				nubPosition: 'top',
+				top: defaultNubTop + 'px',
+				left: '0px',
+				joyrideNubTop: (-defaultNubTop) + 'px',
+				width: (containerWidth - joyride.offsetLeft - 2) + 'px'
+			});
 		}
 
 		return stylesObject;
@@ -120,13 +142,30 @@ Ractive.extend({
 		var joyride  = this.find('.ux-joyride'),
 			containerWidth = this.el.parentElement.offsetWidth,
 			defaultNubTop = this.get('defaultNubTop'),
-			stylesObject = {};
+			stylesObject = {
+				nubPosition: 'top',
+				top: defaultNubTop + 'px',
+				left: '0px',
+				joyrideNubTop: (-defaultNubTop) + 'px'
+			};
 
-		stylesObject.nubPosition = 'top';
-		stylesObject.top = defaultNubTop + 'px';
-		stylesObject.left = '0px';
-		stylesObject.joyrideNubTop = (-defaultNubTop) + 'px';
-		stylesObject.width = (containerWidth - joyride.offsetLeft - 2) + 'px';
+		if (window.screen.width > this.get('maxMobileWidth')) {
+			_.extend (stylesObject, {
+				width: (containerWidth - joyride.offsetLeft - 2) + 'px'
+			});
+
+			this.set('nubLeft', this.get('defaultNubLeft') + 'px');
+		} else {
+			/* Full width when it's in mobile */
+			var joyridePositionLeft = joyride.offsetLeft - this.el.parentElement.offsetLeft;
+
+			_.extend (stylesObject, {
+				width: (containerWidth - 2) + 'px',
+				left: (-joyridePositionLeft)  + 'px'
+			});
+
+			this.set('nubLeft', _.add(joyridePositionLeft, this.get('defaultNubLeft')) + 'px');
+		}
 
 		return stylesObject;
 	},

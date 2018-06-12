@@ -8,8 +8,10 @@
 		"hasYield": "Bool, determins if content is used or not",
 		"isOpenOnInit": "Bool, flags to open first step imediatly",
 		"defaultNubTop": "Allow positioning of top nub",
+		"defaultNubLeft": "For open down, nub left offset, (Default is foundation's default, 22)",
 		"maxMobileWidth": "Set a maximum width for the joyride (Default is 500)",
-		"closeText": "The text for the close button (Default '&times;')"
+		"closeText": "The text for the close button (Default '&times;')",
+		"showOnHover": "Bool, whether to open joyride on hover"
 	},
 	"category": "navigation"
 }
