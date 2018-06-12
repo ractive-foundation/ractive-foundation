@@ -1,6 +1,11 @@
 {
 	"data":{
-		"class": "Extra classes to apply to col"
+		"class": "Optional, String: Extra classes to apply to the column",
+		"aria": "Optional, Object: all the keys of the aria object are turned into aria-key attributes eg aria: {hidden: \"false\"} would translate to aria-hidden: \"false\"",
+		"decorator": "Optional, String: ",
+		"id": "Optional, String: An id to use?",
+		"role": "Optional, String: Any role the column should take",
+		"style": "Optional, String: Any extra inline styles"
 	},
 	"content": "Content of ux-col is yielded to",
 	"events": {

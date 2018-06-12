@@ -1,1 +1,11 @@
-<div class="{{class}} columns">{{yield}}</div>
+<div class="columns {{class}}"
+	{{#each aria:type}}
+		aria-{{type}}="{{this}}"
+	{{/each}}
+	{{#if decorator}}decorator="{{decorator}}"{{/if}}
+	{{#if id}}id="{{id}}"{{/if}}
+	{{#if role}}role="{{role}}"{{/if}}
+	{{#if style}}style="{{style}}"{{/if}}
+>
+	{{yield}}
+</div>
