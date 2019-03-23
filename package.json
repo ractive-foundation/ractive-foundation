@@ -66,7 +66,7 @@
     "json2htmljson2css": "0.0.1",
     "lodash-compat": "~3.10.2",
     "node-notifier": "~4.6.1",
-    "marked": "~0.3.6",
+    "marked": "~0.6.1",
     "q": "~2.0.3",
     "ractive": "~0.7.3",
     "ractive-events-keys": "^0.2.1",
