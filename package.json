@@ -1,6 +1,6 @@
 {
   "name": "ractive-foundation",
-  "version": "0.29.0",
+  "version": "0.30.0",
   "description": "Ractive components for Foundation 5",
   "main": "dist/ractivef.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "gulp-connect": "~5.0.0",
     "gulp-copy": "0.0.2",
     "gulp-cordova-author": "^1.0.0",
-    "gulp-cordova-build-android":"^2.0.1",
+    "gulp-cordova-build-android": "^2.0.1",
     "gulp-cordova-build-ios": "^3.0.0",
     "gulp-cordova-create": "^2.0.1",
     "gulp-cordova-description": "^1.0.1",
