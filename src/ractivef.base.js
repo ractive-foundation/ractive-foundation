@@ -20,6 +20,13 @@ Ractive.defaults.findAllChildComponents = function (name) {
  */
 Ractive.defaults.onconstruct = function (opts) {
 	if (opts.data && opts.data.datamodel) {
+		if (typeof opts.data.datamodel === 'string') {
+			try {
+				var newModel = document.createElement('textarea');
+				newModel.innerHTML = opts.data.datamodel;
+				opts.data.datamodel = JSON.parse(newModel.value);
+			} catch (e) {}
+		}
 		var datamodel = _.cloneDeep(opts.data.datamodel);
 		datamodel.isDataModel = true;
 		opts.data = _.assign(opts.data, datamodel);
