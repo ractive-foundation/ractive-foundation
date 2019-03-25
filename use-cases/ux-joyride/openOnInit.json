@@ -1,0 +1,25 @@
+{
+	"title": "Start on init",
+	"isDataModel": true,
+	"data": {
+		"linkText": "<a class='init-point1'>point 1</a><br/><a class='init-point2'>point 2</a><br/><a class='init-point3'>point 3</a>",
+		"id": "tipOpen",
+		"title": "tooltip title",
+		"contents":[
+			{
+				"selector": ".init-point1",
+				"text": "<p>journey started :point 1</p>"
+			},
+			{
+				"selector": ".init-point2",
+				"text": "<p>continue journey :point 2</p>"
+			},
+			{
+				"selector": ".init-point3",
+				"text": "<p>end journey :point 3</p>"
+			}
+		],
+		"hasYield": false,
+		"isOpenOnInit": "true"
+	}
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row><ux-col class="medium-9 medium-push-3"><ux-header level="1">ux-top-bar</ux-header> <blockquote>
+<p>The Foundation Top Bar gives you a great way to display a complex navigation bar on small, medium or large screens.</p>
+</blockquote>
+<p>Read <a href="http://foundation.zurb.com/docs/components/topbar.html">Foundation's topbar.html</a> docs for more details.</p>
+<p>NOTE: Not complete functionality.</p>
+ <br> <ux-tabarea><ux-tablinks><ux-tablink active="true">Use Cases</ux-tablink> <ux-tablink>Manifest</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><ux-tabarea><ux-tablinks><ux-tablink active="true">contain-to-grid mode</ux-tablink><ux-tablink>sticky top bar</ux-tablink><ux-tablink>template example</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><div class="ractivef-use-case" id="uxTopBar_90"><ux-top-bar datamodel="{&quot;class&quot;:&quot;contain-to-grid&quot;,&quot;title&quot;:&quot;Test Title&quot;,&quot;menulabel&quot;:&quot;Menu&quot;,&quot;dataoptions&quot;:&quot;&quot;,&quot;leftitems&quot;:[{&quot;label&quot;:&quot;Left Button&quot;,&quot;href&quot;:&quot;#&quot;}],&quot;rightitems&quot;:[{&quot;label&quot;:&quot;Right Button Active&quot;,&quot;href&quot;:&quot;#r1&quot;,&quot;active&quot;:true},{&quot;label&quot;:&quot;Right nesting&quot;,&quot;href&quot;:&quot;#r2&quot;,&quot;items&quot;:[{&quot;label&quot;:&quot;First link in dropdown&quot;,&quot;href&quot;:&quot;#r21&quot;},{&quot;label&quot;:&quot;Second link with items&quot;,&quot;items&quot;:[{&quot;label&quot;:&quot;nested item 1&quot;,&quot;href&quot;:&quot;#r221&quot;},{&quot;label&quot;:&quot;nested item 2&quot;,&quot;href&quot;:&quot;#r222&quot;},{&quot;label&quot;:&quot;nested item 3&quot;,&quot;href&quot;:&quot;#r223&quot;}]},{&quot;label&quot;:&quot;Active link in dropdown&quot;,&quot;href&quot;:&quot;#r23&quot;,&quot;active&quot;:true}]}]}" uid="uxTopBar_90"></ux-top-bar><ul>{{#events.uxTopBar_90}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-top-bar datamodel="{{dataModel}}"></ux-top-bar></code></pre> <pre>	<code>{
+    "class": "contain-to-grid",
+    "title": "Test Title",
+    "menulabel": "Menu",
+    "dataoptions": "",
+    "leftitems": [
+        {
+            "label": "Left Button",
+            "href": "#"
+        }
+    ],
+    "rightitems": [
+        {
+            "label": "Right Button Active",
+            "href": "#r1",
+            "active": true
+        },
+        {
+            "label": "Right nesting",
+            "href": "#r2",
+            "items": [
+                {
+                    "label": "First link in dropdown",
+                    "href": "#r21"
+                },
+                {
+                    "label": "Second link with items",
+                    "items": [
+                        {
+                            "label": "nested item 1",
+                            "href": "#r221"
+                        },
+                        {
+                            "label": "nested item 2",
+                            "href": "#r222"
+                        },
+                        {
+                            "label": "nested item 3",
+                            "href": "#r223"
+                        }
+                    ]
+                },
+                {
+                    "label": "Active link in dropdown",
+                    "href": "#r23",
+                    "active": true
+                }
+            ]
+        }
+    ]
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxTopBar_91"><ux-top-bar datamodel="{&quot;class&quot;:&quot;contain-to-grid&quot;,&quot;issticky&quot;:true,&quot;title&quot;:&quot;&quot;,&quot;href&quot;:&quot;.&quot;,&quot;menulabel&quot;:&quot;Menu&quot;,&quot;dataoptions&quot;:&quot;&quot;,&quot;leftitems&quot;:[{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_solid-screen\&quot;&gt;&lt;/i&gt;Responsive Web&quot;,&quot;href&quot;:&quot;.&quot;,&quot;items&quot;:[{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_tv\&quot;&gt;&lt;/i&gt;TV&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_mobile\&quot;&gt;&lt;/i&gt;Mobile Apps&quot;,&quot;href&quot;:&quot;.&quot;}]}],&quot;rightitems&quot;:[{&quot;label&quot;:&quot;Overview&quot;,&quot;href&quot;:&quot;/pages&quot;,&quot;active&quot;:true},{&quot;label&quot;:&quot;Style&quot;,&quot;href&quot;:&quot;/pages/web-responsive/style&quot;},{&quot;label&quot;:&quot;UI Components&quot;,&quot;href&quot;:&quot;/pages/web-responsive/style&quot;},{&quot;label&quot;:&quot;Layout&quot;,&quot;href&quot;:&quot;/pages/web-responsive/layout&quot;},{&quot;label&quot;:&quot;Resources&quot;,&quot;href&quot;:&quot;/pages/web-responsive/resources&quot;}]}" uid="uxTopBar_91"></ux-top-bar><ul>{{#events.uxTopBar_91}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-top-bar datamodel="{{dataModel}}"></ux-top-bar></code></pre> <pre>	<code>{
+    "class": "contain-to-grid",
+    "issticky": true,
+    "title": "",
+    "href": ".",
+    "menulabel": "Menu",
+    "dataoptions": "",
+    "leftitems": [
+        {
+            "label": "<i class=\"icon icon_solid-screen\"></i>Responsive Web",
+            "href": ".",
+            "items": [
+                {
+                    "label": "<i class=\"icon icon_tv\"></i>TV",
+                    "href": "."
+                },
+                {
+                    "label": "<i class=\"icon icon_mobile\"></i>Mobile Apps",
+                    "href": "."
+                }
+            ]
+        }
+    ],
+    "rightitems": [
+        {
+            "label": "Overview",
+            "href": "/pages",
+            "active": true
+        },
+        {
+            "label": "Style",
+            "href": "/pages/web-responsive/style"
+        },
+        {
+            "label": "UI Components",
+            "href": "/pages/web-responsive/style"
+        },
+        {
+            "label": "Layout",
+            "href": "/pages/web-responsive/layout"
+        },
+        {
+            "label": "Resources",
+            "href": "/pages/web-responsive/resources"
+        }
+    ]
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxTopBar_92"><ux-top-bar title="Test Title" class="contain-to-grid mode"><ux-top-bar-items class="right"><li class="active"><a href="#">Right Button Active</a></li> <li class="has-dropdown not-click"><a href="#">Right nesting</a> <ux-top-bar-items class="dropdown"><li><a href="#">First link in dropdown</a></li> <li class="has-dropdown not-click"><a href="#">Second link with items</a> <ux-top-bar-items class="dropdown"><li><a href="#">nested item 1</a></li> <li><a href="#">nested item 2</a></li> <li><a href="#">nested item 3</a></li></ux-top-bar-items></li> <li class="active"><a href="#">Active link in dropdown</a></li></ux-top-bar-items></li></ux-top-bar-items> <ux-top-bar-items class="left"><li href="#"><a href="#">Left Button</a></li></ux-top-bar-items></ux-top-bar></div> <br> <pre><code><ux-top-bar title="Test Title" class="contain-to-grid mode">
+	<ux-top-bar-items class="right">
+		<li class="active"><a href="#">Right Button Active</a></li>
+		<li class="has-dropdown not-click">
+			<a href="#">Right nesting</a>
+			<ux-top-bar-items class="dropdown">
+				<li><a href="#">First link in dropdown</a></li>
+				<li class="has-dropdown not-click">
+					<a href="#">Second link with items</a>
+					<ux-top-bar-items class="dropdown">
+						<li><a href="#">nested item 1</a></li>
+						<li><a href="#">nested item 2</a></li>
+						<li><a href="#">nested item 3</a></li>
+					</ux-top-bar-items>
+				</li>
+				<li class="active"><a href="#">Active link in dropdown</a></li>
+			</ux-top-bar-items>
+		</li>
+	</ux-top-bar-items>
+	<ux-top-bar-items class="left">
+		<li href="#"><a href="#">Left Button</a></li>
+	</ux-top-bar-items>
+</ux-top-bar>
+</code></pre> </ux-tabpane></ux-tabpanes></ux-tabarea></ux-tabpane> <ux-tabpane> <br> <strong>Semantic Data Model</strong> <br> <kbd>class</kbd><span> - Class for the top bar wrapper</span><br/><kbd>issticky</kbd><span> - Activate sticky mode</span><br/><kbd>title</kbd><span> - Leading text to display on the ux-off-canvas component</span><br/><kbd>href</kbd><span> - Link for your title</span><br/><kbd>menulabel</kbd><span> - Label for the menu button</span><br/><kbd>leftitems</kbd><span> - Array of nav items for the left hand side of the top bar</span><br/><kbd>rightitems</kbd><span> - Array of nav items for the right hand side of the top bar</span><br/><kbd>dataoptions</kbd><span> - Array of options like as outlined in Foundation top bar documentation (dropdown_autoclose, is_hover, etc.)</span><br/></ux-tabpane></ux-tabpanes></ux-tabarea> <hr></ux-col> <ux-col class="medium-3 medium-pull-9 columns"><ux-sidenav datamodel="{&quot;title&quot;:&quot;Docs Nav&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;buttons&quot;},{&quot;label&quot;:&quot;ux-button&quot;,&quot;href&quot;:&quot;ux-button.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-button-group&quot;,&quot;href&quot;:&quot;ux-button-group.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;callouts &amp; prompts&quot;},{&quot;label&quot;:&quot;ux-alert&quot;,&quot;href&quot;:&quot;ux-alert.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-panel&quot;,&quot;href&quot;:&quot;ux-panel.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-reveal&quot;,&quot;href&quot;:&quot;ux-reveal.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tooltip&quot;,&quot;href&quot;:&quot;ux-tooltip.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;content&quot;},{&quot;label&quot;:&quot;ux-accordion&quot;,&quot;href&quot;:&quot;ux-accordion.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-anchor&quot;,&quot;href&quot;:&quot;ux-anchor.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-col&quot;,&quot;href&quot;:&quot;ux-col.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-content&quot;,&quot;href&quot;:&quot;ux-content.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-header&quot;,&quot;href&quot;:&quot;ux-header.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-pricingtable&quot;,&quot;href&quot;:&quot;ux-pricingtable.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-progress&quot;,&quot;href&quot;:&quot;ux-progress.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-row&quot;,&quot;href&quot;:&quot;ux-row.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-tabarea&quot;,&quot;href&quot;:&quot;ux-tabarea.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-table&quot;,&quot;href&quot;:&quot;ux-table.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;form&quot;},{&quot;label&quot;:&quot;ux-switch&quot;,&quot;href&quot;:&quot;ux-switch.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;media&quot;},{&quot;label&quot;:&quot;ux-flex-video&quot;,&quot;href&quot;:&quot;ux-flex-video.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-orbit&quot;,&quot;href&quot;:&quot;ux-orbit.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-thumbnail&quot;,&quot;href&quot;:&quot;ux-thumbnail.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;navigation&quot;},{&quot;label&quot;:&quot;ux-breadcrumbs&quot;,&quot;href&quot;:&quot;ux-breadcrumbs.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-iconbar&quot;,&quot;href&quot;:&quot;ux-iconbar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-joyride&quot;,&quot;href&quot;:&quot;ux-joyride.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-off-canvas&quot;,&quot;href&quot;:&quot;ux-off-canvas.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-pagination&quot;,&quot;href&quot;:&quot;ux-pagination.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sidenav&quot;,&quot;href&quot;:&quot;ux-sidenav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sub-nav&quot;,&quot;href&quot;:&quot;ux-sub-nav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tablink&quot;,&quot;href&quot;:&quot;ux-tablink.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-top-bar&quot;,&quot;href&quot;:&quot;ux-top-bar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;typography&quot;},{&quot;label&quot;:&quot;ux-inline-list&quot;,&quot;href&quot;:&quot;ux-inline-list.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-keystrokes&quot;,&quot;href&quot;:&quot;ux-keystrokes.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-label&quot;,&quot;href&quot;:&quot;ux-label.html&quot;,&quot;class&quot;:&quot;&quot;}]}"></ux-sidenav></ux-col></ux-row>		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>

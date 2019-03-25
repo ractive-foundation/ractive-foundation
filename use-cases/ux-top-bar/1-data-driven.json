@@ -1,0 +1,46 @@
+{
+	"title": "contain-to-grid mode",
+	"isDataModel": true,
+	"data": {
+		"class": "contain-to-grid",
+		"title": "Test Title",
+		"menulabel": "Menu",
+		"dataoptions": "",
+		"leftitems": [
+			{
+				"label": "Left Button",
+				"href": "#"
+			}
+		],
+		"rightitems": [
+			{
+				"label": "Right Button Active",
+				"href": "#r1",
+				"active": true
+			},
+			{
+				"label": "Right nesting",
+				"href": "#r2",
+				"items": [
+					{
+						"label": "First link in dropdown",
+						"href": "#r21"
+					},
+					{
+						"label": "Second link with items",
+						"items": [
+							{ "label": "nested item 1", "href": "#r221" },
+							{ "label": "nested item 2", "href": "#r222" },
+							{ "label": "nested item 3", "href": "#r223" }
+						]
+					},
+					{
+						"label": "Active link in dropdown",
+						"href": "#r23",
+						"active": true
+					}
+				]
+			}
+		]
+	}
+}

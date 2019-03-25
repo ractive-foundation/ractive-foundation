@@ -1,0 +1,8 @@
+{
+	"title": "Data driven use case",
+	"isDataModel": true,
+	"data": {
+		"src": "http://placekitten.com/g/1500/500",
+		"href": "#"
+	}
+}

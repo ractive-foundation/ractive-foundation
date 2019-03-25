@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ractive Foundation Test Runner</title>
+
+	<link rel="stylesheet" href="/css/foundation/normalize.css">
+	<link rel="stylesheet" href="/css/foundation/foundation.css">
+	<link rel="stylesheet" href="/css/components.css">
+
+</head>
+<body>
+
+<div class="ractivef">
+	<div id="childComponent"></div>
+	<div id="template"></div>
+</div>
+
+<script>
+	if (!Function.prototype.bind) {
+		Function.prototype.bind = function(oThis) {
+			if (typeof this !== 'function') {
+				// closest thing possible to the ECMAScript 5
+				// internal IsCallable function
+				throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+			}
+
+			var aArgs   = Array.prototype.slice.call(arguments, 1),
+					fToBind = this,
+					fNOP    = function() {},
+					fBound  = function() {
+						return fToBind.apply(this instanceof fNOP
+										? this
+										: oThis,
+								aArgs.concat(Array.prototype.slice.call(arguments)));
+					};
+
+			if (this.prototype) {
+				// native functions don't have a prototype
+				fNOP.prototype = this.prototype;
+			}
+			fBound.prototype = new fNOP();
+
+			return fBound;
+		};
+	}
+</script>
+<script src="/js/lodash-compat/index.js"></script>
+<script src="/js/ractive/ractive.min.js"></script>
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="/js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src="/js/ractivef.js"></script>
+<script src="/js/templates-tests.js"></script>
+<script src="/js/page/page.js"></script>
+<script src="/js/superagent/superagent.js"></script>
+<script src="/js/route.js"></script>
+
+</body>
+</html>

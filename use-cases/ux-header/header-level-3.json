@@ -1,0 +1,11 @@
+{
+	"title": "Header - Level 3",
+	"isDataModel": true,
+	"data": {
+		"level": "3",
+		"id": "h3Id",
+		"class": "h3Class",
+		"ariaLabel": "Header Level 3",
+		"content": "Header Level 3"
+	}
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row><ux-col class="medium-9 medium-push-3"><ux-header level="1">ux-button</ux-header> <blockquote>
+<p>This renders a button</p>
+</blockquote>
+<p>Read <a href="http://foundation.zurb.com/docs/components/button.html">Foundation's button</a> docs for more details.</p>
+ <br> <ux-tabarea><ux-tablinks><ux-tablink active="true">Use Cases</ux-tablink> <ux-tablink>Manifest</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><ux-tabarea><ux-tablinks><ux-tablink active="true">Alert Button</ux-tablink><ux-tablink>Attributes</ux-tablink><ux-tablink>Default Button</ux-tablink><ux-tablink>Disabled Button</ux-tablink><ux-tablink>Expand Button</ux-tablink><ux-tablink>Anchor Button</ux-tablink><ux-tablink>Info Button</ux-tablink><ux-tablink>Large Button</ux-tablink><ux-tablink>Radius Button</ux-tablink><ux-tablink>Round Button</ux-tablink><ux-tablink>Secondary Button</ux-tablink><ux-tablink>Small Button</ux-tablink><ux-tablink>Success Button</ux-tablink><ux-tablink>Tiny Button</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><div class="ractivef-use-case" id="uxButton_16"><ux-button text="Alert Button" class="alert" uid="uxButton_16"></ux-button><ul>{{#events.uxButton_16}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Alert Button" class="alert"></ux-button></code></pre> <pre>	<code>{
+    "text": "Alert Button",
+    "class": "alert"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_17"><ux-button text="Attributes!" role="button" arialabel="somelabel" tabindex="10" onclick="BuyBuyBuy" uid="uxButton_17"></ux-button><ul>{{#events.uxButton_17}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Attributes!" role="button" arialabel="somelabel" tabindex="10" onclick="BuyBuyBuy"></ux-button></code></pre> <pre>	<code>{
+    "text": "Attributes!",
+    "role": "button",
+    "arialabel": "somelabel",
+    "tabindex": 10,
+    "onclick": "BuyBuyBuy"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_18"><ux-button text="Default Button" uid="uxButton_18"></ux-button><ul>{{#events.uxButton_18}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Default Button"></ux-button></code></pre> <pre>	<code>{
+    "text": "Default Button"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_19"><ux-button text="Disabled Button" class="disabled" disabled="true" uid="uxButton_19"></ux-button><ul>{{#events.uxButton_19}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Disabled Button" class="disabled" disabled="true"></ux-button></code></pre> <pre>	<code>{
+    "text": "Disabled Button",
+    "class": "disabled",
+    "disabled": "true"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_20"><ux-button text="Expand Button" class="expand" uid="uxButton_20"></ux-button><ul>{{#events.uxButton_20}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Expand Button" class="expand"></ux-button></code></pre> <pre>	<code>{
+    "text": "Expand Button",
+    "class": "expand"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_21"><ux-button text="Anchor Button" href="#" uid="uxButton_21"></ux-button><ul>{{#events.uxButton_21}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Anchor Button" href="#"></ux-button></code></pre> <pre>	<code>{
+    "text": "Anchor Button",
+    "href": "#"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_22"><ux-button text="Info Button" class="info" uid="uxButton_22"></ux-button><ul>{{#events.uxButton_22}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Info Button" class="info"></ux-button></code></pre> <pre>	<code>{
+    "text": "Info Button",
+    "class": "info"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_23"><ux-button text="Large Button" class="large" uid="uxButton_23"></ux-button><ul>{{#events.uxButton_23}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Large Button" class="large"></ux-button></code></pre> <pre>	<code>{
+    "text": "Large Button",
+    "class": "large"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_24"><ux-button text="Radius Button" class="radius" uid="uxButton_24"></ux-button><ul>{{#events.uxButton_24}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Radius Button" class="radius"></ux-button></code></pre> <pre>	<code>{
+    "text": "Radius Button",
+    "class": "radius"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_25"><ux-button text="Round Button" class="round" uid="uxButton_25"></ux-button><ul>{{#events.uxButton_25}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Round Button" class="round"></ux-button></code></pre> <pre>	<code>{
+    "text": "Round Button",
+    "class": "round"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_26"><ux-button text="Secondary Button" class="secondary" uid="uxButton_26"></ux-button><ul>{{#events.uxButton_26}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Secondary Button" class="secondary"></ux-button></code></pre> <pre>	<code>{
+    "text": "Secondary Button",
+    "class": "secondary"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_27"><ux-button text="Small Button" class="small" uid="uxButton_27"></ux-button><ul>{{#events.uxButton_27}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Small Button" class="small"></ux-button></code></pre> <pre>	<code>{
+    "text": "Small Button",
+    "class": "small"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_28"><ux-button text="Success Button" class="success" uid="uxButton_28"></ux-button><ul>{{#events.uxButton_28}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Success Button" class="success"></ux-button></code></pre> <pre>	<code>{
+    "text": "Success Button",
+    "class": "success"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxButton_29"><ux-button text="Tiny Button" class="tiny" uid="uxButton_29"></ux-button><ul>{{#events.uxButton_29}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-button text="Tiny Button" class="tiny"></ux-button></code></pre> <pre>	<code>{
+    "text": "Tiny Button",
+    "class": "tiny"
+}</code></pre></ux-tabpane></ux-tabpanes></ux-tabarea></ux-tabpane> <ux-tabpane><strong>Semantic Event Mapping</strong> <br> <kbd>onclick</kbd><span> - Event to fire when button is clicked</span><br/> <br> <br> <strong>Semantic Data Model</strong> <br> <kbd>text</kbd><span> - The text to display on the button</span><br/><kbd>href</kbd><span> - The link to follow when the button is clicked</span><br/><kbd>role</kbd><span> - The role of the button</span><br/><kbd>arialabel</kbd><span> - Accessibility label</span><br/><kbd>tabindex</kbd><span> - Tabable index of the element</span><br/></ux-tabpane></ux-tabpanes></ux-tabarea> <hr></ux-col> <ux-col class="medium-3 medium-pull-9 columns"><ux-sidenav datamodel="{&quot;title&quot;:&quot;Docs Nav&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;buttons&quot;},{&quot;label&quot;:&quot;ux-button&quot;,&quot;href&quot;:&quot;ux-button.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-button-group&quot;,&quot;href&quot;:&quot;ux-button-group.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;callouts &amp; prompts&quot;},{&quot;label&quot;:&quot;ux-alert&quot;,&quot;href&quot;:&quot;ux-alert.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-panel&quot;,&quot;href&quot;:&quot;ux-panel.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-reveal&quot;,&quot;href&quot;:&quot;ux-reveal.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tooltip&quot;,&quot;href&quot;:&quot;ux-tooltip.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;content&quot;},{&quot;label&quot;:&quot;ux-accordion&quot;,&quot;href&quot;:&quot;ux-accordion.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-anchor&quot;,&quot;href&quot;:&quot;ux-anchor.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-col&quot;,&quot;href&quot;:&quot;ux-col.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-content&quot;,&quot;href&quot;:&quot;ux-content.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-header&quot;,&quot;href&quot;:&quot;ux-header.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-pricingtable&quot;,&quot;href&quot;:&quot;ux-pricingtable.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-progress&quot;,&quot;href&quot;:&quot;ux-progress.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-row&quot;,&quot;href&quot;:&quot;ux-row.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-tabarea&quot;,&quot;href&quot;:&quot;ux-tabarea.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-table&quot;,&quot;href&quot;:&quot;ux-table.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;form&quot;},{&quot;label&quot;:&quot;ux-switch&quot;,&quot;href&quot;:&quot;ux-switch.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;media&quot;},{&quot;label&quot;:&quot;ux-flex-video&quot;,&quot;href&quot;:&quot;ux-flex-video.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-orbit&quot;,&quot;href&quot;:&quot;ux-orbit.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-thumbnail&quot;,&quot;href&quot;:&quot;ux-thumbnail.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;navigation&quot;},{&quot;label&quot;:&quot;ux-breadcrumbs&quot;,&quot;href&quot;:&quot;ux-breadcrumbs.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-iconbar&quot;,&quot;href&quot;:&quot;ux-iconbar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-joyride&quot;,&quot;href&quot;:&quot;ux-joyride.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-off-canvas&quot;,&quot;href&quot;:&quot;ux-off-canvas.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-pagination&quot;,&quot;href&quot;:&quot;ux-pagination.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sidenav&quot;,&quot;href&quot;:&quot;ux-sidenav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sub-nav&quot;,&quot;href&quot;:&quot;ux-sub-nav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tablink&quot;,&quot;href&quot;:&quot;ux-tablink.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-top-bar&quot;,&quot;href&quot;:&quot;ux-top-bar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;typography&quot;},{&quot;label&quot;:&quot;ux-inline-list&quot;,&quot;href&quot;:&quot;ux-inline-list.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-keystrokes&quot;,&quot;href&quot;:&quot;ux-keystrokes.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-label&quot;,&quot;href&quot;:&quot;ux-label.html&quot;,&quot;class&quot;:&quot;&quot;}]}"></ux-sidenav></ux-col></ux-row>		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>

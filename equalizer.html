@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row><ux-col class="medium-9 medium-push-3"><ux-header level="1">equalizer</ux-header> <blockquote>
+<p>The equalizer will calculate the maximum height of a group of elements and apply the height to all elements</p>
+</blockquote>
+<p>See <a href="http://foundation.zurb.com/docs/components/equalizer.html">Foundation's equalizer.html docs</a> for details.
+Media query functionality not provided.
+Images or the wrapper element of responsive images must have a fixed height as the equalizer can be triggered before image downloads are completed.</p>
+<p>Transitions are only triggered when the node is added so window resize and orientation change events need to toggle a switch which would result in the equalized elements being removed then reinstated by the template.</p>
+<p>For example toggle reflow</p>
+<p>this.ractive.set('reflow', false).then(function() {
+    this.ractive.set('reflow', true);
+}.bind(this));</p>
+ <ux-header level="2">Use cases</ux-header> <h5>Use case: </h5> <div class="ractivef-use-case"></div> <br> <pre>	<code></code></pre> <hr></ux-col> <ux-col class="medium-3 medium-pull-9 columns"><ux-sidenav datamodel="{&quot;title&quot;:&quot;Docs Nav&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;decorators&quot;},{&quot;label&quot;:&quot;tooltip&quot;,&quot;href&quot;:&quot;tooltip.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;transitions&quot;},{&quot;label&quot;:&quot;equalizer&quot;,&quot;href&quot;:&quot;equalizer.html&quot;,&quot;class&quot;:&quot;&quot;}]}"></ux-sidenav></ux-col></ux-row>		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>

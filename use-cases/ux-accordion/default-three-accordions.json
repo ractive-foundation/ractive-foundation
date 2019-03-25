@@ -1,0 +1,20 @@
+{
+	"title": "Three Accordions (data driven)",
+	"isDataModel": true,
+	"data": {
+		"items": [
+			{
+				"title": "Accordion item 1",
+				"content": "First accordion item"
+			},
+			{
+				"title": "Accordion item 2",
+				"content": "Second accordion item"
+			},
+			{
+				"title": "Accordion item 3",
+				"content": "Accordion 3: Lorem ipsum dolor"
+			}
+		]
+	}
+}

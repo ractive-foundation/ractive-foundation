@@ -1,0 +1,51 @@
+{
+	"title": "sticky top bar",
+	"isDataModel": true,
+	"data": {
+		"class": "contain-to-grid",
+		"issticky": true,
+		"title": "",
+		"href": ".",
+		"menulabel": "Menu",
+		"dataoptions": "",
+		"leftitems": [
+			{
+				"label": "<i class=\"icon icon_solid-screen\"></i>Responsive Web",
+				"href": ".",
+				"items": [
+					{
+						"label": "<i class=\"icon icon_tv\"></i>TV",
+						"href": "."
+					},
+					{
+						"label": "<i class=\"icon icon_mobile\"></i>Mobile Apps",
+						"href": "."
+					}
+				]
+			}
+		],
+		"rightitems": [
+			{
+				"label": "Overview",
+				"href": "/pages",
+				"active": true
+			},
+			{
+				"label": "Style",
+				"href": "/pages/web-responsive/style"
+			},
+			{
+				"label": "UI Components",
+				"href": "/pages/web-responsive/style"
+			},
+			{
+				"label": "Layout",
+				"href": "/pages/web-responsive/layout"
+			},
+			{
+				"label": "Resources",
+				"href": "/pages/web-responsive/resources"
+			}
+		]
+	}
+}

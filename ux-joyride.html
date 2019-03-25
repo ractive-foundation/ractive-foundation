@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row><ux-col class="medium-9 medium-push-3"><ux-header level="1">ux-joyride</ux-header> <blockquote>
+<p>ux-joyride Documentation</p>
+</blockquote>
+<p>This component implements <a href="http://foundation.zurb.com/sites/docs/v/5.5.3/components/joyride.html">Foundation's joyride</a> component.</p>
+ <br> <ux-tabarea><ux-tablinks><ux-tablink active="true">Use Cases</ux-tablink> <ux-tablink>Manifest</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><ux-tabarea><ux-tablinks><ux-tablink active="true">Default</ux-tablink><ux-tablink>Below</ux-tablink><ux-tablink>Left</ux-tablink><ux-tablink>Start on init</ux-tablink><ux-tablink>Show on hover</ux-tablink><ux-tablink>hasYield</ux-tablink><ux-tablink>Tool tip</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_46"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;&lt;a class=&#39;right-point1&#39;&gt;point 1&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;right-point2&#39;&gt;point 2&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;right-point3&#39;&gt;point 3&lt;/a&gt;&quot;,&quot;id&quot;:&quot;tipRight&quot;,&quot;title&quot;:&quot;tooltip title&quot;,&quot;contents&quot;:[{&quot;selector&quot;:&quot;.right-point1&quot;,&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.right-point2&quot;,&quot;text&quot;:&quot;&lt;p&gt;continue journey :point 2&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.right-point3&quot;,&quot;text&quot;:&quot;&lt;p&gt;end journey :point 3&lt;/p&gt;&quot;}],&quot;hasYield&quot;:false}" uid="uxJoyride_46"></ux-joyride><ul>{{#events.uxJoyride_46}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "<a class='right-point1'>point 1</a><br/><a class='right-point2'>point 2</a><br/><a class='right-point3'>point 3</a>",
+    "id": "tipRight",
+    "title": "tooltip title",
+    "contents": [
+        {
+            "selector": ".right-point1",
+            "text": "<p>journey started :point 1</p>"
+        },
+        {
+            "selector": ".right-point2",
+            "text": "<p>continue journey :point 2</p>"
+        },
+        {
+            "selector": ".right-point3",
+            "text": "<p>end journey :point 3</p>"
+        }
+    ],
+    "hasYield": false
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_47"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;&lt;a class=&#39;down-point1&#39;&gt;point 1&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;down-point2&#39;&gt;point 2&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;down-point3&#39;&gt;point 3&lt;/a&gt;&quot;,&quot;id&quot;:&quot;tipDown&quot;,&quot;open&quot;:&quot;down&quot;,&quot;contents&quot;:[{&quot;selector&quot;:&quot;.down-point1&quot;,&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.down-point2&quot;,&quot;text&quot;:&quot;&lt;p&gt;continue journey :point 2&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.down-point3&quot;,&quot;text&quot;:&quot;&lt;p&gt;end journey :point 3&lt;/p&gt;&quot;}],&quot;hasYield&quot;:false}" uid="uxJoyride_47"></ux-joyride><ul>{{#events.uxJoyride_47}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "<a class='down-point1'>point 1</a><br/><a class='down-point2'>point 2</a><br/><a class='down-point3'>point 3</a>",
+    "id": "tipDown",
+    "open": "down",
+    "contents": [
+        {
+            "selector": ".down-point1",
+            "text": "<p>journey started :point 1</p>"
+        },
+        {
+            "selector": ".down-point2",
+            "text": "<p>continue journey :point 2</p>"
+        },
+        {
+            "selector": ".down-point3",
+            "text": "<p>end journey :point 3</p>"
+        }
+    ],
+    "hasYield": false
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_48"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;&lt;a class=&#39;left-point1&#39;&gt;point 1&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;left-point2&#39;&gt;point 2&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;left-point3&#39;&gt;point 3&lt;/a&gt;&quot;,&quot;id&quot;:&quot;tipLeft&quot;,&quot;title&quot;:&quot;tooltip title&quot;,&quot;open&quot;:&quot;left&quot;,&quot;contents&quot;:[{&quot;selector&quot;:&quot;.left-point1&quot;,&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.left-point2&quot;,&quot;text&quot;:&quot;&lt;p&gt;continue journey :point 2&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.left-point3&quot;,&quot;text&quot;:&quot;&lt;p&gt;end journey :point 3&lt;/p&gt;&quot;}],&quot;hasYield&quot;:false}" uid="uxJoyride_48"></ux-joyride><ul>{{#events.uxJoyride_48}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "<a class='left-point1'>point 1</a><br/><a class='left-point2'>point 2</a><br/><a class='left-point3'>point 3</a>",
+    "id": "tipLeft",
+    "title": "tooltip title",
+    "open": "left",
+    "contents": [
+        {
+            "selector": ".left-point1",
+            "text": "<p>journey started :point 1</p>"
+        },
+        {
+            "selector": ".left-point2",
+            "text": "<p>continue journey :point 2</p>"
+        },
+        {
+            "selector": ".left-point3",
+            "text": "<p>end journey :point 3</p>"
+        }
+    ],
+    "hasYield": false
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_49"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;&lt;a class=&#39;init-point1&#39;&gt;point 1&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;init-point2&#39;&gt;point 2&lt;/a&gt;&lt;br/&gt;&lt;a class=&#39;init-point3&#39;&gt;point 3&lt;/a&gt;&quot;,&quot;id&quot;:&quot;tipOpen&quot;,&quot;title&quot;:&quot;tooltip title&quot;,&quot;contents&quot;:[{&quot;selector&quot;:&quot;.init-point1&quot;,&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.init-point2&quot;,&quot;text&quot;:&quot;&lt;p&gt;continue journey :point 2&lt;/p&gt;&quot;},{&quot;selector&quot;:&quot;.init-point3&quot;,&quot;text&quot;:&quot;&lt;p&gt;end journey :point 3&lt;/p&gt;&quot;}],&quot;hasYield&quot;:false,&quot;isOpenOnInit&quot;:&quot;true&quot;}" uid="uxJoyride_49"></ux-joyride><ul>{{#events.uxJoyride_49}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "<a class='init-point1'>point 1</a><br/><a class='init-point2'>point 2</a><br/><a class='init-point3'>point 3</a>",
+    "id": "tipOpen",
+    "title": "tooltip title",
+    "contents": [
+        {
+            "selector": ".init-point1",
+            "text": "<p>journey started :point 1</p>"
+        },
+        {
+            "selector": ".init-point2",
+            "text": "<p>continue journey :point 2</p>"
+        },
+        {
+            "selector": ".init-point3",
+            "text": "<p>end journey :point 3</p>"
+        }
+    ],
+    "hasYield": false,
+    "isOpenOnInit": "true"
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_50"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;&lt;a class=&#39;right-point1&#39;&gt;point 1&lt;/a&gt;&quot;,&quot;id&quot;:&quot;showOnHover&quot;,&quot;title&quot;:&quot;Read more&quot;,&quot;contents&quot;:[{&quot;selector&quot;:&quot;.right-point1&quot;,&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;}],&quot;showOnHover&quot;:true}" uid="uxJoyride_50"></ux-joyride><ul>{{#events.uxJoyride_50}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "<a class='right-point1'>point 1</a>",
+    "id": "showOnHover",
+    "title": "Read more",
+    "contents": [
+        {
+            "selector": ".right-point1",
+            "text": "<p>journey started :point 1</p>"
+        }
+    ],
+    "showOnHover": true
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_51"><div><ul><li class="joy1"><a>First step</a></li> <li class="joy2">Second step</li> <li class="joy3">Third step</li></ul> <ux-joyride title="Riding with joy" contents="[
+			{
+				&#39;selector&#39;: &#39;li.joy1&#39;,
+				&#39;description&#39;: &#39;What to do first&#39;,
+				&#39;step&#39;: &#39;1&#39;
+			},
+			{
+				&#39;selector&#39;: &#39;li.joy2&#39;,
+				&#39;description&#39;: &#39;What to do first2&#39;,
+				&#39;step&#39;: &#39;2&#39;
+			},
+			{
+				&#39;selector&#39;: &#39;li.joy3&#39;,
+				&#39;description&#39;: &#39;Last&#39;,
+				&#39;step&#39;: &#39;3&#39;
+			}
+		]">This is <br> </ux-joyride></div> <script>	// Listen for the event
+	document.addEventListener('widget-init', function (event) {
+		var component = event.instance.findAllComponents('ux-joyride')[2];
+		component.fire('toggle');
+	}, false);</script></div> <br> <pre><code><div>
+	<ul>
+		<li class="joy1"><a on-tap="">First step</a></li>
+		<li class="joy2">Second step</li>
+		<li class="joy3">Third step</li>
+	</ul>
+	<ux-joyride
+		title= "Riding with joy"
+		contents="[
+			{
+				'selector': 'li.joy1',
+				'description': 'What to do first',
+				'step': '1'
+			},
+			{
+				'selector': 'li.joy2',
+				'description': 'What to do first2',
+				'step': '2'
+			},
+			{
+				'selector': 'li.joy3',
+				'description': 'Last',
+				'step': '3'
+			}
+		]"
+	>
+		This is {{step}}<br/>
+		{{description}}
+	</ux-joyride>
+</div>
+
+<script>
+	// Listen for the event
+	document.addEventListener('widget-init', function (event) {
+		var component = event.instance.findAllComponents('ux-joyride')[2];
+		component.fire('toggle');
+	}, false);
+</script>
+</code></pre> </ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxJoyride_52"><ux-joyride datamodel="{&quot;linkText&quot;:&quot;see breakdown&quot;,&quot;id&quot;:&quot;tipModal&quot;,&quot;title&quot;:&quot;tooltip title&quot;,&quot;contents&quot;:[{&quot;text&quot;:&quot;&lt;p&gt;journey started :point 1&lt;/p&gt;&quot;}],&quot;hasYield&quot;:false}" uid="uxJoyride_52"></ux-joyride><ul>{{#events.uxJoyride_52}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-joyride datamodel="{{dataModel}}"></ux-joyride></code></pre> <pre>	<code>{
+    "linkText": "see breakdown",
+    "id": "tipModal",
+    "title": "tooltip title",
+    "contents": [
+        {
+            "text": "<p>journey started :point 1</p>"
+        }
+    ],
+    "hasYield": false
+}</code></pre></ux-tabpane></ux-tabpanes></ux-tabarea></ux-tabpane> <ux-tabpane> <br> <strong>Semantic Data Model</strong> <br> <kbd>linkText</kbd><span> - Initial display text</span><br/><kbd>id</kbd><span> - A default ID for the widget</span><br/><kbd>title</kbd><span> - The title text for the popup (Optional)</span><br/><kbd>open</kbd><span> - Open position for popup ((Default) right, down or left)</span><br/><kbd>contents</kbd><span> - List of contents for each step (required only if hasYield is false)</span><br/><kbd>hasYield</kbd><span> - Bool, determins if content is used or not</span><br/><kbd>isOpenOnInit</kbd><span> - Bool, flags to open first step imediatly</span><br/><kbd>defaultNubTop</kbd><span> - Allow positioning of top nub</span><br/><kbd>defaultNubLeft</kbd><span> - For open down, nub left offset, (Default is foundation's default, 22)</span><br/><kbd>maxMobileWidth</kbd><span> - Set a maximum width for the joyride (Default is 500)</span><br/><kbd>closeText</kbd><span> - The text for the close button (Default '×')</span><br/><kbd>showOnHover</kbd><span> - Bool, whether to open joyride on hover</span><br/></ux-tabpane></ux-tabpanes></ux-tabarea> <hr></ux-col> <ux-col class="medium-3 medium-pull-9 columns"><ux-sidenav datamodel="{&quot;title&quot;:&quot;Docs Nav&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;buttons&quot;},{&quot;label&quot;:&quot;ux-button&quot;,&quot;href&quot;:&quot;ux-button.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-button-group&quot;,&quot;href&quot;:&quot;ux-button-group.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;callouts &amp; prompts&quot;},{&quot;label&quot;:&quot;ux-alert&quot;,&quot;href&quot;:&quot;ux-alert.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-panel&quot;,&quot;href&quot;:&quot;ux-panel.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-reveal&quot;,&quot;href&quot;:&quot;ux-reveal.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tooltip&quot;,&quot;href&quot;:&quot;ux-tooltip.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;content&quot;},{&quot;label&quot;:&quot;ux-accordion&quot;,&quot;href&quot;:&quot;ux-accordion.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-anchor&quot;,&quot;href&quot;:&quot;ux-anchor.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-col&quot;,&quot;href&quot;:&quot;ux-col.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-content&quot;,&quot;href&quot;:&quot;ux-content.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-header&quot;,&quot;href&quot;:&quot;ux-header.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-pricingtable&quot;,&quot;href&quot;:&quot;ux-pricingtable.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-progress&quot;,&quot;href&quot;:&quot;ux-progress.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-row&quot;,&quot;href&quot;:&quot;ux-row.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-tabarea&quot;,&quot;href&quot;:&quot;ux-tabarea.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-table&quot;,&quot;href&quot;:&quot;ux-table.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;form&quot;},{&quot;label&quot;:&quot;ux-switch&quot;,&quot;href&quot;:&quot;ux-switch.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;media&quot;},{&quot;label&quot;:&quot;ux-flex-video&quot;,&quot;href&quot;:&quot;ux-flex-video.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-orbit&quot;,&quot;href&quot;:&quot;ux-orbit.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-thumbnail&quot;,&quot;href&quot;:&quot;ux-thumbnail.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;navigation&quot;},{&quot;label&quot;:&quot;ux-breadcrumbs&quot;,&quot;href&quot;:&quot;ux-breadcrumbs.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-iconbar&quot;,&quot;href&quot;:&quot;ux-iconbar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-joyride&quot;,&quot;href&quot;:&quot;ux-joyride.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-off-canvas&quot;,&quot;href&quot;:&quot;ux-off-canvas.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-pagination&quot;,&quot;href&quot;:&quot;ux-pagination.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sidenav&quot;,&quot;href&quot;:&quot;ux-sidenav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sub-nav&quot;,&quot;href&quot;:&quot;ux-sub-nav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tablink&quot;,&quot;href&quot;:&quot;ux-tablink.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-top-bar&quot;,&quot;href&quot;:&quot;ux-top-bar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;typography&quot;},{&quot;label&quot;:&quot;ux-inline-list&quot;,&quot;href&quot;:&quot;ux-inline-list.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-keystrokes&quot;,&quot;href&quot;:&quot;ux-keystrokes.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-label&quot;,&quot;href&quot;:&quot;ux-label.html&quot;,&quot;class&quot;:&quot;&quot;}]}"></ux-sidenav></ux-col></ux-row>		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>

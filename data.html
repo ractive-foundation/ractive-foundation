@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row>
+	<ux-col class="small-12">
+		<ux-header level="1">Ractive Foundation Data-driven Demos</ux-header>
+		<div class="panel clearfix">
+			<p>View source to see how these are setup. The big strings in <code>datamodel</code> are html-escaped JSON.</p>
+			<p>You can create your own in console: <code>_.escape(JSON.stringify(yourObjectLiteralHere));</code>
+		</div>
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row>
+	<ux-col class="small-12">
+		<ux-header level="2">ux-label demo</ux-header>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Default&quot;,&quot;class&quot;:&quot;&quot;}"></ux-label>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Secondary (radius)&quot;,&quot;class&quot;:&quot;radius secondary&quot;}"></ux-label>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;info&quot;}"></ux-label>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Success&quot;,&quot;class&quot;:&quot;success&quot;}"></ux-label>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Warning&quot;,&quot;class&quot;:&quot;warning&quot;}"></ux-label>
+		<ux-label datamodel="{&quot;text&quot;:&quot;Alert (radius)&quot;,&quot;class&quot;:&quot;alert&quot;}"></ux-label>
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row>
+	<ux-col class="small-12">
+		<ux-header level="2">ux-orbit demo</ux-header>
+		<ux-orbit datamodel="{&quot;items&quot;:[{&quot;imagesrc&quot;:&quot;http://placekitten.com/g/200/300&quot;,&quot;link&quot;:&quot;.&quot;,&quot;imagealt&quot;:&quot;Slide 1&quot;,&quot;caption&quot;:&quot;Caption One&quot;,&quot;active&quot;:true},{&quot;imagesrc&quot;:&quot;http://placekitten.com/g/200/300&quot;,&quot;imagealt&quot;:&quot;Slide 2&quot;,&quot;link&quot;:&quot;.&quot;,&quot;caption&quot;:&quot;Caption Two&quot;,&quot;active&quot;:false}]}"></ux-orbit>
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row>
+	<ux-col class="small-12">
+		<ux-header level="2">ux-top-bar demo</ux-header>
+
+		<ux-top-bar datamodel="{&quot;class&quot;:&quot;primary&quot;,&quot;issticky&quot;:true,&quot;title&quot;:&quot;&quot;,&quot;href&quot;:&quot;.&quot;,&quot;menulabel&quot;:&quot;Menu&quot;,&quot;dataoptions&quot;:&quot;&quot;,&quot;leftitems&quot;:[{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_solid-screen\&quot;&gt;&lt;/i&gt;Responsive Web&quot;,&quot;href&quot;:&quot;.&quot;,&quot;items&quot;:[{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_tv\&quot;&gt;&lt;/i&gt;TV&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;&lt;i class=\&quot;icon icon_mobile\&quot;&gt;&lt;/i&gt;Mobile Apps&quot;,&quot;href&quot;:&quot;.&quot;}]}],&quot;rightitems&quot;:[{&quot;label&quot;:&quot;Overview&quot;,&quot;href&quot;:&quot;/pages&quot;,&quot;active&quot;:true},{&quot;label&quot;:&quot;Style&quot;,&quot;href&quot;:&quot;/pages/web-responsive/style&quot;},{&quot;label&quot;:&quot;UI Components&quot;,&quot;href&quot;:&quot;/pages/web-responsive/style&quot;},{&quot;label&quot;:&quot;Layout&quot;,&quot;href&quot;:&quot;/pages/web-responsive/layout&quot;},{&quot;label&quot;:&quot;Resources&quot;,&quot;href&quot;:&quot;/pages/web-responsive/resources&quot;}]}"></ux-top-bar>
+
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row><ux-col class="small-12"><ux-header level="2">datamodel ux-off-canvas demo</ux-header></ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+		<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Docs&quot;,&quot;href&quot;:&quot;docs.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+			<ux-row>
+				<ux-col class="small-12">
+					<p>P1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<p>P2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</ux-col>
+			</ux-row>
+
+			<ux-row>
+				<ux-col class="small-6">
+					<p>P1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</ux-col>
+				<ux-col class="small-6">
+					<p>P2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</ux-col>
+			</ux-row>
+
+		</ux-off-canvas>
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row><ux-col class="small-12"><ux-header level="2">datamodel ux-sidenav demo</ux-header></ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+
+		<ux-sidenav datamodel="{&quot;title&quot;:&quot;Sidenav demo navigation&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;Test Heading&quot;},{&quot;active&quot;:true,&quot;label&quot;:&quot;Link 1&quot;,&quot;href&quot;:&quot;/path/to/link1&quot;},{&quot;label&quot;:&quot;Link 2&quot;,&quot;href&quot;:&quot;/path/to/link2&quot;},{&quot;isDivider&quot;:true},{&quot;label&quot;:&quot;Link 3&quot;,&quot;href&quot;:&quot;/path/to/link3&quot;},{&quot;label&quot;:&quot;Link 4&quot;,&quot;href&quot;:&quot;/path/to/link4&quot;}]}"></ux-sidenav>
+
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row><ux-col class="small-12"><ux-header level="2">datamodel ux-iconbar demos</ux-header></ux-col></ux-row>
+
+<ux-row><ux-col class="small-12"><ux-header level="3">datamodel ux-iconbar 1</ux-header></ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+
+		<ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;},{&quot;src&quot;:&quot;images/fi-mail.svg&quot;,&quot;label&quot;:&quot;Mail&quot;},{&quot;src&quot;:&quot;images/fi-like.svg&quot;,&quot;label&quot;:&quot;Like&quot;}]}"></ux-iconbar>
+
+	</ux-col>
+</ux-row>
+
+<ux-row><ux-col class="small-12"><ux-header level="3">datamodel ux-iconbar 2</ux-header></ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+
+		<ux-iconbar datamodel="{&quot;class&quot;:&quot;label-right&quot;,&quot;items&quot;:[{&quot;href&quot;:&quot;/&quot;,&quot;src&quot;:&quot;images/fi-home.svg&quot;,&quot;label&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/path/to/blah&quot;,&quot;src&quot;:&quot;images/fi-bookmark.svg&quot;,&quot;label&quot;:&quot;Bookmark&quot;},{&quot;src&quot;:&quot;images/fi-info.svg&quot;,&quot;label&quot;:&quot;Info&quot;,&quot;class&quot;:&quot;disabled&quot;}]}"></ux-iconbar>
+
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row><ux-col class="small-12"><ux-header level="2">datamodel ux-accordion demos</ux-header></ux-col></ux-row>
+
+<ux-row><ux-col class="small-12"><ux-header level="3">datamodel ux-accordion 1</ux-header></ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+
+		<ux-accordion datamodel="{&quot;items&quot;:[{&quot;title&quot;:&quot;Accordion item 1&quot;,&quot;content&quot;:&quot;Accordion 1: Lorem ipsum dolor&quot;},{&quot;title&quot;:&quot;Accordion item 2&quot;,&quot;content&quot;:&quot;Accordion 2: Lorem ipsum dolor&quot;},{&quot;title&quot;:&quot;Accordion item 3&quot;,&quot;content&quot;:&quot;Accordion 3: Lorem ipsum dolor&quot;}]}"></ux-accordion>
+
+	</ux-col>
+</ux-row>
+
+<hr/>
+
+<ux-row><ux-col class="small-12">
+	<ux-header level="3">datamodel ux-tabarea 1</ux-header>
+	<p>With nested ux-button components.</p>
+</ux-col></ux-row>
+<ux-row>
+	<ux-col class="small-12">
+		<ux-tabarea datamodel="{&quot;items&quot;:[{&quot;id&quot;:&quot;structure&quot;,&quot;active&quot;:true,&quot;title&quot;:&quot;Structure&quot;,&quot;content&quot;:&quot;Structure content - here be dragons&quot;},{&quot;id&quot;:&quot;buttons&quot;,&quot;active&quot;:false,&quot;title&quot;:&quot;Buttons&quot;,&quot;content&quot;:&quot;&lt;p&gt;Buttons content - here be buttons&lt;/p&gt;&lt;ux-button class=\&quot;primary radius\&quot;&gt;Primary&lt;/ux-button&gt;&quot;}]}"></ux-tabarea>
+	</ux-col>
+</ux-row>
+		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>

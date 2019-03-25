@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Ractive.js &amp; Foundation 5 : Documentation</title>
+
+	<script src="js/foundation-sites/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="css/foundation/normalize.css">
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+	<link rel="stylesheet" href="css/components.css">
+
+	<style type="text/css">.hljs { font-size: 0.9em }</style>
+</head>
+<body>
+
+<!-- Ractive container start -->
+<div class="ractivef hide">
+
+	<!-- See ux-off-canvas/use-cases/dataDriven.json for data model. -->
+	<ux-off-canvas datamodel="{&quot;title&quot;:&quot;Ractive-Foundation v0.30.1&quot;,&quot;expandedState&quot;:&quot;&quot;,&quot;leftItems&quot;:[{&quot;label&quot;:&quot;Learn More&quot;},{&quot;label&quot;:&quot;Home&quot;,&quot;href&quot;:&quot;.&quot;},{&quot;label&quot;:&quot;Components&quot;,&quot;href&quot;:&quot;components.html&quot;},{&quot;label&quot;:&quot;Plugins&quot;,&quot;href&quot;:&quot;plugins.html&quot;},{&quot;label&quot;:&quot;Data&quot;,&quot;href&quot;:&quot;data.html&quot;},{&quot;label&quot;:&quot;Demo&quot;,&quot;href&quot;:&quot;demo.html&quot;},{&quot;label&quot;:&quot;External Links&quot;},{&quot;label&quot;:&quot;Foundation docs&quot;,&quot;href&quot;:&quot;http://foundation.zurb.com/docs/&quot;},{&quot;label&quot;:&quot;RactiveJS docs&quot;,&quot;href&quot;:&quot;http://docs.ractivejs.org/latest/get-started&quot;,&quot;target&quot;:&quot;_blank&quot;}]}">
+
+		<!-- Page content start -->
+<ux-row><ux-col class="medium-9 medium-push-3"><ux-header level="1">ux-switch</ux-header> <blockquote>
+<p>ux-switch Documentation</p>
+</blockquote>
+<p>Read <a href="http://foundation.zurb.com/docs/components/ux-switch.html">Foundation's ux-switch</a> docs for more details.</p>
+ <br> <ux-tabarea><ux-tablinks><ux-tablink active="true">Use Cases</ux-tablink> <ux-tablink>Manifest</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><ux-tabarea><ux-tablinks><ux-tablink active="true">Default use case</ux-tablink><ux-tablink>Radio switch example</ux-tablink></ux-tablinks> <ux-tabpanes><ux-tabpane><div class="ractivef-use-case" id="uxSwitch_84"><ux-switch datamodel="{&quot;name&quot;:&quot;exampleswitch&quot;,&quot;checked&quot;:true}" uid="uxSwitch_84"></ux-switch><ul>{{#events.uxSwitch_84}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-switch datamodel="{{dataModel}}"></ux-switch></code></pre> <pre>	<code>{
+    "name": "exampleswitch",
+    "checked": true
+}</code></pre></ux-tabpane><ux-tabpane><div class="ractivef-use-case" id="uxSwitch_85"><ux-switch datamodel="{&quot;name&quot;:&quot;exampleswitch&quot;,&quot;checked&quot;:true,&quot;group&quot;:&quot;exampleGroup&quot;}" uid="uxSwitch_85"></ux-switch><ul>{{#events.uxSwitch_85}}<li>{{this}}</li>{{/}}</ul></div> <br> <pre><code><ux-switch datamodel="{{dataModel}}"></ux-switch></code></pre> <pre>	<code>{
+    "name": "exampleswitch",
+    "checked": true,
+    "group": "exampleGroup"
+}</code></pre></ux-tabpane></ux-tabpanes></ux-tabarea></ux-tabpane> <ux-tabpane><strong>Semantic Event Mapping</strong> <br> <kbd>onclick</kbd><span> - Event to fire when switch is clicked</span><br/> <br> <br> <strong>Semantic Data Model</strong> <br> <kbd>role</kbd><span> - The role of the switch</span><br/><kbd>arialabel</kbd><span> - Accessibility label</span><br/><kbd>tabindex</kbd><span> - Tabable index of the element</span><br/><kbd>name</kbd><span> - The name of the switch element, for referencing in forms</span><br/></ux-tabpane></ux-tabpanes></ux-tabarea> <hr></ux-col> <ux-col class="medium-3 medium-pull-9 columns"><ux-sidenav datamodel="{&quot;title&quot;:&quot;Docs Nav&quot;,&quot;items&quot;:[{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;buttons&quot;},{&quot;label&quot;:&quot;ux-button&quot;,&quot;href&quot;:&quot;ux-button.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-button-group&quot;,&quot;href&quot;:&quot;ux-button-group.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;callouts &amp; prompts&quot;},{&quot;label&quot;:&quot;ux-alert&quot;,&quot;href&quot;:&quot;ux-alert.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-panel&quot;,&quot;href&quot;:&quot;ux-panel.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-reveal&quot;,&quot;href&quot;:&quot;ux-reveal.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tooltip&quot;,&quot;href&quot;:&quot;ux-tooltip.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;content&quot;},{&quot;label&quot;:&quot;ux-accordion&quot;,&quot;href&quot;:&quot;ux-accordion.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-anchor&quot;,&quot;href&quot;:&quot;ux-anchor.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-col&quot;,&quot;href&quot;:&quot;ux-col.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-content&quot;,&quot;href&quot;:&quot;ux-content.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-header&quot;,&quot;href&quot;:&quot;ux-header.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-pricingtable&quot;,&quot;href&quot;:&quot;ux-pricingtable.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-progress&quot;,&quot;href&quot;:&quot;ux-progress.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-row&quot;,&quot;href&quot;:&quot;ux-row.html&quot;,&quot;class&quot;:&quot;hide&quot;},{&quot;label&quot;:&quot;ux-tabarea&quot;,&quot;href&quot;:&quot;ux-tabarea.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-table&quot;,&quot;href&quot;:&quot;ux-table.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;form&quot;},{&quot;label&quot;:&quot;ux-switch&quot;,&quot;href&quot;:&quot;ux-switch.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;media&quot;},{&quot;label&quot;:&quot;ux-flex-video&quot;,&quot;href&quot;:&quot;ux-flex-video.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-orbit&quot;,&quot;href&quot;:&quot;ux-orbit.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-thumbnail&quot;,&quot;href&quot;:&quot;ux-thumbnail.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;navigation&quot;},{&quot;label&quot;:&quot;ux-breadcrumbs&quot;,&quot;href&quot;:&quot;ux-breadcrumbs.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-iconbar&quot;,&quot;href&quot;:&quot;ux-iconbar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-joyride&quot;,&quot;href&quot;:&quot;ux-joyride.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-off-canvas&quot;,&quot;href&quot;:&quot;ux-off-canvas.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-pagination&quot;,&quot;href&quot;:&quot;ux-pagination.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sidenav&quot;,&quot;href&quot;:&quot;ux-sidenav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-sub-nav&quot;,&quot;href&quot;:&quot;ux-sub-nav.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-tablink&quot;,&quot;href&quot;:&quot;ux-tablink.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-top-bar&quot;,&quot;href&quot;:&quot;ux-top-bar.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;isHeading&quot;:true,&quot;label&quot;:&quot;typography&quot;},{&quot;label&quot;:&quot;ux-inline-list&quot;,&quot;href&quot;:&quot;ux-inline-list.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-keystrokes&quot;,&quot;href&quot;:&quot;ux-keystrokes.html&quot;,&quot;class&quot;:&quot;&quot;},{&quot;label&quot;:&quot;ux-label&quot;,&quot;href&quot;:&quot;ux-label.html&quot;,&quot;class&quot;:&quot;&quot;}]}"></ux-sidenav></ux-col></ux-row>		<!-- Page content finish -->
+
+	</ux-off-canvas>
+
+<!-- Ractive container finish -->
+</div>
+
+<link rel="stylesheet" href="css/hljs-cdn-release/build/styles/github.min.css">
+<script src="js/hljs-cdn-release/build/highlight.min.js"></script>
+
+<script src="js/lodash-compat/index.js"></script>
+<script src="js/ractive/ractive.js"></script>
+<!-- ractive-touch plugin is powered by hammerjs -->
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/ractive-touch/index.js"></script>
+<script src="js/ractive-events-keys/dist/ractive-events-keys.min.js"></script>
+<script src='js/ractive-events-tap/dist/ractive-events-tap.umd.js'></script>
+<script src="js/ractivef.js"></script>
+
+</body>
+</html>
