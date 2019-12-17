@@ -83,11 +83,15 @@ module.exports = function (options) {
 		return Q.Promise(function (resolve, reject) {
 			if (!seleniumServer) {
 				gutil.log(gutil.colors.red('Cannot kill standalone server.'));
-				return reject('Cannot kill standalone server.');
+				try {
+					require('child_process').execSync('killall phantomjs');
+				} catch (e) {
+					gutil.log(gutil.colors.red('Cannot kill phantomjs: ' + JSON.strinfify(e)));
+				}
 			}
 
 			if (options.seleniumOptions &&  options.seleniumOptions.kill === false) {
-				gutil.log(gutil.colors.green('Configured not to kill selenium.'))
+				gutil.log(gutil.colors.green('Configured not to kill selenium.'));
 				gutil.log('Finished', '\'' + gutil.colors.cyan('selenium standalone server') + '\'...');
 				return resolve();
 			}
@@ -99,6 +103,11 @@ module.exports = function (options) {
 			});
 			seleniumServer.on('error', function (code, signal) {
 				gutil.log(gutil.colors.red('Failed to kill server!'));
+				try {
+					require('child_process').execSync('killall phantomjs');
+				} catch (e) {
+					gutil.log(gutil.colors.red('Cannot kill phantomjs: ' + JSON.strinfify(e)));
+				}
 				return reject(signal);
 			});
 		});
